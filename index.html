@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Grey Book Reflection daily reading site — an A.S.I.S. literature project backed by the Grey Area Group of NA." />
+  <title>Grey Book Reflection</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <div>
+        <p class="eyebrow">A.S.I.S. Literature Project</p>
+        <h1>Grey Book Reflection</h1>
+        <p class="subhead">Backed by the Grey Area Group of NA</p>
+      </div>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="#today" data-nav="today">Today</a>
+        <a href="#archive" data-nav="archive">Archive</a>
+        <a href="#search" data-nav="search">Search</a>
+        <a href="#about" data-nav="about">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap main-content">
+    <section class="toolbar" aria-label="Reading controls">
+      <button id="prevBtn" type="button">Previous</button>
+      <button id="todayBtn" type="button">Today</button>
+      <button id="nextBtn" type="button">Next</button>
+      <button id="randomBtn" type="button">Random</button>
+      <button id="shareBtn" type="button">Copy Link</button>
+    </section>
+
+    <section id="dailyNotice" class="notice hidden" aria-live="polite"></section>
+
+    <section id="readingArea" class="reading-stack" aria-live="polite"></section>
+
+    <section id="archive" class="panel">
+      <div class="panel-heading">
+        <p class="eyebrow">Calendar Archive</p>
+        <h2>Browse by Date</h2>
+      </div>
+      <div id="archiveGrid" class="archive-grid"></div>
+    </section>
+
+    <section id="search" class="panel">
+      <div class="panel-heading">
+        <p class="eyebrow">Search</p>
+        <h2>Find a Reflection</h2>
+      </div>
+      <label class="search-label" for="searchInput">Search quote, reflection, or In This Moment text</label>
+      <input id="searchInput" type="search" placeholder="Try: surrender, vigilance, service, humility..." autocomplete="off" />
+      <div id="searchResults" class="search-results" aria-live="polite"></div>
+    </section>
+
+    <section id="about" class="panel about-panel">
+      <div class="panel-heading">
+        <p class="eyebrow">About This Project</p>
+        <h2>A.S.I.S. and the Groups Served</h2>
+      </div>
+      <p><strong>Grey Book Reflection</strong> is a literature project backed by the Grey Area Group of NA and carried through A.S.I.S. as a service resource.</p>
+      <p>A.S.I.S. is directly responsible to the NA Groups it serves. This site is maintained to support daily reflection, literature study, review/input, and carrying the NA message.</p>
+      <p class="small-note">The uploaded project file is titled <em>Gray Book Reflections</em>. The public site uses the project title <em>Grey Book Reflection</em>.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>Grey Book Reflection is backed by the Grey Area Group of NA and carried through A.S.I.S., which is directly responsible to the NA Groups it serves.</p>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
