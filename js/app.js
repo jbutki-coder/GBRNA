@@ -90,6 +90,7 @@ function renderReadingCard(reading, label = '') {
           <h4>In This Moment</h4>
           <p class="moment-text">${escapeHtml(reading.moment)}</p>
         </div>` : ''}
+      ${renderReviewInputForm(reading)}
     </article>
   `;
 }
@@ -97,6 +98,7 @@ function renderReadingCard(reading, label = '') {
 function renderReadings(readings, notice = '') {
   const area = $('#readingArea');
   area.innerHTML = readings.map((reading) => renderReadingCard(reading)).join('');
+  attachReviewForms();
 
   const noticeEl = $('#dailyNotice');
   if (notice) {
