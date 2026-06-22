@@ -71,6 +71,87 @@ function escapeHtml(str) {
     .replaceAll("'", '&#039;');
 }
 
+
+function renderReviewInputForm(reading) {
+  const source = reading.source || 'Source reference pending';
+  const page = reading.pdfPage ? `GBR PDF p. ${reading.pdfPage}` : '';
+  const siteLink = `${location.origin}${location.pathname}#${reading.id}`;
+
+  return `
+    <section class="review-input" aria-label="Review and input for ${escapeHtml(reading.date)}">
+      <h4>Review &amp; Input</h4>
+      <p class="review-help">Share review, correction, group input, or literature feedback for this reading.</p>
+
+      <form class="review-form" action="https://formspree.io/f/xbdvjywr" method="POST">
+        <input type="hidden" name="reading_date" value="${escapeHtml(reading.date)}">
+        <input type="hidden" name="reading_id" value="${escapeHtml(reading.id)}">
+        <input type="hidden" name="gray_book_source" value="${escapeHtml(source)}">
+        <input type="hidden" name="gbr_pdf_page" value="${escapeHtml(page)}">
+        <input type="hidden" name="site_link" value="${escapeHtml(siteLink)}">
+        <input type="hidden" name="_subject" value="GBR Review/Input — ${escapeHtml(reading.date)}">
+
+        <label>
+          Name or group <span>(optional)</span>
+          <input type="text" name="name_or_group" autocomplete="name" placeholder="Name, home group, or area">
+        </label>
+
+        <label>
+          Email <span>(optional)</span>
+          <input type="email" name="email" autocomplete="email" placeholder="Only if you want a response">
+        </label>
+
+        <label>
+          Review / Input <span>(required)</span>
+          <textarea name="message" required placeholder="Enter review, correction, group input, or suggested changes..."></textarea>
+        </label>
+
+        <button type="submit">Submit Review/Input</button>
+        <p class="form-status" aria-live="polite"></p>
+      </form>
+    </section>
+  `;
+}
+
+function attachReviewForms() {
+  document.querySelectorAll('.review-form').forEach((form) => {
+    if (form.dataset.bound === 'true') return;
+    form.dataset.bound = 'true';
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const button = form.querySelector('button[type="submit"]');
+      const status = form.querySelector('.form-status');
+      const oldText = button.textContent;
+
+      button.disabled = true;
+      button.textContent = 'Submitting...';
+      status.textContent = '';
+      status.className = 'form-status';
+
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (!response.ok) throw new Error('Form submission failed');
+
+        form.reset();
+        status.textContent = 'Thank you. Your review/input has been submitted.';
+        status.classList.add('success');
+      } catch (error) {
+        console.error(error);
+        status.textContent = 'Something went wrong. Please try again, or copy your input before refreshing.';
+        status.classList.add('error');
+      } finally {
+        button.disabled = false;
+        button.textContent = oldText;
+      }
+    });
+  });
+}
+
 function renderReadingCard(reading, label = '') {
   const sourceLine = reading.source ? escapeHtml(reading.source) : 'Source reference pending';
 
