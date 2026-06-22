@@ -72,11 +72,16 @@ function escapeHtml(str) {
 }
 
 function renderReadingCard(reading, label = '') {
+  const sourceLine = reading.source ? escapeHtml(reading.source) : 'Source reference pending';
+
   return `
     <article class="reading-card" id="reading-${reading.id}">
       <div class="reading-date">
         <h3>${escapeHtml(label || reading.date)}</h3>
-        <span class="page-ref">PDF page ${reading.pdfPage}</span>
+        <div class="reading-meta">
+          <span class="source-ref">${sourceLine}</span>
+          <span class="page-ref">GBR PDF p. ${reading.pdfPage}</span>
+        </div>
       </div>
       <blockquote class="quote">${escapeHtml(reading.quote)}</blockquote>
       <div class="body-text">${paragraphHtml(reading.body)}</div>
@@ -167,7 +172,7 @@ function doSearch(query) {
   }
 
   results.innerHTML = matches.map((r) => {
-    const snippetSource = `${r.quote} ${r.body} ${r.moment}`;
+    const snippetSource = `${r.date} ${r.source || ''} ${r.quote} ${r.body} ${r.moment}`;
     const lower = snippetSource.toLowerCase();
     const idx = lower.indexOf(q);
     const start = Math.max(0, idx - 70);
