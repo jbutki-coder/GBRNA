@@ -1,32 +1,47 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <link rel="icon" href="/icons/favicon.ico" sizes="any">
-<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
-
-<meta property="og:title" content="Grey Book Reflection">
-<meta property="og:description" content="Daily Grey Book Reflection — backed by the Grey Area Group of NA and carried through A.S.I.S.">
-<meta property="og:image" content="https://YOUR-RENDER-SITE.onrender.com/icons/og-image.png">
-<meta property="og:type" content="website">
-
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Grey Book Reflection">
-<meta name="twitter:description" content="Daily Grey Book Reflection">
-<meta name="twitter:image" content="https://YOUR-RENDER-SITE.onrender.com/icons/og-image.png">
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Grey Book Reflection daily reading site — an A.S.I.S. literature project backed by the Grey Area Group of NA." />
+
   <title>Grey Book Reflection</title>
+  <meta name="description" content="Grey Book Reflection daily reading site — created by the Grey Area Group of NA and carried through A.S.I.S." />
+
+  <!-- Browser tab icon -->
+  <link rel="icon" href="/icons/favicon.ico" sizes="any">
+
+  <!-- iPhone / iPad home screen icon -->
+  <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+
+  <!-- Optional Android / app-style install support -->
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" content="#111111">
+
+  <!-- Shared link preview -->
+  <meta property="og:title" content="Grey Book Reflection">
+  <meta property="og:description" content="Daily Grey Book Reflection — created by the Grey Area Group of NA and carried through A.S.I.S.">
+  <meta property="og:image" content="https://gbrna.onrender.com/icons/og-image.png">
+  <meta property="og:url" content="https://gbrna.onrender.com/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Grey Book Reflection">
+
+  <!-- Twitter / X preview -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Grey Book Reflection">
+  <meta name="twitter:description" content="Daily Grey Book Reflection">
+  <meta name="twitter:image" content="https://gbrna.onrender.com/icons/og-image.png">
+
   <link rel="stylesheet" href="css/style.css" />
 </head>
+
 <body>
   <header class="site-header">
     <div class="wrap header-inner">
       <div>
-        
         <h1>Grey Book Reflection</h1>
         <p class="subhead">Created by the Grey Area Group of NA</p>
       </div>
+
       <nav class="main-nav" aria-label="Main navigation">
         <a href="#today" data-nav="today">Today</a>
         <a href="#archive" data-nav="archive">Archive</a>
@@ -37,7 +52,7 @@
   </header>
 
   <main class="wrap main-content">
-    <section class="toolbar" aria-label="Reading controls">
+    <section id="today" class="toolbar" aria-label="Reading controls">
       <button id="prevBtn" type="button">Previous</button>
       <button id="todayBtn" type="button">Today</button>
       <button id="nextBtn" type="button">Next</button>
@@ -54,6 +69,7 @@
         <p class="eyebrow">Calendar Archive</p>
         <h2>Browse by Date</h2>
       </div>
+
       <div id="archiveGrid" class="archive-grid"></div>
     </section>
 
@@ -62,8 +78,18 @@
         <p class="eyebrow">Search</p>
         <h2>Find a Reflection</h2>
       </div>
-      <label class="search-label" for="searchInput">Search quote, reflection, or In This Moment text</label>
-      <input id="searchInput" type="search" placeholder="Try: surrender, vigilance, service, humility..." autocomplete="off" />
+
+      <label class="search-label" for="searchInput">
+        Search quote, reflection, or In This Moment text
+      </label>
+
+      <input
+        id="searchInput"
+        type="search"
+        placeholder="Try: surrender, vigilance, service, humility..."
+        autocomplete="off"
+      />
+
       <div id="searchResults" class="search-results" aria-live="polite"></div>
     </section>
 
@@ -72,9 +98,21 @@
         <p class="eyebrow">About This Project</p>
         <h2>A.S.I.S and the Fellowship Service Conference</h2>
       </div>
-      <p><strong>Grey Book Reflection</strong> is a literature project that is still in the draft stage, however many groups use it as NA Literature.</p>
-      <p>A.S.I.S. is directly responsible to the NA Groups it serves. This site is maintained to support daily reflection, literature study, review/input, and carrying the NA message.</p>
-      <p class="small-note">The uploaded project file is titled <em>Gray Book Reflections</em>. The public site uses the project title <em>Grey Book Reflection</em>.</p>
+
+      <p>
+        <strong>Grey Book Reflection</strong> is a literature project that is still in the draft stage,
+        however many groups use it as NA Literature.
+      </p>
+
+      <p>
+        A.S.I.S. is directly responsible to the NA Groups it serves. This site is maintained to support
+        daily reflection, literature study, review/input, and carrying the NA message.
+      </p>
+
+      <p class="small-note">
+        The uploaded project file is titled <em>Gray Book Reflections</em>. The public site uses the
+        project title <em>Grey Book Reflection</em>.
+      </p>
     </section>
   </main>
 
