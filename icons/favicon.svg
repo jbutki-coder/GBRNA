@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="AF service mark">
+  <circle cx="256" cy="256" r="236" fill="#0c1f2f" stroke="#8b2039" stroke-width="18"/>
+  <path d="M256 35 L477 256 L256 477 L35 256 Z" fill="#faf9f5" stroke="#8b2039" stroke-width="13" stroke-linejoin="round"/>
+  <text x="256" y="292" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="150" font-weight="800" fill="#080808">AF</text>
+</svg>
