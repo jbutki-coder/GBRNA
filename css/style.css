@@ -50,6 +50,20 @@ body {
 
 h1, h2, h3, p { margin-top: 0; }
 
+.brand-lockup {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.brand-mark {
+  width: clamp(58px, 9vw, 86px);
+  height: clamp(58px, 9vw, 86px);
+  flex: 0 0 auto;
+  border-radius: 50%;
+  filter: drop-shadow(0 5px 14px rgba(0, 0, 0, .28));
+}
+
 h1 {
   margin-bottom: 6px;
   font-size: clamp(2rem, 5vw, 4.3rem);
@@ -175,10 +189,25 @@ button:focus-visible,
 
 .reading-date h3 { margin: 0; }
 
+.reading-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  text-align: right;
+}
+
+.source-ref {
+  color: var(--ink);
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
 .page-ref {
   color: var(--muted);
   font-family: "Courier New", Courier, monospace;
-  font-size: 0.78rem;
+  font-size: 0.74rem;
   white-space: nowrap;
 }
 
@@ -321,9 +350,14 @@ button:focus-visible,
     flex-direction: column;
   }
   .main-nav { justify-content: flex-start; }
+  .brand-lockup { align-items: flex-start; }
   .reading-date {
     align-items: flex-start;
     flex-direction: column;
   }
-  .page-ref { white-space: normal; }
+  .reading-meta {
+    align-items: flex-start;
+    text-align: left;
+  }
+  .page-ref, .source-ref { white-space: normal; }
 }
