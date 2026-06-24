@@ -436,3 +436,22 @@ button:focus-visible,
 
 .form-status.success { color: #285c2f; }
 .form-status.error { color: #8b1e1e; }
+
+
+.download-button {
+  display: inline-block;
+  margin: 0.35rem 0.75rem 0.35rem 0;
+  padding: 0.85rem 1.1rem;
+  border: 1px solid var(--gold);
+  background: #fff;
+  color: #111;
+  text-decoration: none;
+  font-weight: 700;
+  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.12);
+}
+
+.download-button:hover,
+.download-button:focus {
+  transform: translateY(-1px);
+  box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.18);
+}
