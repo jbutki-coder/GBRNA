@@ -438,6 +438,7 @@ button:focus-visible,
 .form-status.error { color: #8b1e1e; }
 
 
+/* Download buttons */
 .download-button {
   display: inline-block;
   margin: 0.35rem 0.75rem 0.35rem 0;
@@ -446,6 +447,7 @@ button:focus-visible,
   background: #fff;
   color: #111;
   text-decoration: none;
+  font-family: "Courier New", Courier, monospace;
   font-weight: 700;
   box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.12);
 }
@@ -454,4 +456,37 @@ button:focus-visible,
 .download-button:focus {
   transform: translateY(-1px);
   box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.18);
+}
+
+/* Draft switch between daily-reading projects */
+.draft-switch {
+  margin: 0 0 22px;
+  text-align: center;
+}
+
+.draft-switch-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--gold);
+  background: rgba(255, 255, 255, 0.55);
+  color: var(--ink);
+  text-decoration: none;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: 700;
+  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.12);
+}
+
+.draft-switch-link:hover,
+.draft-switch-link:focus {
+  transform: translateY(-1px);
+  box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.18);
+}
+
+.draft-arrow {
+  font-size: 1.35rem;
+  color: var(--gold);
 }
