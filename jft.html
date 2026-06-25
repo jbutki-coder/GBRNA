@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Just For Tonight</title>
+  <meta name="description" content="Just For Tonight daily reading site — an A.S.I.S. daily reading draft" />
+
+  <!-- Browser tab icons -->
+  <link rel="icon" href="/icons/favicon.ico?v=3" sizes="any">
+  <link rel="shortcut icon" href="/icons/favicon.ico?v=3" type="image/x-icon">
+  <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png?v=3">
+  <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png?v=3">
+
+  <!-- iPhone / iPad home screen icon -->
+  <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png?v=3">
+
+  <!-- Android / app-style install support -->
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" content="#111111">
+
+  <!-- Shared link preview -->
+  <meta property="og:title" content="Just For Tonight">
+  <meta property="og:description" content="Daily Just For Tonight — an A.S.I.S. daily reading draft">
+  <meta property="og:image" content="https://gbrna.onrender.com/icons/icon-512.png?v=3">
+  <meta property="og:image:secure_url" content="https://gbrna.onrender.com/icons/icon-512.png?v=3">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="512">
+  <meta property="og:image:height" content="512">
+  <meta property="og:image:alt" content="Just For Tonight">
+  <meta property="og:url" content="https://gbrna.onrender.com/jft.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Just For Tonight">
+
+  <!-- Twitter / X preview -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Just For Tonight">
+  <meta name="twitter:description" content="Daily Just For Tonight">
+  <meta name="twitter:image" content="https://gbrna.onrender.com/icons/icon-512.png?v=3">
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <div>
+        <h1>Just For Tonight</h1>
+        <p class="subhead">An A.S.I.S. daily reading draft</p>
+      </div>
+
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="#today" data-nav="today">Today</a>
+        <a href="#archive" data-nav="archive">Archive</a>
+        <a href="#search" data-nav="search">Search</a>
+        <a href="#download" data-nav="download">Download</a>
+        <a href="https://www.nahelp.org" target="_blank" rel="noopener noreferrer">A.S.I.S.</a>
+        <a href="#about" data-nav="about">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap main-content">
+    <section id="today" class="toolbar" aria-label="Reading controls">
+      <button id="prevBtn" type="button">Previous</button>
+      <button id="todayBtn" type="button">Today</button>
+      <button id="nextBtn" type="button">Next</button>
+      <button id="randomBtn" type="button">Random</button>
+      <button id="shareBtn" type="button">Copy Link</button>
+    </section>
+
+    <section class="draft-switch" aria-label="Switch daily reading draft">
+      <a class="draft-switch-link" href="/">
+        <span>Grey Book Reflection</span>
+        <span class="draft-arrow" aria-hidden="true">←</span>
+        <span>Just For Tonight</span>
+      </a>
+    </section>
+
+    <section id="dailyNotice" class="notice hidden" aria-live="polite"></section>
+
+    <section id="readingArea" class="reading-stack" aria-live="polite"></section>
+
+    <section id="archive" class="panel">
+      <div class="panel-heading">
+        <p class="eyebrow">Calendar Archive</p>
+        <h2>Browse by Date</h2>
+      </div>
+
+      <div id="archiveGrid" class="archive-grid"></div>
+    </section>
+
+    <section id="search" class="panel">
+      <div class="panel-heading">
+        <p class="eyebrow">Search</p>
+        <h2>Find a Reading</h2>
+      </div>
+
+      <label class="search-label" for="searchInput">
+        Search quote, reflection, or Just For Tonight text
+      </label>
+
+      <input
+        id="searchInput"
+        type="search"
+        placeholder="Try: surrender, meetings, inventory, hope..."
+        autocomplete="off"
+      />
+
+      <div id="searchResults" class="search-results" aria-live="polite"></div>
+    </section>
+
+    <section id="download" class="panel download-panel">
+      <div class="panel-heading">
+        <p class="eyebrow">Download</p>
+        <h2>Literature Downloads</h2>
+      </div>
+
+      <p>
+        Download the current <strong>Just For Tonight</strong> draft for Group review,
+        literature study, and input.
+      </p>
+
+      <p>
+        <a class="download-button" href="/downloads/just-for-tonight.pdf" download>
+          Download Just For Tonight PDF
+        </a>
+      </p>
+
+      <p>
+        <a class="download-button" href="https://www.nahelp.org" target="_blank" rel="noopener noreferrer">
+          Visit A.S.I.S. / NA Help
+        </a>
+      </p>
+
+      <p class="small-note">
+        Just For Tonight is still in the draft stage. Review and input from NA Groups is encouraged.
+      </p>
+    </section>
+
+    <section id="about" class="panel about-panel">
+      <div class="panel-heading">
+        <p class="eyebrow">About This Project</p>
+        <h2>Just For Tonight</h2>
+      </div>
+
+      <p>
+        <strong>Just For Tonight</strong> is another A.S.I.S. daily reading draft. The source file describes it as an evening meditation reading.
+      </p>
+
+      <p>
+        This page uses the same daily reading setup as Grey Book Reflection: today’s reading, previous/next, archive, search, copy link, and review/input.
+      </p>
+
+      <p class="small-note">
+        The source project file is titled <em>Just for Tonight</em>. The public site uses the title <em>Just For Tonight</em>.
+      </p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p><em>In Loving Service: Grey Area Historical Literature Study Group of Narcotics Anonymous</em></p>
+    </div>
+  </footer>
+
+  <script src="js/jft.js"></script>
+</body>
+</html>
