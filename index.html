@@ -55,6 +55,7 @@
         <a href="#archive" data-nav="archive">Archive</a>
         <a href="#search" data-nav="search">Search</a>
         <a href="#download" data-nav="download">Download</a>
+        <a href="#audio" data-nav="audio">Audio</a>
         <a href="https://www.nahelp.org" target="_blank" rel="noopener noreferrer">A.S.I.S.</a>
         <a href="#about" data-nav="about">About</a>
       </nav>
@@ -145,6 +146,40 @@
       </p>
     </section>
 
+    <section id="audio" class="panel audio-panel">
+      <div class="panel-heading">
+        <p class="eyebrow">Audio</p>
+        <h2>Grey Book Audio</h2>
+      </div>
+
+      <p>
+        Listen to the Grey Book audio recordings from the NA Literature Audio podcast.
+      </p>
+
+      <label class="audio-label" for="greyBookAudioSelect">Choose a recording</label>
+      <select id="greyBookAudioSelect" class="audio-select"></select>
+
+      <div id="greyBookAudioDetails" class="audio-details" aria-live="polite"></div>
+
+      <iframe
+        id="greyBookAudioFrame"
+        class="audio-iframe"
+        title="Grey Book audio player"
+        loading="lazy"
+        allow="autoplay"
+      ></iframe>
+
+      <p>
+        <a id="greyBookAudioExternal" class="download-button" href="#" target="_blank" rel="noopener noreferrer">
+          Open Audio Episode
+        </a>
+      </p>
+
+      <p class="small-note">
+        Audio is provided for listening and study. Recordings are from NA Literature Audio.
+      </p>
+    </section>
+
     <section id="about" class="panel about-panel">
       <div class="panel-heading">
         <p class="eyebrow">About This Project</p>
@@ -175,5 +210,6 @@
   </footer>
 
   <script src="js/app.js"></script>
+  <script src="js/audio.js"></script>
 </body>
 </html>
