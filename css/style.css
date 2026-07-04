@@ -490,3 +490,40 @@ button:focus-visible,
   font-size: 1.35rem;
   color: var(--gold);
 }
+
+/* Grey Book audio player */
+.audio-label {
+  display: block;
+  margin: 0 0 8px;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: 700;
+}
+
+.audio-select {
+  width: 100%;
+  max-width: 760px;
+  padding: 0.75rem;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.75);
+  color: var(--ink);
+  font: inherit;
+  margin-bottom: 1rem;
+}
+
+.audio-details {
+  margin: 0 0 1rem;
+  border-left: 4px solid var(--gold);
+  padding-left: 1rem;
+}
+
+.audio-details p {
+  margin: 0.25rem 0;
+}
+
+.audio-iframe {
+  width: 100%;
+  min-height: 210px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.65);
+  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.08);
+}
