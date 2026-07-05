@@ -437,7 +437,7 @@ button:focus-visible,
 .form-status.success { color: #285c2f; }
 .form-status.error { color: #8b1e1e; }
 
-/* Custom Grey Book Reflection audio player */
+/* Cassette-style Grey Book Reflection audio player */
 .sr-only {
   position: absolute !important;
   width: 1px !important;
@@ -452,186 +452,268 @@ button:focus-visible,
 
 .daily-reflection-audio {
   --audio-progress: 0%;
-  margin-top: 28px;
-  padding: 0;
-  overflow: hidden;
-  color: var(--paper);
+  margin: 0 0 30px;
+  padding: 18px;
+  color: #f1e7d3;
   background:
-    linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
-    var(--charcoal);
-  background-size: 100% 8px, auto;
-  border: 1px solid rgba(20, 17, 13, .55);
-  border-left: 7px solid var(--gold);
-  box-shadow: 7px 8px 0 rgba(20, 17, 13, .12);
+    repeating-linear-gradient(0deg, rgba(255,255,255,.018) 0, rgba(255,255,255,.018) 1px, transparent 1px, transparent 6px),
+    #292724;
+  border: 2px solid #171614;
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.05),
+    8px 9px 0 rgba(20,17,13,.12);
 }
 
-.daily-audio-header {
+.cassette-topline {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 18px;
-  padding: 20px 22px 16px;
-  border-bottom: 1px solid rgba(243, 234, 216, .18);
+  gap: 16px;
+  margin-bottom: 14px;
 }
 
 .daily-audio-kicker {
-  margin: 0 0 4px;
+  margin: 0 0 3px;
   color: var(--gold-soft);
   font-family: "Courier New", Courier, monospace;
-  font-size: .76rem;
+  font-size: .72rem;
   font-weight: 700;
-  letter-spacing: .14em;
+  letter-spacing: .16em;
   text-transform: uppercase;
 }
 
 .daily-reflection-audio h4 {
   margin: 0;
-  color: var(--paper);
-  font-size: clamp(1.35rem, 3vw, 2rem);
-  line-height: 1.08;
-}
-
-.daily-audio-subtitle {
-  margin: 7px 0 0;
-  color: #cfc1aa;
-  font-family: "Courier New", Courier, monospace;
-  font-size: .78rem;
-  letter-spacing: .04em;
+  color: #f4ecd9;
+  font-size: clamp(1.35rem, 3vw, 1.95rem);
+  line-height: 1.05;
 }
 
 .audio-file-link {
   flex: 0 0 auto;
-  color: var(--gold-soft);
-  border: 1px solid rgba(215, 189, 122, .75);
+  color: #e4cc8d;
+  border: 1px solid rgba(228,204,141,.8);
   padding: 7px 9px;
   font-family: "Courier New", Courier, monospace;
-  font-size: .76rem;
+  font-size: .72rem;
   font-weight: 700;
   letter-spacing: .06em;
   text-decoration: none;
-  transition: background .15s ease, color .15s ease, transform .15s ease;
 }
 
 .audio-file-link:hover,
 .audio-file-link:focus-visible {
-  background: var(--gold);
-  color: var(--charcoal);
-  transform: translateY(-1px);
+  background: #d8ba72;
+  color: #211f1c;
 }
 
-.audio-deck {
+.cassette-shell {
+  position: relative;
+  max-width: 660px;
+  margin: 0 auto;
+  padding: 24px 42px 22px;
+  color: #201f1d;
+  background:
+    linear-gradient(155deg, rgba(255,255,255,.22), transparent 24%),
+    #c9c2b0;
+  border: 3px solid #111;
+  border-radius: 10px 10px 18px 18px;
+  box-shadow:
+    inset 0 0 0 3px rgba(255,255,255,.18),
+    inset 0 -8px 0 rgba(0,0,0,.08),
+    0 5px 0 #111;
+}
+
+.cassette-label-strip {
   display: grid;
-  grid-template-columns: 76px 1fr;
-  gap: 18px;
-  align-items: stretch;
-  padding: 20px 22px 22px;
-}
-
-.audio-play-button {
-  width: 76px;
-  min-height: 76px;
-  padding: 0;
-  border: 2px solid var(--gold);
-  background: transparent;
-  color: var(--gold-soft);
-  font-size: 1.85rem;
-  line-height: 1;
-  box-shadow: inset 0 0 0 1px rgba(255,255,255,.06);
-}
-
-.audio-play-button:hover,
-.audio-play-button:focus-visible,
-.daily-reflection-audio.is-playing .audio-play-button {
-  background: var(--gold);
-  color: var(--charcoal);
-}
-
-.audio-track-area {
-  min-width: 0;
-  display: grid;
-  align-content: center;
-  gap: 10px;
-}
-
-.audio-time-row {
-  display: grid;
-  grid-template-columns: 54px 1fr 54px;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
   gap: 10px;
-  color: #d9ccb6;
+  margin-bottom: 13px;
+  padding: 8px 12px;
+  background: #efe6cf;
+  border-top: 3px solid #9a351f;
+  border-bottom: 2px solid #9a351f;
   font-family: "Courier New", Courier, monospace;
-  font-size: .77rem;
+  font-size: .63rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+}
+
+.cassette-label-strip strong {
+  font-size: .8rem;
+  letter-spacing: .04em;
+  white-space: nowrap;
+}
+
+.cassette-label-strip span:last-child { text-align: right; }
+
+.cassette-window {
+  position: relative;
+  display: grid;
+  grid-template-columns: 82px 1fr 82px;
+  align-items: center;
+  gap: 10px;
+  min-height: 94px;
+  padding: 10px 26px;
+  background: #34322f;
+  border: 4px solid #1b1a18;
+  border-radius: 8px;
+  box-shadow: inset 0 0 16px rgba(0,0,0,.8);
+}
+
+.cassette-reel {
+  position: relative;
+  z-index: 2;
+  display: block;
+  width: 68px;
+  height: 68px;
+  margin: auto;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at center, #d5ceb9 0 10px, #242321 11px 15px, transparent 16px),
+    repeating-conic-gradient(#d7d0bd 0 14deg, #5a5750 14deg 28deg);
+  border: 5px solid #ded7c5;
+  box-shadow: 0 0 0 3px #171614;
+}
+
+.cassette-reel i {
+  position: absolute;
+  inset: 18px;
+  border-radius: 50%;
+  border: 2px solid #171614;
+}
+
+.cassette-tape-band {
+  height: 28px;
+  background:
+    linear-gradient(#181716 0 9px, #7d4d2f 9px 19px, #181716 19px 28px);
+  border: 2px solid #111;
+  box-shadow: inset 0 0 8px #000;
+}
+
+.daily-reflection-audio.is-playing .cassette-reel {
+  animation: cassetteSpin 1.25s linear infinite;
+}
+
+@keyframes cassetteSpin {
+  to { transform: rotate(360deg); }
+}
+
+.cassette-counter-row {
+  display: grid;
+  grid-template-columns: 52px 1fr 52px;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+  font-family: "Courier New", Courier, monospace;
+  font-size: .72rem;
   font-weight: 700;
 }
 
-.audio-time-row > :last-child {
-  text-align: right;
-}
-
-.audio-track-stamp {
-  color: var(--gold-soft);
+.cassette-counter-row > :last-child { text-align: right; }
+.cassette-counter-label {
   text-align: center;
+  font-size: .6rem;
   letter-spacing: .14em;
-  font-size: .67rem;
 }
 
 .audio-progress {
   width: 100%;
-  height: 16px;
-  margin: 0;
+  height: 12px;
+  margin: 9px 0 0;
   padding: 0;
   appearance: none;
   -webkit-appearance: none;
   background:
-    linear-gradient(
-      90deg,
-      var(--gold) 0,
-      var(--gold) var(--audio-progress),
-      rgba(243, 234, 216, .26) var(--audio-progress),
-      rgba(243, 234, 216, .26) 100%
-    );
-  border: 1px solid rgba(243, 234, 216, .22);
+    linear-gradient(90deg,
+      #8e2f20 0,
+      #8e2f20 var(--audio-progress),
+      #8d877a var(--audio-progress),
+      #8d877a 100%);
+  border: 2px solid #171614;
   cursor: pointer;
 }
 
 .audio-progress::-webkit-slider-thumb {
   appearance: none;
   -webkit-appearance: none;
-  width: 10px;
-  height: 24px;
-  background: var(--paper);
-  border: 2px solid var(--charcoal);
-  box-shadow: 0 0 0 1px var(--gold);
+  width: 15px;
+  height: 22px;
+  background: #e8dfca;
+  border: 2px solid #171614;
+  border-radius: 2px;
 }
 
 .audio-progress::-moz-range-thumb {
-  width: 10px;
+  width: 13px;
   height: 20px;
-  border-radius: 0;
-  background: var(--paper);
-  border: 2px solid var(--charcoal);
-  box-shadow: 0 0 0 1px var(--gold);
+  background: #e8dfca;
+  border: 2px solid #171614;
+  border-radius: 2px;
 }
 
-.audio-secondary-controls {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
+.cassette-screw {
+  position: absolute;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #6d685f;
+  border: 1px solid #262421;
+  box-shadow: inset 0 0 0 2px rgba(255,255,255,.18);
+}
+.cassette-screw::after {
+  content: "";
+  position: absolute;
+  top: 4px;
+  left: 1px;
+  width: 7px;
+  height: 1px;
+  background: #24221f;
+  transform: rotate(-24deg);
+}
+.screw-tl { top: 8px; left: 9px; }
+.screw-tr { top: 8px; right: 9px; }
+.screw-bl { bottom: 8px; left: 9px; }
+.screw-br { bottom: 8px; right: 9px; }
+
+.cassette-controls {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(62px, 94px));
+  justify-content: center;
+  gap: 9px;
+  margin: 20px auto 0;
 }
 
-.audio-secondary-controls button {
-  color: #d9ccb6;
-  background: transparent;
-  border: 1px solid rgba(243, 234, 216, .28);
-  padding: 6px 9px;
-  font-size: .73rem;
+.cassette-controls button {
+  min-height: 58px;
+  padding: 8px 6px;
+  color: #efe6d3;
+  background: #191816;
+  border: 1px solid #6e675c;
+  border-bottom: 5px solid #0e0e0d;
+  border-radius: 3px;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.08);
 }
 
-.audio-secondary-controls button:hover,
-.audio-secondary-controls button:focus-visible {
-  background: var(--gold);
-  color: var(--charcoal);
-  border-color: var(--gold);
+.cassette-controls button span {
+  display: block;
+  margin-top: 5px;
+  font-size: .58rem;
+  letter-spacing: .08em;
+}
+
+.cassette-controls button:hover,
+.cassette-controls button:focus-visible,
+.daily-reflection-audio.is-playing .audio-play-button {
+  color: #211f1c;
+  background: #d8ba72;
+  border-color: #d8ba72;
+  border-bottom-color: #9c7c3e;
 }
 
 .audio-variant-picker {
@@ -639,12 +721,11 @@ button:focus-visible,
   grid-template-columns: auto minmax(0, 1fr);
   align-items: center;
   gap: 12px;
-  margin: 0 22px 20px;
-  padding-top: 15px;
-  border-top: 1px solid rgba(243, 234, 216, .15);
-  color: var(--gold-soft);
+  max-width: 660px;
+  margin: 18px auto 0;
+  color: #e3d2aa;
   font-family: "Courier New", Courier, monospace;
-  font-size: .76rem;
+  font-size: .72rem;
   font-weight: 700;
   letter-spacing: .06em;
   text-transform: uppercase;
@@ -652,65 +733,84 @@ button:focus-visible,
 
 .audio-variant-picker select {
   width: 100%;
-  border: 1px solid rgba(243, 234, 216, .28);
-  background: var(--charcoal-2);
-  color: var(--paper);
+  border: 1px solid #6e675c;
+  background: #191816;
+  color: #f2e8d4;
   padding: 9px 10px;
   font-family: "Courier New", Courier, monospace;
 }
 
 .audio-status {
-  min-height: 0;
-  margin: -8px 22px 18px;
-  color: #d9ccb6;
+  max-width: 660px;
+  margin: 12px auto 0;
+  color: #e0cfaa;
   font-family: "Courier New", Courier, monospace;
-  font-size: .75rem;
+  font-size: .73rem;
+  text-align: center;
 }
-
-.audio-status:empty {
-  display: none;
-}
+.audio-status:empty { display: none; }
 
 @media (max-width: 720px) {
-  .daily-audio-header {
-    padding: 18px 16px 14px;
+  .daily-reflection-audio {
+    margin-left: -12px;
+    margin-right: -12px;
+    padding: 14px 12px;
+    box-shadow: 5px 6px 0 rgba(20,17,13,.11);
   }
 
-  .audio-deck {
-    grid-template-columns: 62px 1fr;
-    gap: 12px;
-    padding: 16px;
+  .cassette-shell {
+    padding: 20px 22px 18px;
   }
 
-  .audio-play-button {
-    width: 62px;
-    min-height: 72px;
-    font-size: 1.55rem;
+  .cassette-label-strip {
+    grid-template-columns: 1fr auto;
+    font-size: .56rem;
   }
 
-  .audio-time-row {
-    grid-template-columns: 48px 1fr 48px;
+  .cassette-label-strip span:last-child { display: none; }
+
+  .cassette-window {
+    grid-template-columns: 64px 1fr 64px;
+    gap: 7px;
+    padding: 9px 12px;
+    min-height: 78px;
+  }
+
+  .cassette-reel {
+    width: 54px;
+    height: 54px;
+    border-width: 4px;
+  }
+
+  .cassette-reel i { inset: 14px; }
+
+  .cassette-controls {
+    grid-template-columns: repeat(4, 1fr);
     gap: 6px;
-    font-size: .7rem;
   }
 
-  .audio-secondary-controls {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .audio-secondary-controls button:last-child {
-    grid-column: 1 / -1;
+  .cassette-controls button {
+    min-width: 0;
+    min-height: 54px;
+    font-size: .9rem;
   }
 
   .audio-variant-picker {
     grid-template-columns: 1fr;
-    gap: 7px;
-    margin: 0 16px 16px;
+    gap: 6px;
   }
+}
 
-  .audio-status {
-    margin-left: 16px;
-    margin-right: 16px;
+@media (max-width: 430px) {
+  .cassette-topline h4 { font-size: 1.35rem; }
+  .audio-file-link { font-size: .66rem; }
+  .cassette-shell { padding-left: 16px; padding-right: 16px; }
+  .cassette-window {
+    grid-template-columns: 55px 1fr 55px;
+    padding-left: 8px;
+    padding-right: 8px;
   }
+  .cassette-reel { width: 47px; height: 47px; }
+  .cassette-reel i { inset: 12px; }
+  .cassette-counter-row { font-size: .66rem; }
 }
