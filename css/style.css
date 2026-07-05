@@ -437,93 +437,47 @@ button:focus-visible,
 .form-status.success { color: #285c2f; }
 .form-status.error { color: #8b1e1e; }
 
+/* Daily Grey Book Reflection audio — sits inside each reading card,
+   after In This Moment and before Review & Input. */
+.daily-reflection-audio {
+  margin-top: 26px;
+  padding: 18px 20px 20px;
+  border-top: 3px solid var(--gold);
+  border-bottom: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.26);
+}
 
-/* Download buttons */
-.download-button {
-  display: inline-block;
-  margin: 0.35rem 0.75rem 0.35rem 0;
-  padding: 0.85rem 1.1rem;
-  border: 1px solid var(--gold);
-  background: #fff;
-  color: #111;
-  text-decoration: none;
+.daily-audio-kicker {
+  margin: 0 0 4px;
+  color: var(--muted);
   font-family: "Courier New", Courier, monospace;
+  font-size: 0.78rem;
   font-weight: 700;
-  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.12);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
 
-.download-button:hover,
-.download-button:focus {
-  transform: translateY(-1px);
-  box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.18);
-}
-
-/* Draft switch between daily-reading projects */
-.draft-switch {
-  margin: 0 0 22px;
-  text-align: center;
-}
-
-.draft-switch-link {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 0.65rem;
-  padding: 0.75rem 1rem;
-  border: 1px solid var(--gold);
-  background: rgba(255, 255, 255, 0.55);
+.daily-reflection-audio h4 {
+  margin: 0 0 12px;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 1.05rem;
   color: var(--ink);
-  text-decoration: none;
-  font-family: "Courier New", Courier, monospace;
-  font-weight: 700;
-  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.12);
 }
 
-.draft-switch-link:hover,
-.draft-switch-link:focus {
-  transform: translateY(-1px);
-  box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.18);
-}
-
-.draft-arrow {
-  font-size: 1.35rem;
-  color: var(--gold);
-}
-
-/* Grey Book audio player */
-.audio-label {
+.daily-audio-frame {
   display: block;
-  margin: 0 0 8px;
-  font-family: "Courier New", Courier, monospace;
-  font-weight: 700;
-}
-
-.audio-select {
   width: 100%;
-  max-width: 760px;
-  padding: 0.75rem;
+  height: 112px;
   border: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.75);
-  color: var(--ink);
-  font: inherit;
-  margin-bottom: 1rem;
+  background: var(--charcoal);
 }
 
-.audio-details {
-  margin: 0 0 1rem;
-  border-left: 4px solid var(--gold);
-  padding-left: 1rem;
-}
+@media (max-width: 720px) {
+  .daily-reflection-audio {
+    padding: 16px 14px 18px;
+  }
 
-.audio-details p {
-  margin: 0.25rem 0;
-}
-
-.audio-iframe {
-  width: 100%;
-  min-height: 210px;
-  border: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.65);
-  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.08);
+  .daily-audio-frame {
+    height: 124px;
+  }
 }
