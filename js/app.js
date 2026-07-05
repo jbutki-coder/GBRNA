@@ -1,4 +1,5 @@
 let REFLECTIONS = [];
+let DAILY_AUDIO = {};
 let currentId = null;
 
 const monthNames = [
@@ -71,6 +72,34 @@ function escapeHtml(str) {
     .replaceAll("'", '&#039;');
 }
 
+
+
+
+function renderDailyAudio(reading) {
+  const audio = DAILY_AUDIO[reading.id];
+  if (!audio) return '';
+
+  const previewUrl = audio.previewUrl ||
+    (audio.fileId ? `https://drive.google.com/file/d/${encodeURIComponent(audio.fileId)}/preview` : '');
+
+  if (!previewUrl) return '';
+
+  const title = audio.title || `Grey Book Reflection Audio — ${reading.date}`;
+
+  return `
+    <section class="daily-reflection-audio" aria-label="Grey Book Reflection audio for ${escapeHtml(reading.date)}">
+      <p class="daily-audio-kicker">Listen to Today's Reflection</p>
+      <h4>${escapeHtml(reading.date)} Audio</h4>
+      <iframe
+        class="daily-audio-frame"
+        src="${escapeHtml(previewUrl)}"
+        title="${escapeHtml(title)}"
+        loading="lazy"
+        allow="autoplay"
+      ></iframe>
+    </section>
+  `;
+}
 
 function renderReviewInputForm(reading) {
   const source = reading.source || 'Source reference pending';
@@ -171,6 +200,7 @@ function renderReadingCard(reading, label = '') {
           <h4>In This Moment</h4>
           <p class="moment-text">${escapeHtml(reading.moment)}</p>
         </div>` : ''}
+      ${renderDailyAudio(reading)}
       ${renderReviewInputForm(reading)}
     </article>
   `;
@@ -309,8 +339,17 @@ function handleHash() {
 }
 
 async function init() {
-  const res = await fetch('data/reflections.json');
-  REFLECTIONS = await res.json();
+  const reflectionsResponse = await fetch('data/reflections.json');
+  if (!reflectionsResponse.ok) throw new Error('Reflection data not found');
+  REFLECTIONS = await reflectionsResponse.json();
+
+  try {
+    const audioResponse = await fetch('data/gbr-daily-audio.json', { cache: 'no-store' });
+    if (audioResponse.ok) DAILY_AUDIO = await audioResponse.json();
+  } catch (error) {
+    console.warn('Daily reflection audio map could not be loaded.', error);
+    DAILY_AUDIO = {};
+  }
 
   renderArchive();
   handleHash();
