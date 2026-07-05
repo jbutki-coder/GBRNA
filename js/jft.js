@@ -1,4 +1,5 @@
 let READINGS = [];
+let DAILY_AUDIO = {};
 let currentId = null;
 
 const CONFIG = {
@@ -81,6 +82,32 @@ function escapeHtml(str) {
     .replaceAll('>', '&gt;')
     .replaceAll('"', '&quot;')
     .replaceAll("'", '&#039;');
+}
+
+function renderDailyAudio(reading) {
+  const audio = DAILY_AUDIO[reading.id];
+  if (!audio) return '';
+
+  const previewUrl = audio.previewUrl ||
+    (audio.fileId ? `https://drive.google.com/file/d/${encodeURIComponent(audio.fileId)}/preview` : '');
+
+  if (!previewUrl) return '';
+
+  const title = audio.title || `Just For Tonight Audio — ${reading.date}`;
+
+  return `
+    <section class="daily-reflection-audio" aria-label="Just For Tonight audio for ${escapeHtml(reading.date)}">
+      <p class="daily-audio-kicker">Listen to Tonight's Reading</p>
+      <h4>${escapeHtml(reading.date)} Audio</h4>
+      <iframe
+        class="daily-audio-frame"
+        src="${escapeHtml(previewUrl)}"
+        title="${escapeHtml(title)}"
+        loading="lazy"
+        allow="autoplay"
+      ></iframe>
+    </section>
+  `;
 }
 
 function renderReviewInputForm(reading) {
@@ -184,6 +211,7 @@ function renderReadingCard(reading, label = '') {
           <h4>${escapeHtml(CONFIG.momentTitle)}</h4>
           <p class="moment-text">${escapeHtml(reading.moment)}</p>
         </div>` : ''}
+      ${renderDailyAudio(reading)}
       ${renderReviewInputForm(reading)}
     </article>
   `;
@@ -326,7 +354,16 @@ function handleHash() {
 
 async function init() {
   const res = await fetch(CONFIG.dataUrl);
+  if (!res.ok) throw new Error(`${CONFIG.projectName} data not found`);
   READINGS = await res.json();
+
+  try {
+    const audioResponse = await fetch('data/jft-daily-audio.json', { cache: 'no-store' });
+    if (audioResponse.ok) DAILY_AUDIO = await audioResponse.json();
+  } catch (error) {
+    console.warn('Just For Tonight daily audio map could not be loaded.', error);
+    DAILY_AUDIO = {};
+  }
 
   renderArchive();
   handleHash();
