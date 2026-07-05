@@ -75,31 +75,244 @@ function escapeHtml(str) {
 
 
 
+
+function formatAudioTime(seconds) {
+  if (!Number.isFinite(seconds) || seconds < 0) return '--:--';
+  const mins = Math.floor(seconds / 60);
+  const secs = Math.floor(seconds % 60);
+  return `${mins}:${String(secs).padStart(2, '0')}`;
+}
+
 function renderDailyAudio(reading) {
   const audio = DAILY_AUDIO[reading.id];
-  if (!audio) return '';
-
-  const previewUrl = audio.previewUrl ||
-    (audio.fileId ? `https://drive.google.com/file/d/${encodeURIComponent(audio.fileId)}/preview` : '');
-
-  if (!previewUrl) return '';
+  if (!audio || !audio.audioUrl) return '';
 
   const title = audio.title || `Grey Book Reflection Audio — ${reading.date}`;
+  const alternates = Array.isArray(audio.alternates) ? audio.alternates : [];
+  const trackOptions = [
+    {
+      label: 'Main recording',
+      audioUrl: audio.audioUrl,
+      title
+    },
+    ...alternates.map((item) => ({
+      label: item.label || 'Alternate recording',
+      audioUrl: item.audioUrl,
+      title: item.label || title
+    }))
+  ];
+
+  const trackPicker = trackOptions.length > 1 ? `
+    <label class="audio-variant-picker">
+      Recording
+      <select data-track-select>
+        ${trackOptions.map((track, index) => `
+          <option
+            value="${escapeHtml(track.audioUrl)}"
+            data-track-title="${escapeHtml(track.title)}"
+            ${index === 0 ? 'selected' : ''}
+          >
+            ${escapeHtml(track.label)}
+          </option>
+        `).join('')}
+      </select>
+    </label>
+  ` : '';
 
   return `
-    <section class="daily-reflection-audio" aria-label="Grey Book Reflection audio for ${escapeHtml(reading.date)}">
-      <p class="daily-audio-kicker">Listen to Today's Reflection</p>
-      <h4>${escapeHtml(reading.date)} Audio</h4>
-      <iframe
-        class="daily-audio-frame"
-        src="${escapeHtml(previewUrl)}"
-        title="${escapeHtml(title)}"
-        loading="lazy"
-        allow="autoplay"
-      ></iframe>
+    <section
+      class="daily-reflection-audio"
+      data-audio-player
+      aria-label="Grey Book Reflection audio for ${escapeHtml(reading.date)}"
+    >
+      <div class="daily-audio-header">
+        <div>
+          <p class="daily-audio-kicker">Listen to Today's Reflection</p>
+          <h4>${escapeHtml(reading.date)} Audio</h4>
+          <p class="daily-audio-subtitle">Grey Book Reflection · Daily Audio</p>
+        </div>
+
+        <a
+          class="audio-file-link"
+          data-audio-file-link
+          href="${escapeHtml(audio.audioUrl)}"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          MP3 ↗
+        </a>
+      </div>
+
+      <audio
+        data-audio
+        preload="metadata"
+        src="${escapeHtml(audio.audioUrl)}"
+      ></audio>
+
+      <div class="audio-deck">
+        <button
+          class="audio-play-button"
+          type="button"
+          data-play
+          aria-label="Play ${escapeHtml(reading.date)} audio"
+        >
+          <span class="audio-play-symbol" data-play-icon aria-hidden="true">▶</span>
+          <span class="sr-only" data-play-text>Play</span>
+        </button>
+
+        <div class="audio-track-area">
+          <div class="audio-time-row">
+            <span data-current-time>0:00</span>
+            <span class="audio-track-stamp">GBR AUDIO</span>
+            <span data-duration>--:--</span>
+          </div>
+
+          <input
+            class="audio-progress"
+            data-progress
+            type="range"
+            min="0"
+            max="1000"
+            value="0"
+            step="1"
+            aria-label="Audio progress"
+          >
+
+          <div class="audio-secondary-controls">
+            <button type="button" data-skip="-15" aria-label="Go back 15 seconds">↶ 15 sec</button>
+            <button type="button" data-skip="15" aria-label="Go forward 15 seconds">15 sec ↷</button>
+            <button type="button" data-speed>1× Speed</button>
+          </div>
+        </div>
+      </div>
+
+      ${trackPicker}
+
+      <p class="audio-status" data-audio-status aria-live="polite"></p>
     </section>
   `;
 }
+
+function attachAudioPlayers() {
+  document.querySelectorAll('[data-audio-player]').forEach((card) => {
+    if (card.dataset.bound === 'true') return;
+    card.dataset.bound = 'true';
+
+    const audio = card.querySelector('[data-audio]');
+    const playButton = card.querySelector('[data-play]');
+    const playIcon = card.querySelector('[data-play-icon]');
+    const playText = card.querySelector('[data-play-text]');
+    const progress = card.querySelector('[data-progress]');
+    const currentTime = card.querySelector('[data-current-time]');
+    const duration = card.querySelector('[data-duration]');
+    const speedButton = card.querySelector('[data-speed]');
+    const status = card.querySelector('[data-audio-status]');
+    const trackSelect = card.querySelector('[data-track-select]');
+    const fileLink = card.querySelector('[data-audio-file-link]');
+
+    if (!audio || !playButton || !progress) return;
+
+    const speedOptions = [1, 1.25, 1.5, 2];
+    let speedIndex = 0;
+
+    function setPlayingState(isPlaying) {
+      playIcon.textContent = isPlaying ? 'Ⅱ' : '▶';
+      playText.textContent = isPlaying ? 'Pause' : 'Play';
+      playButton.setAttribute('aria-label', isPlaying ? 'Pause audio' : 'Play audio');
+      card.classList.toggle('is-playing', isPlaying);
+    }
+
+    function updateProgress() {
+      const pct = Number.isFinite(audio.duration) && audio.duration > 0
+        ? (audio.currentTime / audio.duration) * 100
+        : 0;
+
+      progress.value = String(Math.round(pct * 10));
+      progress.style.setProperty('--audio-progress', `${pct}%`);
+      currentTime.textContent = formatAudioTime(audio.currentTime);
+      duration.textContent = formatAudioTime(audio.duration);
+    }
+
+    playButton.addEventListener('click', async () => {
+      if (audio.paused) {
+        document.querySelectorAll('audio[data-audio]').forEach((other) => {
+          if (other !== audio) other.pause();
+        });
+
+        try {
+          await audio.play();
+        } catch (error) {
+          console.error(error);
+          status.textContent = 'Audio could not start. Try the MP3 link.';
+        }
+      } else {
+        audio.pause();
+      }
+    });
+
+    audio.addEventListener('play', () => {
+      setPlayingState(true);
+      status.textContent = '';
+    });
+
+    audio.addEventListener('pause', () => setPlayingState(false));
+    audio.addEventListener('ended', () => setPlayingState(false));
+    audio.addEventListener('timeupdate', updateProgress);
+    audio.addEventListener('loadedmetadata', updateProgress);
+    audio.addEventListener('durationchange', updateProgress);
+
+    audio.addEventListener('error', () => {
+      setPlayingState(false);
+      status.textContent = 'This recording could not be loaded. Try the MP3 link.';
+    });
+
+    progress.addEventListener('input', () => {
+      if (!Number.isFinite(audio.duration) || audio.duration <= 0) return;
+      audio.currentTime = (Number(progress.value) / 1000) * audio.duration;
+      updateProgress();
+    });
+
+    card.querySelectorAll('[data-skip]').forEach((button) => {
+      button.addEventListener('click', () => {
+        const seconds = Number(button.dataset.skip || 0);
+        if (!Number.isFinite(audio.duration)) return;
+        audio.currentTime = Math.min(
+          Math.max(audio.currentTime + seconds, 0),
+          audio.duration
+        );
+      });
+    });
+
+    speedButton.addEventListener('click', () => {
+      speedIndex = (speedIndex + 1) % speedOptions.length;
+      const nextSpeed = speedOptions[speedIndex];
+      audio.playbackRate = nextSpeed;
+      speedButton.textContent = `${nextSpeed}× Speed`;
+    });
+
+    if (trackSelect) {
+      trackSelect.addEventListener('change', () => {
+        const option = trackSelect.options[trackSelect.selectedIndex];
+        const wasPlaying = !audio.paused;
+        audio.pause();
+        audio.src = trackSelect.value;
+        audio.load();
+        fileLink.href = trackSelect.value;
+        status.textContent = option.dataset.trackTitle || '';
+
+        if (wasPlaying) {
+          audio.play().catch((error) => {
+            console.error(error);
+            status.textContent = 'Recording changed. Press play to continue.';
+          });
+        }
+      });
+    }
+
+    updateProgress();
+  });
+}
+
 
 function renderReviewInputForm(reading) {
   const source = reading.source || 'Source reference pending';
@@ -209,6 +422,7 @@ function renderReadingCard(reading, label = '') {
 function renderReadings(readings, notice = '') {
   const area = $('#readingArea');
   area.innerHTML = readings.map((reading) => renderReadingCard(reading)).join('');
+  attachAudioPlayers();
   attachReviewForms();
 
   const noticeEl = $('#dailyNotice');
