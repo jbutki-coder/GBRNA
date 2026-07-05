@@ -437,47 +437,280 @@ button:focus-visible,
 .form-status.success { color: #285c2f; }
 .form-status.error { color: #8b1e1e; }
 
-/* Daily Grey Book Reflection audio — sits inside each reading card,
-   after In This Moment and before Review & Input. */
+/* Custom Grey Book Reflection audio player */
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
 .daily-reflection-audio {
-  margin-top: 26px;
-  padding: 18px 20px 20px;
-  border-top: 3px solid var(--gold);
-  border-bottom: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.26);
+  --audio-progress: 0%;
+  margin-top: 28px;
+  padding: 0;
+  overflow: hidden;
+  color: var(--paper);
+  background:
+    linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+    var(--charcoal);
+  background-size: 100% 8px, auto;
+  border: 1px solid rgba(20, 17, 13, .55);
+  border-left: 7px solid var(--gold);
+  box-shadow: 7px 8px 0 rgba(20, 17, 13, .12);
+}
+
+.daily-audio-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 18px;
+  padding: 20px 22px 16px;
+  border-bottom: 1px solid rgba(243, 234, 216, .18);
 }
 
 .daily-audio-kicker {
   margin: 0 0 4px;
-  color: var(--muted);
+  color: var(--gold-soft);
   font-family: "Courier New", Courier, monospace;
-  font-size: 0.78rem;
+  font-size: .76rem;
   font-weight: 700;
-  letter-spacing: 0.1em;
+  letter-spacing: .14em;
   text-transform: uppercase;
 }
 
 .daily-reflection-audio h4 {
-  margin: 0 0 12px;
-  font-family: "Courier New", Courier, monospace;
-  font-size: 1.05rem;
-  color: var(--ink);
+  margin: 0;
+  color: var(--paper);
+  font-size: clamp(1.35rem, 3vw, 2rem);
+  line-height: 1.08;
 }
 
-.daily-audio-frame {
-  display: block;
+.daily-audio-subtitle {
+  margin: 7px 0 0;
+  color: #cfc1aa;
+  font-family: "Courier New", Courier, monospace;
+  font-size: .78rem;
+  letter-spacing: .04em;
+}
+
+.audio-file-link {
+  flex: 0 0 auto;
+  color: var(--gold-soft);
+  border: 1px solid rgba(215, 189, 122, .75);
+  padding: 7px 9px;
+  font-family: "Courier New", Courier, monospace;
+  font-size: .76rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-decoration: none;
+  transition: background .15s ease, color .15s ease, transform .15s ease;
+}
+
+.audio-file-link:hover,
+.audio-file-link:focus-visible {
+  background: var(--gold);
+  color: var(--charcoal);
+  transform: translateY(-1px);
+}
+
+.audio-deck {
+  display: grid;
+  grid-template-columns: 76px 1fr;
+  gap: 18px;
+  align-items: stretch;
+  padding: 20px 22px 22px;
+}
+
+.audio-play-button {
+  width: 76px;
+  min-height: 76px;
+  padding: 0;
+  border: 2px solid var(--gold);
+  background: transparent;
+  color: var(--gold-soft);
+  font-size: 1.85rem;
+  line-height: 1;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.06);
+}
+
+.audio-play-button:hover,
+.audio-play-button:focus-visible,
+.daily-reflection-audio.is-playing .audio-play-button {
+  background: var(--gold);
+  color: var(--charcoal);
+}
+
+.audio-track-area {
+  min-width: 0;
+  display: grid;
+  align-content: center;
+  gap: 10px;
+}
+
+.audio-time-row {
+  display: grid;
+  grid-template-columns: 54px 1fr 54px;
+  align-items: center;
+  gap: 10px;
+  color: #d9ccb6;
+  font-family: "Courier New", Courier, monospace;
+  font-size: .77rem;
+  font-weight: 700;
+}
+
+.audio-time-row > :last-child {
+  text-align: right;
+}
+
+.audio-track-stamp {
+  color: var(--gold-soft);
+  text-align: center;
+  letter-spacing: .14em;
+  font-size: .67rem;
+}
+
+.audio-progress {
   width: 100%;
-  height: 112px;
-  border: 1px solid var(--line);
-  background: var(--charcoal);
+  height: 16px;
+  margin: 0;
+  padding: 0;
+  appearance: none;
+  -webkit-appearance: none;
+  background:
+    linear-gradient(
+      90deg,
+      var(--gold) 0,
+      var(--gold) var(--audio-progress),
+      rgba(243, 234, 216, .26) var(--audio-progress),
+      rgba(243, 234, 216, .26) 100%
+    );
+  border: 1px solid rgba(243, 234, 216, .22);
+  cursor: pointer;
+}
+
+.audio-progress::-webkit-slider-thumb {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 10px;
+  height: 24px;
+  background: var(--paper);
+  border: 2px solid var(--charcoal);
+  box-shadow: 0 0 0 1px var(--gold);
+}
+
+.audio-progress::-moz-range-thumb {
+  width: 10px;
+  height: 20px;
+  border-radius: 0;
+  background: var(--paper);
+  border: 2px solid var(--charcoal);
+  box-shadow: 0 0 0 1px var(--gold);
+}
+
+.audio-secondary-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.audio-secondary-controls button {
+  color: #d9ccb6;
+  background: transparent;
+  border: 1px solid rgba(243, 234, 216, .28);
+  padding: 6px 9px;
+  font-size: .73rem;
+}
+
+.audio-secondary-controls button:hover,
+.audio-secondary-controls button:focus-visible {
+  background: var(--gold);
+  color: var(--charcoal);
+  border-color: var(--gold);
+}
+
+.audio-variant-picker {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+  margin: 0 22px 20px;
+  padding-top: 15px;
+  border-top: 1px solid rgba(243, 234, 216, .15);
+  color: var(--gold-soft);
+  font-family: "Courier New", Courier, monospace;
+  font-size: .76rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+.audio-variant-picker select {
+  width: 100%;
+  border: 1px solid rgba(243, 234, 216, .28);
+  background: var(--charcoal-2);
+  color: var(--paper);
+  padding: 9px 10px;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.audio-status {
+  min-height: 0;
+  margin: -8px 22px 18px;
+  color: #d9ccb6;
+  font-family: "Courier New", Courier, monospace;
+  font-size: .75rem;
+}
+
+.audio-status:empty {
+  display: none;
 }
 
 @media (max-width: 720px) {
-  .daily-reflection-audio {
-    padding: 16px 14px 18px;
+  .daily-audio-header {
+    padding: 18px 16px 14px;
   }
 
-  .daily-audio-frame {
-    height: 124px;
+  .audio-deck {
+    grid-template-columns: 62px 1fr;
+    gap: 12px;
+    padding: 16px;
+  }
+
+  .audio-play-button {
+    width: 62px;
+    min-height: 72px;
+    font-size: 1.55rem;
+  }
+
+  .audio-time-row {
+    grid-template-columns: 48px 1fr 48px;
+    gap: 6px;
+    font-size: .7rem;
+  }
+
+  .audio-secondary-controls {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .audio-secondary-controls button:last-child {
+    grid-column: 1 / -1;
+  }
+
+  .audio-variant-picker {
+    grid-template-columns: 1fr;
+    gap: 7px;
+    margin: 0 16px 16px;
+  }
+
+  .audio-status {
+    margin-left: 16px;
+    margin-right: 16px;
   }
 }
