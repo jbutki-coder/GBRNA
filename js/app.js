@@ -104,7 +104,7 @@ function renderDailyAudio(reading) {
 
   const trackPicker = trackOptions.length > 1 ? `
     <label class="audio-variant-picker">
-      Recording
+      <span>Recording</span>
       <select data-track-select>
         ${trackOptions.map((track, index) => `
           <option
@@ -121,17 +121,15 @@ function renderDailyAudio(reading) {
 
   return `
     <section
-      class="daily-reflection-audio"
+      class="daily-reflection-audio cassette-player"
       data-audio-player
       aria-label="Grey Book Reflection audio for ${escapeHtml(reading.date)}"
     >
-      <div class="daily-audio-header">
+      <div class="cassette-topline">
         <div>
           <p class="daily-audio-kicker">Listen to Today's Reflection</p>
           <h4>${escapeHtml(reading.date)} Audio</h4>
-          <p class="daily-audio-subtitle">Grey Book Reflection · Daily Audio</p>
         </div>
-
         <a
           class="audio-file-link"
           data-audio-file-link
@@ -143,13 +141,48 @@ function renderDailyAudio(reading) {
         </a>
       </div>
 
-      <audio
-        data-audio
-        preload="metadata"
-        src="${escapeHtml(audio.audioUrl)}"
-      ></audio>
+      <audio data-audio preload="none" playsinline>
+        <source data-audio-source src="${escapeHtml(audio.audioUrl)}" type="audio/mpeg">
+      </audio>
 
-      <div class="audio-deck">
+      <div class="cassette-shell">
+        <span class="cassette-screw screw-tl" aria-hidden="true"></span>
+        <span class="cassette-screw screw-tr" aria-hidden="true"></span>
+        <span class="cassette-screw screw-bl" aria-hidden="true"></span>
+        <span class="cassette-screw screw-br" aria-hidden="true"></span>
+
+        <div class="cassette-label-strip">
+          <span>GREY BOOK REFLECTION</span>
+          <strong>${escapeHtml(reading.date.toUpperCase())}</strong>
+          <span>DAILY AUDIO</span>
+        </div>
+
+        <div class="cassette-window" aria-hidden="true">
+          <span class="cassette-reel cassette-reel-left"><i></i></span>
+          <span class="cassette-tape-band"></span>
+          <span class="cassette-reel cassette-reel-right"><i></i></span>
+        </div>
+
+        <div class="cassette-counter-row">
+          <span data-current-time>0:00</span>
+          <span class="cassette-counter-label">TAPE COUNTER</span>
+          <span data-duration>--:--</span>
+        </div>
+
+        <input
+          class="audio-progress"
+          data-progress
+          type="range"
+          min="0"
+          max="1000"
+          value="0"
+          step="1"
+          aria-label="Audio progress"
+        >
+      </div>
+
+      <div class="cassette-controls" aria-label="Audio controls">
+        <button type="button" data-skip="-15" aria-label="Go back 15 seconds">↶<span>15</span></button>
         <button
           class="audio-play-button"
           type="button"
@@ -157,37 +190,13 @@ function renderDailyAudio(reading) {
           aria-label="Play ${escapeHtml(reading.date)} audio"
         >
           <span class="audio-play-symbol" data-play-icon aria-hidden="true">▶</span>
-          <span class="sr-only" data-play-text>Play</span>
+          <span class="cassette-control-caption" data-play-text>PLAY</span>
         </button>
-
-        <div class="audio-track-area">
-          <div class="audio-time-row">
-            <span data-current-time>0:00</span>
-            <span class="audio-track-stamp">GBR AUDIO</span>
-            <span data-duration>--:--</span>
-          </div>
-
-          <input
-            class="audio-progress"
-            data-progress
-            type="range"
-            min="0"
-            max="1000"
-            value="0"
-            step="1"
-            aria-label="Audio progress"
-          >
-
-          <div class="audio-secondary-controls">
-            <button type="button" data-skip="-15" aria-label="Go back 15 seconds">↶ 15 sec</button>
-            <button type="button" data-skip="15" aria-label="Go forward 15 seconds">15 sec ↷</button>
-            <button type="button" data-speed>1× Speed</button>
-          </div>
-        </div>
+        <button type="button" data-skip="15" aria-label="Go forward 15 seconds">↷<span>15</span></button>
+        <button class="audio-speed-button" type="button" data-speed>1×<span>SPEED</span></button>
       </div>
 
       ${trackPicker}
-
       <p class="audio-status" data-audio-status aria-live="polite"></p>
     </section>
   `;
@@ -209,6 +218,7 @@ function attachAudioPlayers() {
     const status = card.querySelector('[data-audio-status]');
     const trackSelect = card.querySelector('[data-track-select]');
     const fileLink = card.querySelector('[data-audio-file-link]');
+    const sourceEl = card.querySelector('[data-audio-source]');
 
     if (!audio || !playButton || !progress) return;
 
@@ -295,7 +305,11 @@ function attachAudioPlayers() {
         const option = trackSelect.options[trackSelect.selectedIndex];
         const wasPlaying = !audio.paused;
         audio.pause();
-        audio.src = trackSelect.value;
+        if (sourceEl) {
+          sourceEl.src = trackSelect.value;
+        } else {
+          audio.src = trackSelect.value;
+        }
         audio.load();
         fileLink.href = trackSelect.value;
         status.textContent = option.dataset.trackTitle || '';
@@ -399,6 +413,7 @@ function renderReadingCard(reading, label = '') {
 
   return `
     <article class="reading-card" id="reading-${reading.id}">
+      ${renderDailyAudio(reading)}
       <div class="reading-date">
         <h3>${escapeHtml(label || reading.date)}</h3>
         <div class="reading-meta">
@@ -413,7 +428,6 @@ function renderReadingCard(reading, label = '') {
           <h4>In This Moment</h4>
           <p class="moment-text">${escapeHtml(reading.moment)}</p>
         </div>` : ''}
-      ${renderDailyAudio(reading)}
       ${renderReviewInputForm(reading)}
     </article>
   `;
