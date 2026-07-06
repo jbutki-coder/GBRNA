@@ -18,60 +18,29 @@
       : track.title;
   }
 
-  function buildTrackMap(collections) {
-    const map = new Map();
+  function populateCollectionSelect(select, collections) {
+    select.innerHTML = '<option value="">Choose an audio folder…</option>';
 
     collections.forEach((collection, collectionIndex) => {
-      (collection.tracks || []).forEach((track, trackIndex) => {
-        map.set(`${collectionIndex}:${trackIndex}`, {
-          collection,
-          track
-        });
-      });
-    });
-
-    return map;
-  }
-
-  function findDefaultValue(collections) {
-    const greyBookIndex = collections.findIndex((collection) => collection.id === 'grey-book');
-    const collection = collections[greyBookIndex];
-
-    if (collection) {
-      const chapterOneIndex = (collection.tracks || []).findIndex((track) =>
-        /chapter one/i.test(track.title || '')
-      );
-
-      if (chapterOneIndex >= 0) return `${greyBookIndex}:${chapterOneIndex}`;
-      if (collection.tracks?.length) return `${greyBookIndex}:0`;
-    }
-
-    for (let collectionIndex = 0; collectionIndex < collections.length; collectionIndex += 1) {
-      if (collections[collectionIndex]?.tracks?.length) return `${collectionIndex}:0`;
-    }
-
-    return '';
-  }
-
-  function populateSelect(select, collections) {
-    select.innerHTML = '';
-
-    collections.forEach((collection, collectionIndex) => {
-      const group = document.createElement('optgroup');
-      group.label = collection.label || 'Audio';
-
-      (collection.tracks || []).forEach((track, trackIndex) => {
-        const option = document.createElement('option');
-        option.value = `${collectionIndex}:${trackIndex}`;
-        option.textContent = makeOptionLabel(track);
-        group.appendChild(option);
-      });
-
-      select.appendChild(group);
+      const option = document.createElement('option');
+      option.value = String(collectionIndex);
+      option.textContent = collection.label || 'Audio Folder';
+      select.appendChild(option);
     });
   }
 
-  function updatePlayer(section, entry) {
+  function populateEpisodeSelect(select, collection) {
+    select.innerHTML = '<option value="">Choose a recording…</option>';
+
+    (collection.tracks || []).forEach((track, trackIndex) => {
+      const option = document.createElement('option');
+      option.value = String(trackIndex);
+      option.textContent = makeOptionLabel(track);
+      select.appendChild(option);
+    });
+  }
+
+  function resetPlayer(section, message) {
     const audio = section.querySelector('[data-audio-library-player]');
     const title = section.querySelector('[data-audio-library-title]');
     const source = section.querySelector('[data-audio-library-source]');
@@ -79,25 +48,50 @@
     const description = section.querySelector('[data-audio-library-description]');
     const external = section.querySelector('[data-audio-library-external]');
 
-    if (!audio || !entry) return;
+    if (audio) {
+      audio.pause();
+      audio.removeAttribute('src');
+      audio.load();
+    }
 
-    const { collection, track } = entry;
+    if (source) source.textContent = 'Audio Library';
+    if (title) title.textContent = message || 'Choose an audio folder, then a recording.';
+    if (duration) duration.textContent = '';
+    if (description) description.textContent = '';
+
+    if (external) {
+      external.href = '#';
+      external.hidden = true;
+    }
+  }
+
+  function updatePlayer(section, collection, track) {
+    const audio = section.querySelector('[data-audio-library-player]');
+    const title = section.querySelector('[data-audio-library-title]');
+    const source = section.querySelector('[data-audio-library-source]');
+    const duration = section.querySelector('[data-audio-library-duration]');
+    const description = section.querySelector('[data-audio-library-description]');
+    const external = section.querySelector('[data-audio-library-external]');
+
+    if (!audio || !collection || !track) return;
 
     audio.pause();
     audio.src = track.audioUrl || '';
     audio.load();
 
-    title.textContent = track.title || 'Untitled recording';
-    source.textContent = collection.label || 'Audio Library';
-    duration.textContent = track.duration ? `Duration: ${track.duration}` : '';
-    description.textContent = track.description || collection.description || '';
+    if (title) title.textContent = track.title || 'Untitled recording';
+    if (source) source.textContent = collection.label || 'Audio Library';
+    if (duration) duration.textContent = track.duration ? `Duration: ${track.duration}` : '';
+    if (description) description.textContent = track.description || collection.description || '';
 
-    if (track.episodeUrl) {
-      external.href = track.episodeUrl;
-      external.hidden = false;
-    } else {
-      external.href = '#';
-      external.hidden = true;
+    if (external) {
+      if (track.episodeUrl) {
+        external.href = track.episodeUrl;
+        external.hidden = false;
+      } else {
+        external.href = '#';
+        external.hidden = true;
+      }
     }
   }
 
@@ -105,33 +99,63 @@
     if (!section || section.dataset.audioLibraryBound === 'true') return;
     section.dataset.audioLibraryBound = 'true';
 
-    const select = section.querySelector('[data-audio-library-select]');
+    const collectionSelect = section.querySelector('[data-audio-library-collection]');
+    const episodeBlock = section.querySelector('[data-audio-library-episode-block]');
+    const episodeSelect = section.querySelector('[data-audio-library-episode]');
     const title = section.querySelector('[data-audio-library-title]');
     const description = section.querySelector('[data-audio-library-description]');
 
-    if (!select) return;
+    if (!collectionSelect || !episodeSelect || !episodeBlock) return;
 
     try {
       const collections = await getLibrary();
-      const trackMap = buildTrackMap(collections);
+      populateCollectionSelect(collectionSelect, collections);
+      resetPlayer(section, 'Choose an audio folder, then a recording.');
 
-      populateSelect(select, collections);
+      collectionSelect.addEventListener('change', () => {
+        const collectionIndex = Number(collectionSelect.value);
+        const collection = collections[collectionIndex];
 
-      const defaultValue = findDefaultValue(collections);
-      if (!defaultValue || !trackMap.has(defaultValue)) {
-        throw new Error('No audio tracks found');
-      }
+        episodeSelect.innerHTML = '<option value="">Choose a recording…</option>';
 
-      select.value = defaultValue;
-      updatePlayer(section, trackMap.get(defaultValue));
+        if (!collectionSelect.value || !collection) {
+          episodeBlock.hidden = true;
+          resetPlayer(section, 'Choose an audio folder, then a recording.');
+          return;
+        }
 
-      select.addEventListener('change', () => {
-        updatePlayer(section, trackMap.get(select.value));
+        populateEpisodeSelect(episodeSelect, collection);
+        episodeBlock.hidden = false;
+        resetPlayer(section, `Open the ${collection.label} recording list below.`);
+
+        // Keep the newly revealed episode selector in view on smaller screens.
+        if (window.matchMedia('(max-width: 680px)').matches) {
+          requestAnimationFrame(() => {
+            episodeBlock.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          });
+        }
+      });
+
+      episodeSelect.addEventListener('change', () => {
+        const collectionIndex = Number(collectionSelect.value);
+        const trackIndex = Number(episodeSelect.value);
+        const collection = collections[collectionIndex];
+        const track = collection?.tracks?.[trackIndex];
+
+        if (!episodeSelect.value || !collection || !track) {
+          if (collection) {
+            resetPlayer(section, `Choose a recording from ${collection.label}.`);
+          }
+          return;
+        }
+
+        updatePlayer(section, collection, track);
       });
     } catch (error) {
       console.error(error);
-      select.innerHTML = '<option>Audio library unavailable</option>';
-      select.disabled = true;
+      collectionSelect.innerHTML = '<option>Audio library unavailable</option>';
+      collectionSelect.disabled = true;
+      episodeBlock.hidden = true;
       if (title) title.textContent = 'Audio could not be loaded.';
       if (description) {
         description.textContent = 'Make sure data/audio-library.json is uploaded with the site files.';
