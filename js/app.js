@@ -328,6 +328,73 @@ function attachAudioPlayers() {
 }
 
 
+
+function renderAudioLibrary(isPrimary = false) {
+  return `
+    <section
+      ${isPrimary ? 'id="audio"' : ''}
+      class="reading-audio-library"
+      data-audio-library
+      aria-label="NA audio library"
+    >
+      <div class="audio-library-console">
+        <div class="audio-library-heading">
+          <p class="audio-library-kicker">NA Audio Library</p>
+          <h4>Grey Book &amp; Fellowship Audio</h4>
+          <p>
+            Choose from the Grey Book audiobook, NA Speakers Audio, or Autonomous Unity.
+          </p>
+        </div>
+
+        <div class="audio-library-selector-block">
+          <div class="audio-library-selector-copy">
+            <span class="audio-library-selector-label">Choose a recording</span>
+            <span class="audio-library-selector-help">Tap the menu below to open the audio list.</span>
+          </div>
+
+          <div class="audio-library-select-wrap">
+            <select
+              class="audio-library-select"
+              data-audio-library-select
+              aria-label="Choose an audio collection and recording"
+            >
+              <option>Loading audio library…</option>
+            </select>
+            <span class="audio-library-select-cue" aria-hidden="true">OPEN LIST ▼</span>
+          </div>
+        </div>
+
+        <div class="audio-library-now-playing" aria-live="polite">
+          <span class="audio-library-source" data-audio-library-source>Audio Library</span>
+          <strong data-audio-library-title>Loading…</strong>
+          <span class="audio-library-duration" data-audio-library-duration></span>
+          <p data-audio-library-description></p>
+        </div>
+
+        <audio
+          class="audio-library-player"
+          data-audio-library-player
+          controls
+          preload="metadata"
+          playsinline
+        ></audio>
+
+        <div class="audio-library-actions">
+          <a
+            class="audio-library-external"
+            data-audio-library-external
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Open Episode ↗
+          </a>
+        </div>
+      </div>
+    </section>
+  `;
+}
+
 function renderReviewInputForm(reading) {
   const source = reading.source || 'Source reference pending';
   const page = reading.pdfPage ? `GBR PDF p. ${reading.pdfPage}` : '';
@@ -408,7 +475,7 @@ function attachReviewForms() {
   });
 }
 
-function renderReadingCard(reading, label = '') {
+function renderReadingCard(reading, label = '', isPrimary = false) {
   const sourceLine = reading.source ? escapeHtml(reading.source) : 'Source reference pending';
 
   return `
@@ -428,6 +495,7 @@ function renderReadingCard(reading, label = '') {
           <h4>In This Moment</h4>
           <p class="moment-text">${escapeHtml(reading.moment)}</p>
         </div>` : ''}
+      ${renderAudioLibrary(isPrimary)}
       ${renderReviewInputForm(reading)}
     </article>
   `;
@@ -435,9 +503,10 @@ function renderReadingCard(reading, label = '') {
 
 function renderReadings(readings, notice = '') {
   const area = $('#readingArea');
-  area.innerHTML = readings.map((reading) => renderReadingCard(reading)).join('');
+  area.innerHTML = readings.map((reading, index) => renderReadingCard(reading, '', index === 0)).join('');
   attachAudioPlayers();
   attachReviewForms();
+  document.dispatchEvent(new CustomEvent('gbr:reading-rendered'));
 
   const noticeEl = $('#dailyNotice');
   if (notice) {
