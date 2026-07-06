@@ -1,7 +1,7 @@
 [
   {
     "id": "grey-book",
-    "label": "Grey Book Audiobook",
+    "label": "Grey Book",
     "description": "Chapter-by-chapter audio of the Grey Book from NA Literature Audio.",
     "tracks": [
       {
@@ -820,7 +820,7 @@
   },
   {
     "id": "autonomous-unity",
-    "label": "Autonomous Unity",
+    "label": "The Autonomous Unity",
     "description": "Long-form NA history, Traditions, recovery, service, and fellowship discussion.",
     "tracks": [
       {
