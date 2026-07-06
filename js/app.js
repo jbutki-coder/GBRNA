@@ -342,31 +342,53 @@ function renderAudioLibrary(isPrimary = false) {
           <p class="audio-library-kicker">NA Audio Library</p>
           <h4>Grey Book &amp; Fellowship Audio</h4>
           <p>
-            Choose from the Grey Book audiobook, NA Speakers Audio, or Autonomous Unity.
+            Open an audio folder first, then choose the recording you want to hear.
           </p>
         </div>
 
         <div class="audio-library-selector-block">
           <div class="audio-library-selector-copy">
-            <span class="audio-library-selector-label">Choose a recording</span>
-            <span class="audio-library-selector-help">Tap the menu below to open the audio list.</span>
+            <span class="audio-library-selector-label">1. Choose an audio folder</span>
+            <span class="audio-library-selector-help">Open this menu to choose the collection.</span>
           </div>
 
           <div class="audio-library-select-wrap">
             <select
               class="audio-library-select"
-              data-audio-library-select
-              aria-label="Choose an audio collection and recording"
+              data-audio-library-collection
+              aria-label="Choose an audio folder"
             >
-              <option>Loading audio library…</option>
+              <option>Loading audio folders…</option>
             </select>
-            <span class="audio-library-select-cue" aria-hidden="true">OPEN LIST ▼</span>
+            <span class="audio-library-select-cue" aria-hidden="true">OPEN FOLDERS ▼</span>
+          </div>
+        </div>
+
+        <div
+          class="audio-library-selector-block audio-library-episode-block"
+          data-audio-library-episode-block
+          hidden
+        >
+          <div class="audio-library-selector-copy">
+            <span class="audio-library-selector-label">2. Choose a recording</span>
+            <span class="audio-library-selector-help">Now open this menu to see the recordings in that folder.</span>
+          </div>
+
+          <div class="audio-library-select-wrap">
+            <select
+              class="audio-library-select"
+              data-audio-library-episode
+              aria-label="Choose a recording"
+            >
+              <option value="">Choose a recording…</option>
+            </select>
+            <span class="audio-library-select-cue" aria-hidden="true">OPEN RECORDINGS ▼</span>
           </div>
         </div>
 
         <div class="audio-library-now-playing" aria-live="polite">
           <span class="audio-library-source" data-audio-library-source>Audio Library</span>
-          <strong data-audio-library-title>Loading…</strong>
+          <strong data-audio-library-title>Choose an audio folder, then a recording.</strong>
           <span class="audio-library-duration" data-audio-library-duration></span>
           <p data-audio-library-description></p>
         </div>
@@ -386,6 +408,7 @@ function renderAudioLibrary(isPrimary = false) {
             href="#"
             target="_blank"
             rel="noopener noreferrer"
+            hidden
           >
             Open Episode ↗
           </a>
