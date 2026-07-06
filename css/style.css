@@ -1051,3 +1051,31 @@ button:focus-visible,
     font-size: 1rem;
   }
 }
+
+
+/* Two-stage audio folder / recording selector */
+.audio-library-episode-block {
+  margin-top: 12px;
+  animation: audioLibraryReveal .18s ease-out;
+}
+
+.audio-library-episode-block[hidden] {
+  display: none !important;
+}
+
+@keyframes audioLibraryReveal {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 680px) {
+  .audio-library-selector-label {
+    display: block;
+  }
+}
