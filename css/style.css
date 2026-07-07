@@ -1079,3 +1079,220 @@ button:focus-visible,
     display: block;
   }
 }
+
+/* Grey Book source context -------------------------------------------- */
+.grey-book-context {
+  margin-top: 28px;
+  padding: 0;
+  border: 1px solid rgba(20, 17, 13, .34);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.52), rgba(229,215,189,.38)),
+    var(--paper-deep);
+  box-shadow: 0 10px 24px rgba(20, 17, 13, .10);
+}
+
+.grey-book-context-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 18px 20px 16px;
+  border-bottom: 1px solid rgba(20, 17, 13, .24);
+}
+
+.grey-book-context-heading h4 {
+  margin: 0 0 3px;
+  font-size: clamp(1.25rem, 3vw, 1.8rem);
+  line-height: 1.05;
+}
+
+.grey-book-context-kicker {
+  margin: 0 0 4px;
+  color: var(--muted);
+  font-family: "Courier New", Courier, monospace;
+  font-size: .76rem;
+  font-weight: 700;
+  letter-spacing: .11em;
+  text-transform: uppercase;
+}
+
+.grey-book-context-meta {
+  margin: 0;
+  color: var(--muted);
+  font-family: "Courier New", Courier, monospace;
+  font-size: .82rem;
+  font-weight: 700;
+}
+
+.grey-book-page-stamp {
+  display: inline-grid;
+  place-items: center;
+  min-width: 66px;
+  min-height: 54px;
+  padding: 8px 10px;
+  border: 2px solid var(--ink);
+  box-shadow: 4px 4px 0 rgba(20, 17, 13, .18);
+  font-family: "Courier New", Courier, monospace;
+  font-size: 1rem;
+  font-weight: 900;
+  letter-spacing: .05em;
+  transform: rotate(-1.5deg);
+}
+
+.grey-book-context-details > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 16px 20px;
+  list-style: none;
+  cursor: pointer;
+  background: var(--charcoal);
+  color: var(--paper);
+  user-select: none;
+}
+
+.grey-book-context-details > summary::-webkit-details-marker {
+  display: none;
+}
+
+.grey-book-context-details > summary:hover,
+.grey-book-context-details > summary:focus-visible {
+  background: var(--charcoal-2);
+}
+
+.grey-book-context-summary-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.grey-book-context-summary-copy strong {
+  color: var(--gold-soft);
+  font-family: "Courier New", Courier, monospace;
+  font-size: .95rem;
+  letter-spacing: .035em;
+  text-transform: uppercase;
+}
+
+.grey-book-context-summary-copy small {
+  color: #ddd0ba;
+  font-size: .86rem;
+}
+
+.grey-book-context-summary-cue {
+  flex: 0 0 auto;
+  padding: 7px 10px;
+  border: 1px solid var(--gold);
+  color: var(--gold-soft);
+  font-family: "Courier New", Courier, monospace;
+  font-size: .76rem;
+  font-weight: 900;
+  letter-spacing: .04em;
+  white-space: nowrap;
+}
+
+.grey-book-context-details[open] .grey-book-context-summary-cue {
+  font-size: 0;
+}
+
+.grey-book-context-details[open] .grey-book-context-summary-cue::after {
+  content: "CLOSE ▲";
+  font-size: .76rem;
+}
+
+.grey-book-context-page {
+  position: relative;
+  padding: clamp(20px, 4vw, 34px);
+  background:
+    repeating-linear-gradient(
+      0deg,
+      rgba(20, 17, 13, .018) 0,
+      rgba(20, 17, 13, .018) 1px,
+      transparent 1px,
+      transparent 5px
+    ),
+    #f8f1e3;
+}
+
+.grey-book-context-pagehead {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--ink);
+  font-family: "Courier New", Courier, monospace;
+  font-size: .78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.grey-book-context-text {
+  max-width: 72ch;
+  margin: 0 auto;
+}
+
+.grey-book-context-text p {
+  margin: 0 0 1.05em;
+  font-size: clamp(1rem, 2vw, 1.1rem);
+  line-height: 1.7;
+}
+
+.grey-book-context-text p:first-child {
+  margin-top: 0;
+}
+
+.grey-book-context-note {
+  margin: 24px 0 0;
+  padding-top: 12px;
+  border-top: 1px solid rgba(20, 17, 13, .22);
+  color: var(--muted);
+  font-family: "Courier New", Courier, monospace;
+  font-size: .76rem;
+}
+
+@media (max-width: 640px) {
+  .grey-book-context-heading,
+  .grey-book-context-details > summary,
+  .grey-book-context-pagehead {
+    align-items: flex-start;
+  }
+
+  .grey-book-context-heading {
+    padding: 16px;
+  }
+
+  .grey-book-page-stamp {
+    min-width: 58px;
+    min-height: 48px;
+    font-size: .88rem;
+  }
+
+  .grey-book-context-details > summary {
+    padding: 15px 16px;
+  }
+
+  .grey-book-context-summary-copy small {
+    display: none;
+  }
+
+  .grey-book-context-pagehead {
+    flex-direction: column;
+    gap: 2px;
+  }
+}
+
+.grey-book-context-pages {
+  background: #f8f1e3;
+}
+
+.grey-book-context-page-continuation {
+  border-top: 8px double rgba(20, 17, 13, .28);
+}
+
+.grey-book-context-pages > .grey-book-context-note {
+  margin: 0;
+  padding: 14px clamp(20px, 4vw, 34px) 18px;
+  background: #f8f1e3;
+}
