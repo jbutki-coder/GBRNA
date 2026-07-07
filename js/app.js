@@ -480,6 +480,65 @@ function renderGreyBookContext(reading) {
   `;
 }
 
+
+function renderMeetingSchedule(isPrimary = false) {
+  if (!isPrimary) return '';
+
+  return `
+    <section
+      id="meetings"
+      class="meeting-schedule-panel meeting-schedule-inline"
+      data-meeting-schedule
+      aria-label="Meeting schedule"
+    >
+      <div class="meeting-heading">
+        <div>
+          <p class="eyebrow">Find a Meeting</p>
+          <h4>Meeting Schedule</h4>
+          <p class="meeting-timezone">Times are shown in Eastern Time. Choose a day or use the filters below.</p>
+        </div>
+        <div class="meeting-count" data-meeting-count aria-live="polite">Loading meetings…</div>
+      </div>
+
+      <div class="meeting-filter-shell">
+        <div class="meeting-day-tabs" data-meeting-day-tabs role="tablist" aria-label="Filter meetings by weekday"></div>
+
+        <div class="meeting-select-filters">
+          <label>
+            <span>City</span>
+            <select data-meeting-city aria-label="Filter meetings by city">
+              <option value="">All Cities</option>
+            </select>
+          </label>
+
+          <label>
+            <span>Location</span>
+            <select data-meeting-location aria-label="Filter meetings by location">
+              <option value="">All Locations</option>
+            </select>
+          </label>
+
+          <label>
+            <span>Venue Type</span>
+            <select data-meeting-mode aria-label="Filter meetings by venue type">
+              <option value="">All Venue Types</option>
+            </select>
+          </label>
+
+          <label>
+            <span>Format</span>
+            <select data-meeting-format aria-label="Filter meetings by format">
+              <option value="">All Formats</option>
+            </select>
+          </label>
+        </div>
+      </div>
+
+      <div data-meeting-results class="meeting-results" aria-live="polite"></div>
+    </section>
+  `;
+}
+
 function renderReviewInputForm(reading) {
   const source = reading.source || 'Source reference pending';
   const page = reading.pdfPage ? `GBR PDF p. ${reading.pdfPage}` : '';
@@ -581,6 +640,7 @@ function renderReadingCard(reading, label = '', isPrimary = false) {
           <p class="moment-text">${escapeHtml(reading.moment)}</p>
         </div>` : ''}
       ${renderGreyBookContext(reading)}
+      ${renderMeetingSchedule(isPrimary)}
       ${renderAudioLibrary(isPrimary)}
       ${renderReviewInputForm(reading)}
     </article>
