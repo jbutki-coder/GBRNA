@@ -1,5 +1,6 @@
 let REFLECTIONS = [];
 let DAILY_AUDIO = {};
+let GREY_BOOK_CONTEXT = { dates: {}, pages: {} };
 let currentId = null;
 
 const monthNames = [
@@ -418,6 +419,67 @@ function renderAudioLibrary(isPrimary = false) {
   `;
 }
 
+
+function renderGreyBookContext(reading) {
+  const mapped = GREY_BOOK_CONTEXT?.dates?.[reading.id];
+  if (!mapped) return '';
+
+  const pageNumbers = Array.isArray(mapped) ? mapped : [mapped];
+  const pages = pageNumbers
+    .map((pageNumber) => GREY_BOOK_CONTEXT?.pages?.[String(pageNumber)])
+    .filter((page) => page && page.text);
+
+  if (!pages.length) return '';
+
+  const firstPage = pages[0];
+  const lastPage = pages[pages.length - 1];
+  const pageLabel = pages.length > 1
+    ? `Pages ${firstPage.page}–${lastPage.page}`
+    : `Page ${firstPage.page}`;
+
+  const section = firstPage.section && firstPage.section !== 'Grey Book'
+    ? firstPage.section
+    : 'Grey Book';
+
+  const pageBlocks = pages.map((page, index) => `
+    <div class="grey-book-context-page${index > 0 ? ' grey-book-context-page-continuation' : ''}">
+      <div class="grey-book-context-pagehead">
+        <span>Narcotics Anonymous — Review Form</span>
+        <strong>Memphis 1981 · Page ${page.page}</strong>
+      </div>
+      <div class="grey-book-context-text">${paragraphHtml(page.text)}</div>
+    </div>
+  `).join('');
+
+  return `
+    <section class="grey-book-context" aria-label="Grey Book source context for ${escapeHtml(reading.date)}">
+      <div class="grey-book-context-heading">
+        <div>
+          <p class="grey-book-context-kicker">From the Grey Book</p>
+          <h4>Read the Source ${pages.length > 1 ? 'Pages' : 'Page'}</h4>
+          <p class="grey-book-context-meta">${escapeHtml(section)} · ${pageLabel}</p>
+        </div>
+        <span class="grey-book-page-stamp" aria-hidden="true">${pages.length > 1 ? `PP. ${firstPage.page}–${lastPage.page}` : `P. ${firstPage.page}`}</span>
+      </div>
+
+      <details class="grey-book-context-details">
+        <summary>
+          <span class="grey-book-context-summary-copy">
+            <strong>Read Grey Book ${pageLabel}</strong>
+            <small>Open the source text used for this reflection.</small>
+          </span>
+          <span class="grey-book-context-summary-cue" aria-hidden="true">OPEN ▼</span>
+        </summary>
+
+        <div class="grey-book-context-pages">
+          ${pageBlocks}
+          <p class="grey-book-context-note">Source text is displayed from the retyped Memphis 1981 Review Form supplied for this project.</p>
+        </div>
+      </details>
+    </section>
+  `;
+}
+
 function renderReviewInputForm(reading) {
   const source = reading.source || 'Source reference pending';
   const page = reading.pdfPage ? `GBR PDF p. ${reading.pdfPage}` : '';
@@ -518,6 +580,7 @@ function renderReadingCard(reading, label = '', isPrimary = false) {
           <h4>In This Moment</h4>
           <p class="moment-text">${escapeHtml(reading.moment)}</p>
         </div>` : ''}
+      ${renderGreyBookContext(reading)}
       ${renderAudioLibrary(isPrimary)}
       ${renderReviewInputForm(reading)}
     </article>
@@ -669,6 +732,14 @@ async function init() {
   } catch (error) {
     console.warn('Daily reflection audio map could not be loaded.', error);
     DAILY_AUDIO = {};
+  }
+
+  try {
+    const contextResponse = await fetch('data/grey-book-context.json', { cache: 'no-store' });
+    if (contextResponse.ok) GREY_BOOK_CONTEXT = await contextResponse.json();
+  } catch (error) {
+    console.warn('Grey Book source context could not be loaded.', error);
+    GREY_BOOK_CONTEXT = { dates: {}, pages: {} };
   }
 
   renderArchive();
