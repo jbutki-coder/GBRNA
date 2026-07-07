@@ -12,6 +12,32 @@
   };
   if (!els.tabs || !els.results) return;
 
+  const widget = document.getElementById("meetingWidget");
+  const widgetTab = document.getElementById("meetingWidgetTab");
+  const widgetClose = document.getElementById("meetingWidgetClose");
+  const widgetNav = document.getElementById("meetingWidgetNav");
+  const widgetBackdrop = document.getElementById("meetingWidgetBackdrop");
+
+  function setWidgetOpen(open) {
+    if (!widget) return;
+    widget.classList.toggle("is-open", open);
+    widget.setAttribute("aria-hidden", String(!open));
+    [widgetTab, widgetNav].filter(Boolean).forEach(el => el.setAttribute("aria-expanded", String(open)));
+    document.body.classList.toggle("meeting-widget-open", open);
+    if (widgetBackdrop) widgetBackdrop.hidden = !open;
+  }
+
+  widgetTab?.addEventListener("click", () => setWidgetOpen(!widget.classList.contains("is-open")));
+  widgetClose?.addEventListener("click", () => setWidgetOpen(false));
+  widgetNav?.addEventListener("click", (event) => {
+    event.preventDefault();
+    setWidgetOpen(true);
+  });
+  widgetBackdrop?.addEventListener("click", () => setWidgetOpen(false));
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") setWidgetOpen(false);
+  });
+
   let meetings = [];
   let selectedDay = DAYS[new Date().getDay()];
 
