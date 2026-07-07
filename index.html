@@ -56,12 +56,71 @@
         <a href="#search" data-nav="search">Search</a>
         <a href="#download" data-nav="download">Download</a>
         <a href="#audio" data-nav="audio">Audio</a>
-        <a href="#meetings" data-nav="meetings">Meetings</a>
+        <a href="#" id="meetingWidgetNav" aria-controls="meetingWidget" aria-expanded="false">Meetings</a>
         <a href="https://www.nahelp.org" target="_blank" rel="noopener noreferrer">A.S.I.S.</a>
         <a href="#about" data-nav="about">About</a>
       </nav>
     </div>
   </header>
+
+  <aside id="meetingWidget" class="meeting-widget" aria-label="Meeting schedule" aria-hidden="true">
+    <button id="meetingWidgetTab" class="meeting-widget-tab" type="button" aria-controls="meetingWidget" aria-expanded="false">
+      <span class="meeting-widget-tab-icon" aria-hidden="true">◆</span>
+      <span>MEETINGS</span>
+    </button>
+
+    <div class="meeting-widget-drawer">
+      <div class="meeting-widget-header">
+        <div>
+          <p class="eyebrow">Find a Meeting</p>
+          <h2>Meeting Schedule</h2>
+          <p class="meeting-timezone">Times shown in Eastern Time.</p>
+        </div>
+        <button id="meetingWidgetClose" class="meeting-widget-close" type="button" aria-label="Close meeting schedule">×</button>
+      </div>
+
+      <div class="meeting-widget-scroll">
+        <div class="meeting-count" id="meetingCount" aria-live="polite">Loading meetings…</div>
+
+        <div class="meeting-filter-shell">
+          <div class="meeting-day-tabs" id="meetingDayTabs" role="tablist" aria-label="Filter meetings by weekday"></div>
+
+          <div class="meeting-select-filters">
+            <label>
+              <span>City</span>
+              <select id="meetingCityFilter" aria-label="Filter meetings by city">
+                <option value="">All Cities</option>
+              </select>
+            </label>
+
+            <label>
+              <span>Location</span>
+              <select id="meetingLocationFilter" aria-label="Filter meetings by location">
+                <option value="">All Locations</option>
+              </select>
+            </label>
+
+            <label>
+              <span>Venue Type</span>
+              <select id="meetingModeFilter" aria-label="Filter meetings by venue type">
+                <option value="">All Venue Types</option>
+              </select>
+            </label>
+
+            <label>
+              <span>Format</span>
+              <select id="meetingFormatFilter" aria-label="Filter meetings by format">
+                <option value="">All Formats</option>
+              </select>
+            </label>
+          </div>
+        </div>
+
+        <div id="meetingResults" class="meeting-results" aria-live="polite"></div>
+      </div>
+    </div>
+  </aside>
+  <div id="meetingWidgetBackdrop" class="meeting-widget-backdrop" hidden></div>
 
   <main class="wrap main-content">
     <section id="today" class="toolbar" aria-label="Reading controls">
@@ -147,53 +206,6 @@
       </p>
     </section>
 
-
-    <section id="meetings" class="panel meeting-schedule-panel">
-      <div class="panel-heading meeting-heading">
-        <div>
-          <p class="eyebrow">Find a Meeting</p>
-          <h2>Meeting Schedule</h2>
-          <p class="meeting-timezone">Times are shown in Eastern Time. Use the day tabs and filters to narrow the list.</p>
-        </div>
-        <div class="meeting-count" id="meetingCount" aria-live="polite">Loading meetings…</div>
-      </div>
-
-      <div class="meeting-filter-shell">
-        <div class="meeting-day-tabs" id="meetingDayTabs" role="tablist" aria-label="Filter meetings by weekday"></div>
-
-        <div class="meeting-select-filters">
-          <label>
-            <span>City</span>
-            <select id="meetingCityFilter" aria-label="Filter meetings by city">
-              <option value="">All Cities</option>
-            </select>
-          </label>
-
-          <label>
-            <span>Location</span>
-            <select id="meetingLocationFilter" aria-label="Filter meetings by location">
-              <option value="">All Locations</option>
-            </select>
-          </label>
-
-          <label>
-            <span>Venue Type</span>
-            <select id="meetingModeFilter" aria-label="Filter meetings by venue type">
-              <option value="">All Venue Types</option>
-            </select>
-          </label>
-
-          <label>
-            <span>Format</span>
-            <select id="meetingFormatFilter" aria-label="Filter meetings by format">
-              <option value="">All Formats</option>
-            </select>
-          </label>
-        </div>
-      </div>
-
-      <div id="meetingResults" class="meeting-results" aria-live="polite"></div>
-    </section>
 
     <section id="about" class="panel about-panel">
       <div class="panel-heading">
