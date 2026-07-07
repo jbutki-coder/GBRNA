@@ -24,7 +24,9 @@
           if (!response.ok) throw new Error(`Meeting schedule failed to load (${response.status})`);
           return response.json();
         })
-        .then((data) => Array.isArray(data.meetings) ? data.meetings : []);
+        .then((data) => Array.isArray(data.meetings)
+          ? data.meetings.filter((m) => m.mode === "Virtual" || m.mode === "Hybrid")
+          : []);
     }
     return meetingDataPromise;
   }
@@ -44,33 +46,36 @@
     if (meeting.passcode) zoomBits.push(`Pass: ${esc(meeting.passcode)}`);
 
     const join = meeting.joinUrl ? `
-      <div>
-        <span class="meeting-join-title">${meeting.mode === "Virtual" ? "Meets Virtually" : meeting.mode === "Hybrid" ? "Meets Virtually + In Person" : "Meeting Details"}</span>
-        <a class="meeting-join-link" href="${esc(meeting.joinUrl)}" target="_blank" rel="noopener noreferrer">${meeting.mode === "In Person" ? "View Details" : "Join / Open Link"}</a>
+      <div class="meeting-action-block">
+        <span class="meeting-join-title">${meeting.mode === "Hybrid" ? "Virtual + In Person" : "Meets Virtually"}</span>
+        <a class="meeting-join-link" href="${esc(meeting.joinUrl)}" target="_blank" rel="noopener noreferrer">JOIN / OPEN LINK</a>
       </div>
       ${meeting.qr ? `<img class="meeting-qr" src="${esc(meeting.qr)}" alt="QR code for ${esc(meeting.name)} meeting link" loading="lazy">` : ""}
-    ` : `<div class="meeting-no-link">In-person meeting. No online meeting link was supplied.</div>`;
+    ` : `<div class="meeting-no-link">No online meeting link was supplied.</div>`;
 
     return `
-      <article class="meeting-row">
-        <div class="meeting-time-cell">
-          <div class="meeting-day-name">${esc(meeting.day)}</div>
-          <div class="meeting-time-range">${formatTime(meeting.start)}${meeting.end ? ` – ${formatTime(meeting.end)}` : ""}</div>
-          <span class="meeting-mode-chip">${esc(meeting.mode)}</span>
-        </div>
+      <details class="meeting-row">
+        <summary class="meeting-summary">
+          <span class="meeting-summary-time">${formatTime(meeting.start)}${meeting.end ? `<small>– ${formatTime(meeting.end)}</small>` : ""}</span>
+          <span class="meeting-summary-name">${esc(meeting.name)}</span>
+          <span class="meeting-summary-mode">${esc(meeting.mode)}</span>
+          <span class="meeting-summary-cue" aria-hidden="true">MORE +</span>
+        </summary>
 
-        <div class="meeting-main-cell">
-          <h3 class="meeting-name">${esc(meeting.name)}</h3>
-          ${meeting.venue ? `<p class="meeting-place">${esc(meeting.venue)}</p>` : ""}
-          ${meeting.address ? `<p class="meeting-address">${esc(meeting.address)}</p>` : ""}
-          ${place ? `<p class="meeting-address">${esc(place)}</p>` : ""}
-          ${zoomBits.length ? `<p class="meeting-zoom-line">${zoomBits.join(" · ")}</p>` : ""}
-          ${meeting.details ? `<p class="meeting-details">${esc(meeting.details)}</p>` : ""}
-          <span class="meeting-format-chip">${esc(meeting.format)}</span>
-        </div>
+        <div class="meeting-expanded">
+          <div class="meeting-main-cell">
+            <div class="meeting-detail-kicker">${esc(meeting.day)} · ${formatTime(meeting.start)}${meeting.end ? ` – ${formatTime(meeting.end)}` : ""} Eastern</div>
+            ${meeting.venue ? `<p class="meeting-place">${esc(meeting.venue)}</p>` : ""}
+            ${meeting.address ? `<p class="meeting-address">${esc(meeting.address)}</p>` : ""}
+            ${place ? `<p class="meeting-address">${esc(place)}</p>` : ""}
+            ${zoomBits.length ? `<p class="meeting-zoom-line">${zoomBits.join(" · ")}</p>` : ""}
+            ${meeting.details ? `<p class="meeting-details">${esc(meeting.details)}</p>` : ""}
+            <span class="meeting-format-chip">${esc(meeting.format)}</span>
+          </div>
 
-        <div class="meeting-join-cell">${join}</div>
-      </article>`;
+          <div class="meeting-join-cell">${join}</div>
+        </div>
+      </details>`;
   }
 
   function setOptions(select, values, allLabel) {
@@ -132,7 +137,7 @@
       setOptions(
         els.mode,
         [...new Set(meetings.map((m) => m.mode).filter(Boolean))].sort(),
-        "All Venue Types"
+        "Virtual + Hybrid"
       );
       setOptions(
         els.format,
@@ -153,7 +158,7 @@
       els.count.textContent = `${filtered.length} meeting${filtered.length === 1 ? "" : "s"}`;
       els.results.innerHTML = filtered.length
         ? filtered.map(renderMeeting).join("")
-        : '<div class="meeting-empty">No meetings match those filters.</div>';
+        : '<div class="meeting-empty">No virtual or hybrid meetings match those filters.</div>';
     }
 
     [els.city, els.location, els.mode, els.format].forEach((select) => {
