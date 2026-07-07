@@ -1550,3 +1550,309 @@ button:focus-visible,
   .meeting-join-cell { grid-template-columns: minmax(0,1fr) 96px; }
   .meeting-qr { width: 96px; height: 96px; }
 }
+
+/* ==========================================================
+   Left-side Meeting Schedule widget
+   ========================================================== */
+body.meeting-widget-open {
+  overflow: hidden;
+}
+
+.meeting-widget {
+  position: fixed;
+  z-index: 1200;
+  top: 112px;
+  left: 0;
+  bottom: 24px;
+  width: min(430px, calc(100vw - 28px));
+  transform: translateX(calc(-100% + 48px));
+  transition: transform .24s ease;
+  pointer-events: none;
+}
+
+.meeting-widget.is-open {
+  transform: translateX(0);
+}
+
+.meeting-widget-tab {
+  position: absolute;
+  top: 34px;
+  right: -48px;
+  width: 48px;
+  min-height: 148px;
+  padding: 12px 8px;
+  border: 2px solid var(--gold);
+  border-left: 0;
+  background: var(--charcoal);
+  color: var(--paper);
+  box-shadow: 5px 6px 18px rgba(20,17,13,.22);
+  font-family: "Courier New", Courier, monospace;
+  font-weight: 700;
+  letter-spacing: .08em;
+  cursor: pointer;
+  pointer-events: auto;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+
+.meeting-widget-tab:hover,
+.meeting-widget-tab:focus-visible {
+  background: var(--gold);
+  color: var(--charcoal);
+  transform: rotate(180deg);
+}
+
+.meeting-widget-tab-icon {
+  margin-bottom: 8px;
+  font-size: .72rem;
+}
+
+.meeting-widget-drawer {
+  height: 100%;
+  border: 2px solid var(--charcoal);
+  border-left: 0;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.18), rgba(0,0,0,.03)),
+    var(--paper);
+  box-shadow: 12px 12px 30px rgba(20,17,13,.26);
+  display: flex;
+  flex-direction: column;
+  pointer-events: auto;
+}
+
+.meeting-widget-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 22px 20px 18px;
+  background: var(--charcoal);
+  color: var(--paper);
+  border-bottom: 4px solid var(--gold);
+}
+
+.meeting-widget-header h2 {
+  margin: 0 0 6px;
+  font-size: 1.75rem;
+}
+
+.meeting-widget-header .eyebrow {
+  margin-bottom: 5px;
+}
+
+.meeting-widget-header .meeting-timezone {
+  margin: 0;
+  color: #d9ccb6;
+  font-size: .88rem;
+}
+
+.meeting-widget-close {
+  flex: 0 0 auto;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 1px solid var(--gold);
+  background: transparent;
+  color: var(--paper);
+  font-size: 1.7rem;
+  line-height: 1;
+}
+
+.meeting-widget-scroll {
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 16px;
+}
+
+.meeting-widget .meeting-count {
+  display: inline-block;
+  margin-bottom: 12px;
+}
+
+.meeting-widget .meeting-filter-shell {
+  margin: 0 0 14px;
+  box-shadow: 4px 4px 0 rgba(20,17,13,.10);
+}
+
+.meeting-widget .meeting-day-tabs {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.meeting-widget .meeting-day-tab {
+  min-height: 42px;
+  padding: 8px 3px;
+  font-size: .68rem;
+}
+
+.meeting-widget .meeting-select-filters {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  padding: 10px;
+}
+
+.meeting-widget .meeting-select-filters label {
+  font-size: .64rem;
+}
+
+.meeting-widget .meeting-select-filters select {
+  padding: 8px 25px 8px 8px;
+  font-size: .76rem;
+}
+
+.meeting-widget .meeting-results {
+  border: 0;
+  background: transparent;
+  display: grid;
+  gap: 12px;
+}
+
+.meeting-widget .meeting-row {
+  display: block;
+  min-height: 0;
+  border: 1px solid var(--line);
+  border-top: 4px solid var(--gold);
+  background: rgba(255,255,255,.42);
+  box-shadow: 4px 4px 0 rgba(20,17,13,.08);
+}
+
+.meeting-widget .meeting-time-cell,
+.meeting-widget .meeting-main-cell,
+.meeting-widget .meeting-join-cell {
+  padding: 12px 14px;
+  border: 0;
+}
+
+.meeting-widget .meeting-time-cell {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  border-bottom: 1px solid var(--line);
+  background: var(--paper-deep);
+}
+
+.meeting-widget .meeting-day-name {
+  margin: 0;
+  font-size: .9rem;
+}
+
+.meeting-widget .meeting-time-range {
+  font-size: .8rem;
+}
+
+.meeting-widget .meeting-mode-chip {
+  margin: 0 0 0 auto;
+  font-size: .62rem;
+}
+
+.meeting-widget .meeting-name {
+  margin-bottom: 6px;
+  font-size: 1.18rem;
+  line-height: 1.16;
+}
+
+.meeting-widget .meeting-place,
+.meeting-widget .meeting-address,
+.meeting-widget .meeting-details,
+.meeting-widget .meeting-zoom-line {
+  margin: 3px 0;
+  font-size: .84rem;
+}
+
+.meeting-widget .meeting-format-chip {
+  margin-top: 8px;
+  font-size: .62rem;
+}
+
+.meeting-widget .meeting-join-cell {
+  grid-template-columns: minmax(0, 1fr) 82px;
+  border-top: 1px solid var(--line);
+  background: rgba(229,215,189,.45);
+}
+
+.meeting-widget .meeting-join-title {
+  font-size: .66rem;
+}
+
+.meeting-widget .meeting-join-link {
+  padding: 8px 9px;
+  font-size: .74rem;
+}
+
+.meeting-widget .meeting-qr {
+  width: 82px;
+  height: 82px;
+  border-width: 4px;
+}
+
+.meeting-widget-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1190;
+  background: rgba(20,17,13,.38);
+}
+
+@media (min-width: 980px) {
+  body.meeting-widget-open {
+    overflow: auto;
+  }
+
+  .meeting-widget-backdrop {
+    display: none !important;
+  }
+}
+
+@media (max-width: 700px) {
+  .meeting-widget {
+    top: 0;
+    bottom: 0;
+    width: min(94vw, 430px);
+    transform: translateX(-100%);
+  }
+
+  .meeting-widget.is-open {
+    transform: translateX(0);
+  }
+
+  .meeting-widget-tab {
+    position: fixed;
+    top: auto;
+    bottom: 20px;
+    left: 0;
+    right: auto;
+    width: auto;
+    min-height: 0;
+    padding: 10px 14px;
+    border-left: 0;
+    writing-mode: horizontal-tb;
+    transform: none;
+    letter-spacing: .05em;
+  }
+
+  .meeting-widget-tab:hover,
+  .meeting-widget-tab:focus-visible {
+    transform: none;
+  }
+
+  .meeting-widget-drawer {
+    border-top: 0;
+    border-bottom: 0;
+  }
+
+  .meeting-widget-header {
+    padding-top: 18px;
+  }
+
+  .meeting-widget-scroll {
+    padding: 12px;
+  }
+
+  .meeting-widget .meeting-day-tabs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .meeting-widget .meeting-select-filters {
+    grid-template-columns: 1fr;
+  }
+}
