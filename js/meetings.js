@@ -1,5 +1,6 @@
 (() => {
   const DAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  const DAY_INDEX = Object.fromEntries(DAYS.map((day, index) => [day, index]));
   let meetingDataPromise = null;
 
   const esc = (value = "") => String(value)
@@ -9,12 +10,172 @@
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&#039;");
 
-  function formatTime(value) {
-    if (!value) return "";
-    const [h, m] = value.split(":").map(Number);
-    const suffix = h >= 12 ? "PM" : "AM";
-    const hour = h % 12 || 12;
-    return `${hour}:${String(m).padStart(2, "0")} ${suffix}`;
+  function browserTimeZone() {
+    try {
+      return Intl.DateTimeFormat().resolvedOptions().timeZone || "America/New_York";
+    } catch (_) {
+      return "America/New_York";
+    }
+  }
+
+  function zoneLabel(timeZone) {
+    try {
+      const now = new Date();
+      const shortName = new Intl.DateTimeFormat(undefined, {
+        timeZone,
+        timeZoneName: "short"
+      }).formatToParts(now).find((part) => part.type === "timeZoneName")?.value;
+      return shortName ? `${shortName} (${timeZone})` : timeZone;
+    } catch (_) {
+      return timeZone;
+    }
+  }
+
+  function partsInZone(date, timeZone) {
+    const parts = new Intl.DateTimeFormat("en-CA", {
+      timeZone,
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      hourCycle: "h23"
+    }).formatToParts(date);
+
+    const out = {};
+    for (const part of parts) {
+      if (part.type !== "literal") out[part.type] = part.value;
+    }
+    return {
+      year: Number(out.year),
+      month: Number(out.month),
+      day: Number(out.day),
+      hour: Number(out.hour),
+      minute: Number(out.minute),
+      second: Number(out.second)
+    };
+  }
+
+  function weekdayInZone(date, timeZone) {
+    return new Intl.DateTimeFormat("en-US", {
+      timeZone,
+      weekday: "long"
+    }).format(date);
+  }
+
+  // Convert a wall-clock date/time in an IANA zone to an actual UTC instant.
+  // Intl is used so daylight-saving changes are handled by the browser.
+  function zonedWallTimeToUtc(year, month, day, hour, minute, timeZone) {
+    const targetUtcNumber = Date.UTC(year, month - 1, day, hour, minute, 0);
+    let guess = targetUtcNumber;
+
+    for (let i = 0; i < 3; i += 1) {
+      const observed = partsInZone(new Date(guess), timeZone);
+      const observedUtcNumber = Date.UTC(
+        observed.year,
+        observed.month - 1,
+        observed.day,
+        observed.hour,
+        observed.minute,
+        observed.second
+      );
+      const adjustment = targetUtcNumber - observedUtcNumber;
+      guess += adjustment;
+      if (Math.abs(adjustment) < 1000) break;
+    }
+
+    return new Date(guess);
+  }
+
+  function sourceWeekAnchor(sourceTimeZone) {
+    const now = new Date();
+    const sourceParts = partsInZone(now, sourceTimeZone);
+    const sourceWeekday = weekdayInZone(now, sourceTimeZone);
+    const sourceDayIndex = DAY_INDEX[sourceWeekday] ?? 0;
+
+    return new Date(Date.UTC(
+      sourceParts.year,
+      sourceParts.month - 1,
+      sourceParts.day - sourceDayIndex,
+      12,
+      0,
+      0
+    ));
+  }
+
+  function parseClock(value) {
+    const [hour, minute] = String(value || "00:00").split(":").map(Number);
+    return {
+      hour: Number.isFinite(hour) ? hour : 0,
+      minute: Number.isFinite(minute) ? minute : 0
+    };
+  }
+
+  function localTimeText(date, timeZone) {
+    return new Intl.DateTimeFormat(undefined, {
+      timeZone,
+      hour: "numeric",
+      minute: "2-digit",
+      hour12: true
+    }).format(date);
+  }
+
+  function localDayText(date, timeZone) {
+    return new Intl.DateTimeFormat("en-US", {
+      timeZone,
+      weekday: "long"
+    }).format(date);
+  }
+
+  function localizeMeeting(meeting, sourceTimeZone, localTimeZone, weekAnchor) {
+    const sourceDayIndex = DAY_INDEX[meeting.day] ?? 0;
+    const sourceDate = new Date(weekAnchor.getTime() + sourceDayIndex * 86400000);
+    const sourceYear = sourceDate.getUTCFullYear();
+    const sourceMonth = sourceDate.getUTCMonth() + 1;
+    const sourceDay = sourceDate.getUTCDate();
+
+    const startClock = parseClock(meeting.start);
+    const startInstant = zonedWallTimeToUtc(
+      sourceYear,
+      sourceMonth,
+      sourceDay,
+      startClock.hour,
+      startClock.minute,
+      sourceTimeZone
+    );
+
+    let endInstant = null;
+    if (meeting.end) {
+      const endClock = parseClock(meeting.end);
+      let endDayOffset = 0;
+      const startMinutes = startClock.hour * 60 + startClock.minute;
+      const endMinutes = endClock.hour * 60 + endClock.minute;
+      if (endMinutes <= startMinutes) endDayOffset = 1;
+
+      const endDate = new Date(sourceDate.getTime() + endDayOffset * 86400000);
+      endInstant = zonedWallTimeToUtc(
+        endDate.getUTCFullYear(),
+        endDate.getUTCMonth() + 1,
+        endDate.getUTCDate(),
+        endClock.hour,
+        endClock.minute,
+        sourceTimeZone
+      );
+    }
+
+    const localDay = localDayText(startInstant, localTimeZone);
+    const localParts = partsInZone(startInstant, localTimeZone);
+
+    return {
+      ...meeting,
+      localDay,
+      localDayIndex: DAY_INDEX[localDay] ?? 0,
+      localStart: localTimeText(startInstant, localTimeZone),
+      localEnd: endInstant ? localTimeText(endInstant, localTimeZone) : "",
+      localSortMinutes: localParts.hour * 60 + localParts.minute,
+      startInstant: startInstant.getTime()
+    };
   }
 
   function getMeetingData() {
@@ -24,9 +185,12 @@
           if (!response.ok) throw new Error(`Meeting schedule failed to load (${response.status})`);
           return response.json();
         })
-        .then((data) => Array.isArray(data.meetings)
-          ? data.meetings.filter((m) => m.mode === "Virtual" || m.mode === "Hybrid")
-          : []);
+        .then((data) => ({
+          sourceTimeZone: data.timezoneIana || "America/New_York",
+          meetings: Array.isArray(data.meetings)
+            ? data.meetings.filter((meeting) => meeting.mode === "Virtual" || meeting.mode === "Hybrid")
+            : []
+        }));
     }
     return meetingDataPromise;
   }
@@ -45,6 +209,10 @@
     if (meeting.zoomId) zoomBits.push(`Zoom ID: ${esc(meeting.zoomId)}`);
     if (meeting.passcode) zoomBits.push(`Pass: ${esc(meeting.passcode)}`);
 
+    const timeRange = meeting.localEnd
+      ? `${esc(meeting.localStart)} – ${esc(meeting.localEnd)}`
+      : esc(meeting.localStart);
+
     const join = meeting.joinUrl ? `
       <div class="meeting-action-block">
         <span class="meeting-join-title">${meeting.mode === "Hybrid" ? "Virtual + In Person" : "Meets Virtually"}</span>
@@ -56,7 +224,7 @@
     return `
       <details class="meeting-row">
         <summary class="meeting-summary">
-          <span class="meeting-summary-time">${formatTime(meeting.start)}${meeting.end ? `<small>– ${formatTime(meeting.end)}</small>` : ""}</span>
+          <span class="meeting-summary-time">${esc(meeting.localStart)}${meeting.localEnd ? `<small>– ${esc(meeting.localEnd)}</small>` : ""}</span>
           <span class="meeting-summary-name">${esc(meeting.name)}</span>
           <span class="meeting-summary-mode">${esc(meeting.mode)}</span>
           <span class="meeting-summary-cue" aria-hidden="true">MORE +</span>
@@ -64,7 +232,7 @@
 
         <div class="meeting-expanded">
           <div class="meeting-main-cell">
-            <div class="meeting-detail-kicker">${esc(meeting.day)} · ${formatTime(meeting.start)}${meeting.end ? ` – ${formatTime(meeting.end)}` : ""} Eastern</div>
+            <div class="meeting-detail-kicker">${esc(meeting.localDay)} · ${timeRange}</div>
             ${meeting.venue ? `<p class="meeting-place">${esc(meeting.venue)}</p>` : ""}
             ${meeting.address ? `<p class="meeting-address">${esc(meeting.address)}</p>` : ""}
             ${place ? `<p class="meeting-address">${esc(place)}</p>` : ""}
@@ -95,13 +263,15 @@
       mode: panel.querySelector("[data-meeting-mode]"),
       format: panel.querySelector("[data-meeting-format]"),
       results: panel.querySelector("[data-meeting-results]"),
-      count: panel.querySelector("[data-meeting-count]")
+      count: panel.querySelector("[data-meeting-count]"),
+      timezone: panel.querySelector("[data-meeting-timezone-label]")
     };
 
     if (!els.tabs || !els.results || !els.count) return;
 
+    const localTimeZone = browserTimeZone();
     let meetings = [];
-    let selectedDay = DAYS[new Date().getDay()];
+    let selectedDay = weekdayInZone(new Date(), localTimeZone);
 
     function buildTabs() {
       const labels = ["All Days", ...DAYS];
@@ -126,34 +296,41 @@
     function buildFilters() {
       setOptions(
         els.city,
-        [...new Set(meetings.map((m) => m.city).filter(Boolean))].sort((a, b) => a.localeCompare(b)),
+        [...new Set(meetings.map((meeting) => meeting.city).filter(Boolean))].sort((a, b) => a.localeCompare(b)),
         "All Cities"
       );
       setOptions(
         els.location,
-        [...new Set(meetings.map((m) => m.locationFilter).filter(Boolean))].sort((a, b) => a.localeCompare(b)),
+        [...new Set(meetings.map((meeting) => meeting.locationFilter).filter(Boolean))].sort((a, b) => a.localeCompare(b)),
         "All Locations"
       );
       setOptions(
         els.mode,
-        [...new Set(meetings.map((m) => m.mode).filter(Boolean))].sort(),
+        [...new Set(meetings.map((meeting) => meeting.mode).filter(Boolean))].sort(),
         "Virtual + Hybrid"
       );
       setOptions(
         els.format,
-        [...new Set(meetings.map((m) => m.format).filter(Boolean))].sort(),
+        [...new Set(meetings.map((meeting) => meeting.format).filter(Boolean))].sort(),
         "All Formats"
       );
     }
 
     function render() {
-      const filtered = meetings.filter((meeting) =>
-        (selectedDay === "All Days" || meeting.day === selectedDay) &&
-        (!els.city.value || meeting.city === els.city.value) &&
-        (!els.location.value || meeting.locationFilter === els.location.value) &&
-        (!els.mode.value || meeting.mode === els.mode.value) &&
-        (!els.format.value || meeting.format === els.format.value)
-      );
+      const filtered = meetings
+        .filter((meeting) =>
+          (selectedDay === "All Days" || meeting.localDay === selectedDay) &&
+          (!els.city.value || meeting.city === els.city.value) &&
+          (!els.location.value || meeting.locationFilter === els.location.value) &&
+          (!els.mode.value || meeting.mode === els.mode.value) &&
+          (!els.format.value || meeting.format === els.format.value)
+        )
+        .sort((a, b) => {
+          if (selectedDay === "All Days" && a.localDayIndex !== b.localDayIndex) {
+            return a.localDayIndex - b.localDayIndex;
+          }
+          return a.localSortMinutes - b.localSortMinutes;
+        });
 
       els.count.textContent = `${filtered.length} meeting${filtered.length === 1 ? "" : "s"}`;
       els.results.innerHTML = filtered.length
@@ -166,7 +343,16 @@
     });
 
     try {
-      meetings = await getMeetingData();
+      const payload = await getMeetingData();
+      const weekAnchor = sourceWeekAnchor(payload.sourceTimeZone);
+      meetings = payload.meetings.map((meeting) =>
+        localizeMeeting(meeting, payload.sourceTimeZone, localTimeZone, weekAnchor)
+      );
+
+      if (els.timezone) {
+        els.timezone.textContent = `Times shown in your local time zone: ${zoneLabel(localTimeZone)}. Virtual and hybrid meetings only. Tap a meeting to open the full details.`;
+      }
+
       buildTabs();
       buildFilters();
       render();
