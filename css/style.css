@@ -1651,3 +1651,163 @@ button:focus-visible,
   .meeting-join-cell { grid-template-columns: minmax(0,1fr) 92px; }
   .meeting-qr { width: 92px; height: 92px; }
 }
+
+/* Grey Area Group flyer ------------------------------------------------ */
+.grey-area-group-panel {
+  margin-top: 28px;
+  overflow: hidden;
+  border: 1px solid rgba(20, 17, 13, .42);
+  background: var(--charcoal);
+  color: var(--paper);
+  box-shadow: 0 12px 28px rgba(20, 17, 13, .16);
+}
+
+.grey-area-group-heading {
+  padding: 20px 22px 18px;
+  border-bottom: 3px solid var(--gold);
+  background:
+    linear-gradient(135deg, rgba(184, 137, 50, .08), transparent 46%),
+    var(--charcoal);
+}
+
+.grey-area-group-heading h4 {
+  margin: 0 0 8px;
+  color: var(--paper);
+  font-size: clamp(1.35rem, 3vw, 2rem);
+  line-height: 1.05;
+}
+
+.grey-area-group-heading p:last-child {
+  max-width: 66ch;
+  margin: 0;
+  color: #ddd0ba;
+}
+
+.grey-area-group-kicker {
+  margin: 0 0 5px;
+  color: var(--gold-soft);
+  font-family: "Courier New", Courier, monospace;
+  font-size: .76rem;
+  font-weight: 900;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.grey-area-flyer-stage {
+  padding: clamp(14px, 3vw, 28px);
+  background:
+    repeating-linear-gradient(
+      0deg,
+      rgba(20, 17, 13, .025) 0,
+      rgba(20, 17, 13, .025) 1px,
+      transparent 1px,
+      transparent 6px
+    ),
+    var(--paper-deep);
+}
+
+.grey-area-flyer-link {
+  display: block;
+  width: min(100%, 620px);
+  margin: 0 auto;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.grey-area-flyer-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid rgba(20, 17, 13, .35);
+  background: #f6efe2;
+  box-shadow: 0 12px 28px rgba(20, 17, 13, .2);
+  transition: transform .16s ease, box-shadow .16s ease;
+}
+
+.grey-area-flyer-link:hover .grey-area-flyer-image,
+.grey-area-flyer-link:focus-visible .grey-area-flyer-image {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 34px rgba(20, 17, 13, .26);
+}
+
+.grey-area-flyer-caption {
+  display: block;
+  margin-top: 10px;
+  text-align: center;
+  color: var(--muted);
+  font-family: "Courier New", Courier, monospace;
+  font-size: .78rem;
+  font-weight: 800;
+  letter-spacing: .035em;
+  text-transform: uppercase;
+}
+
+.grey-area-meeting-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 17px 20px;
+  border-top: 1px solid rgba(215, 189, 122, .35);
+  background: var(--charcoal-2);
+}
+
+.grey-area-meeting-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.grey-area-meeting-copy strong {
+  color: var(--gold-soft);
+  font-family: "Courier New", Courier, monospace;
+  font-size: .9rem;
+}
+
+.grey-area-meeting-copy span {
+  color: #ddd0ba;
+  font-family: "Courier New", Courier, monospace;
+  font-size: .8rem;
+}
+
+.grey-area-join-button {
+  flex: 0 0 auto;
+  border: 1px solid var(--gold);
+  padding: 10px 13px;
+  background: transparent;
+  color: var(--paper);
+  font-family: "Courier New", Courier, monospace;
+  font-size: .82rem;
+  font-weight: 900;
+  text-decoration: none;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.grey-area-join-button:hover,
+.grey-area-join-button:focus-visible {
+  background: var(--gold);
+  color: var(--charcoal);
+}
+
+@media (max-width: 680px) {
+  .grey-area-group-heading {
+    padding: 17px 16px 15px;
+  }
+
+  .grey-area-flyer-stage {
+    padding: 12px;
+  }
+
+  .grey-area-meeting-strip {
+    align-items: stretch;
+    flex-direction: column;
+    padding: 15px 16px 17px;
+  }
+
+  .grey-area-join-button {
+    width: 100%;
+    text-align: center;
+    white-space: normal;
+  }
+}
