@@ -1442,5 +1442,6 @@
       "locationFilter": "Online",
       "qr": "meetings/qr/meeting-073.png"
     }
-  ]
+  ],
+  "timezoneIana": "America/New_York"
 }
