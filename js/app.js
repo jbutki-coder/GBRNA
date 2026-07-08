@@ -495,7 +495,7 @@ function renderMeetingSchedule(isPrimary = false) {
         <div>
           <p class="eyebrow">Find a Meeting</p>
           <h4>Virtual &amp; Hybrid Meeting Schedule</h4>
-          <p class="meeting-timezone">Times are shown in Eastern Time. Virtual and hybrid meetings only. Tap a meeting to open the full details.</p>
+          <p class="meeting-timezone" data-meeting-timezone-label>Times automatically adjust to your local time zone. Virtual and hybrid meetings only. Tap a meeting to open the full details.</p>
         </div>
         <div class="meeting-count" data-meeting-count aria-live="polite">Loading meetings…</div>
       </div>
