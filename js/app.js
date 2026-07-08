@@ -481,6 +481,59 @@ function renderGreyBookContext(reading) {
 }
 
 
+
+function renderGreyAreaGroup(isPrimary = false) {
+  if (!isPrimary) return '';
+
+  return `
+    <section
+      id="grey-area-group"
+      class="grey-area-group-panel"
+      aria-label="Grey Area Group of Narcotics Anonymous"
+    >
+      <div class="grey-area-group-heading">
+        <div>
+          <p class="grey-area-group-kicker">Grey Area Group of Narcotics Anonymous</p>
+          <h4>Historical Literature Study</h4>
+          <p>This app is conscienced by the Grey Area Group of Narcotics Anonymous.</p>
+        </div>
+      </div>
+
+      <div class="grey-area-flyer-stage">
+        <a
+          class="grey-area-flyer-link"
+          href="images/grey-area-historical-literature-study.png"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Open the Grey Area Historical Literature Study flyer full size"
+        >
+          <img
+            class="grey-area-flyer-image"
+            src="images/grey-area-historical-literature-study.png"
+            alt="Grey Area Historical Literature Study flyer. Every Monday at 8:30 PM Eastern Time on Zoom. Meeting ID 872 6843 7641. Passcode 1953."
+            loading="lazy"
+            decoding="async"
+          >
+          <span class="grey-area-flyer-caption">Open flyer full size ↗</span>
+        </a>
+      </div>
+
+      <div class="grey-area-meeting-strip">
+        <div class="grey-area-meeting-copy">
+          <strong>Every Monday · 8:30 PM Eastern Time</strong>
+          <span>Zoom ID: 872 6843 7641 · Passcode: 1953</span>
+        </div>
+        <a
+          class="grey-area-join-button"
+          href="https://us06web.zoom.us/j/87268437641?pwd=n573F6qbqxcD5dh0mtPaqvgvozvnbb.1"
+          target="_blank"
+          rel="noopener noreferrer"
+        >Join Grey Area Study ↗</a>
+      </div>
+    </section>
+  `;
+}
+
 function renderMeetingSchedule(isPrimary = false) {
   if (!isPrimary) return '';
 
@@ -640,6 +693,7 @@ function renderReadingCard(reading, label = '', isPrimary = false) {
           <p class="moment-text">${escapeHtml(reading.moment)}</p>
         </div>` : ''}
       ${renderGreyBookContext(reading)}
+      ${renderGreyAreaGroup(isPrimary)}
       ${renderMeetingSchedule(isPrimary)}
       ${renderAudioLibrary(isPrimary)}
       ${renderReviewInputForm(reading)}
