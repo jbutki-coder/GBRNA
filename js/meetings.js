@@ -112,6 +112,13 @@
     };
   }
 
+  function formatWallClock(value) {
+    const { hour, minute } = parseClock(value);
+    const suffix = hour >= 12 ? "PM" : "AM";
+    const h = hour % 12 || 12;
+    return `${h}:${String(minute).padStart(2, "0")} ${suffix}`;
+  }
+
   function localTimeText(date, timeZone) {
     return new Intl.DateTimeFormat(undefined, {
       timeZone,
@@ -129,6 +136,20 @@
   }
 
   function localizeMeeting(meeting, sourceTimeZone, localTimeZone, weekAnchor) {
+    if (meeting.timezoneUnknown) {
+      const startClock = parseClock(meeting.start);
+      return {
+        ...meeting,
+        localDay: meeting.day,
+        localDayIndex: DAY_INDEX[meeting.day] ?? 0,
+        localStart: formatWallClock(meeting.start),
+        localEnd: meeting.end ? formatWallClock(meeting.end) : "",
+        localSortMinutes: startClock.hour * 60 + startClock.minute,
+        startInstant: null,
+        timezoneNotice: "Source timezone not listed"
+      };
+    }
+
     const sourceDayIndex = DAY_INDEX[meeting.day] ?? 0;
     const sourceDate = new Date(weekAnchor.getTime() + sourceDayIndex * 86400000);
     const sourceYear = sourceDate.getUTCFullYear();
@@ -232,7 +253,7 @@
 
         <div class="meeting-expanded">
           <div class="meeting-main-cell">
-            <div class="meeting-detail-kicker">${esc(meeting.localDay)} · ${timeRange}</div>
+            <div class="meeting-detail-kicker">${esc(meeting.localDay)} · ${timeRange}${meeting.timezoneNotice ? ` · ${esc(meeting.timezoneNotice)}` : ""}</div>
             ${meeting.venue ? `<p class="meeting-place">${esc(meeting.venue)}</p>` : ""}
             ${meeting.address ? `<p class="meeting-address">${esc(meeting.address)}</p>` : ""}
             ${place ? `<p class="meeting-address">${esc(place)}</p>` : ""}
@@ -344,13 +365,23 @@
 
     try {
       const payload = await getMeetingData();
-      const weekAnchor = sourceWeekAnchor(payload.sourceTimeZone);
-      meetings = payload.meetings.map((meeting) =>
-        localizeMeeting(meeting, payload.sourceTimeZone, localTimeZone, weekAnchor)
-      );
+      const defaultWeekAnchor = sourceWeekAnchor(payload.sourceTimeZone);
+      meetings = payload.meetings.map((meeting) => {
+        const meetingSourceTimeZone = meeting.timezoneIana || payload.sourceTimeZone;
+        const meetingWeekAnchor = meetingSourceTimeZone === payload.sourceTimeZone
+          ? defaultWeekAnchor
+          : sourceWeekAnchor(meetingSourceTimeZone);
+        return localizeMeeting(
+          meeting,
+          meetingSourceTimeZone,
+          localTimeZone,
+          meetingWeekAnchor
+        );
+      });
 
       if (els.timezone) {
-        els.timezone.textContent = `Times shown in your local time zone: ${zoneLabel(localTimeZone)}. Virtual and hybrid meetings only. Tap a meeting to open the full details.`;
+        const unknownCount = meetings.filter((meeting) => meeting.timezoneUnknown).length;
+        els.timezone.textContent = `Times shown in your local time zone: ${zoneLabel(localTimeZone)}. Virtual and hybrid meetings only. Tap a meeting to open the full details.${unknownCount ? ` ${unknownCount} archived listing${unknownCount === 1 ? "" : "s"} did not include a source timezone and is shown as originally listed.` : ""}`;
       }
 
       buildTabs();
