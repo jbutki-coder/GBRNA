@@ -1462,4 +1462,24 @@
       }
     ]
   }
+,
+{
+  "id": "na-way-of-life",
+  "label": "The N.A. Way of Life Audiobook",
+  "description": "An audiobook reading of The N.A. Way of Life. Chapters will be added as the recording project continues.",
+  "tracks": [
+    {
+      "title": "Chapter One — NA Society",
+      "audioUrl": "https://gbr-audio.jakebutki.workers.dev/nawol/Chapter.One.-.NA.Society.mp3",
+      "duration": "",
+      "description": "Chapter One of The N.A. Way of Life audiobook."
+    },
+    {
+      "title": "Chapter Two — Disease Concept",
+      "audioUrl": "https://gbr-audio.jakebutki.workers.dev/nawol/Chapter.Two.-.Disease.Concept.mp3",
+      "duration": "",
+      "description": "Chapter Two of The N.A. Way of Life audiobook."
+    }
+  ]
+}
 ]
