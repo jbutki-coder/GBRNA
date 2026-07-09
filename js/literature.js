@@ -18,13 +18,22 @@
     .replace(/'/g, '&#039;');
 
   function openReader(book, trigger) {
-    if (!book.pdf) return;
+    const readerUrl = book.readerUrl || (book.pdf ? `${book.pdf}#view=FitH` : '');
+    const openUrl = book.openUrl || book.readerUrl || book.pdf || '';
+    const downloadUrl = book.downloadUrl || book.pdf || '';
+    if (!readerUrl) return;
     lastTrigger = trigger || null;
     titleEl.textContent = book.title;
-    frame.src = `${book.pdf}#view=FitH`;
-    openLink.href = book.pdf;
-    downloadLink.href = book.pdf;
-    downloadLink.setAttribute('download', book.pdf.split('/').pop() || 'literature.pdf');
+    frame.src = readerUrl;
+    openLink.href = openUrl;
+    downloadLink.href = downloadUrl;
+    if (book.pdf && !book.downloadUrl) {
+      downloadLink.setAttribute('download', book.pdf.split('/').pop() || 'literature.pdf');
+    } else {
+      downloadLink.removeAttribute('download');
+      downloadLink.setAttribute('target', '_blank');
+      downloadLink.setAttribute('rel', 'noopener noreferrer');
+    }
     reader.hidden = false;
     document.body.classList.add('reader-open');
     reader.querySelector('.literature-reader-close')?.focus();
@@ -38,11 +47,14 @@
   }
 
   function renderBook(book) {
-    const disabled = !book.pdf;
+    const readable = Boolean(book.pdf || book.readerUrl);
+    const downloadable = Boolean(book.pdf || book.downloadUrl);
+    const disabled = !readable;
     const buttonText = disabled ? 'PDF Needed' : 'Read on Site';
-    const downloadHtml = disabled
+    const downloadHref = book.downloadUrl || book.pdf || '';
+    const downloadHtml = !downloadable
       ? '<span class="literature-download-disabled">Download unavailable</span>'
-      : `<a href="${escapeHtml(book.pdf)}" download>Download</a>`;
+      : `<a href="${escapeHtml(downloadHref)}"${book.downloadUrl ? ' target="_blank" rel="noopener noreferrer"' : ' download'}>Download</a>`;
 
     return `
       <article class="literature-book-card${disabled ? ' is-pending' : ''}">
