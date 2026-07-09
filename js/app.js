@@ -618,13 +618,13 @@ function renderMeetingSchedule(isPrimary = false) {
   `;
 }
 
-function renderReviewInputForm(reading) {
+function renderReviewInputForm(reading, isPrimary = false) {
   const source = reading.source || 'Source reference pending';
   const page = reading.pdfPage ? `GBR PDF p. ${reading.pdfPage}` : '';
   const siteLink = `${location.origin}${location.pathname}#${reading.id}`;
 
   return `
-    <section class="review-input" aria-label="Review and input for ${escapeHtml(reading.date)}">
+    <section ${isPrimary ? 'id="review-input"' : ''} class="review-input" aria-label="Review and input for ${escapeHtml(reading.date)}">
       <h4>Review &amp; Input</h4>
       <p class="review-help">Share review, correction, Group input, or literature feedback for this reading.</p>
 
@@ -722,7 +722,7 @@ function renderReadingCard(reading, label = '', isPrimary = false) {
       ${renderGreyAreaGroup(isPrimary)}
       ${renderMeetingSchedule(isPrimary)}
       ${renderAudioLibrary(isPrimary)}
-      ${renderReviewInputForm(reading)}
+      ${renderReviewInputForm(reading, isPrimary)}
     </article>
   `;
 }
