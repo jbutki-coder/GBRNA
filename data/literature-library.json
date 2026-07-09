@@ -3,15 +3,16 @@
     {
       "id": "grey-book",
       "title": "Grey Book",
-      "subtitle": "Narcotics Anonymous \u2014 Memphis 1981 Review Form",
+      "subtitle": "Narcotics Anonymous - Memphis 1981 Review Form",
       "cover": "images/literature/grey-book-cover.jpg",
-      "pdf": "literature/grey-book-memphis-1981-review-form.pdf",
+      "readerUrl": "https://drive.google.com/file/d/1K9kiYJQm4sOUOPfEkdGVlVDVDHTThf31/preview",
+      "downloadUrl": "https://drive.google.com/uc?export=download&id=1K9kiYJQm4sOUOPfEkdGVlVDVDHTThf31",
       "note": "Primary source text for Grey Book Reflection source pages."
     },
     {
       "id": "basic-text",
       "title": "Basic Text",
-      "subtitle": "Third Edition, Revised \u2014 with original 4th & 9th Traditions",
+      "subtitle": "Third Edition, Revised - with original 4th & 9th Traditions",
       "cover": "images/literature/basic-text-cover.jpg",
       "pdf": "literature/basic-text-third-edition-revised.pdf",
       "note": "Fellowship-approved Basic Text reprint supplied for this project."
@@ -29,8 +30,9 @@
       "title": "It Works: How and Why",
       "subtitle": "1985 Review Form / blue draft",
       "cover": "images/literature/it-works-cover.jpg",
-      "pdf": "literature/it-works-how-and-why-1985-review-form.pdf",
-      "note": "Historical review-form draft of It Works: How and Why."
+      "readerUrl": "https://drive.google.com/file/d/1KFFD4wWOaFZ3R2EsNKEty_HlWi8OaPbf/preview",
+      "downloadUrl": "https://drive.google.com/uc?export=download&id=1KFFD4wWOaFZ3R2EsNKEty_HlWi8OaPbf",
+      "note": "Historical 1985 review-form draft of It Works: How and Why."
     },
     {
       "id": "living-clean",
@@ -43,11 +45,10 @@
     {
       "id": "na-way-of-life",
       "title": "The N.A. Way of Life",
-      "subtitle": "Fellowship Work in Progress",
+      "subtitle": "Fellowship Work in Progress - Eighth Presentation Form 2011 / First Edition 2012",
       "cover": "images/literature/na-way-of-life-cover.jpg",
-      "pdf": "",
-      "note": "Cover added. Upload the PDF and connect it to activate the reader for this book.",
-      "pending": true
+      "pdf": "literature/The-NA-Way-of-Life.pdf",
+      "note": "Fellowship work-in-progress literature project begun in 1991."
     }
   ]
 }
