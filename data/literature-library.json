@@ -1,0 +1,53 @@
+{
+  "books": [
+    {
+      "id": "grey-book",
+      "title": "Grey Book",
+      "subtitle": "Narcotics Anonymous \u2014 Memphis 1981 Review Form",
+      "cover": "images/literature/grey-book-cover.jpg",
+      "pdf": "literature/grey-book-memphis-1981-review-form.pdf",
+      "note": "Primary source text for Grey Book Reflection source pages."
+    },
+    {
+      "id": "basic-text",
+      "title": "Basic Text",
+      "subtitle": "Third Edition, Revised \u2014 with original 4th & 9th Traditions",
+      "cover": "images/literature/basic-text-cover.jpg",
+      "pdf": "literature/basic-text-third-edition-revised.pdf",
+      "note": "Fellowship-approved Basic Text reprint supplied for this project."
+    },
+    {
+      "id": "little-white-book",
+      "title": "Little White Book",
+      "subtitle": "1976 Narcotics Anonymous booklet",
+      "cover": "images/literature/little-white-book-cover.jpg",
+      "pdf": "literature/little-white-book-1976.pdf",
+      "note": "Early NA Fellowship literature."
+    },
+    {
+      "id": "it-works",
+      "title": "It Works: How and Why",
+      "subtitle": "1985 Review Form / blue draft",
+      "cover": "images/literature/it-works-cover.jpg",
+      "pdf": "literature/it-works-how-and-why-1985-review-form.pdf",
+      "note": "Historical review-form draft of It Works: How and Why."
+    },
+    {
+      "id": "living-clean",
+      "title": "Living Clean",
+      "subtitle": "Work in Progress Draft 1983",
+      "cover": "images/literature/living-clean-cover.jpg",
+      "pdf": "literature/living-clean-third-edition-1983.pdf",
+      "note": "Historical work-in-progress draft."
+    },
+    {
+      "id": "na-way-of-life",
+      "title": "The N.A. Way of Life",
+      "subtitle": "Fellowship Work in Progress",
+      "cover": "images/literature/na-way-of-life-cover.jpg",
+      "pdf": "",
+      "note": "Cover added. Upload the PDF and connect it to activate the reader for this book.",
+      "pending": true
+    }
+  ]
+}
