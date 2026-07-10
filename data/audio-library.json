@@ -1458,7 +1458,19 @@
       "audioUrl": "https://gbr-audio.jakebutki.workers.dev/nawol/Chapter.Two.-.Disease.Concept.mp3",
       "duration": "",
       "description": "Chapter Two of The N.A. Way of Life audiobook."
-    }
+    },
+    {
+  "title": "Chapter Three — Power Greater than Ourselves",
+  "audioUrl": "https://gbr-audio.jakebutki.workers.dev/nawol/Chapter.Three.-.Power.Greater.than.Ourselves.mp3",
+  "duration": "",
+  "description": "Chapter Three of The N.A. Way of Life audiobook."
+},
+{
+  "title": "How It Works — Step One",
+  "audioUrl": "https://gbr-audio.jakebutki.workers.dev/nawol/How.it.Works.-.Step.One.mp3",
+  "duration": "",
+  "description": "Step One from the How It Works section of The N.A. Way of Life audiobook."
+}
   ]
 }
 ]
