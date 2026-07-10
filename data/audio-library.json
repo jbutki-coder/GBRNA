@@ -1470,6 +1470,12 @@
   "audioUrl": "https://gbr-audio.jakebutki.workers.dev/nawol/How.it.Works.-.Step.One.mp3",
   "duration": "",
   "description": "Step One from the How It Works section of The N.A. Way of Life audiobook."
+},
+    {
+  "title": "How It Works — Step Two",
+  "audioUrl": "https://gbr-audio.jakebutki.workers.dev/nawol/How.it.Works.-.Step.Two.mp3",
+  "duration": "",
+  "description": "Step Two from the How It Works section of The N.A. Way of Life audiobook."
 }
   ]
 }
