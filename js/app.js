@@ -424,8 +424,116 @@ function renderGreyBookContext(reading) {
   const mapped = GREY_BOOK_CONTEXT?.dates?.[reading.id];
   if (!mapped) return '';
 
-  const pageNumbers = Array.isArray(mapped) ? mapped : [mapped];
-  const pages = pageNumbers
+  const sourcePageNumbers = Array.isArray(mapped) ? mapped : [mapped];
+  const sourceKey = sourcePageNumbers.join('-');
+  const context = GREY_BOOK_CONTEXT?.contexts?.[sourceKey];
+
+  const firstSourcePage = sourcePageNumbers[0];
+  const lastSourcePage = sourcePageNumbers[sourcePageNumbers.length - 1];
+  const sourcePageLabel = sourcePageNumbers.length > 1
+    ? `Pages ${firstSourcePage}–${lastSourcePage}`
+    : `Page ${firstSourcePage}`;
+
+  const firstMappedPage = GREY_BOOK_CONTEXT?.pages?.[String(firstSourcePage)];
+  const section = (
+    context?.section ||
+    firstMappedPage?.section ||
+    'Grey Book'
+  );
+
+  /*
+   * Preferred format:
+   *   contexts["58"].segments = [
+   *     { page: 57, kind: "boundary-before", text: "..." },
+   *     { page: 58, kind: "source", text: "..." },
+   *     { page: 59, kind: "boundary-after", text: "..." }
+   *   ]
+   *
+   * Every mapped source page is shown in full. Neighboring pages contribute
+   * only the missing beginning or ending of a paragraph that crosses the page
+   * boundary.
+   */
+  if (context && Array.isArray(context.segments) && context.segments.length) {
+    const pageBlocks = context.segments.map((segment, index) => {
+      const kind = segment.kind || 'source';
+      const isBoundaryBefore = kind === 'boundary-before';
+      const isBoundaryAfter = kind === 'boundary-after';
+
+      const roleLabel = isBoundaryBefore
+        ? 'Beginning of the first paragraph'
+        : isBoundaryAfter
+          ? 'End of the final paragraph'
+          : `Full mapped source ${sourcePageNumbers.length > 1 ? 'page' : 'page'}`;
+
+      const classes = [
+        'grey-book-context-page',
+        index > 0 ? 'grey-book-context-page-continuation' : '',
+        kind === 'source'
+          ? 'grey-book-context-page-source'
+          : 'grey-book-context-page-boundary'
+      ].filter(Boolean).join(' ');
+
+      return `
+        <div class="${classes}">
+          <div class="grey-book-context-pagehead">
+            <span>${escapeHtml(roleLabel)}</span>
+            <strong>Memphis 1981 · Page ${escapeHtml(segment.page)}</strong>
+          </div>
+          <div class="grey-book-context-text">${paragraphHtml(segment.text)}</div>
+        </div>
+      `;
+    }).join('');
+
+    const contextPages = Array.isArray(context.contextPages) && context.contextPages.length
+      ? context.contextPages
+      : context.segments.map((segment) => Number(segment.page));
+
+    const uniqueContextPages = [...new Set(contextPages.filter(Number.isFinite))];
+    const contextRangeLabel = uniqueContextPages.length > 1
+      ? `Pages ${uniqueContextPages[0]}–${uniqueContextPages[uniqueContextPages.length - 1]}`
+      : `Page ${uniqueContextPages[0] || firstSourcePage}`;
+
+    return `
+      <section class="grey-book-context" aria-label="Grey Book source context for ${escapeHtml(reading.date)}">
+        <div class="grey-book-context-heading">
+          <div>
+            <p class="grey-book-context-kicker">From the Grey Book</p>
+            <h4>Read the Source ${sourcePageNumbers.length > 1 ? 'Pages' : 'Page'}</h4>
+            <p class="grey-book-context-meta">${escapeHtml(section)} · ${sourcePageLabel}</p>
+          </div>
+          <span class="grey-book-page-stamp" aria-hidden="true">${
+            sourcePageNumbers.length > 1
+              ? `PP. ${firstSourcePage}–${lastSourcePage}`
+              : `P. ${firstSourcePage}`
+          }</span>
+        </div>
+
+        <details class="grey-book-context-details">
+          <summary>
+            <span class="grey-book-context-summary-copy">
+              <strong>Read Grey Book ${sourcePageLabel}</strong>
+              <small>Full source page with complete first and last paragraphs.</small>
+            </span>
+            <span class="grey-book-context-summary-cue" aria-hidden="true">OPEN ▼</span>
+          </summary>
+
+          <div class="grey-book-context-pages">
+            ${pageBlocks}
+            <p class="grey-book-context-note">
+              The complete mapped source ${sourcePageNumbers.length > 1 ? 'pages are' : 'page is'} shown.
+              Only unfinished boundary paragraphs are completed from ${escapeHtml(contextRangeLabel)}.
+            </p>
+          </div>
+        </details>
+      </section>
+    `;
+  }
+
+  /*
+   * Backward-compatible fallback for the original page map.
+   * This keeps the site usable until every context has a segments entry.
+   */
+  const pages = sourcePageNumbers
     .map((pageNumber) => GREY_BOOK_CONTEXT?.pages?.[String(pageNumber)])
     .filter((page) => page && page.text);
 
@@ -436,10 +544,6 @@ function renderGreyBookContext(reading) {
   const pageLabel = pages.length > 1
     ? `Pages ${firstPage.page}–${lastPage.page}`
     : `Page ${firstPage.page}`;
-
-  const section = firstPage.section && firstPage.section !== 'Grey Book'
-    ? firstPage.section
-    : 'Grey Book';
 
   const pageBlocks = pages.map((page, index) => `
     <div class="grey-book-context-page${index > 0 ? ' grey-book-context-page-continuation' : ''}">
@@ -459,7 +563,11 @@ function renderGreyBookContext(reading) {
           <h4>Read the Source ${pages.length > 1 ? 'Pages' : 'Page'}</h4>
           <p class="grey-book-context-meta">${escapeHtml(section)} · ${pageLabel}</p>
         </div>
-        <span class="grey-book-page-stamp" aria-hidden="true">${pages.length > 1 ? `PP. ${firstPage.page}–${lastPage.page}` : `P. ${firstPage.page}`}</span>
+        <span class="grey-book-page-stamp" aria-hidden="true">${
+          pages.length > 1
+            ? `PP. ${firstPage.page}–${lastPage.page}`
+            : `P. ${firstPage.page}`
+        }</span>
       </div>
 
       <details class="grey-book-context-details">
@@ -473,7 +581,9 @@ function renderGreyBookContext(reading) {
 
         <div class="grey-book-context-pages">
           ${pageBlocks}
-          <p class="grey-book-context-note">Source text is displayed from the retyped Memphis 1981 Review Form supplied for this project.</p>
+          <p class="grey-book-context-note">
+            Source text is displayed from the retyped Memphis 1981 Review Form supplied for this project.
+          </p>
         </div>
       </details>
     </section>
