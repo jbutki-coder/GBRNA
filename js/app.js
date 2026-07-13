@@ -420,13 +420,169 @@ function renderAudioLibrary(isPrimary = false) {
 }
 
 
+function sourceParagraphs(text) {
+  return String(text || '')
+    .split(/\n\s*\n/)
+    .map((paragraph) => paragraph.replace(/\s+/g, ' ').trim())
+    .filter(Boolean);
+}
+
+function sourceWords(text) {
+  return String(text || '').toLowerCase().match(/[a-z0-9']+/g) || [];
+}
+
+function suffixPrefixWordOverlap(leftText, rightText) {
+  const leftWords = sourceWords(leftText);
+  const rightWords = sourceWords(rightText);
+  const maximum = Math.min(leftWords.length, rightWords.length, 120);
+
+  for (let size = maximum; size >= 1; size -= 1) {
+    const leftSlice = leftWords.slice(leftWords.length - size);
+    const rightSlice = rightWords.slice(0, size);
+
+    if (leftSlice.every((word, index) => word === rightSlice[index])) {
+      return size;
+    }
+  }
+
+  return 0;
+}
+
+function removeLeadingSourceWords(text, count) {
+  if (!count) return String(text || '').trim();
+
+  const value = String(text || '');
+  const wordPattern = /[A-Za-z0-9']+/g;
+  let match;
+  let wordsSeen = 0;
+  let cutAt = 0;
+
+  while ((match = wordPattern.exec(value)) !== null) {
+    wordsSeen += 1;
+    cutAt = wordPattern.lastIndex;
+    if (wordsSeen >= count) break;
+  }
+
+  if (wordsSeen < count) return '';
+
+  return value
+    .slice(cutAt)
+    .replace(/^[\s,;:.!?—–-]+/, '')
+    .trim();
+}
+
+function mergeSourceParagraphs(leftText, rightText) {
+  const left = String(leftText || '').trim();
+  const right = String(rightText || '').trim();
+
+  if (!left) return right;
+  if (!right) return left;
+
+  const overlap = suffixPrefixWordOverlap(left, right);
+  const remainder = removeLeadingSourceWords(right, overlap);
+
+  if (!remainder) return left;
+  return `${left} ${remainder}`.replace(/\s+/g, ' ').trim();
+}
+
+function sourceParagraphContinues(leftText, rightText) {
+  const left = String(leftText || '').trim();
+  const right = String(rightText || '').trim();
+
+  if (!left || !right) return false;
+
+  const overlap = suffixPrefixWordOverlap(left, right);
+  if (overlap >= 4) return true;
+
+  // A page ending without closing punctuation is almost certainly mid-paragraph.
+  if (!/[.!?]["')\]]?$/.test(left)) return true;
+
+  // The retyped Grey Book occasionally starts a carried paragraph with a
+  // lowercase word or an OCR fragment such as "A. is ..." for "N.A. is ...".
+  if (/^[a-z]/.test(right)) return true;
+  if (/^[A-Z]\.\s+[a-z]/.test(right)) return true;
+
+  return false;
+}
+
+function buildCompleteSourceBlocks(sourcePageNumbers) {
+  const blocks = sourcePageNumbers
+    .map((pageNumber) => GREY_BOOK_CONTEXT?.pages?.[String(pageNumber)])
+    .filter((page) => page && page.text)
+    .map((page) => ({
+      page: Number(page.page),
+      section: page.section || 'Grey Book',
+      paragraphs: sourceParagraphs(page.text)
+    }));
+
+  if (!blocks.length) return null;
+
+  // Join a paragraph that crosses between two mapped source pages, while
+  // avoiding the repeated words that appear in the retyped page text.
+  for (let index = 0; index < blocks.length - 1; index += 1) {
+    const leftBlock = blocks[index];
+    const rightBlock = blocks[index + 1];
+    const leftParagraph = leftBlock.paragraphs[leftBlock.paragraphs.length - 1];
+    const rightParagraph = rightBlock.paragraphs[0];
+
+    if (sourceParagraphContinues(leftParagraph, rightParagraph)) {
+      leftBlock.paragraphs[leftBlock.paragraphs.length - 1] =
+        mergeSourceParagraphs(leftParagraph, rightParagraph);
+      rightBlock.paragraphs.shift();
+    }
+  }
+
+  const firstBlock = blocks[0];
+  const lastBlock = blocks[blocks.length - 1];
+  let contextStartPage = firstBlock.page;
+  let contextEndPage = lastBlock.page;
+
+  // Complete only the first paragraph from the previous page.
+  const previousPage = GREY_BOOK_CONTEXT?.pages?.[String(firstBlock.page - 1)];
+  if (previousPage?.text && firstBlock.paragraphs.length) {
+    const previousParagraphs = sourceParagraphs(previousPage.text);
+    const previousLast = previousParagraphs[previousParagraphs.length - 1];
+    const sourceFirst = firstBlock.paragraphs[0];
+
+    if (sourceParagraphContinues(previousLast, sourceFirst)) {
+      firstBlock.paragraphs[0] = mergeSourceParagraphs(previousLast, sourceFirst);
+      contextStartPage = firstBlock.page - 1;
+    }
+  }
+
+  // Complete only the final paragraph from the following page.
+  const followingPage = GREY_BOOK_CONTEXT?.pages?.[String(lastBlock.page + 1)];
+  if (followingPage?.text && lastBlock.paragraphs.length) {
+    const followingParagraphs = sourceParagraphs(followingPage.text);
+    const sourceLast = lastBlock.paragraphs[lastBlock.paragraphs.length - 1];
+    const followingFirst = followingParagraphs[0];
+
+    if (sourceParagraphContinues(sourceLast, followingFirst)) {
+      lastBlock.paragraphs[lastBlock.paragraphs.length - 1] =
+        mergeSourceParagraphs(sourceLast, followingFirst);
+      contextEndPage = lastBlock.page + 1;
+    }
+  }
+
+  return {
+    blocks,
+    contextStartPage,
+    contextEndPage
+  };
+}
+
 function renderGreyBookContext(reading) {
   const mapped = GREY_BOOK_CONTEXT?.dates?.[reading.id];
   if (!mapped) return '';
 
-  const sourcePageNumbers = Array.isArray(mapped) ? mapped : [mapped];
-  const sourceKey = sourcePageNumbers.join('-');
-  const context = GREY_BOOK_CONTEXT?.contexts?.[sourceKey];
+  const sourcePageNumbers = (Array.isArray(mapped) ? mapped : [mapped])
+    .map(Number)
+    .filter(Number.isFinite);
+
+  if (!sourcePageNumbers.length) return '';
+
+  const built = buildCompleteSourceBlocks(sourcePageNumbers);
+  if (!built) return '';
 
   const firstSourcePage = sourcePageNumbers[0];
   const lastSourcePage = sourcePageNumbers[sourcePageNumbers.length - 1];
@@ -434,124 +590,21 @@ function renderGreyBookContext(reading) {
     ? `Pages ${firstSourcePage}–${lastSourcePage}`
     : `Page ${firstSourcePage}`;
 
-  const firstMappedPage = GREY_BOOK_CONTEXT?.pages?.[String(firstSourcePage)];
-  const section = (
-    context?.section ||
-    firstMappedPage?.section ||
-    'Grey Book'
-  );
+  const contextPageLabel = built.contextStartPage === built.contextEndPage
+    ? `Page ${built.contextStartPage}`
+    : `Pages ${built.contextStartPage}–${built.contextEndPage}`;
 
-  /*
-   * Preferred format:
-   *   contexts["58"].segments = [
-   *     { page: 57, kind: "boundary-before", text: "..." },
-   *     { page: 58, kind: "source", text: "..." },
-   *     { page: 59, kind: "boundary-after", text: "..." }
-   *   ]
-   *
-   * Every mapped source page is shown in full. Neighboring pages contribute
-   * only the missing beginning or ending of a paragraph that crosses the page
-   * boundary.
-   */
-  if (context && Array.isArray(context.segments) && context.segments.length) {
-    const pageBlocks = context.segments.map((segment, index) => {
-      const kind = segment.kind || 'source';
-      const isBoundaryBefore = kind === 'boundary-before';
-      const isBoundaryAfter = kind === 'boundary-after';
+  const section = built.blocks[0]?.section || 'Grey Book';
 
-      const roleLabel = isBoundaryBefore
-        ? 'Beginning of the first paragraph'
-        : isBoundaryAfter
-          ? 'End of the final paragraph'
-          : `Full mapped source ${sourcePageNumbers.length > 1 ? 'page' : 'page'}`;
-
-      const classes = [
-        'grey-book-context-page',
-        index > 0 ? 'grey-book-context-page-continuation' : '',
-        kind === 'source'
-          ? 'grey-book-context-page-source'
-          : 'grey-book-context-page-boundary'
-      ].filter(Boolean).join(' ');
-
-      return `
-        <div class="${classes}">
-          <div class="grey-book-context-pagehead">
-            <span>${escapeHtml(roleLabel)}</span>
-            <strong>Memphis 1981 · Page ${escapeHtml(segment.page)}</strong>
-          </div>
-          <div class="grey-book-context-text">${paragraphHtml(segment.text)}</div>
-        </div>
-      `;
-    }).join('');
-
-    const contextPages = Array.isArray(context.contextPages) && context.contextPages.length
-      ? context.contextPages
-      : context.segments.map((segment) => Number(segment.page));
-
-    const uniqueContextPages = [...new Set(contextPages.filter(Number.isFinite))];
-    const contextRangeLabel = uniqueContextPages.length > 1
-      ? `Pages ${uniqueContextPages[0]}–${uniqueContextPages[uniqueContextPages.length - 1]}`
-      : `Page ${uniqueContextPages[0] || firstSourcePage}`;
-
-    return `
-      <section class="grey-book-context" aria-label="Grey Book source context for ${escapeHtml(reading.date)}">
-        <div class="grey-book-context-heading">
-          <div>
-            <p class="grey-book-context-kicker">From the Grey Book</p>
-            <h4>Read the Source ${sourcePageNumbers.length > 1 ? 'Pages' : 'Page'}</h4>
-            <p class="grey-book-context-meta">${escapeHtml(section)} · ${sourcePageLabel}</p>
-          </div>
-          <span class="grey-book-page-stamp" aria-hidden="true">${
-            sourcePageNumbers.length > 1
-              ? `PP. ${firstSourcePage}–${lastSourcePage}`
-              : `P. ${firstSourcePage}`
-          }</span>
-        </div>
-
-        <details class="grey-book-context-details">
-          <summary>
-            <span class="grey-book-context-summary-copy">
-              <strong>Read Grey Book ${sourcePageLabel}</strong>
-              <small>Full source page with complete first and last paragraphs.</small>
-            </span>
-            <span class="grey-book-context-summary-cue" aria-hidden="true">OPEN ▼</span>
-          </summary>
-
-          <div class="grey-book-context-pages">
-            ${pageBlocks}
-            <p class="grey-book-context-note">
-              The complete mapped source ${sourcePageNumbers.length > 1 ? 'pages are' : 'page is'} shown.
-              Only unfinished boundary paragraphs are completed from ${escapeHtml(contextRangeLabel)}.
-            </p>
-          </div>
-        </details>
-      </section>
-    `;
-  }
-
-  /*
-   * Backward-compatible fallback for the original page map.
-   * This keeps the site usable until every context has a segments entry.
-   */
-  const pages = sourcePageNumbers
-    .map((pageNumber) => GREY_BOOK_CONTEXT?.pages?.[String(pageNumber)])
-    .filter((page) => page && page.text);
-
-  if (!pages.length) return '';
-
-  const firstPage = pages[0];
-  const lastPage = pages[pages.length - 1];
-  const pageLabel = pages.length > 1
-    ? `Pages ${firstPage.page}–${lastPage.page}`
-    : `Page ${firstPage.page}`;
-
-  const pageBlocks = pages.map((page, index) => `
+  const pageBlocks = built.blocks.map((block, index) => `
     <div class="grey-book-context-page${index > 0 ? ' grey-book-context-page-continuation' : ''}">
       <div class="grey-book-context-pagehead">
-        <span>Narcotics Anonymous — Review Form</span>
-        <strong>Memphis 1981 · Page ${page.page}</strong>
+        <span>Full mapped source page with complete boundary paragraphs</span>
+        <strong>Memphis 1981 · Page ${escapeHtml(block.page)}</strong>
       </div>
-      <div class="grey-book-context-text">${paragraphHtml(page.text)}</div>
+      <div class="grey-book-context-text">
+        ${paragraphHtml(block.paragraphs.join('\n\n'))}
+      </div>
     </div>
   `).join('');
 
@@ -560,21 +613,21 @@ function renderGreyBookContext(reading) {
       <div class="grey-book-context-heading">
         <div>
           <p class="grey-book-context-kicker">From the Grey Book</p>
-          <h4>Read the Source ${pages.length > 1 ? 'Pages' : 'Page'}</h4>
-          <p class="grey-book-context-meta">${escapeHtml(section)} · ${pageLabel}</p>
+          <h4>Read the Source ${sourcePageNumbers.length > 1 ? 'Pages' : 'Page'}</h4>
+          <p class="grey-book-context-meta">${escapeHtml(section)} · ${sourcePageLabel}</p>
         </div>
         <span class="grey-book-page-stamp" aria-hidden="true">${
-          pages.length > 1
-            ? `PP. ${firstPage.page}–${lastPage.page}`
-            : `P. ${firstPage.page}`
+          sourcePageNumbers.length > 1
+            ? `PP. ${firstSourcePage}–${lastSourcePage}`
+            : `P. ${firstSourcePage}`
         }</span>
       </div>
 
       <details class="grey-book-context-details">
         <summary>
           <span class="grey-book-context-summary-copy">
-            <strong>Read Grey Book ${pageLabel}</strong>
-            <small>Open the source text used for this reflection.</small>
+            <strong>Read Grey Book ${sourcePageLabel}</strong>
+            <small>Full source page, with its first and last paragraphs completed.</small>
           </span>
           <span class="grey-book-context-summary-cue" aria-hidden="true">OPEN ▼</span>
         </summary>
@@ -582,14 +635,14 @@ function renderGreyBookContext(reading) {
         <div class="grey-book-context-pages">
           ${pageBlocks}
           <p class="grey-book-context-note">
-            Source text is displayed from the retyped Memphis 1981 Review Form supplied for this project.
+            The mapped source ${sourcePageNumbers.length > 1 ? 'pages are' : 'page is'} shown in full.
+            Paragraph context extends only as needed through ${escapeHtml(contextPageLabel)}.
           </p>
         </div>
       </details>
     </section>
   `;
 }
-
 
 
 function renderGreyAreaGroup(isPrimary = false) {
