@@ -1,0 +1,5951 @@
+{
+  "source": "1981 NA Basic Text Grey Book Manuscript",
+  "mode": "exact-gbr-page-images-step-bounded-v2",
+  "githubRelease": {
+    "repo": "jbutki-coder/GBRNA",
+    "tag": "gbr-source-pages"
+  },
+  "summary": {
+    "reflectionCount": 366,
+    "mappedCount": 366,
+    "failedCount": 0,
+    "warningCount": 0,
+    "assetCount": 133
+  },
+  "entries": {
+    "01-01": {
+      "citation": "Gray Book, p. 87 (Chapter 6, Header)",
+      "section": "Chapter 6",
+      "step": null,
+      "chapter": 6,
+      "lineLabel": "",
+      "images": [
+        {
+          "printedPage": "87",
+          "physicalPdfPage": 104,
+          "asset": "gbr-p87-chapter-06.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p87-chapter-06.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "01-02": {
+      "citation": "Gray Book, p. 58 (Lines 23-25, Step Eleven)",
+      "section": "Step Eleven",
+      "step": 11,
+      "chapter": null,
+      "lineLabel": "Lines 23-25",
+      "images": [
+        {
+          "printedPage": "58",
+          "physicalPdfPage": 75,
+          "asset": "gbr-p58-step-11.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p58-step-11.webp"
+        }
+      ],
+      "quoteMatchScore": 0.909
+    },
+    "01-03": {
+      "citation": "Gray Book, p. 58 (Step Eleven, Lines 10-11)",
+      "section": "Step Eleven",
+      "step": 11,
+      "chapter": null,
+      "lineLabel": "Lines 10-11",
+      "images": [
+        {
+          "printedPage": "58",
+          "physicalPdfPage": 75,
+          "asset": "gbr-p58-step-11.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p58-step-11.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "01-04": {
+      "citation": "Gray Book, p. 142 (Chapter Eight, Lines 13-14)",
+      "section": "Chapter 8",
+      "step": null,
+      "chapter": 8,
+      "lineLabel": "Lines 13-14",
+      "images": [
+        {
+          "printedPage": "142",
+          "physicalPdfPage": 159,
+          "asset": "gbr-p142-chapter-08.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p142-chapter-08.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "01-05": {
+      "citation": "Gray Book, p. 159 (Chapter Ten, Lines 2-3)",
+      "section": "Chapter 10",
+      "step": null,
+      "chapter": 10,
+      "lineLabel": "Lines 2-3",
+      "images": [
+        {
+          "printedPage": "159",
+          "physicalPdfPage": 176,
+          "asset": "gbr-p159-chapter-10.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p159-chapter-10.webp"
+        }
+      ],
+      "quoteMatchScore": 0.95
+    },
+    "01-06": {
+      "citation": "Gray Book, p. iv (Introduction, Last paragraph)",
+      "section": "Introduction",
+      "step": null,
+      "chapter": null,
+      "lineLabel": "",
+      "images": [
+        {
+          "printedPage": "iv",
+          "physicalPdfPage": 16,
+          "asset": "gbr-piv.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-piv.webp"
+        }
+      ],
+      "quoteMatchScore": 0.875
+    },
+    "01-07": {
+      "citation": "Gray Book, p. 159 (Chapter Ten, Lines 3-5)",
+      "section": "Chapter 10",
+      "step": null,
+      "chapter": 10,
+      "lineLabel": "Lines 3-5",
+      "images": [
+        {
+          "printedPage": "159",
+          "physicalPdfPage": 176,
+          "asset": "gbr-p159-chapter-10.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p159-chapter-10.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "01-08": {
+      "citation": "Gray Book, p. 58 (Step Eleven, Lines 18-20)",
+      "section": "Step Eleven",
+      "step": 11,
+      "chapter": null,
+      "lineLabel": "Lines 18-20",
+      "images": [
+        {
+          "printedPage": "58",
+          "physicalPdfPage": 75,
+          "asset": "gbr-p58-step-11.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p58-step-11.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "01-09": {
+      "citation": "Gray Book, p. 81 (Chapter Five, Lines 4-5)",
+      "section": "Chapter 5",
+      "step": null,
+      "chapter": 5,
+      "lineLabel": "Lines 4-5",
+      "images": [
+        {
+          "printedPage": "81",
+          "physicalPdfPage": 98,
+          "asset": "gbr-p81-chapter-05.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p81-chapter-05.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "01-10": {
+      "citation": "Gray Book, p. 11 (Chapter One, Lines 11-12)",
+      "section": "Chapter 1",
+      "step": null,
+      "chapter": 1,
+      "lineLabel": "Lines 11-12",
+      "images": [
+        {
+          "printedPage": "11",
+          "physicalPdfPage": 28,
+          "asset": "gbr-p11-chapter-01.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p11-chapter-01.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "01-11": {
+      "citation": "Gray Book, p. 147 (Chapter Nine, Lines 21-23)",
+      "section": "Chapter 9",
+      "step": null,
+      "chapter": 9,
+      "lineLabel": "Lines 21-23",
+      "images": [
+        {
+          "printedPage": "147",
+          "physicalPdfPage": 164,
+          "asset": "gbr-p147-chapter-09.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p147-chapter-09.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "01-12": {
+      "citation": "Gray Book, p. 59 (Step Twelve, Header)",
+      "section": "Step Twelve",
+      "step": 12,
+      "chapter": null,
+      "lineLabel": "",
+      "images": [
+        {
+          "printedPage": "59",
+          "physicalPdfPage": 76,
+          "asset": "gbr-p59-step-12.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p59-step-12.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "01-13": {
+      "citation": "Gray Book, p. 33 (Step One, Line 16)",
+      "section": "Step One",
+      "step": 1,
+      "chapter": null,
+      "lineLabel": "Line 16",
+      "images": [
+        {
+          "printedPage": "33",
+          "physicalPdfPage": 50,
+          "asset": "gbr-p33-step-01.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p33-step-01.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "01-14": {
+      "citation": "Gray Book, p. 35 (Step Two, Lines 12-14)",
+      "section": "Step Two",
+      "step": 2,
+      "chapter": null,
+      "lineLabel": "Lines 12-14",
+      "images": [
+        {
+          "printedPage": "35",
+          "physicalPdfPage": 52,
+          "asset": "gbr-p35-step-02.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p35-step-02.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "01-15": {
+      "citation": "Gray Book, p. 36 (Step Two, Lines 13-14)",
+      "section": "Step Two",
+      "step": 2,
+      "chapter": null,
+      "lineLabel": "Lines 13-14",
+      "images": [
+        {
+          "printedPage": "36",
+          "physicalPdfPage": 53,
+          "asset": "gbr-p36-step-02.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p36-step-02.webp"
+        }
+      ],
+      "quoteMatchScore": 0.923
+    },
+    "01-16": {
+      "citation": "Gray Book, p. 44 (Step Five, Lines 14-15)",
+      "section": "Step Five",
+      "step": 5,
+      "chapter": null,
+      "lineLabel": "Lines 14-15",
+      "images": [
+        {
+          "printedPage": "44",
+          "physicalPdfPage": 61,
+          "asset": "gbr-p44-step-05.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p44-step-05.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "01-17": {
+      "citation": "Gray Book, p. 50 (Step Eight, Lines 15-18)",
+      "section": "Step Eight",
+      "step": 8,
+      "chapter": null,
+      "lineLabel": "Lines 15-18",
+      "images": [
+        {
+          "printedPage": "50",
+          "physicalPdfPage": 67,
+          "asset": "gbr-p50-step-08.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p50-step-08.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "01-18": {
+      "citation": "Gray Book, p. 57 (Step Ten, Lines 14-15)",
+      "section": "Step Ten",
+      "step": 10,
+      "chapter": null,
+      "lineLabel": "Lines 14-15",
+      "images": [
+        {
+          "printedPage": "57",
+          "physicalPdfPage": 74,
+          "asset": "gbr-p57-step-10.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p57-step-10.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "01-19": {
+      "citation": "Gray Book, p. 147 (Chapter Nine, Lines 26-28)",
+      "section": "Chapter 9",
+      "step": null,
+      "chapter": 9,
+      "lineLabel": "Lines 26-28",
+      "images": [
+        {
+          "printedPage": "147",
+          "physicalPdfPage": 164,
+          "asset": "gbr-p147-chapter-09.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p147-chapter-09.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "01-20": {
+      "citation": "Gray Book, p. 160 (Chapter Ten, Lines 27-28)",
+      "section": "Chapter 10",
+      "step": null,
+      "chapter": 10,
+      "lineLabel": "Lines 27-28",
+      "images": [
+        {
+          "printedPage": "160",
+          "physicalPdfPage": 177,
+          "asset": "gbr-p160-chapter-10.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p160-chapter-10.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "01-21": {
+      "citation": "Gray Book, p. 91 (Tradition One, Line 32)",
+      "section": "Grey Book",
+      "step": null,
+      "chapter": null,
+      "lineLabel": "Line 32",
+      "images": [
+        {
+          "printedPage": "91",
+          "physicalPdfPage": 108,
+          "asset": "gbr-p91.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p91.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "01-22": {
+      "citation": "Gray Book, p. 26 (Chapter Three, Lines 32-33)",
+      "section": "Chapter 3",
+      "step": null,
+      "chapter": 3,
+      "lineLabel": "Lines 32-33",
+      "images": [
+        {
+          "printedPage": "26",
+          "physicalPdfPage": 43,
+          "asset": "gbr-p26-chapter-03.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p26-chapter-03.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "01-23": {
+      "citation": "Gray Book, p. 144 (Chapter Nine, Lines 21-22)",
+      "section": "Chapter 9",
+      "step": null,
+      "chapter": 9,
+      "lineLabel": "Lines 21-22",
+      "images": [
+        {
+          "printedPage": "144",
+          "physicalPdfPage": 161,
+          "asset": "gbr-p144-chapter-09.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p144-chapter-09.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "01-24": {
+      "citation": "Gray Book, p. 7 (Chapter One, Lines 12-13)",
+      "section": "Chapter 1",
+      "step": null,
+      "chapter": 1,
+      "lineLabel": "Lines 12-13",
+      "images": [
+        {
+          "printedPage": "7",
+          "physicalPdfPage": 24,
+          "asset": "gbr-p7-chapter-01.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p7-chapter-01.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "01-25": {
+      "citation": "Gray Book, p. 76 (Step Twelve, Lines 10-11)",
+      "section": "Step Twelve",
+      "step": 12,
+      "chapter": null,
+      "lineLabel": "Lines 10-11",
+      "images": [
+        {
+          "printedPage": "76",
+          "physicalPdfPage": 93,
+          "asset": "gbr-p76-step-12.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p76-step-12.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "01-26": {
+      "citation": "Gray Book, p. 13 (Chapter One, Lines 28-30)",
+      "section": "Chapter 1",
+      "step": null,
+      "chapter": 1,
+      "lineLabel": "Lines 28-30",
+      "images": [
+        {
+          "printedPage": "13",
+          "physicalPdfPage": 30,
+          "asset": "gbr-p13-chapter-01.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p13-chapter-01.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "01-27": {
+      "citation": "Gray Book, p. 80 (Chapter Five, Line 19)",
+      "section": "Chapter 5",
+      "step": null,
+      "chapter": 5,
+      "lineLabel": "Line 19",
+      "images": [
+        {
+          "printedPage": "80",
+          "physicalPdfPage": 97,
+          "asset": "gbr-p80-chapter-05.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p80-chapter-05.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "01-28": {
+      "citation": "Gray Book, p. 128 (Chapter Seven, Lines 32-33)",
+      "section": "Chapter 7",
+      "step": null,
+      "chapter": 7,
+      "lineLabel": "Lines 32-33",
+      "images": [
+        {
+          "printedPage": "128",
+          "physicalPdfPage": 145,
+          "asset": "gbr-p128-chapter-07.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p128-chapter-07.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "01-29": {
+      "citation": "Gray Book, p. 31 (Step One, Lines 23-25)",
+      "section": "Step One",
+      "step": 1,
+      "chapter": null,
+      "lineLabel": "Lines 23-25",
+      "images": [
+        {
+          "printedPage": "31",
+          "physicalPdfPage": 48,
+          "asset": "gbr-p31-step-01.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p31-step-01.webp"
+        }
+      ],
+      "quoteMatchScore": 0.933
+    },
+    "01-30": {
+      "citation": "Gray Book, p. 59 (Step Twelve, Lines 21-23)",
+      "section": "Step Twelve",
+      "step": 12,
+      "chapter": null,
+      "lineLabel": "Lines 21-23",
+      "images": [
+        {
+          "printedPage": "59",
+          "physicalPdfPage": 76,
+          "asset": "gbr-p59-step-12.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p59-step-12.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "01-31": {
+      "citation": "Gray Book, p. 143 (Chapter Nine, 2nd Just For Today)",
+      "section": "Chapter 9",
+      "step": null,
+      "chapter": 9,
+      "lineLabel": "",
+      "images": [
+        {
+          "printedPage": "143",
+          "physicalPdfPage": 160,
+          "asset": "gbr-p143-chapter-09.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p143-chapter-09.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "02-01": {
+      "citation": "Gray Book, p. 33 (Step One, Lines 13-15)",
+      "section": "Step One",
+      "step": 1,
+      "chapter": null,
+      "lineLabel": "Lines 13-15",
+      "images": [
+        {
+          "printedPage": "33",
+          "physicalPdfPage": 50,
+          "asset": "gbr-p33-step-01.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p33-step-01.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "02-02": {
+      "citation": "Gray Book, Frontispiece (Our Symbol, Last Paragraph)",
+      "section": "Our N.A. Symbol",
+      "step": null,
+      "chapter": null,
+      "lineLabel": "",
+      "images": [
+        {
+          "printedPage": "Frontispiece",
+          "physicalPdfPage": 8,
+          "asset": "gbr-pfrontispiece.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-pfrontispiece.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "02-03": {
+      "citation": "Gray Book, p. 15 (Chapter Two, Second Paragraph)",
+      "section": "Chapter 2",
+      "step": null,
+      "chapter": 2,
+      "lineLabel": "",
+      "images": [
+        {
+          "printedPage": "15",
+          "physicalPdfPage": 32,
+          "asset": "gbr-p15-chapter-02.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p15-chapter-02.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "02-04": {
+      "citation": "Gray Book, p. 56 (Step Ten, Lines 25-26)",
+      "section": "Step Ten",
+      "step": 10,
+      "chapter": null,
+      "lineLabel": "Lines 25-26",
+      "images": [
+        {
+          "printedPage": "56",
+          "physicalPdfPage": 73,
+          "asset": "gbr-p56-step-10.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p56-step-10.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "02-05": {
+      "citation": "Gray Book, p. 119 (Chapter Seven, Lines 11-12)",
+      "section": "Chapter 7",
+      "step": null,
+      "chapter": 7,
+      "lineLabel": "Lines 11-12",
+      "images": [
+        {
+          "printedPage": "119",
+          "physicalPdfPage": 136,
+          "asset": "gbr-p119-chapter-07.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p119-chapter-07.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "02-06": {
+      "citation": "Gray Book, p. 91 (Tradition One, Lines 18-21)",
+      "section": "Grey Book",
+      "step": null,
+      "chapter": null,
+      "lineLabel": "Lines 18-21",
+      "images": [
+        {
+          "printedPage": "91",
+          "physicalPdfPage": 108,
+          "asset": "gbr-p91.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p91.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "02-07": {
+      "citation": "Gray Book, p. 41 (Step Four, Lines 9-11)",
+      "section": "Step Four",
+      "step": 4,
+      "chapter": null,
+      "lineLabel": "Lines 9-11",
+      "images": [
+        {
+          "printedPage": "41",
+          "physicalPdfPage": 58,
+          "asset": "gbr-p41-step-04.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p41-step-04.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "02-08": {
+      "citation": "Gray Book, p. 79 (Chapter Five, Lines 32-34)",
+      "section": "Chapter 5",
+      "step": null,
+      "chapter": 5,
+      "lineLabel": "Lines 32-34",
+      "images": [
+        {
+          "printedPage": "79",
+          "physicalPdfPage": 96,
+          "asset": "gbr-p79-chapter-05.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p79-chapter-05.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "02-09": {
+      "citation": "Gray Book, p. 44 (Step Five, Lines 14-15)",
+      "section": "Step Five",
+      "step": 5,
+      "chapter": null,
+      "lineLabel": "Lines 14-15",
+      "images": [
+        {
+          "printedPage": "44",
+          "physicalPdfPage": 61,
+          "asset": "gbr-p44-step-05.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p44-step-05.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "02-10": {
+      "citation": "Gray Book, p. 157 (Chapter Ten, Lines 28-30)",
+      "section": "Chapter 10",
+      "step": null,
+      "chapter": 10,
+      "lineLabel": "Lines 28-30",
+      "images": [
+        {
+          "printedPage": "157",
+          "physicalPdfPage": 174,
+          "asset": "gbr-p157-chapter-10.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p157-chapter-10.webp"
+        }
+      ],
+      "quoteMatchScore": 0.957
+    },
+    "02-11": {
+      "citation": "Gray Book, p. 14 (Chapter One, Lines 14-16)",
+      "section": "Chapter 1",
+      "step": null,
+      "chapter": 1,
+      "lineLabel": "Lines 14-16",
+      "images": [
+        {
+          "printedPage": "14",
+          "physicalPdfPage": 31,
+          "asset": "gbr-p14-chapter-01.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p14-chapter-01.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "02-12": {
+      "citation": "Gray Book, p. 2 (Chapter One, Lines 15-16)",
+      "section": "Chapter 1",
+      "step": null,
+      "chapter": 1,
+      "lineLabel": "Lines 15-16",
+      "images": [
+        {
+          "printedPage": "2",
+          "physicalPdfPage": 19,
+          "asset": "gbr-p2-chapter-01.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p2-chapter-01.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "02-13": {
+      "citation": "Gray Book, p. 35 (Step Two, Lines 12-15)",
+      "section": "Step Two",
+      "step": 2,
+      "chapter": null,
+      "lineLabel": "Lines 12-15",
+      "images": [
+        {
+          "printedPage": "35",
+          "physicalPdfPage": 52,
+          "asset": "gbr-p35-step-02.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p35-step-02.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "02-14": {
+      "citation": "Gray Book, p. 38 (Step Three, Lines 7-9)",
+      "section": "Step Three",
+      "step": 3,
+      "chapter": null,
+      "lineLabel": "Lines 7-9",
+      "images": [
+        {
+          "printedPage": "38",
+          "physicalPdfPage": 55,
+          "asset": "gbr-p38-step-03.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p38-step-03.webp"
+        }
+      ],
+      "quoteMatchScore": 0.969
+    },
+    "02-15": {
+      "citation": "Gray Book, p. 64 (Step Twelve, Lines 25-26)",
+      "section": "Step Twelve",
+      "step": 12,
+      "chapter": null,
+      "lineLabel": "Lines 25-26",
+      "images": [
+        {
+          "printedPage": "64",
+          "physicalPdfPage": 81,
+          "asset": "gbr-p64-step-12.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p64-step-12.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "02-16": {
+      "citation": "Gray Book, p. 93 (Tradition Two, Lines 14-16)",
+      "section": "Grey Book",
+      "step": null,
+      "chapter": null,
+      "lineLabel": "Lines 14-16",
+      "images": [
+        {
+          "printedPage": "93",
+          "physicalPdfPage": 110,
+          "asset": "gbr-p93.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p93.webp"
+        }
+      ],
+      "quoteMatchScore": 0.963
+    },
+    "02-17": {
+      "citation": "Gray Book, p. 97 (Tradition Three, Lines 18-22)",
+      "section": "Grey Book",
+      "step": null,
+      "chapter": null,
+      "lineLabel": "Lines 18-22",
+      "images": [
+        {
+          "printedPage": "97",
+          "physicalPdfPage": 114,
+          "asset": "gbr-p97.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p97.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "02-18": {
+      "citation": "Gray Book, p. 10 (Chapter One, Lines 13-14)",
+      "section": "Chapter 1",
+      "step": null,
+      "chapter": 1,
+      "lineLabel": "Lines 13-14",
+      "images": [
+        {
+          "printedPage": "10",
+          "physicalPdfPage": 27,
+          "asset": "gbr-p10-chapter-01.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p10-chapter-01.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "02-19": {
+      "citation": "Gray Book, p. 124 (Chapter Seven, Lines 33-35)",
+      "section": "Chapter 7",
+      "step": null,
+      "chapter": 7,
+      "lineLabel": "Lines 33-35",
+      "images": [
+        {
+          "printedPage": "124",
+          "physicalPdfPage": 141,
+          "asset": "gbr-p124-chapter-07.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p124-chapter-07.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "02-20": {
+      "citation": "Gray Book, p. 23 (Chapter Three, First Paragraph)",
+      "section": "Chapter 3",
+      "step": null,
+      "chapter": 3,
+      "lineLabel": "",
+      "images": [
+        {
+          "printedPage": "23",
+          "physicalPdfPage": 40,
+          "asset": "gbr-p23-chapter-03.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p23-chapter-03.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "02-21": {
+      "citation": "Gray Book, p. 123 (Chapter Seven, Lines 14-15)",
+      "section": "Chapter 7",
+      "step": null,
+      "chapter": 7,
+      "lineLabel": "Lines 14-15",
+      "images": [
+        {
+          "printedPage": "123",
+          "physicalPdfPage": 140,
+          "asset": "gbr-p123-chapter-07.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p123-chapter-07.webp"
+        }
+      ],
+      "quoteMatchScore": 0.955
+    },
+    "02-22": {
+      "citation": "Gray Book, p. 54 (Step Ten, Header)",
+      "section": "Step Ten",
+      "step": 10,
+      "chapter": null,
+      "lineLabel": "",
+      "images": [
+        {
+          "printedPage": "54",
+          "physicalPdfPage": 71,
+          "asset": "gbr-p54-step-10.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p54-step-10.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "02-23": {
+      "citation": "Gray Book, p. 115 (Tradition Twelve, Header)",
+      "section": "Grey Book",
+      "step": null,
+      "chapter": null,
+      "lineLabel": "",
+      "images": [
+        {
+          "printedPage": "115",
+          "physicalPdfPage": 132,
+          "asset": "gbr-p115.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p115.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "02-24": {
+      "citation": "Gray Book, p. 25 (Chapter Three, Lines 18-20)",
+      "section": "Chapter 3",
+      "step": null,
+      "chapter": 3,
+      "lineLabel": "Lines 18-20",
+      "images": [
+        {
+          "printedPage": "25",
+          "physicalPdfPage": 42,
+          "asset": "gbr-p25-chapter-03.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p25-chapter-03.webp"
+        }
+      ],
+      "quoteMatchScore": 0.952
+    },
+    "02-25": {
+      "citation": "Gray Book, p. 44 (Step Five, Lines 12-13)",
+      "section": "Step Five",
+      "step": 5,
+      "chapter": null,
+      "lineLabel": "Lines 12-13",
+      "images": [
+        {
+          "printedPage": "44",
+          "physicalPdfPage": 61,
+          "asset": "gbr-p44-step-05.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p44-step-05.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "02-26": {
+      "citation": "Gray Book, p. 51 (Step Eight, Lines 14-16)",
+      "section": "Step Eight",
+      "step": 8,
+      "chapter": null,
+      "lineLabel": "Lines 14-16",
+      "images": [
+        {
+          "printedPage": "51",
+          "physicalPdfPage": 68,
+          "asset": "gbr-p51-step-08.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p51-step-08.webp"
+        }
+      ],
+      "quoteMatchScore": 0.938
+    },
+    "02-27": {
+      "citation": "Gray Book, p. 161 (Chapter Ten, Lines 2-4)",
+      "section": "Chapter 10",
+      "step": null,
+      "chapter": 10,
+      "lineLabel": "Lines 2-4",
+      "images": [
+        {
+          "printedPage": "161",
+          "physicalPdfPage": 178,
+          "asset": "gbr-p161-chapter-10.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p161-chapter-10.webp"
+        }
+      ],
+      "quoteMatchScore": 0.905
+    },
+    "02-28": {
+      "citation": "Gray Book, p. 148 (Chapter Nine, Lines 22-23)",
+      "section": "Chapter 9",
+      "step": null,
+      "chapter": 9,
+      "lineLabel": "Lines 22-23",
+      "images": [
+        {
+          "printedPage": "148",
+          "physicalPdfPage": 165,
+          "asset": "gbr-p148-chapter-09.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p148-chapter-09.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "02-29": {
+      "citation": "Gray Book, p. 57 (Step Ten, Lines 19-22)",
+      "section": "Step Ten",
+      "step": 10,
+      "chapter": null,
+      "lineLabel": "Lines 19-22",
+      "images": [
+        {
+          "printedPage": "57",
+          "physicalPdfPage": 74,
+          "asset": "gbr-p57-step-10.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p57-step-10.webp"
+        }
+      ],
+      "quoteMatchScore": 0.973
+    },
+    "03-01": {
+      "citation": "Gray Book, p. 40 (Step Three, Lines 4-6)",
+      "section": "Step Three",
+      "step": 3,
+      "chapter": null,
+      "lineLabel": "Lines 4-6",
+      "images": [
+        {
+          "printedPage": "40",
+          "physicalPdfPage": 57,
+          "asset": "gbr-p40-step-03.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p40-step-03.webp"
+        }
+      ],
+      "quoteMatchScore": 0.952
+    },
+    "03-02": {
+      "citation": "Gray Book, p. 25 (Chapter Three, Line 2)",
+      "section": "Chapter 3",
+      "step": null,
+      "chapter": 3,
+      "lineLabel": "Line 2",
+      "images": [
+        {
+          "printedPage": "25",
+          "physicalPdfPage": 42,
+          "asset": "gbr-p25-chapter-03.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p25-chapter-03.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "03-03": {
+      "citation": "Gray Book, p. 126 (Chapter Seven, Lines 3-6)",
+      "section": "Chapter 7",
+      "step": null,
+      "chapter": 7,
+      "lineLabel": "Lines 3-6",
+      "images": [
+        {
+          "printedPage": "126",
+          "physicalPdfPage": 143,
+          "asset": "gbr-p126-chapter-07.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p126-chapter-07.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "03-04": {
+      "citation": "Gray Book, p. 142 (Chapter Eight, Lines 16-18)",
+      "section": "Chapter 8",
+      "step": null,
+      "chapter": 8,
+      "lineLabel": "Lines 16-18",
+      "images": [
+        {
+          "printedPage": "142",
+          "physicalPdfPage": 159,
+          "asset": "gbr-p142-chapter-08.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p142-chapter-08.webp"
+        }
+      ],
+      "quoteMatchScore": 0.944
+    },
+    "03-05": {
+      "citation": "Gray Book, p. 128 (Chapter Seven, Lines 12-15)",
+      "section": "Chapter 7",
+      "step": null,
+      "chapter": 7,
+      "lineLabel": "Lines 12-15",
+      "images": [
+        {
+          "printedPage": "128",
+          "physicalPdfPage": 145,
+          "asset": "gbr-p128-chapter-07.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p128-chapter-07.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "03-06": {
+      "citation": "Gray Book, p. 37 (Step Three, Lines 17-18)",
+      "section": "Step Three",
+      "step": 3,
+      "chapter": null,
+      "lineLabel": "Lines 17-18",
+      "images": [
+        {
+          "printedPage": "37",
+          "physicalPdfPage": 54,
+          "asset": "gbr-p37-step-03.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p37-step-03.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "03-07": {
+      "citation": "Gray Book, p. 56 (Step Ten, Lines 22-24)",
+      "section": "Step Ten",
+      "step": 10,
+      "chapter": null,
+      "lineLabel": "Lines 22-24",
+      "images": [
+        {
+          "printedPage": "56",
+          "physicalPdfPage": 73,
+          "asset": "gbr-p56-step-10.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p56-step-10.webp"
+        }
+      ],
+      "quoteMatchScore": 0.957
+    },
+    "03-08": {
+      "citation": "Gray Book, p. 46 (Step Six, Lines 29-31)",
+      "section": "Step Six",
+      "step": 6,
+      "chapter": null,
+      "lineLabel": "Lines 29-31",
+      "images": [
+        {
+          "printedPage": "46",
+          "physicalPdfPage": 63,
+          "asset": "gbr-p46-step-06.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p46-step-06.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "03-09": {
+      "citation": "Gray Book, p. 138 (Chapter Eight, Lines 12-14)",
+      "section": "Chapter 8",
+      "step": null,
+      "chapter": 8,
+      "lineLabel": "Lines 12-14",
+      "images": [
+        {
+          "printedPage": "138",
+          "physicalPdfPage": 155,
+          "asset": "gbr-p138-chapter-08.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p138-chapter-08.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "03-10": {
+      "citation": "Gray Book, p. 30 (Chapter Four, Lines 15-16)",
+      "section": "Chapter 4",
+      "step": null,
+      "chapter": 4,
+      "lineLabel": "Lines 15-16",
+      "images": [
+        {
+          "printedPage": "30",
+          "physicalPdfPage": 47,
+          "asset": "gbr-p30-chapter-04.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p30-chapter-04.webp"
+        }
+      ],
+      "quoteMatchScore": 0.938
+    },
+    "03-11": {
+      "citation": "Gray Book, p. 51 (Step Eight, Lines 12-13)",
+      "section": "Step Eight",
+      "step": 8,
+      "chapter": null,
+      "lineLabel": "Lines 12-13",
+      "images": [
+        {
+          "printedPage": "51",
+          "physicalPdfPage": 68,
+          "asset": "gbr-p51-step-08.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p51-step-08.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "03-12": {
+      "citation": "Gray Book, p. 119 (Chapter Seven, Header 2nd Line)",
+      "section": "Chapter 7",
+      "step": null,
+      "chapter": 7,
+      "lineLabel": "",
+      "images": [
+        {
+          "printedPage": "119",
+          "physicalPdfPage": 136,
+          "asset": "gbr-p119-chapter-07.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p119-chapter-07.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "03-13": {
+      "citation": "Gray Book, p. 19 (Chapter Two, Lines 27-29)",
+      "section": "Chapter 2",
+      "step": null,
+      "chapter": 2,
+      "lineLabel": "Lines 27-29",
+      "images": [
+        {
+          "printedPage": "19",
+          "physicalPdfPage": 36,
+          "asset": "gbr-p19-chapter-02.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p19-chapter-02.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "03-14": {
+      "citation": "Gray Book, p. 42 (Step Four, Lines 26-28)",
+      "section": "Step Four",
+      "step": 4,
+      "chapter": null,
+      "lineLabel": "Lines 26-28",
+      "images": [
+        {
+          "printedPage": "42",
+          "physicalPdfPage": 59,
+          "asset": "gbr-p42-step-04.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p42-step-04.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "03-15": {
+      "citation": "Gray Book, p. 148 (Chapter Nine, Lines 14-15)",
+      "section": "Chapter 9",
+      "step": null,
+      "chapter": 9,
+      "lineLabel": "Lines 14-15",
+      "images": [
+        {
+          "printedPage": "148",
+          "physicalPdfPage": 165,
+          "asset": "gbr-p148-chapter-09.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p148-chapter-09.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "03-16": {
+      "citation": "Gray Book, p. 40-41 (Step Four, Lines 29-1)",
+      "section": "Step Four",
+      "step": 4,
+      "chapter": null,
+      "lineLabel": "Lines 29-1",
+      "images": [
+        {
+          "printedPage": "40",
+          "physicalPdfPage": 57,
+          "asset": "gbr-p40-step-04.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p40-step-04.webp"
+        },
+        {
+          "printedPage": "41",
+          "physicalPdfPage": 58,
+          "asset": "gbr-p41-step-04.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p41-step-04.webp"
+        }
+      ],
+      "quoteMatchScore": 0.957
+    },
+    "03-17": {
+      "citation": "Gray Book, p. 130 (Chapter Seven, Lines 32-33)",
+      "section": "Chapter 7",
+      "step": null,
+      "chapter": 7,
+      "lineLabel": "Lines 32-33",
+      "images": [
+        {
+          "printedPage": "130",
+          "physicalPdfPage": 147,
+          "asset": "gbr-p130-chapter-07.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p130-chapter-07.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "03-18": {
+      "citation": "Gray Book, p. 79 (Chapter Five, Lines 30-32)",
+      "section": "Chapter 5",
+      "step": null,
+      "chapter": 5,
+      "lineLabel": "Lines 30-32",
+      "images": [
+        {
+          "printedPage": "79",
+          "physicalPdfPage": 96,
+          "asset": "gbr-p79-chapter-05.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p79-chapter-05.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "03-19": {
+      "citation": "Gray Book, p. 68 (Step Twelve, Lines 18-21)",
+      "section": "Step Twelve",
+      "step": 12,
+      "chapter": null,
+      "lineLabel": "Lines 18-21",
+      "images": [
+        {
+          "printedPage": "68",
+          "physicalPdfPage": 85,
+          "asset": "gbr-p68-step-12.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p68-step-12.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "03-20": {
+      "citation": "Gray Book, p. 35 (Step Two, Lines 34-35)",
+      "section": "Step Two",
+      "step": 2,
+      "chapter": null,
+      "lineLabel": "Lines 34-35",
+      "images": [
+        {
+          "printedPage": "35",
+          "physicalPdfPage": 52,
+          "asset": "gbr-p35-step-02.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p35-step-02.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "03-21": {
+      "citation": "Gray Book, p. 5 (Chapter One, Lines 3-4)",
+      "section": "Chapter 1",
+      "step": null,
+      "chapter": 1,
+      "lineLabel": "Lines 3-4",
+      "images": [
+        {
+          "printedPage": "5",
+          "physicalPdfPage": 22,
+          "asset": "gbr-p5-chapter-01.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p5-chapter-01.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "03-22": {
+      "citation": "Gray Book, p. 106 (Tradition Seven, Lines 16-18)",
+      "section": "Grey Book",
+      "step": null,
+      "chapter": null,
+      "lineLabel": "Lines 16-18",
+      "images": [
+        {
+          "printedPage": "106",
+          "physicalPdfPage": 123,
+          "asset": "gbr-p106.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p106.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "03-23": {
+      "citation": "Gray Book, p. 58 (Step Eleven, Lines 28-30)",
+      "section": "Step Eleven",
+      "step": 11,
+      "chapter": null,
+      "lineLabel": "Lines 28-30",
+      "images": [
+        {
+          "printedPage": "58",
+          "physicalPdfPage": 75,
+          "asset": "gbr-p58-step-11.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p58-step-11.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "03-24": {
+      "citation": "Gray Book, p. 33 (Step One, Lines 31-33)",
+      "section": "Step One",
+      "step": 1,
+      "chapter": null,
+      "lineLabel": "Lines 31-33",
+      "images": [
+        {
+          "printedPage": "33",
+          "physicalPdfPage": 50,
+          "asset": "gbr-p33-step-01.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p33-step-01.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "03-25": {
+      "citation": "Gray Book, p. 145 (Chapter Nine, Lines 19-20)",
+      "section": "Chapter 9",
+      "step": null,
+      "chapter": 9,
+      "lineLabel": "Lines 19-20",
+      "images": [
+        {
+          "printedPage": "145",
+          "physicalPdfPage": 162,
+          "asset": "gbr-p145-chapter-09.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p145-chapter-09.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "03-26": {
+      "citation": "Gray Book, p. 10 (Chapter One, Lines 13-14)",
+      "section": "Chapter 1",
+      "step": null,
+      "chapter": 1,
+      "lineLabel": "Lines 13-14",
+      "images": [
+        {
+          "printedPage": "10",
+          "physicalPdfPage": 27,
+          "asset": "gbr-p10-chapter-01.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p10-chapter-01.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "03-27": {
+      "citation": "Gray Book, p. 20 (Chapter Two, Line 23)",
+      "section": "Chapter 2",
+      "step": null,
+      "chapter": 2,
+      "lineLabel": "Line 23",
+      "images": [
+        {
+          "printedPage": "20",
+          "physicalPdfPage": 37,
+          "asset": "gbr-p20-chapter-02.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p20-chapter-02.webp"
+        }
+      ],
+      "quoteMatchScore": 0.857
+    },
+    "03-28": {
+      "citation": "Gray Book, p. 40 (Step Four, Lines 12-13)",
+      "section": "Step Four",
+      "step": 4,
+      "chapter": null,
+      "lineLabel": "Lines 12-13",
+      "images": [
+        {
+          "printedPage": "40",
+          "physicalPdfPage": 57,
+          "asset": "gbr-p40-step-04.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p40-step-04.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "03-29": {
+      "citation": "Gray Book, p. 58 (Step Eleven, Lines 20-21)",
+      "section": "Step Eleven",
+      "step": 11,
+      "chapter": null,
+      "lineLabel": "Lines 20-21",
+      "images": [
+        {
+          "printedPage": "58",
+          "physicalPdfPage": 75,
+          "asset": "gbr-p58-step-11.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p58-step-11.webp"
+        }
+      ],
+      "quoteMatchScore": 0.944
+    },
+    "03-30": {
+      "citation": "Gray Book, p. 147 (Chapter Nine, Lines 4-5)",
+      "section": "Chapter 9",
+      "step": null,
+      "chapter": 9,
+      "lineLabel": "Lines 4-5",
+      "images": [
+        {
+          "printedPage": "147",
+          "physicalPdfPage": 164,
+          "asset": "gbr-p147-chapter-09.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p147-chapter-09.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "03-31": {
+      "citation": "Gray Book, p. 161 (Chapter Ten, Lines 2-4)",
+      "section": "Chapter 10",
+      "step": null,
+      "chapter": 10,
+      "lineLabel": "Lines 2-4",
+      "images": [
+        {
+          "printedPage": "161",
+          "physicalPdfPage": 178,
+          "asset": "gbr-p161-chapter-10.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p161-chapter-10.webp"
+        }
+      ],
+      "quoteMatchScore": 0.905
+    },
+    "04-01": {
+      "citation": "Gray Book, p. 2 (Chapter One, Lines 12-15)",
+      "section": "Chapter 1",
+      "step": null,
+      "chapter": 1,
+      "lineLabel": "Lines 12-15",
+      "images": [
+        {
+          "printedPage": "2",
+          "physicalPdfPage": 19,
+          "asset": "gbr-p2-chapter-01.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p2-chapter-01.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "04-02": {
+      "citation": "Gray Book, p. 114 (Tradition Eleven, Lines 7-9)",
+      "section": "Grey Book",
+      "step": null,
+      "chapter": null,
+      "lineLabel": "Lines 7-9",
+      "images": [
+        {
+          "printedPage": "114",
+          "physicalPdfPage": 131,
+          "asset": "gbr-p114.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p114.webp"
+        }
+      ],
+      "quoteMatchScore": 0.962
+    },
+    "04-03": {
+      "citation": "Gray Book, p. 59 (Step Twelve, Lines 1-3)",
+      "section": "Step Twelve",
+      "step": 12,
+      "chapter": null,
+      "lineLabel": "Lines 1-3",
+      "images": [
+        {
+          "printedPage": "59",
+          "physicalPdfPage": 76,
+          "asset": "gbr-p59-step-12.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p59-step-12.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "04-04": {
+      "citation": "Gray Book, p. 10 (Chapter One, Lines 29-32)",
+      "section": "Chapter 1",
+      "step": null,
+      "chapter": 1,
+      "lineLabel": "Lines 29-32",
+      "images": [
+        {
+          "printedPage": "10",
+          "physicalPdfPage": 27,
+          "asset": "gbr-p10-chapter-01.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p10-chapter-01.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "04-05": {
+      "citation": "Gray Book, p. 18 (Chapter Two, Lines 1-2)",
+      "section": "Chapter 2",
+      "step": null,
+      "chapter": 2,
+      "lineLabel": "Lines 1-2",
+      "images": [
+        {
+          "printedPage": "18",
+          "physicalPdfPage": 35,
+          "asset": "gbr-p18-chapter-02.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p18-chapter-02.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "04-06": {
+      "citation": "Gray Book, p. 157 (Chapter Ten, Lines 6-7)",
+      "section": "Chapter 10",
+      "step": null,
+      "chapter": 10,
+      "lineLabel": "Lines 6-7",
+      "images": [
+        {
+          "printedPage": "157",
+          "physicalPdfPage": 174,
+          "asset": "gbr-p157-chapter-10.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p157-chapter-10.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "04-07": {
+      "citation": "Gray Book, p. 16 (Chapter Two, Lines 31-33)",
+      "section": "Chapter 2",
+      "step": null,
+      "chapter": 2,
+      "lineLabel": "Lines 31-33",
+      "images": [
+        {
+          "printedPage": "16",
+          "physicalPdfPage": 33,
+          "asset": "gbr-p16-chapter-02.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p16-chapter-02.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "04-08": {
+      "citation": "Gray Book, p. 141 (Chapter Eight, Lines 19-20)",
+      "section": "Chapter 8",
+      "step": null,
+      "chapter": 8,
+      "lineLabel": "Lines 19-20",
+      "images": [
+        {
+          "printedPage": "141",
+          "physicalPdfPage": 158,
+          "asset": "gbr-p141-chapter-08.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p141-chapter-08.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "04-09": {
+      "citation": "Gray Book, p. 32 (Step One, Lines 3-4)",
+      "section": "Step One",
+      "step": 1,
+      "chapter": null,
+      "lineLabel": "Lines 3-4",
+      "images": [
+        {
+          "printedPage": "32",
+          "physicalPdfPage": 49,
+          "asset": "gbr-p32-step-01.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p32-step-01.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "04-10": {
+      "citation": "Gray Book, p. 123 (Chapter Seven, Lines 14-15)",
+      "section": "Chapter 7",
+      "step": null,
+      "chapter": 7,
+      "lineLabel": "Lines 14-15",
+      "images": [
+        {
+          "printedPage": "123",
+          "physicalPdfPage": 140,
+          "asset": "gbr-p123-chapter-07.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p123-chapter-07.webp"
+        }
+      ],
+      "quoteMatchScore": 0.955
+    },
+    "04-11": {
+      "citation": "Gray Book, p. 148 (Chapter Nine, Line 8)",
+      "section": "Chapter 9",
+      "step": null,
+      "chapter": 9,
+      "lineLabel": "Line 8",
+      "images": [
+        {
+          "printedPage": "148",
+          "physicalPdfPage": 165,
+          "asset": "gbr-p148-chapter-09.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p148-chapter-09.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "04-12": {
+      "citation": "Gray Book, p. 59 (Step Twelve, Lines 3-5)",
+      "section": "Step Twelve",
+      "step": 12,
+      "chapter": null,
+      "lineLabel": "Lines 3-5",
+      "images": [
+        {
+          "printedPage": "59",
+          "physicalPdfPage": 76,
+          "asset": "gbr-p59-step-12.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p59-step-12.webp"
+        }
+      ],
+      "quoteMatchScore": 0.964
+    },
+    "04-13": {
+      "citation": "Gray Book, p. 24 (Chapter Three, Lines 30-31)",
+      "section": "Chapter 3",
+      "step": null,
+      "chapter": 3,
+      "lineLabel": "Lines 30-31",
+      "images": [
+        {
+          "printedPage": "24",
+          "physicalPdfPage": 41,
+          "asset": "gbr-p24-chapter-03.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p24-chapter-03.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "04-14": {
+      "citation": "Gray Book, p. 46 (Step Six, Lines 20-21)",
+      "section": "Step Six",
+      "step": 6,
+      "chapter": null,
+      "lineLabel": "Lines 20-21",
+      "images": [
+        {
+          "printedPage": "46",
+          "physicalPdfPage": 63,
+          "asset": "gbr-p46-step-06.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p46-step-06.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "04-15": {
+      "citation": "Gray Book, p. 40 (Step Three, Lines 7-8)",
+      "section": "Step Three",
+      "step": 3,
+      "chapter": null,
+      "lineLabel": "Lines 7-8",
+      "images": [
+        {
+          "printedPage": "40",
+          "physicalPdfPage": 57,
+          "asset": "gbr-p40-step-03.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p40-step-03.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "04-16": {
+      "citation": "Gray Book, p. 83 (Chapter Five, Lines 6-8)",
+      "section": "Chapter 5",
+      "step": null,
+      "chapter": 5,
+      "lineLabel": "Lines 6-8",
+      "images": [
+        {
+          "printedPage": "83",
+          "physicalPdfPage": 100,
+          "asset": "gbr-p83-chapter-05.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p83-chapter-05.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "04-17": {
+      "citation": "Gray Book, p. 121 (Chapter Seven, Lines 19-23)",
+      "section": "Chapter 7",
+      "step": null,
+      "chapter": 7,
+      "lineLabel": "Lines 19-23",
+      "images": [
+        {
+          "printedPage": "121",
+          "physicalPdfPage": 138,
+          "asset": "gbr-p121-chapter-07.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p121-chapter-07.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "04-18": {
+      "citation": "Gray Book, p. 48 (Step Seven, Header)",
+      "section": "Step Seven",
+      "step": 7,
+      "chapter": null,
+      "lineLabel": "",
+      "images": [
+        {
+          "printedPage": "48",
+          "physicalPdfPage": 65,
+          "asset": "gbr-p48-step-07.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p48-step-07.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "04-19": {
+      "citation": "Gray Book, p. 53 (Step Nine, Lines 20-21)",
+      "section": "Step Nine",
+      "step": 9,
+      "chapter": null,
+      "lineLabel": "Lines 20-21",
+      "images": [
+        {
+          "printedPage": "53",
+          "physicalPdfPage": 70,
+          "asset": "gbr-p53-step-09.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p53-step-09.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "04-20": {
+      "citation": "Gray Book, p. 2 (Chapter One, Lines 12-13)",
+      "section": "Chapter 1",
+      "step": null,
+      "chapter": 1,
+      "lineLabel": "Lines 12-13",
+      "images": [
+        {
+          "printedPage": "2",
+          "physicalPdfPage": 19,
+          "asset": "gbr-p2-chapter-01.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p2-chapter-01.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "04-21": {
+      "citation": "Gray Book, p. 1 (Forward)",
+      "section": "Forward",
+      "step": null,
+      "chapter": null,
+      "lineLabel": "",
+      "images": [
+        {
+          "printedPage": "1",
+          "physicalPdfPage": 18,
+          "asset": "gbr-p1.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p1.webp"
+        }
+      ],
+      "quoteMatchScore": 0.55
+    },
+    "04-22": {
+      "citation": "Gray Book, p. 49 (Step Seven, Lines 31-32)",
+      "section": "Step Seven",
+      "step": 7,
+      "chapter": null,
+      "lineLabel": "Lines 31-32",
+      "images": [
+        {
+          "printedPage": "49",
+          "physicalPdfPage": 66,
+          "asset": "gbr-p49-step-07.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p49-step-07.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "04-23": {
+      "citation": "Gray Book, p. 38 (Step Three, Lines 24-25)",
+      "section": "Step Three",
+      "step": 3,
+      "chapter": null,
+      "lineLabel": "Lines 24-25",
+      "images": [
+        {
+          "printedPage": "38",
+          "physicalPdfPage": 55,
+          "asset": "gbr-p38-step-03.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p38-step-03.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "04-24": {
+      "citation": "Gray Book, p. 14 (Chapter One, Lines 10-12)",
+      "section": "Chapter 1",
+      "step": null,
+      "chapter": 1,
+      "lineLabel": "Lines 10-12",
+      "images": [
+        {
+          "printedPage": "14",
+          "physicalPdfPage": 31,
+          "asset": "gbr-p14-chapter-01.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p14-chapter-01.webp"
+        }
+      ],
+      "quoteMatchScore": 0.96
+    },
+    "04-25": {
+      "citation": "Gray Book, p. 151-152 (Chapter Ten, Lines 34-1)",
+      "section": "Chapter 10",
+      "step": null,
+      "chapter": 10,
+      "lineLabel": "Lines 34-1",
+      "images": [
+        {
+          "printedPage": "151",
+          "physicalPdfPage": 168,
+          "asset": "gbr-p151-chapter-10.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p151-chapter-10.webp"
+        },
+        {
+          "printedPage": "152",
+          "physicalPdfPage": 169,
+          "asset": "gbr-p152-chapter-10.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p152-chapter-10.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "04-26": {
+      "citation": "Gray Book, p. 45 (Step Five, Lines 30-31)",
+      "section": "Step Five",
+      "step": 5,
+      "chapter": null,
+      "lineLabel": "Lines 30-31",
+      "images": [
+        {
+          "printedPage": "45",
+          "physicalPdfPage": 62,
+          "asset": "gbr-p45-step-05.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p45-step-05.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "04-27": {
+      "citation": "Gray Book, p. 41 (Step Four, Lines 4-6)",
+      "section": "Step Four",
+      "step": 4,
+      "chapter": null,
+      "lineLabel": "Lines 4-6",
+      "images": [
+        {
+          "printedPage": "41",
+          "physicalPdfPage": 58,
+          "asset": "gbr-p41-step-04.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p41-step-04.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "04-28": {
+      "citation": "Gray Book, p. 79 (Chapter Five, Lines 7-10)",
+      "section": "Chapter 5",
+      "step": null,
+      "chapter": 5,
+      "lineLabel": "Lines 7-10",
+      "images": [
+        {
+          "printedPage": "79",
+          "physicalPdfPage": 96,
+          "asset": "gbr-p79-chapter-05.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p79-chapter-05.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "04-29": {
+      "citation": "Gray Book, p. 147 (Chapter Nine, Lines 26-29)",
+      "section": "Chapter 9",
+      "step": null,
+      "chapter": 9,
+      "lineLabel": "Lines 26-29",
+      "images": [
+        {
+          "printedPage": "147",
+          "physicalPdfPage": 164,
+          "asset": "gbr-p147-chapter-09.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p147-chapter-09.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "04-30": {
+      "citation": "Gray Book, p. 147-148 (Chapter Nine, Lines 33-1)",
+      "section": "Chapter 9",
+      "step": null,
+      "chapter": 9,
+      "lineLabel": "Lines 33-1",
+      "images": [
+        {
+          "printedPage": "147",
+          "physicalPdfPage": 164,
+          "asset": "gbr-p147-chapter-09.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p147-chapter-09.webp"
+        },
+        {
+          "printedPage": "148",
+          "physicalPdfPage": 165,
+          "asset": "gbr-p148-chapter-09.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p148-chapter-09.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "05-01": {
+      "citation": "Gray Book, p. 85 (Chapter Five, Lines 3-4)",
+      "section": "Chapter 5",
+      "step": null,
+      "chapter": 5,
+      "lineLabel": "Lines 3-4",
+      "images": [
+        {
+          "printedPage": "85",
+          "physicalPdfPage": 102,
+          "asset": "gbr-p85-chapter-05.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p85-chapter-05.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "05-02": {
+      "citation": "Gray Book, p. 29 (How It Works, 2nd paragraph)",
+      "section": "Grey Book",
+      "step": null,
+      "chapter": null,
+      "lineLabel": "",
+      "images": [
+        {
+          "printedPage": "29",
+          "physicalPdfPage": 46,
+          "asset": "gbr-p29.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p29.webp"
+        }
+      ],
+      "quoteMatchScore": 0.962
+    },
+    "05-03": {
+      "citation": "Gray Book, p. 9 (Chapter One, Lines 27-28)",
+      "section": "Chapter 1",
+      "step": null,
+      "chapter": 1,
+      "lineLabel": "Lines 27-28",
+      "images": [
+        {
+          "printedPage": "9",
+          "physicalPdfPage": 26,
+          "asset": "gbr-p9-chapter-01.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p9-chapter-01.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "05-04": {
+      "citation": "Gray Book, p. 102 (Chapter Six, Tradition Five)",
+      "section": "Chapter 6",
+      "step": null,
+      "chapter": 6,
+      "lineLabel": "",
+      "images": [
+        {
+          "printedPage": "102",
+          "physicalPdfPage": 119,
+          "asset": "gbr-p102-chapter-06.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p102-chapter-06.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "05-05": {
+      "citation": "Gray Book, p. 29 (Chapter Four, Lines 11-12)",
+      "section": "Chapter 4",
+      "step": null,
+      "chapter": 4,
+      "lineLabel": "Lines 11-12",
+      "images": [
+        {
+          "printedPage": "29",
+          "physicalPdfPage": 46,
+          "asset": "gbr-p29-chapter-04.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p29-chapter-04.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "05-06": {
+      "citation": "Gray Book, p. 81 (Chapter Five, Lines 5-7)",
+      "section": "Chapter 5",
+      "step": null,
+      "chapter": 5,
+      "lineLabel": "Lines 5-7",
+      "images": [
+        {
+          "printedPage": "81",
+          "physicalPdfPage": 98,
+          "asset": "gbr-p81-chapter-05.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p81-chapter-05.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "05-07": {
+      "citation": "Gray Book, p. 43 (Step Five, Lines 26-28)",
+      "section": "Step Five",
+      "step": 5,
+      "chapter": null,
+      "lineLabel": "Lines 26-28",
+      "images": [
+        {
+          "printedPage": "43",
+          "physicalPdfPage": 60,
+          "asset": "gbr-p43-step-05.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p43-step-05.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "05-08": {
+      "citation": "Gray Book, p. 145 (Chapter Nine, Lines 19-20)",
+      "section": "Chapter 9",
+      "step": null,
+      "chapter": 9,
+      "lineLabel": "Lines 19-20",
+      "images": [
+        {
+          "printedPage": "145",
+          "physicalPdfPage": 162,
+          "asset": "gbr-p145-chapter-09.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p145-chapter-09.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "05-09": {
+      "citation": "Gray Book, p. 41 (Chapter Four, Lines 33-34)",
+      "section": "Chapter 4",
+      "step": null,
+      "chapter": 4,
+      "lineLabel": "Lines 33-34",
+      "images": [
+        {
+          "printedPage": "41",
+          "physicalPdfPage": 58,
+          "asset": "gbr-p41-chapter-04.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p41-chapter-04.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "05-10": {
+      "citation": "Gray Book, p. 47 (Step Six, Lines 2-3)",
+      "section": "Step Six",
+      "step": 6,
+      "chapter": null,
+      "lineLabel": "Lines 2-3",
+      "images": [
+        {
+          "printedPage": "47",
+          "physicalPdfPage": 64,
+          "asset": "gbr-p47-step-06.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p47-step-06.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "05-11": {
+      "citation": "Gray Book, p. 56 (Step Ten, Lines 28-29)",
+      "section": "Step Ten",
+      "step": 10,
+      "chapter": null,
+      "lineLabel": "Lines 28-29",
+      "images": [
+        {
+          "printedPage": "56",
+          "physicalPdfPage": 73,
+          "asset": "gbr-p56-step-10.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p56-step-10.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "05-12": {
+      "citation": "Gray Book, p. 58 (Step Eleven, Lines 28-30)",
+      "section": "Step Eleven",
+      "step": 11,
+      "chapter": null,
+      "lineLabel": "Lines 28-30",
+      "images": [
+        {
+          "printedPage": "58",
+          "physicalPdfPage": 75,
+          "asset": "gbr-p58-step-11.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p58-step-11.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "05-13": {
+      "citation": "Gray Book, p. 128 (Chapter Seven, Lines 30-32)",
+      "section": "Chapter 7",
+      "step": null,
+      "chapter": 7,
+      "lineLabel": "Lines 30-32",
+      "images": [
+        {
+          "printedPage": "128",
+          "physicalPdfPage": 145,
+          "asset": "gbr-p128-chapter-07.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p128-chapter-07.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "05-14": {
+      "citation": "Gray Book, p. 36-37 (Step Two, Lines 35-1)",
+      "section": "Step Two",
+      "step": 2,
+      "chapter": null,
+      "lineLabel": "Lines 35-1",
+      "images": [
+        {
+          "printedPage": "36",
+          "physicalPdfPage": 53,
+          "asset": "gbr-p36-step-02.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p36-step-02.webp"
+        },
+        {
+          "printedPage": "37",
+          "physicalPdfPage": 54,
+          "asset": "gbr-p37-step-02.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p37-step-02.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "05-15": {
+      "citation": "Gray Book, p. 41 (Step Four, Lines 7-8)",
+      "section": "Step Four",
+      "step": 4,
+      "chapter": null,
+      "lineLabel": "Lines 7-8",
+      "images": [
+        {
+          "printedPage": "41",
+          "physicalPdfPage": 58,
+          "asset": "gbr-p41-step-04.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p41-step-04.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "05-16": {
+      "citation": "Gray Book, p. 58 (Step Eleven, Lines 14-15)",
+      "section": "Step Eleven",
+      "step": 11,
+      "chapter": null,
+      "lineLabel": "Lines 14-15",
+      "images": [
+        {
+          "printedPage": "58",
+          "physicalPdfPage": 75,
+          "asset": "gbr-p58-step-11.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p58-step-11.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "05-17": {
+      "citation": "Gray Book, p. 46 (Step Six, Header)",
+      "section": "Step Six",
+      "step": 6,
+      "chapter": null,
+      "lineLabel": "",
+      "images": [
+        {
+          "printedPage": "46",
+          "physicalPdfPage": 63,
+          "asset": "gbr-p46-step-06.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p46-step-06.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "05-18": {
+      "citation": "Gray Book, p. 52 (Step Nine, Header)",
+      "section": "Step Nine",
+      "step": 9,
+      "chapter": null,
+      "lineLabel": "",
+      "images": [
+        {
+          "printedPage": "52",
+          "physicalPdfPage": 69,
+          "asset": "gbr-p52-step-09.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p52-step-09.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "05-19": {
+      "citation": "Gray Book, p. 45 (Step Five, Lines 11-14)",
+      "section": "Step Five",
+      "step": 5,
+      "chapter": null,
+      "lineLabel": "Lines 11-14",
+      "images": [
+        {
+          "printedPage": "45",
+          "physicalPdfPage": 62,
+          "asset": "gbr-p45-step-05.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p45-step-05.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "05-20": {
+      "citation": "Gray Book, p. 155 (Chapter Ten, Lines 14-16)",
+      "section": "Chapter 10",
+      "step": null,
+      "chapter": 10,
+      "lineLabel": "Lines 14-16",
+      "images": [
+        {
+          "printedPage": "155",
+          "physicalPdfPage": 172,
+          "asset": "gbr-p155-chapter-10.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p155-chapter-10.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "05-21": {
+      "citation": "Gray Book, p. 147 (Chapter Nine, Lines 4-5)",
+      "section": "Chapter 9",
+      "step": null,
+      "chapter": 9,
+      "lineLabel": "Lines 4-5",
+      "images": [
+        {
+          "printedPage": "147",
+          "physicalPdfPage": 164,
+          "asset": "gbr-p147-chapter-09.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p147-chapter-09.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "05-22": {
+      "citation": "Gray Book, p. 59 (Step Twelve, Lines 4-5)",
+      "section": "Step Twelve",
+      "step": 12,
+      "chapter": null,
+      "lineLabel": "Lines 4-5",
+      "images": [
+        {
+          "printedPage": "59",
+          "physicalPdfPage": 76,
+          "asset": "gbr-p59-step-12.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p59-step-12.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "05-23": {
+      "citation": "Gray Book, p. 82 (Chapter Five, Lines 29-31)",
+      "section": "Chapter 5",
+      "step": null,
+      "chapter": 5,
+      "lineLabel": "Lines 29-31",
+      "images": [
+        {
+          "printedPage": "82",
+          "physicalPdfPage": 99,
+          "asset": "gbr-p82-chapter-05.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p82-chapter-05.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "05-24": {
+      "citation": "Gray Book, p. 155 (Chapter Ten, Lines 14-16)",
+      "section": "Chapter 10",
+      "step": null,
+      "chapter": 10,
+      "lineLabel": "Lines 14-16",
+      "images": [
+        {
+          "printedPage": "155",
+          "physicalPdfPage": 172,
+          "asset": "gbr-p155-chapter-10.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p155-chapter-10.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "05-25": {
+      "citation": "Gray Book, p. 124 (Chapter Seven, Lines 34-35)",
+      "section": "Chapter 7",
+      "step": null,
+      "chapter": 7,
+      "lineLabel": "Lines 34-35",
+      "images": [
+        {
+          "printedPage": "124",
+          "physicalPdfPage": 141,
+          "asset": "gbr-p124-chapter-07.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p124-chapter-07.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "05-26": {
+      "citation": "Gray Book, p. 35 (Step Two, Lines 25-27)",
+      "section": "Step Two",
+      "step": 2,
+      "chapter": null,
+      "lineLabel": "Lines 25-27",
+      "images": [
+        {
+          "printedPage": "35",
+          "physicalPdfPage": 52,
+          "asset": "gbr-p35-step-02.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p35-step-02.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "05-27": {
+      "citation": "Gray Book, p. 39 (Step Three, Lines 20-21)",
+      "section": "Step Three",
+      "step": 3,
+      "chapter": null,
+      "lineLabel": "Lines 20-21",
+      "images": [
+        {
+          "printedPage": "39",
+          "physicalPdfPage": 56,
+          "asset": "gbr-p39-step-03.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p39-step-03.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "05-28": {
+      "citation": "Gray Book, p. 48 (Step Seven, Lines 15-17)",
+      "section": "Step Seven",
+      "step": 7,
+      "chapter": null,
+      "lineLabel": "Lines 15-17",
+      "images": [
+        {
+          "printedPage": "48",
+          "physicalPdfPage": 65,
+          "asset": "gbr-p48-step-07.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p48-step-07.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "05-29": {
+      "citation": "Gray Book, p. 85 (Chapter Five, Lines 19-21)",
+      "section": "Chapter 5",
+      "step": null,
+      "chapter": 5,
+      "lineLabel": "Lines 19-21",
+      "images": [
+        {
+          "printedPage": "85",
+          "physicalPdfPage": 102,
+          "asset": "gbr-p85-chapter-05.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p85-chapter-05.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "05-30": {
+      "citation": "Gray Book, p. 161 (Chapter Ten, Lines 2-4)",
+      "section": "Chapter 10",
+      "step": null,
+      "chapter": 10,
+      "lineLabel": "Lines 2-4",
+      "images": [
+        {
+          "printedPage": "161",
+          "physicalPdfPage": 178,
+          "asset": "gbr-p161-chapter-10.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p161-chapter-10.webp"
+        }
+      ],
+      "quoteMatchScore": 0.905
+    },
+    "05-31": {
+      "citation": "Gray Book, p. 144 (Chapter Nine, Lines 27-29)",
+      "section": "Chapter 9",
+      "step": null,
+      "chapter": 9,
+      "lineLabel": "Lines 27-29",
+      "images": [
+        {
+          "printedPage": "144",
+          "physicalPdfPage": 161,
+          "asset": "gbr-p144-chapter-09.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p144-chapter-09.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "06-01": {
+      "citation": "Gray Book, p. 20 (Chapter Two, Lines 6-8)",
+      "section": "Chapter 2",
+      "step": null,
+      "chapter": 2,
+      "lineLabel": "Lines 6-8",
+      "images": [
+        {
+          "printedPage": "20",
+          "physicalPdfPage": 37,
+          "asset": "gbr-p20-chapter-02.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p20-chapter-02.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "06-02": {
+      "citation": "Gray Book, p. 10 (Chapter One, Lines 29-31)",
+      "section": "Chapter 1",
+      "step": null,
+      "chapter": 1,
+      "lineLabel": "Lines 29-31",
+      "images": [
+        {
+          "printedPage": "10",
+          "physicalPdfPage": 27,
+          "asset": "gbr-p10-chapter-01.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p10-chapter-01.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "06-03": {
+      "citation": "Gray Book, p. 53 (Step Nine, Lines 16-18)",
+      "section": "Step Nine",
+      "step": 9,
+      "chapter": null,
+      "lineLabel": "Lines 16-18",
+      "images": [
+        {
+          "printedPage": "53",
+          "physicalPdfPage": 70,
+          "asset": "gbr-p53-step-09.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p53-step-09.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "06-04": {
+      "citation": "Gray Book, p. 26 (Chapter Three, Lines 26-27)",
+      "section": "Chapter 3",
+      "step": null,
+      "chapter": 3,
+      "lineLabel": "Lines 26-27",
+      "images": [
+        {
+          "printedPage": "26",
+          "physicalPdfPage": 43,
+          "asset": "gbr-p26-chapter-03.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p26-chapter-03.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "06-05": {
+      "citation": "Gray Book, p. 148 (Chapter Nine, Lines 26-27)",
+      "section": "Chapter 9",
+      "step": null,
+      "chapter": 9,
+      "lineLabel": "Lines 26-27",
+      "images": [
+        {
+          "printedPage": "148",
+          "physicalPdfPage": 165,
+          "asset": "gbr-p148-chapter-09.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p148-chapter-09.webp"
+        }
+      ],
+      "quoteMatchScore": 0.933
+    },
+    "06-06": {
+      "citation": "Gray Book, p. 147 (Chapter Nine, Lines 31-33)",
+      "section": "Chapter 9",
+      "step": null,
+      "chapter": 9,
+      "lineLabel": "Lines 31-33",
+      "images": [
+        {
+          "printedPage": "147",
+          "physicalPdfPage": 164,
+          "asset": "gbr-p147-chapter-09.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p147-chapter-09.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "06-07": {
+      "citation": "Gray Book, p. 143 (Chapter Nine, 2nd Sentence)",
+      "section": "Chapter 9",
+      "step": null,
+      "chapter": 9,
+      "lineLabel": "",
+      "images": [
+        {
+          "printedPage": "143",
+          "physicalPdfPage": 160,
+          "asset": "gbr-p143-chapter-09.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p143-chapter-09.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "06-08": {
+      "citation": "Gray Book, p. 97 (Tradition Three, Lines 22-24)",
+      "section": "Grey Book",
+      "step": null,
+      "chapter": null,
+      "lineLabel": "Lines 22-24",
+      "images": [
+        {
+          "printedPage": "97",
+          "physicalPdfPage": 114,
+          "asset": "gbr-p97.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p97.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "06-09": {
+      "citation": "Gray Book, p. 142 (Chapter Eight, Lines 3-4)",
+      "section": "Chapter 8",
+      "step": null,
+      "chapter": 8,
+      "lineLabel": "Lines 3-4",
+      "images": [
+        {
+          "printedPage": "142",
+          "physicalPdfPage": 159,
+          "asset": "gbr-p142-chapter-08.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p142-chapter-08.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "06-10": {
+      "citation": "Gray Book, p. 58 (Step Eleven, Lines 6-8)",
+      "section": "Step Eleven",
+      "step": 11,
+      "chapter": null,
+      "lineLabel": "Lines 6-8",
+      "images": [
+        {
+          "printedPage": "58",
+          "physicalPdfPage": 75,
+          "asset": "gbr-p58-step-11.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p58-step-11.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "06-11": {
+      "citation": "Gray Book, p. 141 (Chapter Eight, Lines 12-17)",
+      "section": "Chapter 8",
+      "step": null,
+      "chapter": 8,
+      "lineLabel": "Lines 12-17",
+      "images": [
+        {
+          "printedPage": "141",
+          "physicalPdfPage": 158,
+          "asset": "gbr-p141-chapter-08.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p141-chapter-08.webp"
+        }
+      ],
+      "quoteMatchScore": 0.963
+    },
+    "06-12": {
+      "citation": "Gray Book, p. 60 (Step Twelve, Lines 7-9)",
+      "section": "Step Twelve",
+      "step": 12,
+      "chapter": null,
+      "lineLabel": "Lines 7-9",
+      "images": [
+        {
+          "printedPage": "60",
+          "physicalPdfPage": 77,
+          "asset": "gbr-p60-step-12.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p60-step-12.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "06-13": {
+      "citation": "Gray Book, p. 18 (Chapter Two, Lines 23-26)",
+      "section": "Chapter 2",
+      "step": null,
+      "chapter": 2,
+      "lineLabel": "Lines 23-26",
+      "images": [
+        {
+          "printedPage": "18",
+          "physicalPdfPage": 35,
+          "asset": "gbr-p18-chapter-02.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p18-chapter-02.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "06-14": {
+      "citation": "Gray Book, p. 144 (Chapter Nine, Lines 27-29)",
+      "section": "Chapter 9",
+      "step": null,
+      "chapter": 9,
+      "lineLabel": "Lines 27-29",
+      "images": [
+        {
+          "printedPage": "144",
+          "physicalPdfPage": 161,
+          "asset": "gbr-p144-chapter-09.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p144-chapter-09.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "06-15": {
+      "citation": "Gray Book, p. 46 (Step Six, Lines 22-26)",
+      "section": "Step Six",
+      "step": 6,
+      "chapter": null,
+      "lineLabel": "Lines 22-26",
+      "images": [
+        {
+          "printedPage": "46",
+          "physicalPdfPage": 63,
+          "asset": "gbr-p46-step-06.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p46-step-06.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "06-16": {
+      "citation": "Gray Book, p. 148 (Chapter Nine, Lines 8-12)",
+      "section": "Chapter 9",
+      "step": null,
+      "chapter": 9,
+      "lineLabel": "Lines 8-12",
+      "images": [
+        {
+          "printedPage": "148",
+          "physicalPdfPage": 165,
+          "asset": "gbr-p148-chapter-09.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p148-chapter-09.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "06-17": {
+      "citation": "Gray Book, p. 130 (Chapter Seven, Lines 23-25)",
+      "section": "Chapter 7",
+      "step": null,
+      "chapter": 7,
+      "lineLabel": "Lines 23-25",
+      "images": [
+        {
+          "printedPage": "130",
+          "physicalPdfPage": 147,
+          "asset": "gbr-p130-chapter-07.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p130-chapter-07.webp"
+        }
+      ],
+      "quoteMatchScore": 0.958
+    },
+    "06-18": {
+      "citation": "Gray Book, p. 53 (Step Nine, Lines 29-31)",
+      "section": "Step Nine",
+      "step": 9,
+      "chapter": null,
+      "lineLabel": "Lines 29-31",
+      "images": [
+        {
+          "printedPage": "53",
+          "physicalPdfPage": 70,
+          "asset": "gbr-p53-step-09.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p53-step-09.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "06-19": {
+      "citation": "Gray Book, p. 156 (Chapter Ten, Lines 1-3)",
+      "section": "Chapter 10",
+      "step": null,
+      "chapter": 10,
+      "lineLabel": "Lines 1-3",
+      "images": [
+        {
+          "printedPage": "156",
+          "physicalPdfPage": 173,
+          "asset": "gbr-p156-chapter-10.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p156-chapter-10.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "06-20": {
+      "citation": "Gray Book, p. 58 (Step Eleven, Lines 10-12)",
+      "section": "Step Eleven",
+      "step": 11,
+      "chapter": null,
+      "lineLabel": "Lines 10-12",
+      "images": [
+        {
+          "printedPage": "58",
+          "physicalPdfPage": 75,
+          "asset": "gbr-p58-step-11.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p58-step-11.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "06-21": {
+      "citation": "Gray Book, p. 57 (Step Ten, Lines 1-3)",
+      "section": "Step Ten",
+      "step": 10,
+      "chapter": null,
+      "lineLabel": "Lines 1-3",
+      "images": [
+        {
+          "printedPage": "57",
+          "physicalPdfPage": 74,
+          "asset": "gbr-p57-step-10.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p57-step-10.webp"
+        }
+      ],
+      "quoteMatchScore": 0.96
+    },
+    "06-22": {
+      "citation": "Gray Book, p. 138 (Chapter Eight, Lines 1-2)",
+      "section": "Chapter 8",
+      "step": null,
+      "chapter": 8,
+      "lineLabel": "Lines 1-2",
+      "images": [
+        {
+          "printedPage": "138",
+          "physicalPdfPage": 155,
+          "asset": "gbr-p138-chapter-08.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p138-chapter-08.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "06-23": {
+      "citation": "Gray Book, p. 32 (Step One, Lines 18-21)",
+      "section": "Step One",
+      "step": 1,
+      "chapter": null,
+      "lineLabel": "Lines 18-21",
+      "images": [
+        {
+          "printedPage": "32",
+          "physicalPdfPage": 49,
+          "asset": "gbr-p32-step-01.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p32-step-01.webp"
+        }
+      ],
+      "quoteMatchScore": 0.973
+    },
+    "06-24": {
+      "citation": "Gray Book, p. 115 (Tradition Twelve, Header)",
+      "section": "Grey Book",
+      "step": null,
+      "chapter": null,
+      "lineLabel": "",
+      "images": [
+        {
+          "printedPage": "115",
+          "physicalPdfPage": 132,
+          "asset": "gbr-p115.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p115.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "06-25": {
+      "citation": "Gray Book, p. 37 (Step Two, Lines 2-5)",
+      "section": "Step Two",
+      "step": 2,
+      "chapter": null,
+      "lineLabel": "Lines 2-5",
+      "images": [
+        {
+          "printedPage": "37",
+          "physicalPdfPage": 54,
+          "asset": "gbr-p37-step-02.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p37-step-02.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "06-26": {
+      "citation": "Gray Book, p. 39 (Step Three, Lines 22-27)",
+      "section": "Step Three",
+      "step": 3,
+      "chapter": null,
+      "lineLabel": "Lines 22-27",
+      "images": [
+        {
+          "printedPage": "39",
+          "physicalPdfPage": 56,
+          "asset": "gbr-p39-step-03.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p39-step-03.webp"
+        }
+      ],
+      "quoteMatchScore": 0.952
+    },
+    "06-27": {
+      "citation": "Gray Book, p. 49 (Step Seven, Lines 24-26)",
+      "section": "Step Seven",
+      "step": 7,
+      "chapter": null,
+      "lineLabel": "Lines 24-26",
+      "images": [
+        {
+          "printedPage": "49",
+          "physicalPdfPage": 66,
+          "asset": "gbr-p49-step-07.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p49-step-07.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "06-28": {
+      "citation": "Gray Book, p. 93 (Tradition Two, Lines 18-21)",
+      "section": "Grey Book",
+      "step": null,
+      "chapter": null,
+      "lineLabel": "Lines 18-21",
+      "images": [
+        {
+          "printedPage": "93",
+          "physicalPdfPage": 110,
+          "asset": "gbr-p93.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p93.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "06-29": {
+      "citation": "Gray Book, p. 49 (Step Seven, Lines 31-36)",
+      "section": "Step Seven",
+      "step": 7,
+      "chapter": null,
+      "lineLabel": "Lines 31-36",
+      "images": [
+        {
+          "printedPage": "49",
+          "physicalPdfPage": 66,
+          "asset": "gbr-p49-step-07.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p49-step-07.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "06-30": {
+      "citation": "Gray Book, p. 65 (Step Twelve, Lines 14-15)",
+      "section": "Step Twelve",
+      "step": 12,
+      "chapter": null,
+      "lineLabel": "Lines 14-15",
+      "images": [
+        {
+          "printedPage": "65",
+          "physicalPdfPage": 82,
+          "asset": "gbr-p65-step-12.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p65-step-12.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "07-01": {
+      "citation": "Gray Book, p. 84 (Chapter Five, Lines 5-7)",
+      "section": "Chapter 5",
+      "step": null,
+      "chapter": 5,
+      "lineLabel": "Lines 5-7",
+      "images": [
+        {
+          "printedPage": "84",
+          "physicalPdfPage": 101,
+          "asset": "gbr-p84-chapter-05.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p84-chapter-05.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "07-02": {
+      "citation": "Gray Book, p. 132 (Chapter Eight, Header, Line 3)",
+      "section": "Chapter 8",
+      "step": null,
+      "chapter": 8,
+      "lineLabel": "Line 3",
+      "images": [
+        {
+          "printedPage": "132",
+          "physicalPdfPage": 149,
+          "asset": "gbr-p132-chapter-08.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p132-chapter-08.webp"
+        }
+      ],
+      "quoteMatchScore": 0.95
+    },
+    "07-03": {
+      "citation": "Gray Book, p. 144 (Chapter Nine, Lines 25-26)",
+      "section": "Chapter 9",
+      "step": null,
+      "chapter": 9,
+      "lineLabel": "Lines 25-26",
+      "images": [
+        {
+          "printedPage": "144",
+          "physicalPdfPage": 161,
+          "asset": "gbr-p144-chapter-09.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p144-chapter-09.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "07-04": {
+      "citation": "Gray Book, p. 138 (Chapter Eight, Lines 6-8)",
+      "section": "Chapter 8",
+      "step": null,
+      "chapter": 8,
+      "lineLabel": "Lines 6-8",
+      "images": [
+        {
+          "printedPage": "138",
+          "physicalPdfPage": 155,
+          "asset": "gbr-p138-chapter-08.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p138-chapter-08.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "07-05": {
+      "citation": "Gray Book, p. 58 (Step Eleven, Lines 10-12)",
+      "section": "Step Eleven",
+      "step": 11,
+      "chapter": null,
+      "lineLabel": "Lines 10-12",
+      "images": [
+        {
+          "printedPage": "58",
+          "physicalPdfPage": 75,
+          "asset": "gbr-p58-step-11.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p58-step-11.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "07-06": {
+      "citation": "Gray Book, p. 50 (Step Eight, Lines 27-28)",
+      "section": "Step Eight",
+      "step": 8,
+      "chapter": null,
+      "lineLabel": "Lines 27-28",
+      "images": [
+        {
+          "printedPage": "50",
+          "physicalPdfPage": 67,
+          "asset": "gbr-p50-step-08.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p50-step-08.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "07-07": {
+      "citation": "Gray Book, p. 77 (Step Twelve, Lines 4-7)",
+      "section": "Step Twelve",
+      "step": 12,
+      "chapter": null,
+      "lineLabel": "Lines 4-7",
+      "images": [
+        {
+          "printedPage": "77",
+          "physicalPdfPage": 94,
+          "asset": "gbr-p77-step-12.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p77-step-12.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "07-08": {
+      "citation": "Gray Book, p. 127 (Chapter Seven, Lines 10-14)",
+      "section": "Chapter 7",
+      "step": null,
+      "chapter": 7,
+      "lineLabel": "Lines 10-14",
+      "images": [
+        {
+          "printedPage": "127",
+          "physicalPdfPage": 144,
+          "asset": "gbr-p127-chapter-07.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p127-chapter-07.webp"
+        }
+      ],
+      "quoteMatchScore": 0.956
+    },
+    "07-09": {
+      "citation": "Gray Book, p. 133 (Chapter Eight, Header, Last Line)",
+      "section": "Chapter 8",
+      "step": null,
+      "chapter": 8,
+      "lineLabel": "",
+      "images": [
+        {
+          "printedPage": "133",
+          "physicalPdfPage": 150,
+          "asset": "gbr-p133-chapter-08.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p133-chapter-08.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "07-10": {
+      "citation": "Gray Book, p. 49 (Step Seven, Lines 7-10)",
+      "section": "Step Seven",
+      "step": 7,
+      "chapter": null,
+      "lineLabel": "Lines 7-10",
+      "images": [
+        {
+          "printedPage": "49",
+          "physicalPdfPage": 66,
+          "asset": "gbr-p49-step-07.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p49-step-07.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "07-11": {
+      "citation": "Gray Book, p. 69 (Step Twelve, Lines 10-11)",
+      "section": "Step Twelve",
+      "step": 12,
+      "chapter": null,
+      "lineLabel": "Lines 10-11",
+      "images": [
+        {
+          "printedPage": "69",
+          "physicalPdfPage": 86,
+          "asset": "gbr-p69-step-12.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p69-step-12.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "07-12": {
+      "citation": "Gray Book, p. 37 (Step Three, Lines 12-16)",
+      "section": "Step Three",
+      "step": 3,
+      "chapter": null,
+      "lineLabel": "Lines 12-16",
+      "images": [
+        {
+          "printedPage": "37",
+          "physicalPdfPage": 54,
+          "asset": "gbr-p37-step-03.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p37-step-03.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "07-13": {
+      "citation": "Gray Book, p. 131 (Chapter Seven, Lines 21-23)",
+      "section": "Chapter 7",
+      "step": null,
+      "chapter": 7,
+      "lineLabel": "Lines 21-23",
+      "images": [
+        {
+          "printedPage": "131",
+          "physicalPdfPage": 148,
+          "asset": "gbr-p131-chapter-07.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p131-chapter-07.webp"
+        }
+      ],
+      "quoteMatchScore": 0.947
+    },
+    "07-14": {
+      "citation": "Gray Book, p. 48 (Step Seven, Line 12-14)",
+      "section": "Step Seven",
+      "step": 7,
+      "chapter": null,
+      "lineLabel": "Lines 12-14",
+      "images": [
+        {
+          "printedPage": "48",
+          "physicalPdfPage": 65,
+          "asset": "gbr-p48-step-07.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p48-step-07.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "07-15": {
+      "citation": "Gray Book, p. 50 (Step Eight, Header)",
+      "section": "Step Eight",
+      "step": 8,
+      "chapter": null,
+      "lineLabel": "",
+      "images": [
+        {
+          "printedPage": "50",
+          "physicalPdfPage": 67,
+          "asset": "gbr-p50-step-08.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p50-step-08.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "07-16": {
+      "citation": "Gray Book, p. 23 (Chapter Three, Lines 1-3)",
+      "section": "Chapter 3",
+      "step": null,
+      "chapter": 3,
+      "lineLabel": "Lines 1-3",
+      "images": [
+        {
+          "printedPage": "23",
+          "physicalPdfPage": 40,
+          "asset": "gbr-p23-chapter-03.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p23-chapter-03.webp"
+        }
+      ],
+      "quoteMatchScore": 0.964
+    },
+    "07-17": {
+      "citation": "Gray Book, p. 29 (Chapter Four, Lines 4-5)",
+      "section": "Chapter 4",
+      "step": null,
+      "chapter": 4,
+      "lineLabel": "Lines 4-5",
+      "images": [
+        {
+          "printedPage": "29",
+          "physicalPdfPage": 46,
+          "asset": "gbr-p29-chapter-04.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p29-chapter-04.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "07-18": {
+      "citation": "Gray Book, p. 23 (Chapter Three, Header)",
+      "section": "Chapter 3",
+      "step": null,
+      "chapter": 3,
+      "lineLabel": "",
+      "images": [
+        {
+          "printedPage": "23",
+          "physicalPdfPage": 40,
+          "asset": "gbr-p23-chapter-03.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p23-chapter-03.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "07-19": {
+      "citation": "Gray Book, p. 106 (Tradition Seven, Lines 23-24)",
+      "section": "Grey Book",
+      "step": null,
+      "chapter": null,
+      "lineLabel": "Lines 23-24",
+      "images": [
+        {
+          "printedPage": "106",
+          "physicalPdfPage": 123,
+          "asset": "gbr-p106.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p106.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "07-20": {
+      "citation": "Gray Book, p. 30 (Step One, Header)",
+      "section": "Step One",
+      "step": 1,
+      "chapter": null,
+      "lineLabel": "",
+      "images": [
+        {
+          "printedPage": "30",
+          "physicalPdfPage": 47,
+          "asset": "gbr-p30-step-01.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p30-step-01.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "07-21": {
+      "citation": "Gray Book, p. 144 (Chapter Nine, Lines 17-20)",
+      "section": "Chapter 9",
+      "step": null,
+      "chapter": 9,
+      "lineLabel": "Lines 17-20",
+      "images": [
+        {
+          "printedPage": "144",
+          "physicalPdfPage": 161,
+          "asset": "gbr-p144-chapter-09.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p144-chapter-09.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "07-22": {
+      "citation": "Gray Book, p. 119 (Chapter Seven, Lines 1-3)",
+      "section": "Chapter 7",
+      "step": null,
+      "chapter": 7,
+      "lineLabel": "Lines 1-3",
+      "images": [
+        {
+          "printedPage": "119",
+          "physicalPdfPage": 136,
+          "asset": "gbr-p119-chapter-07.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p119-chapter-07.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "07-23": {
+      "citation": "Gray Book, p. 144 (Chapter Nine, Lines 4-10)",
+      "section": "Chapter 9",
+      "step": null,
+      "chapter": 9,
+      "lineLabel": "Lines 4-10",
+      "images": [
+        {
+          "printedPage": "144",
+          "physicalPdfPage": 161,
+          "asset": "gbr-p144-chapter-09.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p144-chapter-09.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "07-24": {
+      "citation": "Gray Book, p. 45 (Step Five, Lines 22-28)",
+      "section": "Step Five",
+      "step": 5,
+      "chapter": null,
+      "lineLabel": "Lines 22-28",
+      "images": [
+        {
+          "printedPage": "45",
+          "physicalPdfPage": 62,
+          "asset": "gbr-p45-step-05.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p45-step-05.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "07-25": {
+      "citation": "Gray Book, p. 59 (Step Twelve, Step Twelve Header)",
+      "section": "Step Twelve",
+      "step": 12,
+      "chapter": null,
+      "lineLabel": "",
+      "images": [
+        {
+          "printedPage": "59",
+          "physicalPdfPage": 76,
+          "asset": "gbr-p59-step-12.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p59-step-12.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "07-26": {
+      "citation": "Gray Book, p. 33 (Step One, Lines 13-15)",
+      "section": "Step One",
+      "step": 1,
+      "chapter": null,
+      "lineLabel": "Lines 13-15",
+      "images": [
+        {
+          "printedPage": "33",
+          "physicalPdfPage": 50,
+          "asset": "gbr-p33-step-01.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p33-step-01.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "07-27": {
+      "citation": "Gray Book, p. 17 (Chapter Two, Lines 9-12)",
+      "section": "Chapter 2",
+      "step": null,
+      "chapter": 2,
+      "lineLabel": "Lines 9-12",
+      "images": [
+        {
+          "printedPage": "17",
+          "physicalPdfPage": 34,
+          "asset": "gbr-p17-chapter-02.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p17-chapter-02.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "07-28": {
+      "citation": "Gray Book, p. 44 (Step Five, Lines 14-15)",
+      "section": "Step Five",
+      "step": 5,
+      "chapter": null,
+      "lineLabel": "Lines 14-15",
+      "images": [
+        {
+          "printedPage": "44",
+          "physicalPdfPage": 61,
+          "asset": "gbr-p44-step-05.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p44-step-05.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "07-29": {
+      "citation": "Gray Book, p. 50 (Step Eight, Lines 15-18)",
+      "section": "Step Eight",
+      "step": 8,
+      "chapter": null,
+      "lineLabel": "Lines 15-18",
+      "images": [
+        {
+          "printedPage": "50",
+          "physicalPdfPage": 67,
+          "asset": "gbr-p50-step-08.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p50-step-08.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "07-30": {
+      "citation": "Gray Book, p. 57 (Step Ten, Lines 14-16)",
+      "section": "Step Ten",
+      "step": 10,
+      "chapter": null,
+      "lineLabel": "Lines 14-16",
+      "images": [
+        {
+          "printedPage": "57",
+          "physicalPdfPage": 74,
+          "asset": "gbr-p57-step-10.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p57-step-10.webp"
+        }
+      ],
+      "quoteMatchScore": 0.962
+    },
+    "07-31": {
+      "citation": "Gray Book, p. 140 (Chapter Eight, Lines 1-3)",
+      "section": "Chapter 8",
+      "step": null,
+      "chapter": 8,
+      "lineLabel": "Lines 1-3",
+      "images": [
+        {
+          "printedPage": "140",
+          "physicalPdfPage": 157,
+          "asset": "gbr-p140-chapter-08.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p140-chapter-08.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "08-01": {
+      "citation": "Gray Book, p. 39 (Step Three, Lines 8-10)",
+      "section": "Step Three",
+      "step": 3,
+      "chapter": null,
+      "lineLabel": "Lines 8-10",
+      "images": [
+        {
+          "printedPage": "39",
+          "physicalPdfPage": 56,
+          "asset": "gbr-p39-step-03.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p39-step-03.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "08-02": {
+      "citation": "Gray Book, p. 123-124 (Chapter Seven, Lines 36-1)",
+      "section": "Chapter 7",
+      "step": null,
+      "chapter": 7,
+      "lineLabel": "Lines 36-1",
+      "images": [
+        {
+          "printedPage": "123",
+          "physicalPdfPage": 140,
+          "asset": "gbr-p123-chapter-07.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p123-chapter-07.webp"
+        },
+        {
+          "printedPage": "124",
+          "physicalPdfPage": 141,
+          "asset": "gbr-p124-chapter-07.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p124-chapter-07.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "08-03": {
+      "citation": "Gray Book, p. 119 (Chapter Seven, Lines 11-12)",
+      "section": "Chapter 7",
+      "step": null,
+      "chapter": 7,
+      "lineLabel": "Lines 11-12",
+      "images": [
+        {
+          "printedPage": "119",
+          "physicalPdfPage": 136,
+          "asset": "gbr-p119-chapter-07.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p119-chapter-07.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "08-04": {
+      "citation": "Gray Book, p. 45 (Step Five, Lines 30-33)",
+      "section": "Step Five",
+      "step": 5,
+      "chapter": null,
+      "lineLabel": "Lines 30-33",
+      "images": [
+        {
+          "printedPage": "45",
+          "physicalPdfPage": 62,
+          "asset": "gbr-p45-step-05.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p45-step-05.webp"
+        }
+      ],
+      "quoteMatchScore": 0.944
+    },
+    "08-05": {
+      "citation": "Gray Book, p. 160 (Chapter Ten, Lines 17-20)",
+      "section": "Chapter 10",
+      "step": null,
+      "chapter": 10,
+      "lineLabel": "Lines 17-20",
+      "images": [
+        {
+          "printedPage": "160",
+          "physicalPdfPage": 177,
+          "asset": "gbr-p160-chapter-10.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p160-chapter-10.webp"
+        }
+      ],
+      "quoteMatchScore": 0.963
+    },
+    "08-06": {
+      "citation": "Gray Book, p. 159 (Chapter Ten, Lines 31-34)",
+      "section": "Chapter 10",
+      "step": null,
+      "chapter": 10,
+      "lineLabel": "Lines 31-34",
+      "images": [
+        {
+          "printedPage": "159",
+          "physicalPdfPage": 176,
+          "asset": "gbr-p159-chapter-10.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p159-chapter-10.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "08-07": {
+      "citation": "Gray Book, p. 128-129 (Chapter Seven, Lines 34-1)",
+      "section": "Chapter 7",
+      "step": null,
+      "chapter": 7,
+      "lineLabel": "Lines 34-1",
+      "images": [
+        {
+          "printedPage": "128",
+          "physicalPdfPage": 145,
+          "asset": "gbr-p128-chapter-07.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p128-chapter-07.webp"
+        },
+        {
+          "printedPage": "129",
+          "physicalPdfPage": 146,
+          "asset": "gbr-p129-chapter-07.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p129-chapter-07.webp"
+        }
+      ],
+      "quoteMatchScore": 0.972
+    },
+    "08-08": {
+      "citation": "Gray Book, p. 144 (Chapter Nine, Lines 10-12)",
+      "section": "Chapter 9",
+      "step": null,
+      "chapter": 9,
+      "lineLabel": "Lines 10-12",
+      "images": [
+        {
+          "printedPage": "144",
+          "physicalPdfPage": 161,
+          "asset": "gbr-p144-chapter-09.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p144-chapter-09.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "08-09": {
+      "citation": "Gray Book, p. 57 (Step Ten, Line 28)",
+      "section": "Step Ten",
+      "step": 10,
+      "chapter": null,
+      "lineLabel": "Line 28",
+      "images": [
+        {
+          "printedPage": "57",
+          "physicalPdfPage": 74,
+          "asset": "gbr-p57-step-10.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p57-step-10.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "08-10": {
+      "citation": "Gray Book, p. 58 (Step Eleven, Lines 34-36)",
+      "section": "Step Eleven",
+      "step": 11,
+      "chapter": null,
+      "lineLabel": "Lines 34-36",
+      "images": [
+        {
+          "printedPage": "58",
+          "physicalPdfPage": 75,
+          "asset": "gbr-p58-step-11.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p58-step-11.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "08-11": {
+      "citation": "Gray Book, p. 151 (Chapter Ten, Lines 24-26)",
+      "section": "Chapter 10",
+      "step": null,
+      "chapter": 10,
+      "lineLabel": "Lines 24-26",
+      "images": [
+        {
+          "printedPage": "151",
+          "physicalPdfPage": 168,
+          "asset": "gbr-p151-chapter-10.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p151-chapter-10.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "08-12": {
+      "citation": "Gray Book, p. 4 (Chapter One, Lines 26-28)",
+      "section": "Chapter 1",
+      "step": null,
+      "chapter": 1,
+      "lineLabel": "Lines 26-28",
+      "images": [
+        {
+          "printedPage": "4",
+          "physicalPdfPage": 21,
+          "asset": "gbr-p4-chapter-01.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p4-chapter-01.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "08-13": {
+      "citation": "Gray Book, p. 72 (Step Twelve, Lines 24-28)",
+      "section": "Step Twelve",
+      "step": 12,
+      "chapter": null,
+      "lineLabel": "Lines 24-28",
+      "images": [
+        {
+          "printedPage": "72",
+          "physicalPdfPage": 89,
+          "asset": "gbr-p72-step-12.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p72-step-12.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "08-14": {
+      "citation": "Gray Book, p. 18 (Chapter Two, Lines 6-8)",
+      "section": "Chapter 2",
+      "step": null,
+      "chapter": 2,
+      "lineLabel": "Lines 6-8",
+      "images": [
+        {
+          "printedPage": "18",
+          "physicalPdfPage": 35,
+          "asset": "gbr-p18-chapter-02.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p18-chapter-02.webp"
+        }
+      ],
+      "quoteMatchScore": 0.97
+    },
+    "08-15": {
+      "citation": "Gray Book, p. 40 (Step Four, Lines 18-19)",
+      "section": "Step Four",
+      "step": 4,
+      "chapter": null,
+      "lineLabel": "Lines 18-19",
+      "images": [
+        {
+          "printedPage": "40",
+          "physicalPdfPage": 57,
+          "asset": "gbr-p40-step-04.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p40-step-04.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "08-16": {
+      "citation": "Gray Book, p. 129 (Chapter Seven, Lines 20-22)",
+      "section": "Chapter 7",
+      "step": null,
+      "chapter": 7,
+      "lineLabel": "Lines 20-22",
+      "images": [
+        {
+          "printedPage": "129",
+          "physicalPdfPage": 146,
+          "asset": "gbr-p129-chapter-07.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p129-chapter-07.webp"
+        }
+      ],
+      "quoteMatchScore": 0.966
+    },
+    "08-17": {
+      "citation": "Gray Book, p. 31 (Step One, Lines 1-3)",
+      "section": "Step One",
+      "step": 1,
+      "chapter": null,
+      "lineLabel": "Lines 1-3",
+      "images": [
+        {
+          "printedPage": "31",
+          "physicalPdfPage": 48,
+          "asset": "gbr-p31-step-01.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p31-step-01.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "08-18": {
+      "citation": "Gray Book, p. 122 (Chapter Seven, Lines 2-5)",
+      "section": "Chapter 7",
+      "step": null,
+      "chapter": 7,
+      "lineLabel": "Lines 2-5",
+      "images": [
+        {
+          "printedPage": "122",
+          "physicalPdfPage": 139,
+          "asset": "gbr-p122-chapter-07.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p122-chapter-07.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "08-19": {
+      "citation": "Gray Book, p. 83 (Chapter Five, Lines 9-11)",
+      "section": "Chapter 5",
+      "step": null,
+      "chapter": 5,
+      "lineLabel": "Lines 9-11",
+      "images": [
+        {
+          "printedPage": "83",
+          "physicalPdfPage": 100,
+          "asset": "gbr-p83-chapter-05.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p83-chapter-05.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "08-20": {
+      "citation": "Gray Book, p. 150 (Chapter Ten, Lines 6-8)",
+      "section": "Chapter 10",
+      "step": null,
+      "chapter": 10,
+      "lineLabel": "Lines 6-8",
+      "images": [
+        {
+          "printedPage": "150",
+          "physicalPdfPage": 167,
+          "asset": "gbr-p150-chapter-10.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p150-chapter-10.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "08-21": {
+      "citation": "Gray Book, p. 153 (Chapter Ten, Lines 25-26)",
+      "section": "Chapter 10",
+      "step": null,
+      "chapter": 10,
+      "lineLabel": "Lines 25-26",
+      "images": [
+        {
+          "printedPage": "153",
+          "physicalPdfPage": 170,
+          "asset": "gbr-p153-chapter-10.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p153-chapter-10.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "08-22": {
+      "citation": "Gray Book. p. 129 (Chapter Seven, Lines 33-36)",
+      "section": "Chapter 7",
+      "step": null,
+      "chapter": 7,
+      "lineLabel": "Lines 33-36",
+      "images": [
+        {
+          "printedPage": "129",
+          "physicalPdfPage": 146,
+          "asset": "gbr-p129-chapter-07.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p129-chapter-07.webp"
+        }
+      ],
+      "quoteMatchScore": 0.955
+    },
+    "08-23": {
+      "citation": "Gray Book, p. 137 (Chapter Eight, Lines 24-25)",
+      "section": "Chapter 8",
+      "step": null,
+      "chapter": 8,
+      "lineLabel": "Lines 24-25",
+      "images": [
+        {
+          "printedPage": "137",
+          "physicalPdfPage": 154,
+          "asset": "gbr-p137-chapter-08.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p137-chapter-08.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "08-24": {
+      "citation": "Gray Book, p. 58 (Step Eleven, Lines 11-12)",
+      "section": "Step Eleven",
+      "step": 11,
+      "chapter": null,
+      "lineLabel": "Lines 11-12",
+      "images": [
+        {
+          "printedPage": "58",
+          "physicalPdfPage": 75,
+          "asset": "gbr-p58-step-11.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p58-step-11.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "08-25": {
+      "citation": "Gray Book, p. 53 (Step Nine, Lines 33-35)",
+      "section": "Step Nine",
+      "step": 9,
+      "chapter": null,
+      "lineLabel": "Lines 33-35",
+      "images": [
+        {
+          "printedPage": "53",
+          "physicalPdfPage": 70,
+          "asset": "gbr-p53-step-09.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p53-step-09.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "08-26": {
+      "citation": "Gray Book, p. 54 (Step Ten, Header)",
+      "section": "Step Ten",
+      "step": 10,
+      "chapter": null,
+      "lineLabel": "",
+      "images": [
+        {
+          "printedPage": "54",
+          "physicalPdfPage": 71,
+          "asset": "gbr-p54-step-10.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p54-step-10.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "08-27": {
+      "citation": "Gray Book, p. 140-141 (Chapter Eight, Lines 32-1)",
+      "section": "Chapter 8",
+      "step": null,
+      "chapter": 8,
+      "lineLabel": "Lines 32-1",
+      "images": [
+        {
+          "printedPage": "140",
+          "physicalPdfPage": 157,
+          "asset": "gbr-p140-chapter-08.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p140-chapter-08.webp"
+        },
+        {
+          "printedPage": "141",
+          "physicalPdfPage": 158,
+          "asset": "gbr-p141-chapter-08.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p141-chapter-08.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "08-28": {
+      "citation": "Gray Book, p. 45 (Step Five, Lines 11-13)",
+      "section": "Step Five",
+      "step": 5,
+      "chapter": null,
+      "lineLabel": "Lines 11-13",
+      "images": [
+        {
+          "printedPage": "45",
+          "physicalPdfPage": 62,
+          "asset": "gbr-p45-step-05.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p45-step-05.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "08-29": {
+      "citation": "Gray Book, p. 51 (Step Eight, Lines 14-16)",
+      "section": "Step Eight",
+      "step": 8,
+      "chapter": null,
+      "lineLabel": "Lines 14-16",
+      "images": [
+        {
+          "printedPage": "51",
+          "physicalPdfPage": 68,
+          "asset": "gbr-p51-step-08.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p51-step-08.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "08-30": {
+      "citation": "Gray Book, p. 57 (Step Ten, Lines 2-4)",
+      "section": "Step Ten",
+      "step": 10,
+      "chapter": null,
+      "lineLabel": "Lines 2-4",
+      "images": [
+        {
+          "printedPage": "57",
+          "physicalPdfPage": 74,
+          "asset": "gbr-p57-step-10.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p57-step-10.webp"
+        }
+      ],
+      "quoteMatchScore": 0.962
+    },
+    "08-31": {
+      "citation": "Gray Book, p. 136 (Chapter Eight, Lines 23-25)",
+      "section": "Chapter 8",
+      "step": null,
+      "chapter": 8,
+      "lineLabel": "Lines 23-25",
+      "images": [
+        {
+          "printedPage": "136",
+          "physicalPdfPage": 153,
+          "asset": "gbr-p136-chapter-08.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p136-chapter-08.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "09-01": {
+      "citation": "Gray Book, p. 155 (Chapter Ten, Lines 31-33)",
+      "section": "Chapter 10",
+      "step": null,
+      "chapter": 10,
+      "lineLabel": "Lines 31-33",
+      "images": [
+        {
+          "printedPage": "155",
+          "physicalPdfPage": 172,
+          "asset": "gbr-p155-chapter-10.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p155-chapter-10.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "09-02": {
+      "citation": "Gray Book, p. 122 (Chapter Seven, Lines 8-10)",
+      "section": "Chapter 7",
+      "step": null,
+      "chapter": 7,
+      "lineLabel": "Lines 8-10",
+      "images": [
+        {
+          "printedPage": "122",
+          "physicalPdfPage": 139,
+          "asset": "gbr-p122-chapter-07.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p122-chapter-07.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "09-03": {
+      "citation": "Gray Book, p. 117 (Tradition Twelve, Lines 23-25)",
+      "section": "Grey Book",
+      "step": null,
+      "chapter": null,
+      "lineLabel": "Lines 23-25",
+      "images": [
+        {
+          "printedPage": "117",
+          "physicalPdfPage": 134,
+          "asset": "gbr-p117.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p117.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "09-04": {
+      "citation": "Gray Book, p. 53 (Step Nine, Lines 16-18)",
+      "section": "Step Nine",
+      "step": 9,
+      "chapter": null,
+      "lineLabel": "Lines 16-18",
+      "images": [
+        {
+          "printedPage": "53",
+          "physicalPdfPage": 70,
+          "asset": "gbr-p53-step-09.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p53-step-09.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "09-05": {
+      "citation": "Gray Book, p. 30 (Step One, Lines 23-24)",
+      "section": "Step One",
+      "step": 1,
+      "chapter": null,
+      "lineLabel": "Lines 23-24",
+      "images": [
+        {
+          "printedPage": "30",
+          "physicalPdfPage": 47,
+          "asset": "gbr-p30-step-01.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p30-step-01.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "09-06": {
+      "citation": "Gray Book, p. 15 (Chapter Two, Header)",
+      "section": "Chapter 2",
+      "step": null,
+      "chapter": 2,
+      "lineLabel": "",
+      "images": [
+        {
+          "printedPage": "15",
+          "physicalPdfPage": 32,
+          "asset": "gbr-p15-chapter-02.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p15-chapter-02.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "09-07": {
+      "citation": "Gray Book, p. 19 (Chapter Two, Lines 3-6)",
+      "section": "Chapter 2",
+      "step": null,
+      "chapter": 2,
+      "lineLabel": "Lines 3-6",
+      "images": [
+        {
+          "printedPage": "19",
+          "physicalPdfPage": 36,
+          "asset": "gbr-p19-chapter-02.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p19-chapter-02.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "09-08": {
+      "citation": "Gray Book, p. 47 (Step Six, Lines 7-9)",
+      "section": "Step Six",
+      "step": 6,
+      "chapter": null,
+      "lineLabel": "Lines 7-9",
+      "images": [
+        {
+          "printedPage": "47",
+          "physicalPdfPage": 64,
+          "asset": "gbr-p47-step-06.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p47-step-06.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "09-09": {
+      "citation": "Gray Book, p. 127 (Chapter Seven, Lines 32-33)",
+      "section": "Chapter 7",
+      "step": null,
+      "chapter": 7,
+      "lineLabel": "Lines 32-33",
+      "images": [
+        {
+          "printedPage": "127",
+          "physicalPdfPage": 144,
+          "asset": "gbr-p127-chapter-07.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p127-chapter-07.webp"
+        }
+      ],
+      "quoteMatchScore": 0.944
+    },
+    "09-10": {
+      "citation": "Gray Book, p. 140 (Chapter Eight, Lines 19-22)",
+      "section": "Chapter 8",
+      "step": null,
+      "chapter": 8,
+      "lineLabel": "Lines 19-22",
+      "images": [
+        {
+          "printedPage": "140",
+          "physicalPdfPage": 157,
+          "asset": "gbr-p140-chapter-08.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p140-chapter-08.webp"
+        }
+      ],
+      "quoteMatchScore": 0.912
+    },
+    "09-11": {
+      "citation": "Gray Book, p. 156 (Chapter Ten, Lines 28-30)",
+      "section": "Chapter 10",
+      "step": null,
+      "chapter": 10,
+      "lineLabel": "Lines 28-30",
+      "images": [
+        {
+          "printedPage": "156",
+          "physicalPdfPage": 173,
+          "asset": "gbr-p156-chapter-10.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p156-chapter-10.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "09-12": {
+      "citation": "Gray Book, p. 45 (Fifth Step, Lines 7-14)",
+      "section": "Grey Book",
+      "step": null,
+      "chapter": null,
+      "lineLabel": "Lines 7-14",
+      "images": [
+        {
+          "printedPage": "45",
+          "physicalPdfPage": 62,
+          "asset": "gbr-p45.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p45.webp"
+        }
+      ],
+      "quoteMatchScore": 0.983
+    },
+    "09-13": {
+      "citation": "Gray Book, p. 23 (Chapter Three, Header)",
+      "section": "Chapter 3",
+      "step": null,
+      "chapter": 3,
+      "lineLabel": "",
+      "images": [
+        {
+          "printedPage": "23",
+          "physicalPdfPage": 40,
+          "asset": "gbr-p23-chapter-03.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p23-chapter-03.webp"
+        }
+      ],
+      "quoteMatchScore": 0.933
+    },
+    "09-14": {
+      "citation": "Gray Book, p. 139 (Chapter Eight, Lines 25-27)",
+      "section": "Chapter 8",
+      "step": null,
+      "chapter": 8,
+      "lineLabel": "Lines 25-27",
+      "images": [
+        {
+          "printedPage": "139",
+          "physicalPdfPage": 156,
+          "asset": "gbr-p139-chapter-08.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p139-chapter-08.webp"
+        }
+      ],
+      "quoteMatchScore": 0.964
+    },
+    "09-15": {
+      "citation": "Gray Book, p. 121 (Chapter Seven, Lines 32-34)",
+      "section": "Chapter 7",
+      "step": null,
+      "chapter": 7,
+      "lineLabel": "Lines 32-34",
+      "images": [
+        {
+          "printedPage": "121",
+          "physicalPdfPage": 138,
+          "asset": "gbr-p121-chapter-07.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p121-chapter-07.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "09-16": {
+      "citation": "Gray Book, p. 58 (Step Eleven, Lines 34-35)",
+      "section": "Step Eleven",
+      "step": 11,
+      "chapter": null,
+      "lineLabel": "Lines 34-35",
+      "images": [
+        {
+          "printedPage": "58",
+          "physicalPdfPage": 75,
+          "asset": "gbr-p58-step-11.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p58-step-11.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "09-17": {
+      "citation": "Gray Book, p. 137 (Chapter Eight, Lines 13-14)",
+      "section": "Chapter 8",
+      "step": null,
+      "chapter": 8,
+      "lineLabel": "Lines 13-14",
+      "images": [
+        {
+          "printedPage": "137",
+          "physicalPdfPage": 154,
+          "asset": "gbr-p137-chapter-08.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p137-chapter-08.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "09-18": {
+      "citation": "Gray Book, p. 79 (Chapter Five, Lines 32-33)",
+      "section": "Chapter 5",
+      "step": null,
+      "chapter": 5,
+      "lineLabel": "Lines 32-33",
+      "images": [
+        {
+          "printedPage": "79",
+          "physicalPdfPage": 96,
+          "asset": "gbr-p79-chapter-05.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p79-chapter-05.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "09-19": {
+      "citation": "Gray Book, p. 54 (Step Nine, Lines 17-20)",
+      "section": "Step Nine",
+      "step": 9,
+      "chapter": null,
+      "lineLabel": "Lines 17-20",
+      "images": [
+        {
+          "printedPage": "54",
+          "physicalPdfPage": 71,
+          "asset": "gbr-p54-step-09.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p54-step-09.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "09-20": {
+      "citation": "Gray Book, p. 140 (Chapter Eight, Lines 19-22)",
+      "section": "Chapter 8",
+      "step": null,
+      "chapter": 8,
+      "lineLabel": "Lines 19-22",
+      "images": [
+        {
+          "printedPage": "140",
+          "physicalPdfPage": 157,
+          "asset": "gbr-p140-chapter-08.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p140-chapter-08.webp"
+        }
+      ],
+      "quoteMatchScore": 0.97
+    },
+    "09-21": {
+      "citation": "Gray Book, p. 58 (Step Eleven, Lines 23-25)",
+      "section": "Step Eleven",
+      "step": 11,
+      "chapter": null,
+      "lineLabel": "Lines 23-25",
+      "images": [
+        {
+          "printedPage": "58",
+          "physicalPdfPage": 75,
+          "asset": "gbr-p58-step-11.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p58-step-11.webp"
+        }
+      ],
+      "quoteMatchScore": 0.909
+    },
+    "09-22": {
+      "citation": "Gray Book, p. 159-160 (Chapter Ten, Lines 33-3)",
+      "section": "Chapter 10",
+      "step": null,
+      "chapter": 10,
+      "lineLabel": "Lines 33-3",
+      "images": [
+        {
+          "printedPage": "159",
+          "physicalPdfPage": 176,
+          "asset": "gbr-p159-chapter-10.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p159-chapter-10.webp"
+        },
+        {
+          "printedPage": "160",
+          "physicalPdfPage": 177,
+          "asset": "gbr-p160-chapter-10.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p160-chapter-10.webp"
+        }
+      ],
+      "quoteMatchScore": 0.977
+    },
+    "09-23": {
+      "citation": "Gray Book, p. 19 (Chapter Two, Lines 1-3)",
+      "section": "Chapter 2",
+      "step": null,
+      "chapter": 2,
+      "lineLabel": "Lines 1-3",
+      "images": [
+        {
+          "printedPage": "19",
+          "physicalPdfPage": 36,
+          "asset": "gbr-p19-chapter-02.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p19-chapter-02.webp"
+        }
+      ],
+      "quoteMatchScore": 0.95
+    },
+    "09-24": {
+      "citation": "Gray Book, p. 35 (Step Two, Lines 12-15)",
+      "section": "Step Two",
+      "step": 2,
+      "chapter": null,
+      "lineLabel": "Lines 12-15",
+      "images": [
+        {
+          "printedPage": "35",
+          "physicalPdfPage": 52,
+          "asset": "gbr-p35-step-02.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p35-step-02.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "09-25": {
+      "citation": "Gray Book, p. 42 (Step Four, Lines 20-21)",
+      "section": "Step Four",
+      "step": 4,
+      "chapter": null,
+      "lineLabel": "Lines 20-21",
+      "images": [
+        {
+          "printedPage": "42",
+          "physicalPdfPage": 59,
+          "asset": "gbr-p42-step-04.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p42-step-04.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "09-26": {
+      "citation": "Gray Book, p. 51 (Step Eight, Lines 12-14)",
+      "section": "Step Eight",
+      "step": 8,
+      "chapter": null,
+      "lineLabel": "Lines 12-14",
+      "images": [
+        {
+          "printedPage": "51",
+          "physicalPdfPage": 68,
+          "asset": "gbr-p51-step-08.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p51-step-08.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "09-27": {
+      "citation": "Gray Book, p. 126 (Chapter Seven, Lines 34-35)",
+      "section": "Chapter 7",
+      "step": null,
+      "chapter": 7,
+      "lineLabel": "Lines 34-35",
+      "images": [
+        {
+          "printedPage": "126",
+          "physicalPdfPage": 143,
+          "asset": "gbr-p126-chapter-07.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p126-chapter-07.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "09-28": {
+      "citation": "Gray Book, p. 147 (Chapter Nine, Lines 4-5)",
+      "section": "Chapter 9",
+      "step": null,
+      "chapter": 9,
+      "lineLabel": "Lines 4-5",
+      "images": [
+        {
+          "printedPage": "147",
+          "physicalPdfPage": 164,
+          "asset": "gbr-p147-chapter-09.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p147-chapter-09.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "09-29": {
+      "citation": "Gray Book, p. 146 (Chapter Nine, Lines 4-6)",
+      "section": "Chapter 9",
+      "step": null,
+      "chapter": 9,
+      "lineLabel": "Lines 4-6",
+      "images": [
+        {
+          "printedPage": "146",
+          "physicalPdfPage": 163,
+          "asset": "gbr-p146-chapter-09.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p146-chapter-09.webp"
+        }
+      ],
+      "quoteMatchScore": 0.952
+    },
+    "09-30": {
+      "citation": "Gray Book, p. 161 (Chapter Ten, Lines 1-3)",
+      "section": "Chapter 10",
+      "step": null,
+      "chapter": 10,
+      "lineLabel": "Lines 1-3",
+      "images": [
+        {
+          "printedPage": "161",
+          "physicalPdfPage": 178,
+          "asset": "gbr-p161-chapter-10.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p161-chapter-10.webp"
+        }
+      ],
+      "quoteMatchScore": 0.905
+    },
+    "10-01": {
+      "citation": "Gray Book, p. 42 (Step Four, Lines 4-6)",
+      "section": "Step Four",
+      "step": 4,
+      "chapter": null,
+      "lineLabel": "Lines 4-6",
+      "images": [
+        {
+          "printedPage": "42",
+          "physicalPdfPage": 59,
+          "asset": "gbr-p42-step-04.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p42-step-04.webp"
+        }
+      ],
+      "quoteMatchScore": 0.966
+    },
+    "10-02": {
+      "citation": "Gray Book, p. 58 (Step Eleven, Lines 26-27)",
+      "section": "Step Eleven",
+      "step": 11,
+      "chapter": null,
+      "lineLabel": "Lines 26-27",
+      "images": [
+        {
+          "printedPage": "58",
+          "physicalPdfPage": 75,
+          "asset": "gbr-p58-step-11.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p58-step-11.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "10-03": {
+      "citation": "Gray Book, p. 146 (Chapter Nine, Lines 22-24)",
+      "section": "Chapter 9",
+      "step": null,
+      "chapter": 9,
+      "lineLabel": "Lines 22-24",
+      "images": [
+        {
+          "printedPage": "146",
+          "physicalPdfPage": 163,
+          "asset": "gbr-p146-chapter-09.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p146-chapter-09.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "10-04": {
+      "citation": "Gray Book, p. 59 (Step Twelve, Lines 22-23)",
+      "section": "Step Twelve",
+      "step": 12,
+      "chapter": null,
+      "lineLabel": "Lines 22-23",
+      "images": [
+        {
+          "printedPage": "59",
+          "physicalPdfPage": 76,
+          "asset": "gbr-p59-step-12.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p59-step-12.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "10-05": {
+      "citation": "Gray Book, p. 52 (Step Eight, Lines 11-12)",
+      "section": "Step Eight",
+      "step": 8,
+      "chapter": null,
+      "lineLabel": "Lines 11-12",
+      "images": [
+        {
+          "printedPage": "52",
+          "physicalPdfPage": 69,
+          "asset": "gbr-p52-step-08.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p52-step-08.webp"
+        }
+      ],
+      "quoteMatchScore": 0.941
+    },
+    "10-06": {
+      "citation": "Gray Book, p. 52 (Step Eight, Lines 14-16)",
+      "section": "Step Eight",
+      "step": 8,
+      "chapter": null,
+      "lineLabel": "Lines 14-16",
+      "images": [
+        {
+          "printedPage": "52",
+          "physicalPdfPage": 69,
+          "asset": "gbr-p52-step-08.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p52-step-08.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "10-07": {
+      "citation": "Gray Book, p. 106 (Tradition Seven, Lines 18-21)",
+      "section": "Grey Book",
+      "step": null,
+      "chapter": null,
+      "lineLabel": "Lines 18-21",
+      "images": [
+        {
+          "printedPage": "106",
+          "physicalPdfPage": 123,
+          "asset": "gbr-p106.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p106.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "10-08": {
+      "citation": "Gray Book, p. 119 (Chapter Seven, Heading)",
+      "section": "Chapter 7",
+      "step": null,
+      "chapter": 7,
+      "lineLabel": "",
+      "images": [
+        {
+          "printedPage": "119",
+          "physicalPdfPage": 136,
+          "asset": "gbr-p119-chapter-07.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p119-chapter-07.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "10-09": {
+      "citation": "Gray Book, p. 146 (Chapter Nine, Lines 4-6)",
+      "section": "Chapter 9",
+      "step": null,
+      "chapter": 9,
+      "lineLabel": "Lines 4-6",
+      "images": [
+        {
+          "printedPage": "146",
+          "physicalPdfPage": 163,
+          "asset": "gbr-p146-chapter-09.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p146-chapter-09.webp"
+        }
+      ],
+      "quoteMatchScore": 0.95
+    },
+    "10-10": {
+      "citation": "Gray Book, p. 137 (Chapter Eight, Lines 24-26)",
+      "section": "Chapter 8",
+      "step": null,
+      "chapter": 8,
+      "lineLabel": "Lines 24-26",
+      "images": [
+        {
+          "printedPage": "137",
+          "physicalPdfPage": 154,
+          "asset": "gbr-p137-chapter-08.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p137-chapter-08.webp"
+        }
+      ],
+      "quoteMatchScore": 0.933
+    },
+    "10-11": {
+      "citation": "Gray Book, p. 80 (Chapter Five, Lines 26-27)",
+      "section": "Chapter 5",
+      "step": null,
+      "chapter": 5,
+      "lineLabel": "Lines 26-27",
+      "images": [
+        {
+          "printedPage": "80",
+          "physicalPdfPage": 97,
+          "asset": "gbr-p80-chapter-05.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p80-chapter-05.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "10-12": {
+      "citation": "Gray Book, p. 79 (Chapter Five, Lines 8-10)",
+      "section": "Chapter 5",
+      "step": null,
+      "chapter": 5,
+      "lineLabel": "Lines 8-10",
+      "images": [
+        {
+          "printedPage": "79",
+          "physicalPdfPage": 96,
+          "asset": "gbr-p79-chapter-05.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p79-chapter-05.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "10-13": {
+      "citation": "Gray Book, p. 152 (Chapter Ten, Lines 21-23)",
+      "section": "Chapter 10",
+      "step": null,
+      "chapter": 10,
+      "lineLabel": "Lines 21-23",
+      "images": [
+        {
+          "printedPage": "152",
+          "physicalPdfPage": 169,
+          "asset": "gbr-p152-chapter-10.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p152-chapter-10.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "10-14": {
+      "citation": "Gray Book, p. 49 (Step Seven, Lines 31-35)",
+      "section": "Step Seven",
+      "step": 7,
+      "chapter": null,
+      "lineLabel": "Lines 31-35",
+      "images": [
+        {
+          "printedPage": "49",
+          "physicalPdfPage": 66,
+          "asset": "gbr-p49-step-07.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p49-step-07.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "10-15": {
+      "citation": "Gray Book, p. 6 (Chapter One, Lines 10-11)",
+      "section": "Chapter 1",
+      "step": null,
+      "chapter": 1,
+      "lineLabel": "Lines 10-11",
+      "images": [
+        {
+          "printedPage": "6",
+          "physicalPdfPage": 23,
+          "asset": "gbr-p6-chapter-01.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p6-chapter-01.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "10-16": {
+      "citation": "Gray Book, p. 58 (Step Eleven, Lines 17-18)",
+      "section": "Step Eleven",
+      "step": 11,
+      "chapter": null,
+      "lineLabel": "Lines 17-18",
+      "images": [
+        {
+          "printedPage": "58",
+          "physicalPdfPage": 75,
+          "asset": "gbr-p58-step-11.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p58-step-11.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "10-17": {
+      "citation": "Gray Book, p. 146 (Chapter Nine, Lines 10-11)",
+      "section": "Chapter 9",
+      "step": null,
+      "chapter": 9,
+      "lineLabel": "Lines 10-11",
+      "images": [
+        {
+          "printedPage": "146",
+          "physicalPdfPage": 163,
+          "asset": "gbr-p146-chapter-09.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p146-chapter-09.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "10-18": {
+      "citation": "Gray Book, p. 132 (Chapter Eight, 1st Paragraph)",
+      "section": "Chapter 8",
+      "step": null,
+      "chapter": 8,
+      "lineLabel": "",
+      "images": [
+        {
+          "printedPage": "132",
+          "physicalPdfPage": 149,
+          "asset": "gbr-p132-chapter-08.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p132-chapter-08.webp"
+        }
+      ],
+      "quoteMatchScore": 0.941
+    },
+    "10-19": {
+      "citation": "Gray Book, p. 133 (Chapter Eight, 2nd Paragraph)",
+      "section": "Chapter 8",
+      "step": null,
+      "chapter": 8,
+      "lineLabel": "",
+      "images": [
+        {
+          "printedPage": "133",
+          "physicalPdfPage": 150,
+          "asset": "gbr-p133-chapter-08.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p133-chapter-08.webp"
+        }
+      ],
+      "quoteMatchScore": 0.889
+    },
+    "10-20": {
+      "citation": "Gray Book, p. 58 (Step Eleven, Lines 32-33)",
+      "section": "Step Eleven",
+      "step": 11,
+      "chapter": null,
+      "lineLabel": "Lines 32-33",
+      "images": [
+        {
+          "printedPage": "58",
+          "physicalPdfPage": 75,
+          "asset": "gbr-p58-step-11.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p58-step-11.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "10-21": {
+      "citation": "Gray Book, p. 39 (Third Step, Lines 29-30)",
+      "section": "Grey Book",
+      "step": null,
+      "chapter": null,
+      "lineLabel": "Lines 29-30",
+      "images": [
+        {
+          "printedPage": "39",
+          "physicalPdfPage": 56,
+          "asset": "gbr-p39.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p39.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "10-22": {
+      "citation": "Gray Book, p. 128 (Chapter Seven, Lines 32-33)",
+      "section": "Chapter 7",
+      "step": null,
+      "chapter": 7,
+      "lineLabel": "Lines 32-33",
+      "images": [
+        {
+          "printedPage": "128",
+          "physicalPdfPage": 145,
+          "asset": "gbr-p128-chapter-07.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p128-chapter-07.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "10-23": {
+      "citation": "Gray Book, p. 58 (Step Eleven, Lines 25-26)",
+      "section": "Step Eleven",
+      "step": 11,
+      "chapter": null,
+      "lineLabel": "Lines 25-26",
+      "images": [
+        {
+          "printedPage": "58",
+          "physicalPdfPage": 75,
+          "asset": "gbr-p58-step-11.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p58-step-11.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "10-24": {
+      "citation": "Gray Book, p. 139 (Chapter Eight, Lines 8-9, 16-17)",
+      "section": "Chapter 8",
+      "step": null,
+      "chapter": 8,
+      "lineLabel": "Lines 8-9",
+      "images": [
+        {
+          "printedPage": "139",
+          "physicalPdfPage": 156,
+          "asset": "gbr-p139-chapter-08.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p139-chapter-08.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "10-25": {
+      "citation": "Gray Book, p. 157 (Chapter Ten, Lines 4-5)",
+      "section": "Chapter 10",
+      "step": null,
+      "chapter": 10,
+      "lineLabel": "Lines 4-5",
+      "images": [
+        {
+          "printedPage": "157",
+          "physicalPdfPage": 174,
+          "asset": "gbr-p157-chapter-10.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p157-chapter-10.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "10-26": {
+      "citation": "Gray Book, p. 44 (Step Five, Lines 8-9)",
+      "section": "Step Five",
+      "step": 5,
+      "chapter": null,
+      "lineLabel": "Lines 8-9",
+      "images": [
+        {
+          "printedPage": "44",
+          "physicalPdfPage": 61,
+          "asset": "gbr-p44-step-05.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p44-step-05.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "10-27": {
+      "citation": "Gray Book, p. 41 (Step Four, Lines 4-6)",
+      "section": "Step Four",
+      "step": 4,
+      "chapter": null,
+      "lineLabel": "Lines 4-6",
+      "images": [
+        {
+          "printedPage": "41",
+          "physicalPdfPage": 58,
+          "asset": "gbr-p41-step-04.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p41-step-04.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "10-28": {
+      "citation": "Gray Book, p. 79 (Chapter Five, Lines 7-8)",
+      "section": "Chapter 5",
+      "step": null,
+      "chapter": 5,
+      "lineLabel": "Lines 7-8",
+      "images": [
+        {
+          "printedPage": "79",
+          "physicalPdfPage": 96,
+          "asset": "gbr-p79-chapter-05.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p79-chapter-05.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "10-29": {
+      "citation": "Gray Book, p. 147 (Chapter Nine, Lines 26-28)",
+      "section": "Chapter 9",
+      "step": null,
+      "chapter": 9,
+      "lineLabel": "Lines 26-28",
+      "images": [
+        {
+          "printedPage": "147",
+          "physicalPdfPage": 164,
+          "asset": "gbr-p147-chapter-09.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p147-chapter-09.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "10-30": {
+      "citation": "Gray Book, p. 146 (Chapter Nine, Lines 18-19)",
+      "section": "Chapter 9",
+      "step": null,
+      "chapter": 9,
+      "lineLabel": "Lines 18-19",
+      "images": [
+        {
+          "printedPage": "146",
+          "physicalPdfPage": 163,
+          "asset": "gbr-p146-chapter-09.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p146-chapter-09.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "10-31": {
+      "citation": "Gray Book, p. 147-148 (Chapter Nine, Lines 33-1)",
+      "section": "Chapter 9",
+      "step": null,
+      "chapter": 9,
+      "lineLabel": "Lines 33-1",
+      "images": [
+        {
+          "printedPage": "147",
+          "physicalPdfPage": 164,
+          "asset": "gbr-p147-chapter-09.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p147-chapter-09.webp"
+        },
+        {
+          "printedPage": "148",
+          "physicalPdfPage": 165,
+          "asset": "gbr-p148-chapter-09.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p148-chapter-09.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "11-01": {
+      "citation": "Gray Book, p. 70 (Step Twelve, Lines 35-36)",
+      "section": "Step Twelve",
+      "step": 12,
+      "chapter": null,
+      "lineLabel": "Lines 35-36",
+      "images": [
+        {
+          "printedPage": "70",
+          "physicalPdfPage": 87,
+          "asset": "gbr-p70-step-12.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p70-step-12.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "11-02": {
+      "citation": "Gray Book, p. 80 (Chapter Five, Lines 1-2)",
+      "section": "Chapter 5",
+      "step": null,
+      "chapter": 5,
+      "lineLabel": "Lines 1-2",
+      "images": [
+        {
+          "printedPage": "80",
+          "physicalPdfPage": 97,
+          "asset": "gbr-p80-chapter-05.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p80-chapter-05.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "11-03": {
+      "citation": "Gray Book, p. 133 (Chapter Eight, Third paragraph)",
+      "section": "Chapter 8",
+      "step": null,
+      "chapter": 8,
+      "lineLabel": "",
+      "images": [
+        {
+          "printedPage": "133",
+          "physicalPdfPage": 150,
+          "asset": "gbr-p133-chapter-08.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p133-chapter-08.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "11-04": {
+      "citation": "Gray Book, p. 1 (Forward)",
+      "section": "Forward",
+      "step": null,
+      "chapter": null,
+      "lineLabel": "",
+      "images": [
+        {
+          "printedPage": "1",
+          "physicalPdfPage": 18,
+          "asset": "gbr-p1.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p1.webp"
+        }
+      ],
+      "quoteMatchScore": 0.55
+    },
+    "11-05": {
+      "citation": "Gray Book, p. 147 (Chapter Nine, Lines 1-3)",
+      "section": "Chapter 9",
+      "step": null,
+      "chapter": 9,
+      "lineLabel": "Lines 1-3",
+      "images": [
+        {
+          "printedPage": "147",
+          "physicalPdfPage": 164,
+          "asset": "gbr-p147-chapter-09.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p147-chapter-09.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "11-06": {
+      "citation": "Gray Book, p. 49-50 (Step Seven, Lines 36-2)",
+      "section": "Step Seven",
+      "step": 7,
+      "chapter": null,
+      "lineLabel": "Lines 36-2",
+      "images": [
+        {
+          "printedPage": "49",
+          "physicalPdfPage": 66,
+          "asset": "gbr-p49-step-07.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p49-step-07.webp"
+        },
+        {
+          "printedPage": "50",
+          "physicalPdfPage": 67,
+          "asset": "gbr-p50-step-07.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p50-step-07.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "11-07": {
+      "citation": "Gray Book, p. 39 (Step Three, Lines 33-35)",
+      "section": "Step Three",
+      "step": 3,
+      "chapter": null,
+      "lineLabel": "Lines 33-35",
+      "images": [
+        {
+          "printedPage": "39",
+          "physicalPdfPage": 56,
+          "asset": "gbr-p39-step-03.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p39-step-03.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "11-08": {
+      "citation": "Gray Book, p. 34 (Step Two, Lines 14-16)",
+      "section": "Step Two",
+      "step": 2,
+      "chapter": null,
+      "lineLabel": "Lines 14-16",
+      "images": [
+        {
+          "printedPage": "34",
+          "physicalPdfPage": 51,
+          "asset": "gbr-p34-step-02.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p34-step-02.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "11-09": {
+      "citation": "Gray Book, p. 142 (Chapter Eight, Lines 18-19)",
+      "section": "Chapter 8",
+      "step": null,
+      "chapter": 8,
+      "lineLabel": "Lines 18-19",
+      "images": [
+        {
+          "printedPage": "142",
+          "physicalPdfPage": 159,
+          "asset": "gbr-p142-chapter-08.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p142-chapter-08.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "11-10": {
+      "citation": "Gray Book, p. 25 (Chapter Three, Lines 5-7)",
+      "section": "Chapter 3",
+      "step": null,
+      "chapter": 3,
+      "lineLabel": "Lines 5-7",
+      "images": [
+        {
+          "printedPage": "25",
+          "physicalPdfPage": 42,
+          "asset": "gbr-p25-chapter-03.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p25-chapter-03.webp"
+        }
+      ],
+      "quoteMatchScore": 0.947
+    },
+    "11-11": {
+      "citation": "Gray Book, p. 40 (Step Three, Lines 4-6)",
+      "section": "Step Three",
+      "step": 3,
+      "chapter": null,
+      "lineLabel": "Lines 4-6",
+      "images": [
+        {
+          "printedPage": "40",
+          "physicalPdfPage": 57,
+          "asset": "gbr-p40-step-03.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p40-step-03.webp"
+        }
+      ],
+      "quoteMatchScore": 0.952
+    },
+    "11-12": {
+      "citation": "Gray Book, p. 148 (Chapter Nine, Lines 29-30)",
+      "section": "Chapter 9",
+      "step": null,
+      "chapter": 9,
+      "lineLabel": "Lines 29-30",
+      "images": [
+        {
+          "printedPage": "148",
+          "physicalPdfPage": 165,
+          "asset": "gbr-p148-chapter-09.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p148-chapter-09.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "11-13": {
+      "citation": "Gray Book, p. 43 (Step Four, Lines 11-12)",
+      "section": "Step Four",
+      "step": 4,
+      "chapter": null,
+      "lineLabel": "Lines 11-12",
+      "images": [
+        {
+          "printedPage": "43",
+          "physicalPdfPage": 60,
+          "asset": "gbr-p43-step-04.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p43-step-04.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "11-14": {
+      "citation": "Gray Book, p. 69 (Step Twelve, Lines 1-2)",
+      "section": "Step Twelve",
+      "step": 12,
+      "chapter": null,
+      "lineLabel": "Lines 1-2",
+      "images": [
+        {
+          "printedPage": "69",
+          "physicalPdfPage": 86,
+          "asset": "gbr-p69-step-12.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p69-step-12.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "11-15": {
+      "citation": "Gray Book, p. 38 (Step Three, Lines 28-29)",
+      "section": "Step Three",
+      "step": 3,
+      "chapter": null,
+      "lineLabel": "Lines 28-29",
+      "images": [
+        {
+          "printedPage": "38",
+          "physicalPdfPage": 55,
+          "asset": "gbr-p38-step-03.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p38-step-03.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "11-16": {
+      "citation": "Gray Book, p. 49-50 (Step Seven, Lines 36, 1-2)",
+      "section": "Step Seven",
+      "step": 7,
+      "chapter": null,
+      "lineLabel": "Line 36",
+      "images": [
+        {
+          "printedPage": "49",
+          "physicalPdfPage": 66,
+          "asset": "gbr-p49-step-07.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p49-step-07.webp"
+        },
+        {
+          "printedPage": "50",
+          "physicalPdfPage": 67,
+          "asset": "gbr-p50-step-07.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p50-step-07.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "11-17": {
+      "citation": "Gray Book, p. 121 (Chapter Seven, Line 5)",
+      "section": "Chapter 7",
+      "step": null,
+      "chapter": 7,
+      "lineLabel": "Line 5",
+      "images": [
+        {
+          "printedPage": "121",
+          "physicalPdfPage": 138,
+          "asset": "gbr-p121-chapter-07.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p121-chapter-07.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "11-18": {
+      "citation": "Gray Book, p. 55 (Step Ten, Lines 34-35)",
+      "section": "Step Ten",
+      "step": 10,
+      "chapter": null,
+      "lineLabel": "Lines 34-35",
+      "images": [
+        {
+          "printedPage": "55",
+          "physicalPdfPage": 72,
+          "asset": "gbr-p55-step-10.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p55-step-10.webp"
+        }
+      ],
+      "quoteMatchScore": 0.889
+    },
+    "11-19": {
+      "citation": "Gray Book, p. 133 (WE DO RECOVER, First Paragraph)",
+      "section": "Grey Book",
+      "step": null,
+      "chapter": null,
+      "lineLabel": "",
+      "images": [
+        {
+          "printedPage": "133",
+          "physicalPdfPage": 150,
+          "asset": "gbr-p133.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p133.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "11-20": {
+      "citation": "Gray Book, p. 135 (Chapter Eight, Lines 2-3)",
+      "section": "Chapter 8",
+      "step": null,
+      "chapter": 8,
+      "lineLabel": "Lines 2-3",
+      "images": [
+        {
+          "printedPage": "135",
+          "physicalPdfPage": 152,
+          "asset": "gbr-p135-chapter-08.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p135-chapter-08.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "11-21": {
+      "citation": "Gray Book, p. 48 (Step Seven, Lines 12-14)",
+      "section": "Step Seven",
+      "step": 7,
+      "chapter": null,
+      "lineLabel": "Lines 12-14",
+      "images": [
+        {
+          "printedPage": "48",
+          "physicalPdfPage": 65,
+          "asset": "gbr-p48-step-07.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p48-step-07.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "11-22": {
+      "citation": "Gray Book, p. 125 (Chapter Seven, Lines 28-29)",
+      "section": "Chapter 7",
+      "step": null,
+      "chapter": 7,
+      "lineLabel": "Lines 28-29",
+      "images": [
+        {
+          "printedPage": "125",
+          "physicalPdfPage": 142,
+          "asset": "gbr-p125-chapter-07.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p125-chapter-07.webp"
+        }
+      ],
+      "quoteMatchScore": 0.941
+    },
+    "11-23": {
+      "citation": "Gray Book, p. 38 (Step Three, Lines 32-33)",
+      "section": "Step Three",
+      "step": 3,
+      "chapter": null,
+      "lineLabel": "Lines 32-33",
+      "images": [
+        {
+          "printedPage": "38",
+          "physicalPdfPage": 55,
+          "asset": "gbr-p38-step-03.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p38-step-03.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "11-24": {
+      "citation": "Gray Book, p. 156 (Chapter Ten, Lines 28-30)",
+      "section": "Chapter 10",
+      "step": null,
+      "chapter": 10,
+      "lineLabel": "Lines 28-30",
+      "images": [
+        {
+          "printedPage": "156",
+          "physicalPdfPage": 173,
+          "asset": "gbr-p156-chapter-10.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p156-chapter-10.webp"
+        }
+      ],
+      "quoteMatchScore": 0.952
+    },
+    "11-25": {
+      "citation": "Gray Book, p. 58 (Step Eleven, Lines 10-11)",
+      "section": "Step Eleven",
+      "step": 11,
+      "chapter": null,
+      "lineLabel": "Lines 10-11",
+      "images": [
+        {
+          "printedPage": "58",
+          "physicalPdfPage": 75,
+          "asset": "gbr-p58-step-11.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p58-step-11.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "11-26": {
+      "citation": "Gray Book, p. 147 (Chapter Nine, Lines 24-26)",
+      "section": "Chapter 9",
+      "step": null,
+      "chapter": 9,
+      "lineLabel": "Lines 24-26",
+      "images": [
+        {
+          "printedPage": "147",
+          "physicalPdfPage": 164,
+          "asset": "gbr-p147-chapter-09.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p147-chapter-09.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "11-27": {
+      "citation": "Gray Book, p. 39 (Step Three, Lines 20-21)",
+      "section": "Step Three",
+      "step": 3,
+      "chapter": null,
+      "lineLabel": "Lines 20-21",
+      "images": [
+        {
+          "printedPage": "39",
+          "physicalPdfPage": 56,
+          "asset": "gbr-p39-step-03.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p39-step-03.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "11-28": {
+      "citation": "Gray Book, p. 50 (Step Seven, Lines 7-9)",
+      "section": "Step Seven",
+      "step": 7,
+      "chapter": null,
+      "lineLabel": "Lines 7-9",
+      "images": [
+        {
+          "printedPage": "50",
+          "physicalPdfPage": 67,
+          "asset": "gbr-p50-step-07.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p50-step-07.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "11-29": {
+      "citation": "Gray Book, p. 80 (Chapter Five, Lines 32-33)",
+      "section": "Chapter 5",
+      "step": null,
+      "chapter": 5,
+      "lineLabel": "Lines 32-33",
+      "images": [
+        {
+          "printedPage": "80",
+          "physicalPdfPage": 97,
+          "asset": "gbr-p80-chapter-05.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p80-chapter-05.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "11-30": {
+      "citation": "Gray Book, p. 129 (Chapter Seven, Lines 4-5)",
+      "section": "Chapter 7",
+      "step": null,
+      "chapter": 7,
+      "lineLabel": "Lines 4-5",
+      "images": [
+        {
+          "printedPage": "129",
+          "physicalPdfPage": 146,
+          "asset": "gbr-p129-chapter-07.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p129-chapter-07.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "12-01": {
+      "citation": "Gray Book, p. 58 (Step Eleven, Lines 14-15)",
+      "section": "Step Eleven",
+      "step": 11,
+      "chapter": null,
+      "lineLabel": "Lines 14-15",
+      "images": [
+        {
+          "printedPage": "58",
+          "physicalPdfPage": 75,
+          "asset": "gbr-p58-step-11.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p58-step-11.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "12-02": {
+      "citation": "Gray Book, p. 128 (Chapter Seven, Lines 5-7)",
+      "section": "Chapter 7",
+      "step": null,
+      "chapter": 7,
+      "lineLabel": "Lines 5-7",
+      "images": [
+        {
+          "printedPage": "128",
+          "physicalPdfPage": 145,
+          "asset": "gbr-p128-chapter-07.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p128-chapter-07.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "12-03": {
+      "citation": "Gray Book, p. 48 (Step Six, Lines 3-4)",
+      "section": "Step Six",
+      "step": 6,
+      "chapter": null,
+      "lineLabel": "Lines 3-4",
+      "images": [
+        {
+          "printedPage": "48",
+          "physicalPdfPage": 65,
+          "asset": "gbr-p48-step-06.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p48-step-06.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "12-04": {
+      "citation": "Gray Book, p. 58 (Step Eleven, Lines 25-26)",
+      "section": "Step Eleven",
+      "step": 11,
+      "chapter": null,
+      "lineLabel": "Lines 25-26",
+      "images": [
+        {
+          "printedPage": "58",
+          "physicalPdfPage": 75,
+          "asset": "gbr-p58-step-11.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p58-step-11.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "12-05": {
+      "citation": "Gray Book, p. 17 (Chapter Two, Lines 19-20)",
+      "section": "Chapter 2",
+      "step": null,
+      "chapter": 2,
+      "lineLabel": "Lines 19-20",
+      "images": [
+        {
+          "printedPage": "17",
+          "physicalPdfPage": 34,
+          "asset": "gbr-p17-chapter-02.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p17-chapter-02.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "12-06": {
+      "citation": "Gray Book, p. 127 (Chapter Seven, Lines 33-34)",
+      "section": "Chapter 7",
+      "step": null,
+      "chapter": 7,
+      "lineLabel": "Lines 33-34",
+      "images": [
+        {
+          "printedPage": "127",
+          "physicalPdfPage": 144,
+          "asset": "gbr-p127-chapter-07.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p127-chapter-07.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "12-07": {
+      "citation": "Gray Book, p. 43 (Step Four, Lines 13-15)",
+      "section": "Step Four",
+      "step": 4,
+      "chapter": null,
+      "lineLabel": "Lines 13-15",
+      "images": [
+        {
+          "printedPage": "43",
+          "physicalPdfPage": 60,
+          "asset": "gbr-p43-step-04.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p43-step-04.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "12-08": {
+      "citation": "Gray Book, p. 47 (Step Six, Lines 2-3)",
+      "section": "Step Six",
+      "step": 6,
+      "chapter": null,
+      "lineLabel": "Lines 2-3",
+      "images": [
+        {
+          "printedPage": "47",
+          "physicalPdfPage": 64,
+          "asset": "gbr-p47-step-06.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p47-step-06.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "12-09": {
+      "citation": "Gray Book, p. 157 (Chapter Ten, Lines 17-19)",
+      "section": "Chapter 10",
+      "step": null,
+      "chapter": 10,
+      "lineLabel": "Lines 17-19",
+      "images": [
+        {
+          "printedPage": "157",
+          "physicalPdfPage": 174,
+          "asset": "gbr-p157-chapter-10.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p157-chapter-10.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "12-10": {
+      "citation": "Gray Book, p. 13 (Chapter One, Lines 7-8)",
+      "section": "Chapter 1",
+      "step": null,
+      "chapter": 1,
+      "lineLabel": "Lines 7-8",
+      "images": [
+        {
+          "printedPage": "13",
+          "physicalPdfPage": 30,
+          "asset": "gbr-p13-chapter-01.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p13-chapter-01.webp"
+        }
+      ],
+      "quoteMatchScore": 0.933
+    },
+    "12-11": {
+      "citation": "Gray Book, p. 40-41 (Step Four, Lines 29-1)",
+      "section": "Step Four",
+      "step": 4,
+      "chapter": null,
+      "lineLabel": "Lines 29-1",
+      "images": [
+        {
+          "printedPage": "40",
+          "physicalPdfPage": 57,
+          "asset": "gbr-p40-step-04.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p40-step-04.webp"
+        },
+        {
+          "printedPage": "41",
+          "physicalPdfPage": 58,
+          "asset": "gbr-p41-step-04.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p41-step-04.webp"
+        }
+      ],
+      "quoteMatchScore": 0.957
+    },
+    "12-12": {
+      "citation": "Gray Book, p. 27 (Chapter Three, Lines 8-10)",
+      "section": "Chapter 3",
+      "step": null,
+      "chapter": 3,
+      "lineLabel": "Lines 8-10",
+      "images": [
+        {
+          "printedPage": "27",
+          "physicalPdfPage": 44,
+          "asset": "gbr-p27-chapter-03.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p27-chapter-03.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "12-13": {
+      "citation": "Gray Book, p. 15 (Chapter Two, Header)",
+      "section": "Chapter 2",
+      "step": null,
+      "chapter": 2,
+      "lineLabel": "",
+      "images": [
+        {
+          "printedPage": "15",
+          "physicalPdfPage": 32,
+          "asset": "gbr-p15-chapter-02.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p15-chapter-02.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "12-14": {
+      "citation": "Gray Book, p. 33 (Step One, Lines 6-8)",
+      "section": "Step One",
+      "step": 1,
+      "chapter": null,
+      "lineLabel": "Lines 6-8",
+      "images": [
+        {
+          "printedPage": "33",
+          "physicalPdfPage": 50,
+          "asset": "gbr-p33-step-01.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p33-step-01.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "12-15": {
+      "citation": "Gray Book, p. 58 (Step Eleven, Lines 34-35)",
+      "section": "Step Eleven",
+      "step": 11,
+      "chapter": null,
+      "lineLabel": "Lines 34-35",
+      "images": [
+        {
+          "printedPage": "58",
+          "physicalPdfPage": 75,
+          "asset": "gbr-p58-step-11.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p58-step-11.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "12-16": {
+      "citation": "Gray Book, p. 127 (Chapter Seven, Lines 22-24)",
+      "section": "Chapter 7",
+      "step": null,
+      "chapter": 7,
+      "lineLabel": "Lines 22-24",
+      "images": [
+        {
+          "printedPage": "127",
+          "physicalPdfPage": 144,
+          "asset": "gbr-p127-chapter-07.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p127-chapter-07.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "12-17": {
+      "citation": "Gray Book, p. v (Introduction, Third Paragraph)",
+      "section": "Introduction",
+      "step": null,
+      "chapter": null,
+      "lineLabel": "",
+      "images": [
+        {
+          "printedPage": "v",
+          "physicalPdfPage": 17,
+          "asset": "gbr-pv.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-pv.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "12-18": {
+      "citation": "Gray Book, p. 102 (Tradition Five, Lines 21-23)",
+      "section": "Grey Book",
+      "step": null,
+      "chapter": null,
+      "lineLabel": "Lines 21-23",
+      "images": [
+        {
+          "printedPage": "102",
+          "physicalPdfPage": 119,
+          "asset": "gbr-p102.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p102.webp"
+        }
+      ],
+      "quoteMatchScore": 0.941
+    },
+    "12-19": {
+      "citation": "Gray Book, p. 80-81 (Chapter Five, Lines 34-2)",
+      "section": "Chapter 5",
+      "step": null,
+      "chapter": 5,
+      "lineLabel": "Lines 34-2",
+      "images": [
+        {
+          "printedPage": "80",
+          "physicalPdfPage": 97,
+          "asset": "gbr-p80-chapter-05.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p80-chapter-05.webp"
+        },
+        {
+          "printedPage": "81",
+          "physicalPdfPage": 98,
+          "asset": "gbr-p81-chapter-05.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p81-chapter-05.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "12-20": {
+      "citation": "Gray Book, p. 147 (Chapter Nine, Lines 31-33)",
+      "section": "Chapter 9",
+      "step": null,
+      "chapter": 9,
+      "lineLabel": "Lines 31-33",
+      "images": [
+        {
+          "printedPage": "147",
+          "physicalPdfPage": 164,
+          "asset": "gbr-p147-chapter-09.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p147-chapter-09.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "12-21": {
+      "citation": "Gray Book, p. 81 (Chapter Five, Lines 4-5)",
+      "section": "Chapter 5",
+      "step": null,
+      "chapter": 5,
+      "lineLabel": "Lines 4-5",
+      "images": [
+        {
+          "printedPage": "81",
+          "physicalPdfPage": 98,
+          "asset": "gbr-p81-chapter-05.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p81-chapter-05.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "12-22": {
+      "citation": "Gray Book, p. 132 (Chapter Eight, 3rd Paragraph)",
+      "section": "Chapter 8",
+      "step": null,
+      "chapter": 8,
+      "lineLabel": "",
+      "images": [
+        {
+          "printedPage": "132",
+          "physicalPdfPage": 149,
+          "asset": "gbr-p132-chapter-08.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p132-chapter-08.webp"
+        }
+      ],
+      "quoteMatchScore": 0.933
+    },
+    "12-23": {
+      "citation": "Gray Book, p. 145 (Chapter Nine, Lines 19-20)",
+      "section": "Chapter 9",
+      "step": null,
+      "chapter": 9,
+      "lineLabel": "Lines 19-20",
+      "images": [
+        {
+          "printedPage": "145",
+          "physicalPdfPage": 162,
+          "asset": "gbr-p145-chapter-09.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p145-chapter-09.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "12-24": {
+      "citation": "Gray Book, p. 102 (Tradition Five, Lines 26-27)",
+      "section": "Grey Book",
+      "step": null,
+      "chapter": null,
+      "lineLabel": "Lines 26-27",
+      "images": [
+        {
+          "printedPage": "102",
+          "physicalPdfPage": 119,
+          "asset": "gbr-p102.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p102.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "12-25": {
+      "citation": "Gray Book, p. 115 (Tradition Twelve, Lines 13-14)",
+      "section": "Grey Book",
+      "step": null,
+      "chapter": null,
+      "lineLabel": "Lines 13-14",
+      "images": [
+        {
+          "printedPage": "115",
+          "physicalPdfPage": 132,
+          "asset": "gbr-p115.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p115.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "12-26": {
+      "citation": "Gray Book, p. 37 (Step Two, Lines 7-8)",
+      "section": "Step Two",
+      "step": 2,
+      "chapter": null,
+      "lineLabel": "Lines 7-8",
+      "images": [
+        {
+          "printedPage": "37",
+          "physicalPdfPage": 54,
+          "asset": "gbr-p37-step-02.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p37-step-02.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "12-27": {
+      "citation": "Gray Book, p. 10 (Chapter One, Lines 35-37)",
+      "section": "Chapter 1",
+      "step": null,
+      "chapter": 1,
+      "lineLabel": "Lines 35-37",
+      "images": [
+        {
+          "printedPage": "10",
+          "physicalPdfPage": 27,
+          "asset": "gbr-p10-chapter-01.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p10-chapter-01.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "12-28": {
+      "citation": "Gray Book, p. 39 (Step Three, Lines 25-27)",
+      "section": "Step Three",
+      "step": 3,
+      "chapter": null,
+      "lineLabel": "Lines 25-27",
+      "images": [
+        {
+          "printedPage": "39",
+          "physicalPdfPage": 56,
+          "asset": "gbr-p39-step-03.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p39-step-03.webp"
+        }
+      ],
+      "quoteMatchScore": 0.944
+    },
+    "12-29": {
+      "citation": "Gray Book, p. 49 (Step Seven, Lines 24-25)",
+      "section": "Step Seven",
+      "step": 7,
+      "chapter": null,
+      "lineLabel": "Lines 24-25",
+      "images": [
+        {
+          "printedPage": "49",
+          "physicalPdfPage": 66,
+          "asset": "gbr-p49-step-07.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p49-step-07.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "12-30": {
+      "citation": "Gray Book, p. 49 (Step Seven, Lines 31-36)",
+      "section": "Step Seven",
+      "step": 7,
+      "chapter": null,
+      "lineLabel": "Lines 31-36",
+      "images": [
+        {
+          "printedPage": "49",
+          "physicalPdfPage": 66,
+          "asset": "gbr-p49-step-07.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p49-step-07.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    },
+    "12-31": {
+      "citation": "Gray Book, p. 85 (Chapter Five, Lines 3-5)",
+      "section": "Chapter 5",
+      "step": null,
+      "chapter": 5,
+      "lineLabel": "Lines 3-5",
+      "images": [
+        {
+          "printedPage": "85",
+          "physicalPdfPage": 102,
+          "asset": "gbr-p85-chapter-05.webp",
+          "url": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-pages/gbr-p85-chapter-05.webp"
+        }
+      ],
+      "quoteMatchScore": 1.0
+    }
+  }
+}
