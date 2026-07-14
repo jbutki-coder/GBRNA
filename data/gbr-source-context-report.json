@@ -1,0 +1,171 @@
+{
+  "summary": {
+    "reflectionCount": 366,
+    "mappedCount": 366,
+    "failedCount": 0,
+    "warningCount": 0,
+    "inferredCorrectionCount": 0,
+    "paragraphCount": 541
+  },
+  "errors": [],
+  "warnings": [],
+  "inferredCorrections": [],
+  "sections": {
+    "frontispiece": {
+      "title": "Our N.A. Symbol",
+      "type": "frontispiece",
+      "step": null,
+      "chapter": null
+    },
+    "forward": {
+      "title": "Forward",
+      "type": "front-matter",
+      "step": null,
+      "chapter": null
+    },
+    "introduction": {
+      "title": "Introduction",
+      "type": "front-matter",
+      "step": null,
+      "chapter": null
+    },
+    "chapter-1": {
+      "title": "Chapter One - Who Is an Addict?",
+      "type": "chapter",
+      "step": null,
+      "chapter": 1
+    },
+    "chapter-2": {
+      "title": "Chapter Two - What Is the Narcotics Anonymous Program?",
+      "type": "chapter",
+      "step": null,
+      "chapter": 2
+    },
+    "chapter-3": {
+      "title": "Chapter Three - Why Are We Here?",
+      "type": "chapter",
+      "step": null,
+      "chapter": 3
+    },
+    "chapter-4": {
+      "title": "Chapter Four - How It Works",
+      "type": "chapter",
+      "step": null,
+      "chapter": 4
+    },
+    "chapter-5": {
+      "title": "Chapter Five - What Can I Do?",
+      "type": "chapter",
+      "step": null,
+      "chapter": 5
+    },
+    "chapter-6": {
+      "title": "Chapter Six - The Twelve Traditions of N.A.",
+      "type": "chapter",
+      "step": null,
+      "chapter": 6
+    },
+    "chapter-7": {
+      "title": "Chapter Seven - Recovery and Relapse",
+      "type": "chapter",
+      "step": null,
+      "chapter": 7
+    },
+    "chapter-8": {
+      "title": "Chapter Eight - We Do Recover",
+      "type": "chapter",
+      "step": null,
+      "chapter": 8
+    },
+    "chapter-9": {
+      "title": "Chapter Nine - Just for Today",
+      "type": "chapter",
+      "step": null,
+      "chapter": 9
+    },
+    "chapter-10": {
+      "title": "Chapter Ten - More Will Be Revealed",
+      "type": "chapter",
+      "step": null,
+      "chapter": 10
+    },
+    "chapter-4-intro": {
+      "title": "Chapter Four - How It Works",
+      "type": "chapter",
+      "step": null,
+      "chapter": 4
+    },
+    "step-1": {
+      "title": "Step One",
+      "type": "step",
+      "step": 1,
+      "chapter": 4
+    },
+    "step-2": {
+      "title": "Step Two",
+      "type": "step",
+      "step": 2,
+      "chapter": 4
+    },
+    "step-3": {
+      "title": "Step Three",
+      "type": "step",
+      "step": 3,
+      "chapter": 4
+    },
+    "step-4": {
+      "title": "Step Four",
+      "type": "step",
+      "step": 4,
+      "chapter": 4
+    },
+    "step-5": {
+      "title": "Step Five",
+      "type": "step",
+      "step": 5,
+      "chapter": 4
+    },
+    "step-6": {
+      "title": "Step Six",
+      "type": "step",
+      "step": 6,
+      "chapter": 4
+    },
+    "step-7": {
+      "title": "Step Seven",
+      "type": "step",
+      "step": 7,
+      "chapter": 4
+    },
+    "step-8": {
+      "title": "Step Eight",
+      "type": "step",
+      "step": 8,
+      "chapter": 4
+    },
+    "step-9": {
+      "title": "Step Nine",
+      "type": "step",
+      "step": 9,
+      "chapter": 4
+    },
+    "step-10": {
+      "title": "Step Ten",
+      "type": "step",
+      "step": 10,
+      "chapter": 4
+    },
+    "step-11": {
+      "title": "Step Eleven",
+      "type": "step",
+      "step": 11,
+      "chapter": 4
+    },
+    "step-12": {
+      "title": "Step Twelve",
+      "type": "step",
+      "step": 12,
+      "chapter": 4
+    }
+  }
+}
