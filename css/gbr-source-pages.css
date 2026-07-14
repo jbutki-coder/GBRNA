@@ -1,0 +1,51 @@
+.gbr-exact-source-pages {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.gbr-exact-source-page {
+  margin: 0;
+  border: 1px solid rgba(55, 45, 32, 0.35);
+  background: #eee8dc;
+  box-shadow: 0 7px 16px rgba(31, 25, 18, 0.12);
+}
+
+.gbr-exact-source-page figcaption {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.7rem 0.9rem;
+  border-bottom: 1px solid rgba(55, 45, 32, 0.3);
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.gbr-exact-source-page a {
+  display: block;
+}
+
+.gbr-exact-source-page img {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: #fff;
+}
+
+.gbr-exact-source-note {
+  margin: 0;
+  padding: 0.85rem 1rem;
+  border-left: 3px solid #9b741d;
+  background: rgba(155, 116, 29, 0.08);
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
+@media (max-width: 700px) {
+  .gbr-exact-source-page figcaption {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+}
