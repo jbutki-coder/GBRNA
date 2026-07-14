@@ -1,0 +1,47 @@
+/* GBR source text: selectable text below the separately mounted source audio player. */
+.gbr-source-text-page {
+  margin: 0;
+}
+
+.gbr-source-text-body {
+  line-height: 1.65;
+}
+
+.gbr-source-section-heading,
+.gbr-source-subheading {
+  margin: 1.1rem 0 .65rem;
+  text-align: center;
+  letter-spacing: .055em;
+}
+
+.gbr-source-section-heading:first-child,
+.gbr-source-subheading:first-child {
+  margin-top: .2rem;
+}
+
+.gbr-source-step-statement {
+  max-width: 46rem;
+  margin: 0 auto 1.15rem;
+  text-align: center;
+  font-weight: 700;
+}
+
+.gbr-source-paragraph {
+  margin: 0 0 1rem;
+}
+
+.gbr-source-cited {
+  padding: .8rem .9rem;
+  border-left: 4px solid currentColor;
+  background: rgba(127, 127, 127, .10);
+}
+
+.gbr-source-line-badge {
+  display: block;
+  margin-bottom: .35rem;
+  font-size: .76rem;
+  font-weight: 800;
+  letter-spacing: .065em;
+  text-transform: uppercase;
+  opacity: .72;
+}
