@@ -572,71 +572,100 @@ function buildCompleteSourceBlocks(sourcePageNumbers) {
 }
 
 function renderGreyBookContext(reading) {
-  const mapped = GREY_BOOK_CONTEXT?.dates?.[reading.id];
-  if (!mapped) return '';
+  const context = GREY_BOOK_CONTEXT?.contexts?.[reading.id];
+  if (!context) return '';
 
-  const sourcePageNumbers = (Array.isArray(mapped) ? mapped : [mapped])
-    .map(Number)
-    .filter(Number.isFinite);
+  const paragraphStore = GREY_BOOK_CONTEXT?.paragraphs || {};
+  const paragraphs = (context.paragraphIds || [])
+    .map((paragraphId) => ({ id: paragraphId, ...paragraphStore[paragraphId] }))
+    .filter((paragraph) => paragraph && paragraph.text);
 
-  if (!sourcePageNumbers.length) return '';
+  if (!paragraphs.length) return '';
 
-  const built = buildCompleteSourceBlocks(sourcePageNumbers);
-  if (!built) return '';
+  const citedParagraphs = new Set(context.citedParagraphIds || []);
+  const sourcePages = Array.isArray(context.sourcePages) ? context.sourcePages : [];
+  const contextPages = Array.isArray(context.contextPages) ? context.contextPages : sourcePages;
 
-  const firstSourcePage = sourcePageNumbers[0];
-  const lastSourcePage = sourcePageNumbers[sourcePageNumbers.length - 1];
-  const sourcePageLabel = sourcePageNumbers.length > 1
-    ? `Pages ${firstSourcePage}–${lastSourcePage}`
-    : `Page ${firstSourcePage}`;
+  const pageWord = (page) => page === 'Frontispiece' ? 'Frontispiece' : `Page ${page}`;
+  const pageLabel = sourcePages.length === 1
+    ? pageWord(sourcePages[0])
+    : `Pages ${sourcePages[0]}–${sourcePages[sourcePages.length - 1]}`;
+  const contextPageLabel = contextPages.length === 1
+    ? pageWord(contextPages[0])
+    : `Pages ${contextPages[0]}–${contextPages[contextPages.length - 1]}`;
 
-  const contextPageLabel = built.contextStartPage === built.contextEndPage
-    ? `Page ${built.contextStartPage}`
-    : `Pages ${built.contextStartPage}–${built.contextEndPage}`;
+  const stamp = sourcePages.length === 1
+    ? (sourcePages[0] === 'Frontispiece' ? 'FRONTISPIECE' : `P. ${sourcePages[0]}`)
+    : `PP. ${sourcePages[0]}–${sourcePages[sourcePages.length - 1]}`;
 
-  const section = built.blocks[0]?.section || 'Grey Book';
+  let citedBadgeUsed = false;
+  const paragraphMarkup = paragraphs.map((paragraph) => {
+    const text = escapeHtml(paragraph.text);
+    const isCited = citedParagraphs.has(paragraph.id);
+    const badge = isCited && context.lineLabel && !citedBadgeUsed
+      ? `<span class="gbr-source-line-badge">${escapeHtml(context.lineLabel)}</span>`
+      : '';
+    if (isCited && context.lineLabel) citedBadgeUsed = true;
 
-  const pageBlocks = built.blocks.map((block, index) => `
-    <div class="grey-book-context-page${index > 0 ? ' grey-book-context-page-continuation' : ''}">
-      <div class="grey-book-context-pagehead">
-        <span>Full mapped source page with complete boundary paragraphs</span>
-        <strong>Memphis 1981 · Page ${escapeHtml(block.page)}</strong>
-      </div>
-      <div class="grey-book-context-text">
-        ${paragraphHtml(block.paragraphs.join('\n\n'))}
-      </div>
-    </div>
-  `).join('');
+    if (paragraph.kind === 'step-heading' || paragraph.kind === 'chapter-heading' || paragraph.kind === 'section-heading') {
+      return `<h5 class="gbr-source-section-heading${isCited ? ' gbr-source-cited' : ''}">${badge}${text}</h5>`;
+    }
+    if (paragraph.kind === 'heading') {
+      return `<h6 class="gbr-source-subheading${isCited ? ' gbr-source-cited' : ''}">${badge}${text}</h6>`;
+    }
+    if (paragraph.kind === 'step-statement') {
+      return `<p class="gbr-source-step-statement${isCited ? ' gbr-source-cited' : ''}">${badge}${text}</p>`;
+    }
+    return `<p class="gbr-source-paragraph${isCited ? ' gbr-source-cited' : ''}">${badge}${text}</p>`;
+  }).join('');
+
+  const boundaryParts = [];
+  if (context.boundaryBefore) boundaryParts.push('the opening paragraph is completed from the preceding GBR page');
+  if (context.boundaryAfter) boundaryParts.push('the closing paragraph is completed on the following GBR page');
+
+  const sectionNote = context.sectionType === 'step'
+    ? `Only ${context.section} is included; text from the previous and following Steps is excluded.`
+    : `The text remains inside ${context.section}.`;
+  const boundaryNote = boundaryParts.length
+    ? ` ${boundaryParts.join(' and ')}. No unrelated paragraph from an adjacent page is included.`
+    : ' No neighboring-page text was needed to complete a paragraph.';
+
+  const metaParts = [context.section, `GBR ${pageLabel}`];
+  if (context.lineLabel) metaParts.push(context.lineLabel);
 
   return `
     <section class="grey-book-context" aria-label="Grey Book source context for ${escapeHtml(reading.date)}">
       <div class="grey-book-context-heading">
         <div>
           <p class="grey-book-context-kicker">From the Grey Book</p>
-          <h4>Read the Source ${sourcePageNumbers.length > 1 ? 'Pages' : 'Page'}</h4>
-          <p class="grey-book-context-meta">${escapeHtml(section)} · ${sourcePageLabel}</p>
+          <h4>Read the Source ${sourcePages.length > 1 ? 'Pages' : 'Page'}</h4>
+          <p class="grey-book-context-meta">${metaParts.map(escapeHtml).join(' · ')}</p>
         </div>
-        <span class="grey-book-page-stamp" aria-hidden="true">${
-          sourcePageNumbers.length > 1
-            ? `PP. ${firstSourcePage}–${lastSourcePage}`
-            : `P. ${firstSourcePage}`
-        }</span>
+        <span class="grey-book-page-stamp" aria-hidden="true">${escapeHtml(stamp)}</span>
       </div>
 
       <details class="grey-book-context-details">
         <summary>
           <span class="grey-book-context-summary-copy">
-            <strong>Read Grey Book ${sourcePageLabel}</strong>
-            <small>Full source page, with its first and last paragraphs completed.</small>
+            <strong>Read GBR ${escapeHtml(pageLabel)}</strong>
+            <small>Full cited-page text with complete boundary paragraphs.</small>
           </span>
           <span class="grey-book-context-summary-cue" aria-hidden="true">OPEN ▼</span>
         </summary>
 
         <div class="grey-book-context-pages">
-          ${pageBlocks}
+          <div class="grey-book-context-page gbr-source-text-page" data-gbr-source-text>
+            <div class="grey-book-context-pagehead">
+              <span>Selectable corresponding source text</span>
+              <strong>1981 Grey Book · GBR ${escapeHtml(pageLabel)}</strong>
+            </div>
+            <div class="grey-book-context-text gbr-source-text-body">
+              ${paragraphMarkup}
+            </div>
+          </div>
           <p class="grey-book-context-note">
-            The mapped source ${sourcePageNumbers.length > 1 ? 'pages are' : 'page is'} shown in full.
-            Paragraph context extends only as needed through ${escapeHtml(contextPageLabel)}.
+            The full cited-page text belonging to ${escapeHtml(context.section)} is shown through ${escapeHtml(contextPageLabel)}.
+            ${escapeHtml(sectionNote + boundaryNote)}
           </p>
         </div>
       </details>
