@@ -1,16 +1,23 @@
 {
-  "07-13": {
-    "title": "Grey Book Source Audio — July 13",
-    "pageLabel": "Memphis 1981 Review Form — Source Page 167",
-    "audioUrl": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-audio/GBR-Source-07-13.m4a",
-    "fileName": "GBR-Source-07-13.m4a",
-    "updated": "2026-07-14"
-  },
-  "07-14": {
-    "title": "Grey Book Source Audio - July 14",
-    "pageLabel": "Step Seven - GBR Page 48 - Lines 12-14",
-    "audioUrl": "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-audio/GBR-Source-07-14.m4a",
-    "fileName": "GBR-Source-07-14.m4a",
-    "updated": "2026-07-14"
-  }
+    "07-13":  {
+                  "title":  "Grey Book Source Audio — July 13",
+                  "pageLabel":  "Memphis 1981 Review Form — Source Page 167",
+                  "audioUrl":  "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-audio/GBR-Source-07-13.m4a",
+                  "fileName":  "GBR-Source-07-13.m4a",
+                  "updated":  "2026-07-14"
+              },
+    "07-14":  {
+                  "title":  "Grey Book Source Audio - July 14",
+                  "pageLabel":  "Step Seven - GBR Page 48 - Lines 12-14",
+                  "audioUrl":  "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-audio/GBR-Source-07-14.m4a",
+                  "fileName":  "GBR-Source-07-14.m4a",
+                  "updated":  "2026-07-14"
+              },
+    "07-15":  {
+                  "title":  "Grey Book Source Audio — July 15",
+                  "pageLabel":  "Step Eight · GBR Page 50",
+                  "audioUrl":  "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-audio/GBR-Source-07-15.m4a",
+                  "fileName":  "GBR-Source-07-15.m4a",
+                  "updated":  "2026-07-15"
+              }
 }
