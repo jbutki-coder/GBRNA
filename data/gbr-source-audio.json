@@ -19,5 +19,12 @@
                   "audioUrl":  "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-audio/GBR-Source-07-15.m4a",
                   "fileName":  "GBR-Source-07-15.m4a",
                   "updated":  "2026-07-15"
+              },
+    "07-16":  {
+                  "title":  "Grey Book Source Audio — July 16",
+                  "pageLabel":  "Chapter Three · GBR Page 23 · Lines 1–3",
+                  "audioUrl":  "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-audio/GBR-Source-07-16.mp3",
+                  "fileName":  "GBR-Source-07-16.mp3",
+                  "updated":  "2026-07-16"
               }
 }
