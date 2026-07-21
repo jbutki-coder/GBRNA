@@ -1,0 +1,1 @@
+Upload index.html and 1983-LWB-Draft.pdf into the same website folder. The page includes all 12 pages, contents, presentation mode, full screen, print, and original PDF access.
