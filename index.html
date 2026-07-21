@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <title>Grey Book Reflection</title>
-  <meta name="description" content="Grey Book Reflection daily reading site â€” conscienced by the Grey Area Group of NA" />
+  <meta name="description" content="Grey Book Reflection daily reading site — conscienced by the Grey Area Group of NA" />
 
   <!-- Browser tab icons -->
   <link rel="icon" href="/icons/favicon.ico?v=3" sizes="any">
@@ -22,7 +22,7 @@
 
   <!-- Shared link preview -->
   <meta property="og:title" content="Grey Book Reflection">
-  <meta property="og:description" content="Daily Grey Book Reflection â€” conscienced by the Grey Area Group of NA and carried through A.S.I.S.">
+  <meta property="og:description" content="Daily Grey Book Reflection — conscienced by the Grey Area Group of NA and carried through A.S.I.S.">
   <meta property="og:image" content="https://gbrna.onrender.com/icons/icon-512.png?v=3">
   <meta property="og:image:secure_url" content="https://gbrna.onrender.com/icons/icon-512.png?v=3">
   <meta property="og:image:type" content="image/png">
@@ -56,6 +56,7 @@
         <a href="#archive" data-nav="archive">Archive</a>
         <a href="#search" data-nav="search">Search</a>
         <a href="#library" data-nav="library">Library</a>
+        <a href="/lwb-draft/">Little White Book</a>
         <a href="#download" data-nav="download">Download</a>
         <a href="#audio" data-nav="audio">Audio</a>
         <a href="#meetings" data-nav="meetings">Meetings</a>
@@ -77,7 +78,7 @@
     <section class="draft-switch" aria-label="Switch daily reading draft">
       <a class="draft-switch-link" href="/jft.html">
         <span>Grey Book Reflection</span>
-        <span class="draft-arrow" aria-hidden="true">â†’</span>
+        <span class="draft-arrow" aria-hidden="true">→</span>
         <span>Just For Tonight</span>
       </a>
     </section>
@@ -90,7 +91,7 @@
         <h2>Grey Book Reflection</h2>
         <p>
           A daily reflection project rooted in the Memphis 1981 Review Form and the historical
-          literature of Narcotics Anonymous. Read todayâ€™s reflection, open the original source
+          literature of Narcotics Anonymous. Read today’s reflection, open the original source
           context, listen to NA audio, find virtual and hybrid historical literature meetings,
           and read the books that shaped this project.
         </p>
@@ -99,11 +100,12 @@
 
       <div class="project-intro-actions" aria-label="Quick links">
         <a href="#today">Read Today</a>
+        <a href="/lwb-draft/">Open Little White Book</a>
         <a href="#library">Read Literature</a>
         <a href="#meetings">Find a Meeting</a>
         <a href="#audio">Listen</a>
         <a href="#archive">Browse Archive</a>
-        <a href="#review-input">Review & Input</a>
+        <a href="#review-input">Review &amp; Input</a>
       </div>
     </section>
 
@@ -118,6 +120,12 @@
       <p>
         Open a cover to read the book in the site reader, or use the download button on each item
         to save a copy for later. Covers are kept small so the library stays compact on phones.
+      </p>
+
+      <p>
+        <a class="download-button" href="/lwb-draft/">
+          Read the 1983 Little White Book Draft
+        </a>
       </p>
 
       <div class="literature-shelf" data-literature-shelf aria-label="Historical NA literature shelf"></div>
@@ -176,6 +184,12 @@
       </p>
 
       <p>
+        <a class="download-button" href="/lwb-draft/">
+          Read the 1983 Little White Book Draft
+        </a>
+      </p>
+
+      <p>
         <a class="download-button" href="https://www.nahelp.org" target="_blank" rel="noopener noreferrer">
           Visit A.S.I.S. / NA Help
         </a>
@@ -211,47 +225,18 @@
 
   <div class="literature-reader-modal" data-literature-reader hidden>
     <div class="literature-reader-backdrop" data-literature-close></div>
-
-    <section
-      class="literature-reader-window"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="literatureReaderTitle"
-    >
+    <section class="literature-reader-window" role="dialog" aria-modal="true" aria-labelledby="literatureReaderTitle">
       <header class="literature-reader-header">
         <div>
           <p class="eyebrow">Historical Literature Reader</p>
           <h2 id="literatureReaderTitle" data-literature-title>Literature Reader</h2>
         </div>
-
-        <button
-          class="literature-reader-close"
-          type="button"
-          data-literature-close
-        >
-          Close Ã—
-        </button>
+        <button class="literature-reader-close" type="button" data-literature-close>Close ×</button>
       </header>
 
       <div class="literature-reader-actions">
-        <a
-          class="download-button"
-          href="#"
-          target="_blank"
-          rel="noopener noreferrer"
-          data-literature-open
-        >
-          Open Full Size
-        </a>
-
-        <a
-          class="download-button"
-          href="#"
-          download
-          data-literature-download
-        >
-          Download PDF
-        </a>
+        <a class="download-button" href="#" target="_blank" rel="noopener noreferrer" data-literature-open>Open Full Size</a>
+        <a class="download-button" href="#" download data-literature-download>Download PDF</a>
       </div>
 
       <iframe
