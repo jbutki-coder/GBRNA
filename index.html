@@ -294,7 +294,7 @@
         <iframe
           class="master-archive-frame"
           id="masterArchiveFrame"
-          src="/archive-master-index.html?v=20260722-pdfjs-v4"
+          src="/archive-master-index.html?v=20260722-exact-site-v6"
           title="Complete Narcotics Anonymous historical archive index"
           loading="lazy"
         ></iframe>
@@ -540,17 +540,29 @@
   let scale = 1;
   let currentUrl = '';
   let currentExtension = '';
+  let readerCheck = null;
 
   const minScale = 0.55;
   const maxScale = 1.60;
   const scaleStep = 0.10;
+
+  function isPhoneOrTablet() {
+    const agent = navigator.userAgent || '';
+    const mobileAgent = /Android|iPhone|iPad|iPod|Mobile/i.test(agent);
+    const iPadDesktopMode =
+      navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1;
+    const coarseTouch = window.matchMedia(
+      '(max-width: 950px) and (pointer: coarse)'
+    ).matches;
+    return mobileAgent || iPadDesktopMode || coarseTouch;
+  }
 
   function getExtension(url) {
     try {
       const parsed = new URL(url, window.location.href);
       const path = parsed.pathname.toLowerCase();
       return path.includes('.') ? path.split('.').pop() : '';
-    } catch (error) {
+    } catch {
       return '';
     }
   }
@@ -568,18 +580,38 @@
     });
   }
 
-  function buildViewerUrl(url, documentTitle) {
+  async function nodeReaderAvailable() {
+    if (readerCheck) return readerCheck;
+
+    readerCheck = (async () => {
+      const controller = new AbortController();
+      const timer = setTimeout(() => controller.abort(), 5000);
+
+      try {
+        const response = await fetch('/health', {
+          cache: 'no-store',
+          signal: controller.signal,
+          headers: { Accept: 'application/json' }
+        });
+
+        if (!response.ok) return false;
+        const type = response.headers.get('content-type') || '';
+        if (!type.includes('application/json')) return false;
+        const body = await response.json();
+        return body && body.status === 'ok' && body.pdfReader === true;
+      } catch {
+        return false;
+      } finally {
+        clearTimeout(timer);
+      }
+    })();
+
+    return readerCheck;
+  }
+
+  function buildNonPdfViewerUrl(url) {
     const parsed = new URL(url, window.location.href);
     parsed.hash = '';
-
-    if (currentExtension === 'pdf') {
-      const query = new URLSearchParams({
-        url: parsed.href,
-        title: documentTitle || 'Archive PDF'
-      });
-
-      return `/pdf-reader.html?${query.toString()}`;
-    }
 
     if (['doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx'].includes(currentExtension)) {
       return 'https://docs.google.com/gview?embedded=1&url=' +
@@ -590,12 +622,7 @@
   }
 
   function applyScale() {
-    if (!frame || !canvas) return;
-
-    if (currentExtension === 'pdf') {
-      resetFrameGeometry();
-      return;
-    }
+    if (!frame || !canvas || currentExtension === 'pdf') return;
 
     frame.style.transform = `scale(${scale})`;
     frame.style.width = `${100 / scale}%`;
@@ -609,32 +636,59 @@
 
   function setScale(nextScale) {
     if (currentExtension === 'pdf') return;
-
     scale = Math.min(maxScale, Math.max(minScale, nextScale));
     applyScale();
   }
 
-  function openDocument(url, documentTitle) {
+  function showViewer(documentTitle, viewerKicker) {
+    title.textContent = documentTitle || 'Archive document';
+    kicker.textContent = viewerKicker;
+    viewer.hidden = false;
+    document.body.classList.add('gbr-parent-viewer-open');
+    resetFrameGeometry();
+  }
+
+  async function openDocument(url, documentTitle) {
     currentUrl = new URL(url, window.location.href).href;
     currentExtension = getExtension(currentUrl);
     scale = 1;
 
-    title.textContent = documentTitle || 'Archive document';
-
     if (currentExtension === 'pdf') {
-      kicker.textContent = 'Built-in multipage PDF reader';
       setOuterZoomVisible(false);
-    } else {
-      kicker.textContent = 'Archive document reader';
-      setOuterZoomVisible(true);
+      showViewer(documentTitle, 'Checking built-in multipage PDF reader…');
+      frame.src = 'about:blank';
+
+      const available = await nodeReaderAvailable();
+
+      if (available) {
+        const query = new URLSearchParams({
+          url: currentUrl,
+          title: documentTitle || 'Archive PDF'
+        });
+        kicker.textContent = 'Built-in multipage PDF reader';
+        frame.src = `/pdf-reader.html?${query.toString()}`;
+        back.focus();
+        return;
+      }
+
+      // Exact fallback for a static deployment: a static site has no
+      // /health, /pdf-proxy, or /pdfjs routes. On phones, use the device's
+      // real multipage viewer instead of leaving the user on a blank frame.
+      if (isPhoneOrTablet()) {
+        sessionStorage.setItem('gbrReturnToArchive', '1');
+        window.location.assign(currentUrl);
+        return;
+      }
+
+      kicker.textContent = 'Desktop PDF reader';
+      frame.src = `${currentUrl}#page=1&zoom=page-width&toolbar=1&scrollbar=1`;
+      back.focus();
+      return;
     }
 
-    viewer.hidden = false;
-    document.body.classList.add('gbr-parent-viewer-open');
-
-    resetFrameGeometry();
-    frame.src = buildViewerUrl(currentUrl, documentTitle);
-
+    setOuterZoomVisible(true);
+    showViewer(documentTitle, 'Archive document reader');
+    frame.src = buildNonPdfViewerUrl(currentUrl);
     requestAnimationFrame(applyScale);
     back.focus();
   }
@@ -646,6 +700,14 @@
     currentExtension = '';
     setOuterZoomVisible(true);
     document.body.classList.remove('gbr-parent-viewer-open');
+  }
+
+  function restoreArchivePosition() {
+    if (sessionStorage.getItem('gbrReturnToArchive') !== '1') return;
+    sessionStorage.removeItem('gbrReturnToArchive');
+    requestAnimationFrame(() => {
+      document.getElementById('history-archive')?.scrollIntoView({ block: 'start' });
+    });
   }
 
   window.addEventListener('message', (event) => {
@@ -663,6 +725,8 @@
     }
   });
 
+  window.addEventListener('pageshow', restoreArchivePosition);
+
   zoomOut?.addEventListener('click', () => setScale(scale - scaleStep));
   zoomIn?.addEventListener('click', () => setScale(scale + scaleStep));
   zoomReset?.addEventListener('click', () => setScale(1));
@@ -671,9 +735,7 @@
   close?.addEventListener('click', closeDocument);
 
   document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape' && viewer && !viewer.hidden) {
-      closeDocument();
-    }
+    if (event.key === 'Escape' && viewer && !viewer.hidden) closeDocument();
   });
 
   if ('ResizeObserver' in window && canvas) {
