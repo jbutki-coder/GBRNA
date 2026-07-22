@@ -216,6 +216,11 @@
         min-height: 55vh;
       }
     }
+  
+    .reader-error strong { display: block; margin-bottom: .55rem; }
+    .reader-error p { margin: 0 0 .8rem; }
+    .reader-error-actions { display: flex; flex-wrap: wrap; gap: .55rem; margin-top: .8rem; }
+    .reader-error-actions button { padding: .65rem .85rem; border: 0; border-radius: .42rem; background: var(--navy); color: #fff; font-weight: 800; }
   </style>
 </head>
 <body>
@@ -245,6 +250,6 @@
     <div class="page-list" id="pageList"></div>
   </main>
 
-  <script type="module" src="/js/pdf-reader.mjs?v=20260722-v4"></script>
+  <script type="module" src="/js/pdf-reader.mjs?v=20260722-exact-site-v6"></script>
 </body>
 </html>
