@@ -199,12 +199,21 @@ hr {
   background: rgba(255,255,255,.2);
 }
 
+.archive-viewer-canvas {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background: #fff;
+}
+
 .archive-viewer-frame {
   display: block;
   width: 100%;
-  height: 100%;
+  min-height: 100%;
   border: 0;
   background: #fff;
+  transform-origin: top left;
 }
 
 body.archive-viewer-open {
@@ -1436,17 +1445,24 @@ body.archive-viewer-open {
     </div>
 
     <div class="archive-viewer-actions">
+      <button id="archiveViewerZoomOut" type="button">−</button>
+      <button id="archiveViewerZoomReset" type="button">
+        <span id="archiveViewerZoomLabel">85%</span>
+      </button>
+      <button id="archiveViewerZoomIn" type="button">+</button>
       <button id="archiveViewerBack" type="button">Back to Index</button>
       <button id="archiveViewerClose" type="button">Close</button>
     </div>
   </header>
 
-  <iframe
-    class="archive-viewer-frame"
-    id="archiveViewerFrame"
-    title="Archive document reader"
-    loading="eager"
-  ></iframe>
+  <div class="archive-viewer-canvas" id="archiveViewerCanvas">
+    <iframe
+      class="archive-viewer-frame"
+      id="archiveViewerFrame"
+      title="Archive document reader"
+      loading="eager"
+    ></iframe>
+  </div>
 </div>
 
 
@@ -1459,10 +1475,40 @@ body.archive-viewer-open {
   const items = [...document.querySelectorAll('li')];
 
   const viewer = document.getElementById('archiveDocumentViewer');
+  const viewerCanvas = document.getElementById('archiveViewerCanvas');
   const viewerFrame = document.getElementById('archiveViewerFrame');
   const viewerTitle = document.getElementById('archiveViewerTitle');
+  const viewerZoomOut = document.getElementById('archiveViewerZoomOut');
+  const viewerZoomReset = document.getElementById('archiveViewerZoomReset');
+  const viewerZoomIn = document.getElementById('archiveViewerZoomIn');
+  const viewerZoomLabel = document.getElementById('archiveViewerZoomLabel');
   const viewerBack = document.getElementById('archiveViewerBack');
   const viewerClose = document.getElementById('archiveViewerClose');
+
+  let viewerScale = 0.85;
+  const viewerMinScale = 0.50;
+  const viewerMaxScale = 1.75;
+  const viewerStep = 0.10;
+
+  function applyViewerScale() {
+    if (!viewerCanvas || !viewerFrame) return;
+
+    viewerFrame.style.transform = `scale(${viewerScale})`;
+    viewerFrame.style.width = `${100 / viewerScale}%`;
+    viewerFrame.style.height = `${viewerCanvas.clientHeight / viewerScale}px`;
+
+    if (viewerZoomLabel) {
+      viewerZoomLabel.textContent = `${Math.round(viewerScale * 100)}%`;
+    }
+  }
+
+  function setViewerScale(nextScale) {
+    viewerScale = Math.min(
+      viewerMaxScale,
+      Math.max(viewerMinScale, nextScale)
+    );
+    applyViewerScale();
+  }
 
   const fileExtensions = [
     'pdf', 'png', 'jpg', 'jpeg', 'gif', 'webp', 'svg',
@@ -1504,6 +1550,8 @@ body.archive-viewer-open {
     viewerFrame.src = getEmbeddedUrl(url);
     viewer.hidden = false;
     document.body.classList.add('archive-viewer-open');
+    viewerScale = 0.85;
+    requestAnimationFrame(applyViewerScale);
     viewerBack.focus();
   }
 
@@ -1548,8 +1596,23 @@ body.archive-viewer-open {
     input.focus();
   });
 
+  viewerZoomOut?.addEventListener('click', () => {
+    setViewerScale(viewerScale - viewerStep);
+  });
+
+  viewerZoomIn?.addEventListener('click', () => {
+    setViewerScale(viewerScale + viewerStep);
+  });
+
+  viewerZoomReset?.addEventListener('click', () => {
+    setViewerScale(0.85);
+  });
+
   viewerBack.addEventListener('click', closeViewer);
   viewerClose.addEventListener('click', closeViewer);
+
+  const viewerResizeObserver = new ResizeObserver(applyViewerScale);
+  if (viewerCanvas) viewerResizeObserver.observe(viewerCanvas);
 
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape' && !viewer.hidden) {
