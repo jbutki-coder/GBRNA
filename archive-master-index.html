@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Complete NA Historical Archive Index</title>
+<title>Complete NA Historical Archive Index — Mobile Reader v3</title>
 <style>
 :root {
   --ink: #1f2529;
@@ -1697,7 +1697,19 @@ body.archive-viewer-open {
 
     link.addEventListener('click', (event) => {
       event.preventDefault();
-      openViewer(link.href, link.textContent.trim());
+
+      const documentRequest = {
+        type: 'gbr-open-archive-document',
+        url: link.href,
+        title: link.textContent.trim()
+      };
+
+      if (window.parent && window.parent !== window) {
+        window.parent.postMessage(documentRequest, window.location.origin);
+        return;
+      }
+
+      openViewer(documentRequest.url, documentRequest.title);
     });
   });
 
