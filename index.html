@@ -41,6 +41,7 @@
 
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/gbr-source-text.css?v=20260714-all366">
+  <link rel="stylesheet" href="css/archive-panel.css?v=20260721">
 </head>
 
 <body>
@@ -56,6 +57,7 @@
         <a href="#archive" data-nav="archive">Archive</a>
         <a href="#search" data-nav="search">Search</a>
         <a href="#library" data-nav="library">Library</a>
+        <a href="#history-archive">NA History Archive</a>
         <a href="/lwb-draft/">Little White Book</a>
         <a href="#download" data-nav="download">Download</a>
         <a href="#audio" data-nav="audio">Audio</a>
@@ -102,6 +104,7 @@
         <a href="#today">Read Today</a>
         <a href="/lwb-draft/">Open Little White Book</a>
         <a href="#library">Read Literature</a>
+        <a href="#history-archive">Browse NA History Archive</a>
         <a href="#meetings">Find a Meeting</a>
         <a href="#audio">Listen</a>
         <a href="#archive">Browse Archive</a>
@@ -129,6 +132,39 @@
       </p>
 
       <div class="literature-shelf" data-literature-shelf aria-label="Historical NA literature shelf"></div>
+    </section>
+
+
+    <section id="history-archive" class="panel master-archive-panel">
+      <div class="panel-heading">
+        <p class="eyebrow">Complete Historical Index</p>
+        <h2>NA History Archive</h2>
+      </div>
+
+      <p class="master-archive-summary">
+        Browse 1,963 public historical files grouped by collection. Search the complete index
+        below, or open it full size in a separate browser tab.
+      </p>
+
+      <div class="master-archive-actions">
+        <a
+          class="download-button"
+          href="/archive-master-index.html"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Open Full Archive Index
+        </a>
+      </div>
+
+      <div class="master-archive-frame-shell">
+        <iframe
+          class="master-archive-frame"
+          src="/archive-master-index.html"
+          title="Complete Narcotics Anonymous historical archive index"
+          loading="lazy"
+        ></iframe>
+      </div>
     </section>
 
     <section id="archive" class="panel">
