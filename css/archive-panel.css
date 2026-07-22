@@ -36,3 +36,18 @@
     min-height: 560px;
   }
 }
+
+
+.master-archive-expand {
+  cursor: pointer;
+  font: inherit;
+}
+
+.master-archive-frame-shell.is-expanded {
+  position: relative;
+}
+
+.master-archive-frame-shell.is-expanded .master-archive-frame {
+  height: 88vh;
+  min-height: 720px;
+}
