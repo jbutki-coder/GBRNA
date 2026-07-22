@@ -294,7 +294,7 @@
         <iframe
           class="master-archive-frame"
           id="masterArchiveFrame"
-          src="/archive-master-index.html?v=20260722-mobile-reader-v3"
+          src="/archive-master-index.html?v=20260722-pdfjs-v4"
           title="Complete Narcotics Anonymous historical archive index"
           loading="lazy"
         ></iframe>
@@ -540,24 +540,10 @@
   let scale = 1;
   let currentUrl = '';
   let currentExtension = '';
-  let mobilePdfMode = false;
 
   const minScale = 0.55;
   const maxScale = 1.60;
   const scaleStep = 0.10;
-
-  function isPhoneAppView() {
-    const agent = navigator.userAgent || '';
-    const mobileAgent = /Android|iPhone|iPad|iPod|Mobile/i.test(agent);
-    const iPadDesktopMode =
-      navigator.platform === 'MacIntel' &&
-      navigator.maxTouchPoints > 1;
-    const touchScreen = window.matchMedia(
-      '(max-width: 950px) and (pointer: coarse)'
-    ).matches;
-
-    return mobileAgent || iPadDesktopMode || touchScreen;
-  }
 
   function getExtension(url) {
     try {
@@ -569,20 +555,30 @@
     }
   }
 
-  function buildViewerUrl(url) {
+  function resetFrameGeometry() {
+    frame.style.transform = 'none';
+    frame.style.width = '100%';
+    frame.style.height = '100%';
+    frame.style.minHeight = '100%';
+  }
+
+  function setOuterZoomVisible(visible) {
+    [zoomOut, zoomReset, zoomIn].forEach((button) => {
+      if (button) button.hidden = !visible;
+    });
+  }
+
+  function buildViewerUrl(url, documentTitle) {
     const parsed = new URL(url, window.location.href);
     parsed.hash = '';
 
-    if (currentExtension === 'pdf' && isPhoneAppView()) {
-      mobilePdfMode = true;
-      return 'https://docs.google.com/gview?embedded=1&url=' +
-        encodeURIComponent(parsed.href);
-    }
-
-    mobilePdfMode = false;
-
     if (currentExtension === 'pdf') {
-      return `${parsed.href}#page=1&zoom=page-width&toolbar=1&navpanes=0&scrollbar=1`;
+      const query = new URLSearchParams({
+        url: parsed.href,
+        title: documentTitle || 'Archive PDF'
+      });
+
+      return `/pdf-reader.html?${query.toString()}`;
     }
 
     if (['doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx'].includes(currentExtension)) {
@@ -596,6 +592,11 @@
   function applyScale() {
     if (!frame || !canvas) return;
 
+    if (currentExtension === 'pdf') {
+      resetFrameGeometry();
+      return;
+    }
+
     frame.style.transform = `scale(${scale})`;
     frame.style.width = `${100 / scale}%`;
     frame.style.height = `${canvas.clientHeight / scale}px`;
@@ -607,6 +608,8 @@
   }
 
   function setScale(nextScale) {
+    if (currentExtension === 'pdf') return;
+
     scale = Math.min(maxScale, Math.max(minScale, nextScale));
     applyScale();
   }
@@ -614,18 +617,24 @@
   function openDocument(url, documentTitle) {
     currentUrl = new URL(url, window.location.href).href;
     currentExtension = getExtension(currentUrl);
-    scale = currentExtension === 'pdf' && isPhoneAppView() ? 0.90 : 1;
+    scale = 1;
 
     title.textContent = documentTitle || 'Archive document';
-    kicker.textContent =
-      currentExtension === 'pdf' && isPhoneAppView()
-        ? 'Mobile multipage PDF reader — swipe inside the document'
-        : 'Archive document reader';
+
+    if (currentExtension === 'pdf') {
+      kicker.textContent = 'Built-in multipage PDF reader';
+      setOuterZoomVisible(false);
+    } else {
+      kicker.textContent = 'Archive document reader';
+      setOuterZoomVisible(true);
+    }
 
     viewer.hidden = false;
     document.body.classList.add('gbr-parent-viewer-open');
 
-    frame.src = buildViewerUrl(currentUrl);
+    resetFrameGeometry();
+    frame.src = buildViewerUrl(currentUrl, documentTitle);
+
     requestAnimationFrame(applyScale);
     back.focus();
   }
@@ -635,23 +644,28 @@
     frame.src = 'about:blank';
     currentUrl = '';
     currentExtension = '';
-    mobilePdfMode = false;
+    setOuterZoomVisible(true);
     document.body.classList.remove('gbr-parent-viewer-open');
   }
 
   window.addEventListener('message', (event) => {
     if (event.origin !== window.location.origin) return;
-    if (!event.data || event.data.type !== 'gbr-open-archive-document') return;
-    if (typeof event.data.url !== 'string') return;
+    if (!event.data) return;
 
-    openDocument(event.data.url, event.data.title);
+    if (event.data.type === 'gbr-open-archive-document') {
+      if (typeof event.data.url !== 'string') return;
+      openDocument(event.data.url, event.data.title);
+      return;
+    }
+
+    if (event.data.type === 'gbr-close-pdf-reader') {
+      closeDocument();
+    }
   });
 
   zoomOut?.addEventListener('click', () => setScale(scale - scaleStep));
   zoomIn?.addEventListener('click', () => setScale(scale + scaleStep));
-  zoomReset?.addEventListener('click', () => {
-    setScale(currentExtension === 'pdf' && isPhoneAppView() ? 0.90 : 1);
-  });
+  zoomReset?.addEventListener('click', () => setScale(1));
 
   back?.addEventListener('click', closeDocument);
   close?.addEventListener('click', closeDocument);
