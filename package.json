@@ -1,8 +1,8 @@
 {
   "name": "gbrna-mobile-pdf-reader",
-  "version": "4.0.0",
+  "version": "6.0.0",
   "private": true,
-  "description": "GBRNA static site with a same-origin mobile multipage PDF reader.",
+  "description": "GBRNA site with a checked Node PDF reader, mobile fallback, and same-origin archive PDF proxy.",
   "engines": {
     "node": ">=20 <23"
   },
