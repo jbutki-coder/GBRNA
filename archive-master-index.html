@@ -1469,6 +1469,7 @@ body.archive-viewer-open {
 
 
 
+
 <script>
 (() => {
   const input = document.getElementById('archiveSearch');
@@ -1480,6 +1481,7 @@ body.archive-viewer-open {
   const viewerCanvas = document.getElementById('archiveViewerCanvas');
   const viewerFrame = document.getElementById('archiveViewerFrame');
   const viewerTitle = document.getElementById('archiveViewerTitle');
+  const viewerKicker = document.querySelector('.archive-viewer-kicker');
   const viewerZoomOut = document.getElementById('archiveViewerZoomOut');
   const viewerZoomReset = document.getElementById('archiveViewerZoomReset');
   const viewerZoomIn = document.getElementById('archiveViewerZoomIn');
@@ -1499,10 +1501,24 @@ body.archive-viewer-open {
   let viewerScale = 0.85;
   let currentSourceUrl = '';
   let currentExtension = '';
+  let currentViewerMode = 'scaled';
 
   const viewerMinScale = 0.50;
   const viewerMaxScale = 1.75;
   const viewerStep = 0.10;
+
+  function isMobileDevice() {
+    const userAgent = navigator.userAgent || '';
+    const mobileUserAgent = /Android|iPhone|iPad|iPod|Mobile/i.test(userAgent);
+    const iPadDesktopMode =
+      navigator.platform === 'MacIntel' &&
+      navigator.maxTouchPoints > 1;
+    const coarseSmallScreen = window.matchMedia(
+      '(max-width: 950px) and (pointer: coarse)'
+    ).matches;
+
+    return mobileUserAgent || iPadDesktopMode || coarseSmallScreen;
+  }
 
   function getExtension(url) {
     try {
@@ -1529,19 +1545,29 @@ body.archive-viewer-open {
     }
   }
 
-  function buildPdfUrl(url, scale) {
+  function buildNativePdfUrl(url, scale) {
     const parsed = new URL(url, window.location.href);
-
-    // Remove any old fragment so the viewer always receives clean controls.
     parsed.hash = '';
 
     const percent = Math.round(scale * 100);
 
-    // Native browser PDF viewer:
-    // - toolbar remains available
-    // - scrollbar remains available
-    // - every page remains in the document
     return `${parsed.href}#page=1&zoom=${percent}&toolbar=1&navpanes=0&scrollbar=1`;
+  }
+
+  function buildMobilePdfUrl(url) {
+    const parsed = new URL(url, window.location.href);
+    parsed.hash = '';
+
+    return 'https://docs.google.com/gview?embedded=1&url=' +
+      encodeURIComponent(parsed.href);
+  }
+
+  function chooseViewerMode(extension) {
+    if (extension === 'pdf') {
+      return isMobileDevice() ? 'mobile-pdf' : 'native-pdf';
+    }
+
+    return 'scaled';
   }
 
   function getEmbeddedUrl(url) {
@@ -1549,7 +1575,11 @@ body.archive-viewer-open {
     const extension = getExtension(parsed.href);
 
     if (extension === 'pdf') {
-      return buildPdfUrl(parsed.href, viewerScale);
+      if (currentViewerMode === 'mobile-pdf') {
+        return buildMobilePdfUrl(parsed.href);
+      }
+
+      return buildNativePdfUrl(parsed.href, viewerScale);
     }
 
     if (officeExtensions.includes(extension)) {
@@ -1570,9 +1600,7 @@ body.archive-viewer-open {
   function applyViewerScale() {
     if (!viewerCanvas || !viewerFrame) return;
 
-    if (currentExtension === 'pdf') {
-      // Do not CSS-transform a browser PDF plugin. Doing so can cause
-      // multipage PDFs to render as though only page one is available.
+    if (currentViewerMode === 'native-pdf') {
       resetFrameGeometry();
     } else {
       viewerFrame.style.transform = `scale(${viewerScale})`;
@@ -1592,11 +1620,15 @@ body.archive-viewer-open {
       Math.max(viewerMinScale, nextScale)
     );
 
-    if (currentExtension === 'pdf' && currentSourceUrl) {
-      // Let the native PDF viewer perform the zoom. This keeps its own
-      // page navigation and internal scrolling intact for every page.
+    if (
+      currentViewerMode === 'native-pdf' &&
+      currentSourceUrl
+    ) {
       resetFrameGeometry();
-      viewerFrame.src = buildPdfUrl(currentSourceUrl, viewerScale);
+      viewerFrame.src = buildNativePdfUrl(
+        currentSourceUrl,
+        viewerScale
+      );
     } else {
       applyViewerScale();
     }
@@ -1609,9 +1641,20 @@ body.archive-viewer-open {
   function openViewer(url, title) {
     currentSourceUrl = new URL(url, window.location.href).href;
     currentExtension = getExtension(currentSourceUrl);
-    viewerScale = 0.85;
+    currentViewerMode = chooseViewerMode(currentExtension);
+
+    // The mobile document viewer fits better at 100%.
+    viewerScale = currentViewerMode === 'mobile-pdf' ? 1 : 0.85;
 
     viewerTitle.textContent = title || 'Archive document';
+
+    if (viewerKicker) {
+      viewerKicker.textContent =
+        currentViewerMode === 'mobile-pdf'
+          ? 'Mobile PDF Reader — swipe up inside the document to view every page'
+          : 'Archive Document Reader — scroll inside the document for additional pages';
+    }
+
     viewer.hidden = false;
     document.body.classList.add('archive-viewer-open');
 
@@ -1627,6 +1670,7 @@ body.archive-viewer-open {
     viewerFrame.src = 'about:blank';
     currentSourceUrl = '';
     currentExtension = '';
+    currentViewerMode = 'scaled';
     document.body.classList.remove('archive-viewer-open');
   }
 
@@ -1674,14 +1718,14 @@ body.archive-viewer-open {
   });
 
   viewerZoomReset?.addEventListener('click', () => {
-    setViewerScale(0.85);
+    setViewerScale(currentViewerMode === 'mobile-pdf' ? 1 : 0.85);
   });
 
   viewerBack.addEventListener('click', closeViewer);
   viewerClose.addEventListener('click', closeViewer);
 
   const viewerResizeObserver = new ResizeObserver(() => {
-    if (currentExtension !== 'pdf') {
+    if (currentViewerMode !== 'native-pdf') {
       applyViewerScale();
     }
   });
@@ -1697,6 +1741,7 @@ body.archive-viewer-open {
   });
 })();
 </script>
+
 
 
 
