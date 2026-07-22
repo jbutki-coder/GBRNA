@@ -146,7 +146,19 @@
         below, or open it full size in a separate browser tab.
       </p>
 
-      <div class="master-archive-actions">
+      <div class="master-archive-actions" aria-label="Archive reader controls">
+        <button class="download-button master-archive-control" id="masterArchiveZoomOut" type="button">
+          Zoom Out
+        </button>
+
+        <button class="download-button master-archive-control" id="masterArchiveZoomReset" type="button">
+          <span id="masterArchiveZoomLabel">85%</span>
+        </button>
+
+        <button class="download-button master-archive-control" id="masterArchiveZoomIn" type="button">
+          Zoom In
+        </button>
+
         <button
           class="download-button master-archive-expand"
           id="masterArchiveExpand"
@@ -300,22 +312,59 @@
 
   <script>
     (() => {
-      const button = document.getElementById('masterArchiveExpand');
+      const expandButton = document.getElementById('masterArchiveExpand');
+      const zoomOutButton = document.getElementById('masterArchiveZoomOut');
+      const zoomResetButton = document.getElementById('masterArchiveZoomReset');
+      const zoomInButton = document.getElementById('masterArchiveZoomIn');
+      const zoomLabel = document.getElementById('masterArchiveZoomLabel');
       const shell = document.querySelector('.master-archive-frame-shell');
+      const frame = document.getElementById('masterArchiveFrame');
 
-      if (!button || !shell) return;
+      if (!expandButton || !shell || !frame) return;
 
-      button.addEventListener('click', () => {
+      let scale = 0.85;
+      const minScale = 0.50;
+      const maxScale = 1.50;
+      const step = 0.10;
+
+      function applyScale() {
+        frame.style.transform = `scale(${scale})`;
+        frame.style.width = `${100 / scale}%`;
+        frame.style.height = `${shell.clientHeight / scale}px`;
+
+        if (zoomLabel) {
+          zoomLabel.textContent = `${Math.round(scale * 100)}%`;
+        }
+      }
+
+      function setScale(nextScale) {
+        scale = Math.min(maxScale, Math.max(minScale, nextScale));
+        applyScale();
+      }
+
+      zoomOutButton?.addEventListener('click', () => setScale(scale - step));
+      zoomInButton?.addEventListener('click', () => setScale(scale + step));
+      zoomResetButton?.addEventListener('click', () => setScale(0.85));
+
+      expandButton.addEventListener('click', () => {
         const expanded = shell.classList.toggle('is-expanded');
-        button.setAttribute('aria-expanded', String(expanded));
-        button.textContent = expanded
+        expandButton.setAttribute('aria-expanded', String(expanded));
+        expandButton.textContent = expanded
           ? 'Return to Standard Size'
           : 'Expand Archive Reader';
+
+        requestAnimationFrame(applyScale);
 
         if (expanded) {
           shell.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
       });
+
+      const resizeObserver = new ResizeObserver(applyScale);
+      resizeObserver.observe(shell);
+
+      window.addEventListener('load', applyScale);
+      applyScale();
     })();
   </script>
 
