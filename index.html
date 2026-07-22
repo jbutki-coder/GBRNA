@@ -147,19 +147,21 @@
       </p>
 
       <div class="master-archive-actions">
-        <a
-          class="download-button"
-          href="/archive-master-index.html"
-          target="_blank"
-          rel="noopener noreferrer"
+        <button
+          class="download-button master-archive-expand"
+          id="masterArchiveExpand"
+          type="button"
+          aria-controls="masterArchiveFrame"
+          aria-expanded="false"
         >
-          Open Full Archive Index
-        </a>
+          Expand Archive Reader
+        </button>
       </div>
 
       <div class="master-archive-frame-shell">
         <iframe
           class="master-archive-frame"
+          id="masterArchiveFrame"
           src="/archive-master-index.html"
           title="Complete Narcotics Anonymous historical archive index"
           loading="lazy"
@@ -295,5 +297,27 @@
   <script src="js/meetings.js"></script>
   <script src="js/literature.js"></script>
   <script defer src="js/source-audio.js?v=20260714-all366"></script>
+
+  <script>
+    (() => {
+      const button = document.getElementById('masterArchiveExpand');
+      const shell = document.querySelector('.master-archive-frame-shell');
+
+      if (!button || !shell) return;
+
+      button.addEventListener('click', () => {
+        const expanded = shell.classList.toggle('is-expanded');
+        button.setAttribute('aria-expanded', String(expanded));
+        button.textContent = expanded
+          ? 'Return to Standard Size'
+          : 'Expand Archive Reader';
+
+        if (expanded) {
+          shell.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    })();
+  </script>
+
 </body>
 </html>
