@@ -42,6 +42,126 @@
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/gbr-source-text.css?v=20260714-all366">
   <link rel="stylesheet" href="css/archive-panel.css?v=20260721">
+
+<style id="gbr-parent-archive-viewer-css">
+  .gbr-parent-viewer[hidden] {
+    display: none !important;
+  }
+
+  .gbr-parent-viewer {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    display: grid;
+    grid-template-rows: auto 1fr;
+    background: #f7f1e6;
+  }
+
+  .gbr-parent-viewer-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: .75rem;
+    padding: .65rem .8rem;
+    color: #fff;
+    background: #0f2c47;
+    box-shadow: 0 4px 18px rgba(0,0,0,.24);
+  }
+
+  .gbr-parent-viewer-heading {
+    min-width: 0;
+  }
+
+  .gbr-parent-viewer-kicker {
+    margin: 0 0 .1rem;
+    font-size: .67rem;
+    font-weight: 800;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    opacity: .75;
+  }
+
+  .gbr-parent-viewer-title {
+    margin: 0;
+    overflow: hidden;
+    font-size: .95rem;
+    line-height: 1.25;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .gbr-parent-viewer-actions {
+    display: flex;
+    flex: 0 0 auto;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: .4rem;
+  }
+
+  .gbr-parent-viewer-actions button {
+    padding: .5rem .65rem;
+    border: 1px solid rgba(255,255,255,.38);
+    border-radius: .4rem;
+    color: #fff;
+    background: rgba(255,255,255,.1);
+    font: inherit;
+    font-size: .82rem;
+    font-weight: 800;
+    cursor: pointer;
+  }
+
+  .gbr-parent-viewer-actions button:hover {
+    background: rgba(255,255,255,.2);
+  }
+
+  .gbr-parent-viewer-canvas {
+    position: relative;
+    min-height: 0;
+    overflow: auto;
+    background: #fff;
+  }
+
+  .gbr-parent-viewer-frame {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    border: 0;
+    background: #fff;
+    transform-origin: top left;
+  }
+
+  body.gbr-parent-viewer-open {
+    overflow: hidden;
+  }
+
+  @media (max-width: 680px) {
+    .gbr-parent-viewer-header {
+      align-items: flex-start;
+      padding: .55rem;
+    }
+
+    .gbr-parent-viewer-title {
+      max-width: 52vw;
+      white-space: normal;
+      font-size: .82rem;
+    }
+
+    .gbr-parent-viewer-kicker {
+      font-size: .58rem;
+    }
+
+    .gbr-parent-viewer-actions {
+      max-width: 46vw;
+    }
+
+    .gbr-parent-viewer-actions button {
+      padding: .45rem .55rem;
+      font-size: .74rem;
+    }
+  }
+</style>
+
 </head>
 
 <body>
@@ -174,7 +294,7 @@
         <iframe
           class="master-archive-frame"
           id="masterArchiveFrame"
-          src="/archive-master-index.html?v=20260722-mobilepdf-v2"
+          src="/archive-master-index.html?v=20260722-mobile-reader-v3"
           title="Complete Narcotics Anonymous historical archive index"
           loading="lazy"
         ></iframe>
@@ -367,6 +487,189 @@
       applyScale();
     })();
   </script>
+
+
+<div class="gbr-parent-viewer" id="gbrParentArchiveViewer" hidden>
+  <header class="gbr-parent-viewer-header">
+    <div class="gbr-parent-viewer-heading">
+      <p class="gbr-parent-viewer-kicker" id="gbrParentViewerKicker">
+        Archive Document Reader
+      </p>
+      <h2 class="gbr-parent-viewer-title" id="gbrParentViewerTitle">
+        Archive document
+      </h2>
+    </div>
+
+    <div class="gbr-parent-viewer-actions">
+      <button id="gbrParentViewerZoomOut" type="button">−</button>
+      <button id="gbrParentViewerZoomReset" type="button">
+        <span id="gbrParentViewerZoomLabel">100%</span>
+      </button>
+      <button id="gbrParentViewerZoomIn" type="button">+</button>
+      <button id="gbrParentViewerBack" type="button">Back</button>
+      <button id="gbrParentViewerClose" type="button">Close</button>
+    </div>
+  </header>
+
+  <div class="gbr-parent-viewer-canvas" id="gbrParentViewerCanvas">
+    <iframe
+      class="gbr-parent-viewer-frame"
+      id="gbrParentViewerFrame"
+      title="Archive document reader"
+      loading="eager"
+      referrerpolicy="no-referrer-when-downgrade"
+    ></iframe>
+  </div>
+</div>
+
+
+<script id="gbr-parent-archive-viewer-script">
+(() => {
+  const viewer = document.getElementById('gbrParentArchiveViewer');
+  const canvas = document.getElementById('gbrParentViewerCanvas');
+  const frame = document.getElementById('gbrParentViewerFrame');
+  const title = document.getElementById('gbrParentViewerTitle');
+  const kicker = document.getElementById('gbrParentViewerKicker');
+  const zoomOut = document.getElementById('gbrParentViewerZoomOut');
+  const zoomReset = document.getElementById('gbrParentViewerZoomReset');
+  const zoomIn = document.getElementById('gbrParentViewerZoomIn');
+  const zoomLabel = document.getElementById('gbrParentViewerZoomLabel');
+  const back = document.getElementById('gbrParentViewerBack');
+  const close = document.getElementById('gbrParentViewerClose');
+
+  let scale = 1;
+  let currentUrl = '';
+  let currentExtension = '';
+  let mobilePdfMode = false;
+
+  const minScale = 0.55;
+  const maxScale = 1.60;
+  const scaleStep = 0.10;
+
+  function isPhoneAppView() {
+    const agent = navigator.userAgent || '';
+    const mobileAgent = /Android|iPhone|iPad|iPod|Mobile/i.test(agent);
+    const iPadDesktopMode =
+      navigator.platform === 'MacIntel' &&
+      navigator.maxTouchPoints > 1;
+    const touchScreen = window.matchMedia(
+      '(max-width: 950px) and (pointer: coarse)'
+    ).matches;
+
+    return mobileAgent || iPadDesktopMode || touchScreen;
+  }
+
+  function getExtension(url) {
+    try {
+      const parsed = new URL(url, window.location.href);
+      const path = parsed.pathname.toLowerCase();
+      return path.includes('.') ? path.split('.').pop() : '';
+    } catch (error) {
+      return '';
+    }
+  }
+
+  function buildViewerUrl(url) {
+    const parsed = new URL(url, window.location.href);
+    parsed.hash = '';
+
+    if (currentExtension === 'pdf' && isPhoneAppView()) {
+      mobilePdfMode = true;
+      return 'https://docs.google.com/gview?embedded=1&url=' +
+        encodeURIComponent(parsed.href);
+    }
+
+    mobilePdfMode = false;
+
+    if (currentExtension === 'pdf') {
+      return `${parsed.href}#page=1&zoom=page-width&toolbar=1&navpanes=0&scrollbar=1`;
+    }
+
+    if (['doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx'].includes(currentExtension)) {
+      return 'https://docs.google.com/gview?embedded=1&url=' +
+        encodeURIComponent(parsed.href);
+    }
+
+    return parsed.href;
+  }
+
+  function applyScale() {
+    if (!frame || !canvas) return;
+
+    frame.style.transform = `scale(${scale})`;
+    frame.style.width = `${100 / scale}%`;
+    frame.style.height = `${canvas.clientHeight / scale}px`;
+    frame.style.minHeight = '0';
+
+    if (zoomLabel) {
+      zoomLabel.textContent = `${Math.round(scale * 100)}%`;
+    }
+  }
+
+  function setScale(nextScale) {
+    scale = Math.min(maxScale, Math.max(minScale, nextScale));
+    applyScale();
+  }
+
+  function openDocument(url, documentTitle) {
+    currentUrl = new URL(url, window.location.href).href;
+    currentExtension = getExtension(currentUrl);
+    scale = currentExtension === 'pdf' && isPhoneAppView() ? 0.90 : 1;
+
+    title.textContent = documentTitle || 'Archive document';
+    kicker.textContent =
+      currentExtension === 'pdf' && isPhoneAppView()
+        ? 'Mobile multipage PDF reader — swipe inside the document'
+        : 'Archive document reader';
+
+    viewer.hidden = false;
+    document.body.classList.add('gbr-parent-viewer-open');
+
+    frame.src = buildViewerUrl(currentUrl);
+    requestAnimationFrame(applyScale);
+    back.focus();
+  }
+
+  function closeDocument() {
+    viewer.hidden = true;
+    frame.src = 'about:blank';
+    currentUrl = '';
+    currentExtension = '';
+    mobilePdfMode = false;
+    document.body.classList.remove('gbr-parent-viewer-open');
+  }
+
+  window.addEventListener('message', (event) => {
+    if (event.origin !== window.location.origin) return;
+    if (!event.data || event.data.type !== 'gbr-open-archive-document') return;
+    if (typeof event.data.url !== 'string') return;
+
+    openDocument(event.data.url, event.data.title);
+  });
+
+  zoomOut?.addEventListener('click', () => setScale(scale - scaleStep));
+  zoomIn?.addEventListener('click', () => setScale(scale + scaleStep));
+  zoomReset?.addEventListener('click', () => {
+    setScale(currentExtension === 'pdf' && isPhoneAppView() ? 0.90 : 1);
+  });
+
+  back?.addEventListener('click', closeDocument);
+  close?.addEventListener('click', closeDocument);
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && viewer && !viewer.hidden) {
+      closeDocument();
+    }
+  });
+
+  if ('ResizeObserver' in window && canvas) {
+    const observer = new ResizeObserver(applyScale);
+    observer.observe(canvas);
+  } else {
+    window.addEventListener('resize', applyScale);
+  }
+})();
+</script>
 
 </body>
 </html>
