@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Complete NA Historical Archive Index — Exact Site Fix v6</title>
+<title>Complete NA Historical Archive Index — Search Results v9</title>
 <style>
 :root {
   --ink: #1f2529;
@@ -125,6 +125,131 @@ hr {
   border: 0;
   border-top: 1px solid var(--line);
 }
+
+.archive-search-results[hidden],
+#archiveBrowseContent[hidden] {
+  display: none !important;
+}
+
+.archive-search-results {
+  margin: 0 0 1.5rem;
+  padding: 1rem;
+  border: 1px solid var(--line);
+  border-radius: .7rem;
+  background: var(--panel);
+  box-shadow: 0 10px 28px rgba(0,0,0,.1);
+  scroll-margin-top: 7.5rem;
+}
+
+.archive-results-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: .75rem;
+}
+
+.archive-results-heading h2 {
+  margin: 0;
+  padding: 0;
+  color: var(--blue-dark);
+  background: transparent;
+  font-size: 1.35rem;
+}
+
+.archive-results-count {
+  margin: 0;
+  color: var(--muted);
+  font-size: .86rem;
+  font-weight: 700;
+}
+
+.archive-results-list {
+  max-height: min(68vh, 760px);
+  margin: 0;
+  padding: .2rem;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  list-style: none;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+}
+
+.archive-result-card {
+  margin: 0 0 .55rem;
+  padding: .75rem .8rem;
+  border: 1px solid var(--line);
+  border-radius: .55rem;
+  background: #fff;
+}
+
+.archive-result-card:last-child {
+  margin-bottom: 0;
+}
+
+.archive-result-link {
+  display: block;
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.archive-result-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .4rem;
+  margin-top: .32rem;
+  color: var(--muted);
+  font-size: .78rem;
+  line-height: 1.35;
+}
+
+.archive-result-type {
+  display: inline-flex;
+  padding: .12rem .38rem;
+  border-radius: 999px;
+  color: #fff;
+  background: var(--blue);
+  font-size: .67rem;
+  font-weight: 800;
+  letter-spacing: .04em;
+}
+
+.archive-search-empty {
+  margin: .2rem 0 0;
+  padding: 1rem;
+  border: 1px dashed var(--line);
+  border-radius: .5rem;
+  color: var(--muted);
+  background: #faf8f3;
+  text-align: center;
+}
+
+.archive-result-card mark {
+  padding: 0 .08em;
+  border-radius: .12em;
+  background: #ffe58a;
+  color: inherit;
+}
+
+@media (max-width: 700px) {
+  .archive-search-results {
+    padding: .75rem;
+    scroll-margin-top: 9.5rem;
+  }
+
+  .archive-results-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: .2rem;
+  }
+
+  .archive-results-list {
+    max-height: 64vh;
+  }
+}
+
 .search-hidden { display: none !important; }
 @media (max-width: 700px) {
   body { padding: .75rem .75rem 3rem; }
@@ -265,7 +390,16 @@ body.archive-viewer-open {
       <p id="archiveSearchStatus" class="archive-search-status" aria-live="polite">Showing all 1,963 files.</p>
     </section>
 
+    <section id="archiveSearchResults" class="archive-search-results" aria-label="Archive search results" hidden>
+      <div class="archive-results-heading">
+        <h2>Search Results</h2>
+        <p id="archiveResultsCount" class="archive-results-count"></p>
+      </div>
+      <ol id="archiveResultsList" class="archive-results-list"></ol>
+      <p id="archiveSearchEmpty" class="archive-search-empty" hidden>No matching archive files were found.</p>
+    </section>
 
+<main id="archiveBrowseContent">
 <h2 class="wp-block-heading">How to Use This Index</h2>
 
 
@@ -1437,6 +1571,7 @@ body.archive-viewer-open {
 
 
 
+</main>
 
 <div class="archive-document-viewer" id="archiveDocumentViewer" hidden>
   <header class="archive-viewer-header">
@@ -1475,7 +1610,15 @@ body.archive-viewer-open {
   const input = document.getElementById('archiveSearch');
   const clear = document.getElementById('archiveClear');
   const status = document.getElementById('archiveSearchStatus');
-  const items = [...document.querySelectorAll('li')];
+  const tools = document.querySelector('.archive-tools');
+  const browseContent = document.getElementById('archiveBrowseContent');
+  const resultsPanel = document.getElementById('archiveSearchResults');
+  const resultsList = document.getElementById('archiveResultsList');
+  const resultsCount = document.getElementById('archiveResultsCount');
+  const emptyResults = document.getElementById('archiveSearchEmpty');
+
+  let searchRecords = [];
+  let searchIsActive = false;
 
   const viewer = document.getElementById('archiveDocumentViewer');
   const viewerCanvas = document.getElementById('archiveViewerCanvas');
@@ -1543,6 +1686,132 @@ body.archive-viewer-open {
     } catch (error) {
       return false;
     }
+  }
+
+  function normalizeSearchText(value) {
+    return String(value || '')
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .toLowerCase()
+      .replace(/[–—]/g, '-')
+      .replace(/[^a-z0-9]+/g, ' ')
+      .trim();
+  }
+
+  function cleanHeading(value) {
+    return String(value || '')
+      .replace(/\s*\([\d,]+\)\s*$/, '')
+      .replace(/\s+/g, ' ')
+      .trim();
+  }
+
+  function buildSearchIndex() {
+    const headings = { h2: '', h3: '', h4: '' };
+    const records = [];
+
+    browseContent
+      .querySelectorAll('h2, h3, h4, a[href]')
+      .forEach((node) => {
+        const tag = node.tagName.toLowerCase();
+
+        if (tag === 'h2') {
+          headings.h2 = cleanHeading(node.textContent);
+          headings.h3 = '';
+          headings.h4 = '';
+          return;
+        }
+
+        if (tag === 'h3') {
+          headings.h3 = cleanHeading(node.textContent);
+          headings.h4 = '';
+          return;
+        }
+
+        if (tag === 'h4') {
+          headings.h4 = cleanHeading(node.textContent);
+          return;
+        }
+
+        if (!isArchiveFile(node.href)) return;
+
+        const title = node.textContent.replace(/\s+/g, ' ').trim();
+        const extension = getExtension(node.href).toUpperCase();
+        const breadcrumbParts = [
+          headings.h2,
+          headings.h3,
+          headings.h4
+        ].filter(Boolean);
+        const breadcrumb = [...new Set(breadcrumbParts)].join(' › ');
+        const fileName = decodeURIComponent(
+          new URL(node.href).pathname.split('/').pop() || ''
+        );
+
+        records.push({
+          title,
+          titleNormalized: normalizeSearchText(title),
+          href: node.href,
+          extension,
+          breadcrumb,
+          searchText: normalizeSearchText(
+            `${title} ${fileName} ${breadcrumb} ${extension}`
+          )
+        });
+      });
+
+    searchRecords = records;
+  }
+
+  function scoreSearchRecord(record, normalizedQuery, terms) {
+    let score = 0;
+    const title = record.titleNormalized;
+
+    if (title === normalizedQuery) score += 100000;
+    if (title.startsWith(normalizedQuery)) score += 50000;
+    if (title.includes(normalizedQuery)) score += 25000;
+
+    terms.forEach((term) => {
+      if (title === term) score += 8000;
+      if (title.startsWith(term)) score += 4000;
+      if (title.split(' ').some((word) => word.startsWith(term))) score += 2200;
+      if (title.includes(term)) score += 1200;
+      if (record.searchText.includes(term)) score += 250;
+    });
+
+    score -= Math.min(record.title.length, 180) / 10;
+    return score;
+  }
+
+  function escapeRegularExpression(value) {
+    return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  }
+
+  function appendHighlightedText(container, text, rawTerms) {
+    const usableTerms = rawTerms
+      .map((term) => term.trim())
+      .filter(Boolean)
+      .sort((a, b) => b.length - a.length);
+
+    if (!usableTerms.length) {
+      container.textContent = text;
+      return;
+    }
+
+    const expression = new RegExp(
+      `(${usableTerms.map(escapeRegularExpression).join('|')})`,
+      'gi'
+    );
+
+    text.split(expression).forEach((part) => {
+      if (!part) return;
+
+      if (usableTerms.some((term) => part.toLowerCase() === term.toLowerCase())) {
+        const mark = document.createElement('mark');
+        mark.textContent = part;
+        container.appendChild(mark);
+      } else {
+        container.appendChild(document.createTextNode(part));
+      }
+    });
   }
 
   function buildNativePdfUrl(url, scale) {
@@ -1674,24 +1943,106 @@ body.archive-viewer-open {
     document.body.classList.remove('archive-viewer-open');
   }
 
-  function runSearch() {
-    const query = input.value.trim().toLowerCase();
-    let shown = 0;
-
-    items.forEach((item) => {
-      const matches = !query || item.textContent.toLowerCase().includes(query);
-      item.classList.toggle('search-hidden', !matches);
-      if (matches) shown += 1;
-    });
-
-    status.textContent = query
-      ? `Showing ${shown.toLocaleString()} matching file${shown === 1 ? '' : 's'}.`
-      : 'Showing all 1,963 files.';
+  function showBrowseIndex() {
+    searchIsActive = false;
+    resultsPanel.hidden = true;
+    browseContent.hidden = false;
+    resultsList.replaceChildren();
+    emptyResults.hidden = true;
+    resultsCount.textContent = '';
+    status.textContent = `Showing all ${searchRecords.length.toLocaleString()} files.`;
   }
 
-  document.querySelectorAll('a[href]').forEach((link) => {
-    if (!isArchiveFile(link.href)) return;
+  function runSearch() {
+    const rawQuery = input.value.trim();
+    const normalizedQuery = normalizeSearchText(rawQuery);
 
+    if (!normalizedQuery) {
+      showBrowseIndex();
+      return;
+    }
+
+    const wasActive = searchIsActive;
+    searchIsActive = true;
+
+    const terms = normalizedQuery.split(/\s+/).filter(Boolean);
+    const rawTerms = rawQuery.split(/\s+/).filter(Boolean);
+
+    const matches = searchRecords
+      .filter((record) =>
+        terms.every((term) => record.searchText.includes(term))
+      )
+      .map((record) => ({
+        record,
+        score: scoreSearchRecord(record, normalizedQuery, terms)
+      }))
+      .sort((left, right) =>
+        right.score - left.score ||
+        left.record.title.localeCompare(
+          right.record.title,
+          undefined,
+          { numeric: true, sensitivity: 'base' }
+        )
+      );
+
+    const fragment = document.createDocumentFragment();
+
+    matches.forEach(({ record }) => {
+      const item = document.createElement('li');
+      item.className = 'archive-result-card';
+
+      const link = document.createElement('a');
+      link.className = 'archive-result-link archive-file-link';
+      link.href = record.href;
+      link.rel = 'noopener noreferrer';
+      appendHighlightedText(link, record.title, rawTerms);
+      bindArchiveLink(link);
+
+      const meta = document.createElement('div');
+      meta.className = 'archive-result-meta';
+
+      const breadcrumb = document.createElement('span');
+      breadcrumb.textContent = record.breadcrumb || 'Archive file';
+
+      const type = document.createElement('span');
+      type.className = 'archive-result-type';
+      type.textContent = record.extension || 'FILE';
+
+      meta.append(breadcrumb, type);
+      item.append(link, meta);
+      fragment.appendChild(item);
+    });
+
+    resultsList.replaceChildren(fragment);
+    resultsPanel.hidden = false;
+    browseContent.hidden = true;
+    emptyResults.hidden = matches.length !== 0;
+
+    const countText = `${matches.length.toLocaleString()} result${matches.length === 1 ? '' : 's'}`;
+    resultsCount.textContent = countText;
+    status.textContent = `${countText} moved to the top of the archive.`;
+
+    if (!wasActive) {
+      requestAnimationFrame(() => {
+        const top = Math.max(
+          0,
+          resultsPanel.getBoundingClientRect().top +
+            window.scrollY -
+            (tools?.offsetHeight || 0) -
+            10
+        );
+
+        window.scrollTo({ top, behavior: 'smooth' });
+      });
+    } else {
+      resultsList.scrollTop = 0;
+    }
+  }
+
+  function bindArchiveLink(link) {
+    if (!isArchiveFile(link.href) || link.dataset.archiveBound === '1') return;
+
+    link.dataset.archiveBound = '1';
     link.classList.add('archive-file-link');
     link.removeAttribute('target');
 
@@ -1711,13 +2062,21 @@ body.archive-viewer-open {
 
       openViewer(documentRequest.url, documentRequest.title);
     });
+  }
+
+  buildSearchIndex();
+
+  browseContent.querySelectorAll('a[href]').forEach((link) => {
+    bindArchiveLink(link);
   });
+
+  status.textContent = `Showing all ${searchRecords.length.toLocaleString()} files.`;
 
   input.addEventListener('input', runSearch);
 
   clear.addEventListener('click', () => {
     input.value = '';
-    runSearch();
+    showBrowseIndex();
     input.focus();
   });
 
