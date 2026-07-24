@@ -1,738 +1,401 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1"
-  >
-  <meta name="theme-color" content="#102a43">
-  <title>A.S.I.S. Informational Pamphlets</title>
-  <meta
-    name="description"
-    content="A readable index of A.S.I.S. informational pamphlets for Narcotics Anonymous."
-  >
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="#102a43" name="theme-color"/>
+<title>A.S.I.S. Recovery and Service Literature</title>
+<meta content="A status-checked reading library of approved, review and input, and archived A.S.I.S. literature for Narcotics Anonymous." name="description"/>
+<style>
     :root {
-      --navy: #102a43;
-      --navy-light: #1d4d70;
-      --paper: #f4efe5;
-      --card: #fffdf8;
-      --ink: #20282f;
-      --muted: #68727a;
-      --line: #cfc6b7;
-      --accent: #1a6e78;
-      --accent-dark: #14535b;
-      --gold: #c28f2c;
-      --shadow: 0 10px 30px rgba(20, 35, 48, .12);
+      --navy:#102a43; --navy-light:#1d4d70; --paper:#f4efe5; --card:#fffdf8;
+      --ink:#20282f; --muted:#68727a; --line:#cfc6b7; --accent:#1a6e78;
+      --accent-dark:#14535b; --gold:#9a6716; --green:#276749; --grey:#5f6870;
+      --shadow:0 10px 30px rgba(20,35,48,.12);
     }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      margin: 0;
-      color: var(--ink);
-      background:
-        radial-gradient(circle at top right, rgba(26, 110, 120, .11), transparent 35rem),
-        var(--paper);
-      font-family:
-        Arial, Helvetica, sans-serif;
-      line-height: 1.5;
-    }
-
-    a {
-      color: inherit;
-    }
-
-    .site-header {
-      padding: 3.4rem 1rem 2.7rem;
-      color: #fff;
-      background:
-        linear-gradient(135deg, rgba(16, 42, 67, .98), rgba(29, 77, 112, .96));
-      border-bottom: 6px solid var(--accent);
-    }
-
-    .header-inner,
-    .main-inner {
-      width: min(1120px, calc(100% - 2rem));
-      margin: 0 auto;
-    }
-
-
-    .home-link {
-      display: inline-flex;
-      align-items: center;
-      margin-bottom: 1.1rem;
-      padding: .55rem .72rem;
-      border: 1px solid rgba(255, 255, 255, .32);
-      border-radius: .5rem;
-      color: #fff;
-      background: rgba(255, 255, 255, .08);
-      font-size: .82rem;
-      font-weight: 800;
-      text-decoration: none;
-    }
-
-    .home-link:hover,
-    .home-link:focus-visible {
-      background: rgba(255, 255, 255, .17);
-      outline: none;
-    }
-
-    .eyebrow {
-      margin: 0 0 .45rem;
-      color: #aee6df;
-      font-size: .78rem;
-      font-weight: 800;
-      letter-spacing: .16em;
-      text-transform: uppercase;
-    }
-
-    h1 {
-      max-width: 820px;
-      margin: 0;
-      font-size: clamp(2rem, 6vw, 4rem);
-      line-height: 1.03;
-    }
-
-    .header-copy {
-      max-width: 780px;
-      margin: 1rem 0 0;
-      color: rgba(255, 255, 255, .86);
-      font-size: clamp(1rem, 2vw, 1.16rem);
-    }
-
-    .reading-note {
-      display: inline-flex;
-      align-items: center;
-      gap: .45rem;
-      margin-top: 1.25rem;
-      padding: .62rem .8rem;
-      border: 1px solid rgba(255, 255, 255, .28);
-      border-radius: .55rem;
-      background: rgba(255, 255, 255, .09);
-      color: #fff;
-      font-size: .88rem;
-      font-weight: 700;
-    }
-
-    main {
-      padding: 2rem 0 4rem;
-    }
-
-    .search-panel {
-      position: sticky;
-      top: 0;
-      z-index: 30;
-      margin-bottom: 1.35rem;
-      padding: .8rem;
-      border: 1px solid var(--line);
-      border-radius: .7rem;
-      background: rgba(244, 239, 229, .96);
-      box-shadow: 0 4px 16px rgba(20, 35, 48, .08);
-      backdrop-filter: blur(12px);
-    }
-
-    .search-row {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: .65rem;
-    }
-
-    .search-input {
-      width: 100%;
-      min-height: 3rem;
-      padding: .78rem .9rem;
-      border: 2px solid #9bb0bd;
-      border-radius: .52rem;
-      color: var(--ink);
-      background: #fff;
-      font: inherit;
-      font-size: 1rem;
-    }
-
-    .search-input:focus {
-      outline: 3px solid rgba(26, 110, 120, .2);
-      border-color: var(--accent);
-    }
-
-    .clear-button {
-      min-width: 5.8rem;
-      border: 0;
-      border-radius: .52rem;
-      color: #fff;
-      background: var(--navy);
-      font: inherit;
-      font-weight: 800;
-      cursor: pointer;
-    }
-
-    .clear-button:hover {
-      background: var(--navy-light);
-    }
-
-    .results-status {
-      margin: .55rem .15rem 0;
-      color: var(--muted);
-      font-size: .85rem;
-    }
-
-    .ip-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 1rem;
-    }
-
-    .ip-card {
-      min-width: 0;
-    }
-
-    .ip-card[hidden] {
-      display: none;
-    }
-
-    .ip-link {
-      display: flex;
-      height: 100%;
-      min-height: 265px;
-      flex-direction: column;
-      padding: 1.15rem;
-      border: 1px solid var(--line);
-      border-radius: .8rem;
-      background: var(--card);
-      box-shadow: var(--shadow);
-      text-decoration: none;
-      transition:
-        transform .15s ease,
-        border-color .15s ease,
-        box-shadow .15s ease;
-    }
-
-    .ip-link:hover,
-    .ip-link:focus-visible {
-      transform: translateY(-3px);
-      border-color: var(--accent);
-      box-shadow: 0 15px 35px rgba(20, 35, 48, .18);
-      outline: none;
-    }
-
-    .ip-card-top {
-      display: flex;
-      min-height: 1.7rem;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: .6rem;
-    }
-
-    .category {
-      color: var(--accent-dark);
-      font-size: .72rem;
-      font-weight: 900;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-    }
-
-    .badge {
-      padding: .2rem .42rem;
-      border-radius: 999px;
-      color: #fff;
-      background: var(--gold);
-      font-size: .66rem;
-      font-weight: 900;
-      letter-spacing: .04em;
-      text-transform: uppercase;
-      white-space: nowrap;
-    }
-
-    .ip-card h2 {
-      margin: .7rem 0 .55rem;
-      color: var(--navy);
-      font-size: 1.34rem;
-      line-height: 1.15;
-    }
-
-    .ip-card p {
-      margin: 0;
-      color: #4f5960;
-      font-size: .93rem;
-    }
-
-    .ip-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: .4rem .72rem;
-      margin-top: auto;
-      padding-top: 1rem;
-      border-top: 1px solid #e3ddd2;
-      color: var(--muted);
-      font-size: .78rem;
-      font-weight: 700;
-    }
-
-    .open-label {
-      margin-left: auto;
-      color: var(--accent-dark);
-      font-weight: 900;
-    }
-
-    .empty-state {
-      display: none;
-      padding: 2.5rem 1rem;
-      border: 1px dashed #a79e90;
-      border-radius: .75rem;
-      color: var(--muted);
-      text-align: center;
-    }
-
-    .empty-state.is-visible {
-      display: block;
-    }
-
-    footer {
-      padding: 1.5rem 1rem 2.5rem;
-      color: var(--muted);
-      text-align: center;
-      font-size: .82rem;
-    }
-
-    @media (max-width: 880px) {
-      .ip-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-    }
-
-    @media (max-width: 590px) {
-      .site-header {
-        padding-top: 2.5rem;
-      }
-
-      .header-inner,
-      .main-inner {
-        width: min(100% - 1rem, 1120px);
-      }
-
-      .ip-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .ip-link {
-        min-height: 220px;
-      }
-
-      .search-row {
-        grid-template-columns: 1fr;
-      }
-
-      .clear-button {
-        min-height: 2.65rem;
-      }
-    }
+    *{box-sizing:border-box} html{scroll-behavior:smooth}
+    body{margin:0;color:var(--ink);background:radial-gradient(circle at top right,rgba(26,110,120,.11),transparent 35rem),var(--paper);font-family:Arial,Helvetica,sans-serif;line-height:1.5}
+    a{color:inherit}
+    .site-header{padding:3.2rem 1rem 2.6rem;color:#fff;background:linear-gradient(135deg,rgba(16,42,67,.98),rgba(29,77,112,.96));border-bottom:6px solid var(--accent)}
+    .header-inner,.main-inner{width:min(1160px,calc(100% - 2rem));margin:0 auto}
+    .home-link{display:inline-flex;align-items:center;margin-bottom:1.1rem;padding:.55rem .72rem;border:1px solid rgba(255,255,255,.32);border-radius:.5rem;background:rgba(255,255,255,.08);font-size:.82rem;font-weight:800;text-decoration:none}
+    .home-link:hover,.home-link:focus-visible{background:rgba(255,255,255,.17);outline:none}
+    .eyebrow,.section-kicker{margin:0 0 .45rem;color:#aee6df;font-size:.78rem;font-weight:900;letter-spacing:.15em;text-transform:uppercase}
+    h1{max-width:900px;margin:0;font-size:clamp(2rem,6vw,4rem);line-height:1.03}
+    .header-copy{max-width:850px;margin:1rem 0 0;color:rgba(255,255,255,.88);font-size:clamp(1rem,2vw,1.16rem)}
+    .checked-note{display:inline-flex;margin-top:1.25rem;padding:.62rem .8rem;border:1px solid rgba(255,255,255,.28);border-radius:.55rem;background:rgba(255,255,255,.09);font-size:.88rem;font-weight:800}
+    main{padding:2rem 0 4rem}
+    .status-guide{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.8rem;margin-bottom:1.25rem}
+    .guide-card{padding:1rem;border:1px solid var(--line);border-radius:.75rem;background:var(--card);box-shadow:0 6px 20px rgba(20,35,48,.07)}
+    .guide-card h2{margin:0 0 .35rem;color:var(--navy);font-size:1.05rem} .guide-card p{margin:0;color:#4f5960;font-size:.9rem}
+    .source-note{margin:0 0 1.25rem;padding:1rem 1.1rem;border-left:5px solid var(--accent);border-radius:.45rem;background:#eef7f6;color:#30464a}
+    .source-note a{font-weight:800;color:var(--accent-dark)}
+    .search-panel{position:sticky;top:0;z-index:30;margin-bottom:1.6rem;padding:.8rem;border:1px solid var(--line);border-radius:.7rem;background:rgba(244,239,229,.97);box-shadow:0 4px 16px rgba(20,35,48,.08);backdrop-filter:blur(12px)}
+    .search-row{display:grid;grid-template-columns:1fr auto;gap:.65rem}
+    .search-input{width:100%;min-height:3rem;padding:.78rem .9rem;border:2px solid #9bb0bd;border-radius:.52rem;background:#fff;font:inherit;font-size:1rem}
+    .search-input:focus{outline:3px solid rgba(26,110,120,.2);border-color:var(--accent)}
+    .clear-button{min-width:5.8rem;border:0;border-radius:.52rem;color:#fff;background:var(--navy);font:inherit;font-weight:900;cursor:pointer}
+    .clear-button:hover{background:var(--navy-light)}
+    .filter-row{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:.7rem}
+    .filter-button{padding:.48rem .7rem;border:1px solid #8ca0ad;border-radius:999px;background:#fff;color:var(--navy);font:inherit;font-size:.82rem;font-weight:900;cursor:pointer}
+    .filter-button[aria-pressed="true"]{border-color:var(--navy);color:#fff;background:var(--navy)}
+    .results-status{margin:.55rem .15rem 0;color:var(--muted);font-size:.85rem}
+    .literature-section{margin:0 0 2rem}
+    .literature-section[hidden]{display:none}
+    .section-heading{display:grid;grid-template-columns:minmax(240px,.8fr) minmax(280px,1.2fr);gap:1rem;align-items:end;margin-bottom:.85rem;padding-bottom:.7rem;border-bottom:2px solid #c8beb0}
+    .section-heading h2{margin:0;color:var(--navy);font-size:clamp(1.45rem,3vw,2rem)}
+    .section-heading .section-kicker{color:var(--accent-dark)}
+    .section-heading>p{margin:0;color:#59636a}
+    .ip-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}
+    .ip-card[hidden]{display:none}
+    .ip-link{display:flex;height:100%;min-height:280px;flex-direction:column;padding:1.15rem;border:1px solid var(--line);border-radius:.8rem;background:var(--card);box-shadow:var(--shadow);text-decoration:none;transition:transform .15s ease,border-color .15s ease,box-shadow .15s ease}
+    .ip-link:hover,.ip-link:focus-visible{transform:translateY(-3px);border-color:var(--accent);box-shadow:0 15px 35px rgba(20,35,48,.18);outline:none}
+    .ip-card-top{display:flex;min-height:1.7rem;align-items:flex-start;justify-content:space-between;gap:.6rem}
+    .category{color:var(--accent-dark);font-size:.72rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase}
+    .badge{padding:.22rem .46rem;border-radius:999px;color:#fff;font-size:.65rem;font-weight:900;letter-spacing:.035em;text-transform:uppercase;white-space:nowrap}
+    .badge.approved{background:var(--green)} .badge.review{background:var(--gold)} .badge.pending{background:var(--navy-light)} .badge.archive{background:var(--grey)}
+    .ip-card h3{margin:.7rem 0 .55rem;color:var(--navy);font-size:1.34rem;line-height:1.15}
+    .ip-card p{margin:0;color:#4f5960;font-size:.93rem}
+    .ip-meta{display:flex;flex-wrap:wrap;gap:.4rem .68rem;margin-top:auto;padding-top:1rem;border-top:1px solid #e3ddd2;color:var(--muted);font-size:.76rem;font-weight:800}
+    .open-label{margin-left:auto;color:var(--accent-dark)}
+    .empty-state{display:none;padding:2rem;border:2px dashed #a9a093;border-radius:.75rem;text-align:center;color:var(--muted);font-weight:800}
+    .empty-state.is-visible{display:block}
+    footer{padding:1.5rem 1rem 2rem;border-top:1px solid var(--line);color:#5b646b;text-align:center;font-size:.85rem}
+    @media(max-width:900px){.ip-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.status-guide{grid-template-columns:1fr}}
+    @media(max-width:650px){.site-header{padding-top:2.2rem}.search-row{grid-template-columns:1fr}.clear-button{min-height:2.65rem}.ip-grid{grid-template-columns:1fr}.section-heading{grid-template-columns:1fr;gap:.35rem}.ip-link{min-height:0}}
   </style>
 </head>
 <body>
-  <header class="site-header">
-    <div class="header-inner">
-      <a class="home-link" href="/">← Grey Book Reflection Home</a>
-      <p class="eyebrow">Alternate Service Informational Structure</p>
-      <h1>A.S.I.S. Informational Pamphlets</h1>
-      <p class="header-copy">
-        Browse recovery and service literature developed through open
-        participation by members and groups associated with A.S.I.S. for NA.
-      </p>
-      <div class="reading-note">
-        Screen-reading copies: page orientation has been corrected so the
-        pamphlets open upright instead of sideways.
-      </div>
-    </div>
-  </header>
-
-  <main>
-    <div class="main-inner">
-      <section class="search-panel" aria-label="Search pamphlets">
-        <div class="search-row">
-          <input
-            class="search-input"
-            id="ipSearch"
-            type="search"
-            placeholder="Search pamphlets by title, subject, or category..."
-            autocomplete="off"
-          >
-          <button class="clear-button" id="clearSearch" type="button">
-            Clear
-          </button>
-        </div>
-        <p class="results-status" id="resultsStatus">
-          Showing all 15 pamphlets.
-        </p>
-      </section>
-
-      <section class="ip-grid" id="ipGrid" aria-label="A.S.I.S. pamphlets">
-        
-      <article
-        class="ip-card"
-        data-search="a view of na group conscience service and group a home-group-centered view of group conscience and decision-making. "
-        data-title="A View of NA Group Conscience"
-      >
-        <a class="ip-link" href="pdfs/a-view-of-na-group-conscience.pdf">
-          <div class="ip-card-top">
-            <span class="category">Service and Group</span>
-            
-          </div>
-          <h2>A View of NA Group Conscience</h2>
-          <p>A home-group-centered view of group conscience and decision-making.</p>
-          <div class="ip-meta">
-            <span>2 pages</span>
-            <span>610 KB</span>
-            <span class="open-label">Open IP →</span>
-          </div>
-        </a>
-      </article>
-    
-      <article
-        class="ip-card"
-        data-search="a.s.i.s. for narcotics anonymous service and group an introduction to the alternate service informational structure. "
-        data-title="A.S.I.S. for Narcotics Anonymous"
-      >
-        <a class="ip-link" href="pdfs/asis-for-na.pdf">
-          <div class="ip-card-top">
-            <span class="category">Service and Group</span>
-            
-          </div>
-          <h2>A.S.I.S. for Narcotics Anonymous</h2>
-          <p>An introduction to the Alternate Service Informational Structure.</p>
-          <div class="ip-meta">
-            <span>2 pages</span>
-            <span>739 KB</span>
-            <span class="open-label">Open IP →</span>
-          </div>
-        </a>
-      </article>
-    
-      <article
-        class="ip-card"
-        data-search="commitment recovery principles commitment as a spiritual principle and a daily recovery practice. "
-        data-title="Commitment"
-      >
-        <a class="ip-link" href="pdfs/commitment.pdf">
-          <div class="ip-card-top">
-            <span class="category">Recovery Principles</span>
-            
-          </div>
-          <h2>Commitment</h2>
-          <p>Commitment as a spiritual principle and a daily recovery practice.</p>
-          <div class="ip-meta">
-            <span>2 pages</span>
-            <span>586 KB</span>
-            <span class="open-label">Open IP →</span>
-          </div>
-        </a>
-      </article>
-    
-      <article
-        class="ip-card"
-        data-search="communication recovery principles honest communication, connection, meetings, sponsorship, and service. "
-        data-title="Communication"
-      >
-        <a class="ip-link" href="pdfs/communication.pdf">
-          <div class="ip-card-top">
-            <span class="category">Recovery Principles</span>
-            
-          </div>
-          <h2>Communication</h2>
-          <p>Honest communication, connection, meetings, sponsorship, and service.</p>
-          <div class="ip-meta">
-            <span>2 pages</span>
-            <span>592 KB</span>
-            <span class="open-label">Open IP →</span>
-          </div>
-        </a>
-      </article>
-    
-      <article
-        class="ip-card"
-        data-search="concerning relapse recovery principles literary work in progress concerning recovery, relapse, and returning. up for approval"
-        data-title="Concerning Relapse"
-      >
-        <a class="ip-link" href="pdfs/concerning-relapse-up-for-approval.pdf">
-          <div class="ip-card-top">
-            <span class="category">Recovery Principles</span>
-            <span class="badge">Up for Approval</span>
-          </div>
-          <h2>Concerning Relapse</h2>
-          <p>Literary work in progress concerning recovery, relapse, and returning.</p>
-          <div class="ip-meta">
-            <span>2 pages</span>
-            <span>367 KB</span>
-            <span class="open-label">Open IP →</span>
-          </div>
-        </a>
-      </article>
-    
-      <article
-        class="ip-card"
-        data-search="ego recovery principles how ego, isolation, fear, and self-centeredness affect recovery. "
-        data-title="Ego"
-      >
-        <a class="ip-link" href="pdfs/ego.pdf">
-          <div class="ip-card-top">
-            <span class="category">Recovery Principles</span>
-            
-          </div>
-          <h2>Ego</h2>
-          <p>How ego, isolation, fear, and self-centeredness affect recovery.</p>
-          <div class="ip-meta">
-            <span>2 pages</span>
-            <span>593 KB</span>
-            <span class="open-label">Open IP →</span>
-          </div>
-        </a>
-      </article>
-    
-      <article
-        class="ip-card"
-        data-search="meeting etiquette meetings and fellowship practical guidance for protecting an atmosphere of recovery. "
-        data-title="Meeting Etiquette"
-      >
-        <a class="ip-link" href="pdfs/meeting-etiquette.pdf">
-          <div class="ip-card-top">
-            <span class="category">Meetings and Fellowship</span>
-            
-          </div>
-          <h2>Meeting Etiquette</h2>
-          <p>Practical guidance for protecting an atmosphere of recovery.</p>
-          <div class="ip-meta">
-            <span>2 pages</span>
-            <span>607 KB</span>
-            <span class="open-label">Open IP →</span>
-          </div>
-        </a>
-      </article>
-    
-      <article
-        class="ip-card"
-        data-search="one disease, one program na identity a discussion of na identity, language, and total abstinence. "
-        data-title="One Disease, One Program"
-      >
-        <a class="ip-link" href="pdfs/one-disease-one-program.pdf">
-          <div class="ip-card-top">
-            <span class="category">NA Identity</span>
-            
-          </div>
-          <h2>One Disease, One Program</h2>
-          <p>A discussion of NA identity, language, and total abstinence.</p>
-          <div class="ip-meta">
-            <span>2 pages</span>
-            <span>95 KB</span>
-            <span class="open-label">Open IP →</span>
-          </div>
-        </a>
-      </article>
-    
-      <article
-        class="ip-card"
-        data-search="open participation service and group participation in na service without excluding the newcomer or member. "
-        data-title="Open Participation"
-      >
-        <a class="ip-link" href="pdfs/open-participation.pdf">
-          <div class="ip-card-top">
-            <span class="category">Service and Group</span>
-            
-          </div>
-          <h2>Open Participation</h2>
-          <p>Participation in NA service without excluding the newcomer or member.</p>
-          <div class="ip-meta">
-            <span>2 pages</span>
-            <span>598 KB</span>
-            <span class="open-label">Open IP →</span>
-          </div>
-        </a>
-      </article>
-    
-      <article
-        class="ip-card"
-        data-search="our unity lies in our diversity service and group a historical perspective on autonomy, unity, and alternative service. "
-        data-title="Our Unity Lies in Our Diversity"
-      >
-        <a class="ip-link" href="pdfs/our-unity-lies-in-our-diversity.pdf">
-          <div class="ip-card-top">
-            <span class="category">Service and Group</span>
-            
-          </div>
-          <h2>Our Unity Lies in Our Diversity</h2>
-          <p>A historical perspective on autonomy, unity, and alternative service.</p>
-          <div class="ip-meta">
-            <span>2 pages</span>
-            <span>122 KB</span>
-            <span class="open-label">Open IP →</span>
-          </div>
-        </a>
-      </article>
-    
-      <article
-        class="ip-card"
-        data-search="personal responsibility recovery principles responsibility, accountability, denial, surrender, and spiritual growth. "
-        data-title="Personal Responsibility"
-      >
-        <a class="ip-link" href="pdfs/personal-responsibility.pdf">
-          <div class="ip-card-top">
-            <span class="category">Recovery Principles</span>
-            
-          </div>
-          <h2>Personal Responsibility</h2>
-          <p>Responsibility, accountability, denial, surrender, and spiritual growth.</p>
-          <div class="ip-meta">
-            <span>6 pages</span>
-            <span>597 KB</span>
-            <span class="open-label">Open IP →</span>
-          </div>
-        </a>
-      </article>
-    
-      <article
-        class="ip-card"
-        data-search="reservations recovery principles recognizing reservations and practicing surrender and vigilance. "
-        data-title="Reservations"
-      >
-        <a class="ip-link" href="pdfs/reservations.pdf">
-          <div class="ip-card-top">
-            <span class="category">Recovery Principles</span>
-            
-          </div>
-          <h2>Reservations</h2>
-          <p>Recognizing reservations and practicing surrender and vigilance.</p>
-          <div class="ip-meta">
-            <span>2 pages</span>
-            <span>594 KB</span>
-            <span class="open-label">Open IP →</span>
-          </div>
-        </a>
-      </article>
-    
-      <article
-        class="ip-card"
-        data-search="the five tools of recovery recovery tools meetings, writing, reading, phone calls, and prayer. "
-        data-title="The Five Tools of Recovery"
-      >
-        <a class="ip-link" href="pdfs/the-five-tools-of-recovery.pdf">
-          <div class="ip-card-top">
-            <span class="category">Recovery Tools</span>
-            
-          </div>
-          <h2>The Five Tools of Recovery</h2>
-          <p>Meetings, writing, reading, phone calls, and prayer.</p>
-          <div class="ip-meta">
-            <span>2 pages</span>
-            <span>622 KB</span>
-            <span class="open-label">Open IP →</span>
-          </div>
-        </a>
-      </article>
-    
-      <article
-        class="ip-card"
-        data-search="the home group service and group what a home group is, why members need one, and how it functions. "
-        data-title="The Home Group"
-      >
-        <a class="ip-link" href="pdfs/the-home-group.pdf">
-          <div class="ip-card-top">
-            <span class="category">Service and Group</span>
-            
-          </div>
-          <h2>The Home Group</h2>
-          <p>What a home group is, why members need one, and how it functions.</p>
-          <div class="ip-meta">
-            <span>6 pages</span>
-            <span>651 KB</span>
-            <span class="open-label">Open IP →</span>
-          </div>
-        </a>
-      </article>
-    
-      <article
-        class="ip-card"
-        data-search="total abstinence na identity total abstinence, surrender, willingness, and commitment. "
-        data-title="Total Abstinence"
-      >
-        <a class="ip-link" href="pdfs/total-abstinence.pdf">
-          <div class="ip-card-top">
-            <span class="category">NA Identity</span>
-            
-          </div>
-          <h2>Total Abstinence</h2>
-          <p>Total abstinence, surrender, willingness, and commitment.</p>
-          <div class="ip-meta">
-            <span>2 pages</span>
-            <span>701 KB</span>
-            <span class="open-label">Open IP →</span>
-          </div>
-        </a>
-      </article>
-    
-      </section>
-
-      <div class="empty-state" id="emptyState">
-        No pamphlets matched that search.
-      </div>
-    </div>
-  </main>
-
-  <footer>
-    These are preserved informational and review materials. Click a title to
-    open the upright screen-reading PDF. Use your browser's Back button to
-    return to this index.
-  </footer>
-
-  <script>
+<header class="site-header">
+<div class="header-inner">
+<a class="home-link" href="/">← Grey Book Reflection Home</a>
+<p class="eyebrow">Alternate Service Informational Structure</p>
+<h1>A.S.I.S. Recovery &amp; Service Literature</h1>
+<p class="header-copy">Approved literature is separated from unfinished Review &amp; Input work so readers can see the actual standing of every document before opening it.</p>
+<div class="checked-note">Status checked against NAHELP on July 24, 2026</div>
+</div>
+</header>
+<main>
+<div class="main-inner">
+<section aria-label="Literature status guide" class="status-guide">
+<div class="guide-card"><h2>Approved</h2><p>Approved by participating A.S.I.S. NA Home Groups through the Fellowship Service Conference.</p></div>
+<div class="guide-card"><h2>Review &amp; Input</h2><p>Still being developed. These pieces may be used or reviewed by autonomous groups, but are not A.S.I.S.-approved literature.</p></div>
+<div class="guide-card"><h2>Archived Review</h2><p>Older input material preserved here, but not found on either current NAHELP status list.</p></div>
+</section>
+<p class="source-note"><strong>Important:</strong> “Up for Approval” is still a pending status. NAHELP says Review &amp; Input literature exists in various stages of development and that participating groups may ultimately approve one, none, all, or any combination. See the <a href="https://nahelp.org/approved/" rel="noopener noreferrer" target="_blank">current approved list</a> and <a href="https://nahelp.org/english/" rel="noopener noreferrer" target="_blank">English Review &amp; Input list</a>.</p>
+<section aria-label="Search and filter literature" class="search-panel">
+<div class="search-row"><input autocomplete="off" class="search-input" id="ipSearch" placeholder="Search by title, subject, category, or status..." type="search"/><button class="clear-button" id="clearSearch" type="button">Clear</button></div>
+<div aria-label="Filter by approval status" class="filter-row" role="group">
+<button aria-pressed="true" class="filter-button" data-filter="all" type="button">All 16</button>
+<button aria-pressed="false" class="filter-button" data-filter="approved" type="button">Approved 6</button>
+<button aria-pressed="false" class="filter-button" data-filter="review" type="button">Review &amp; Input 8</button>
+<button aria-pressed="false" class="filter-button" data-filter="archive" type="button">Archived Review 2</button>
+</div>
+<p class="results-status" id="resultsStatus">Showing all 16 literature pieces.</p>
+</section>
+<section class="literature-section" data-section="approved">
+<div class="section-heading">
+<div>
+<p class="section-kicker">6 pieces</p>
+<h2>Approved Literature</h2>
+</div>
+<p>Approved by the NA Home Groups participating in A.S.I.S. and directing the Fellowship Service Conference.</p>
+</div>
+<div class="ip-grid"><article class="ip-card" data-search="a view of na group conscience service and group a home-group-centered view of group conscience, unanimity, inventory, and decision-making. approved ip" data-status="approved" data-title="A View of NA Group Conscience">
+<a class="ip-link" href="pdfs/a-view-of-na-group-conscience.pdf">
+<div class="ip-card-top">
+<span class="category">Service and Group</span>
+<span class="badge approved">Approved</span>
+</div>
+<h3>A View of NA Group Conscience</h3>
+<p>A home-group-centered view of group conscience, unanimity, inventory, and decision-making.</p>
+<div class="ip-meta">
+<span>IP</span>
+<span>2 pages</span>
+<span>186 KB</span>
+<span class="open-label">Open PDF →</span>
+</div>
+</a>
+</article><article class="ip-card" data-search="personal responsibility recovery principles responsibility, accountability, denial, surrender, and spiritual growth in recovery. approved booklet" data-status="approved" data-title="Personal Responsibility">
+<a class="ip-link" href="pdfs/personal-responsibility.pdf">
+<div class="ip-card-top">
+<span class="category">Recovery Principles</span>
+<span class="badge approved">Approved</span>
+</div>
+<h3>Personal Responsibility</h3>
+<p>Responsibility, accountability, denial, surrender, and spiritual growth in recovery.</p>
+<div class="ip-meta">
+<span>Booklet</span>
+<span>6 pages</span>
+<span>237 KB</span>
+<span class="open-label">Open PDF →</span>
+</div>
+</a>
+</article><article class="ip-card" data-search="the five tools of recovery recovery tools meetings, writing, reading, phone calls, and prayer as daily recovery tools. approved ip" data-status="approved" data-title="The Five Tools of Recovery">
+<a class="ip-link" href="pdfs/the-five-tools-of-recovery.pdf">
+<div class="ip-card-top">
+<span class="category">Recovery Tools</span>
+<span class="badge approved">Approved</span>
+</div>
+<h3>The Five Tools of Recovery</h3>
+<p>Meetings, writing, reading, phone calls, and prayer as daily recovery tools.</p>
+<div class="ip-meta">
+<span>IP</span>
+<span>2 pages</span>
+<span>225 KB</span>
+<span class="open-label">Open PDF →</span>
+</div>
+</a>
+</article><article class="ip-card" data-search="the home group service and group what a home group is, why members need one, and how committed membership functions. approved booklet" data-status="approved" data-title="The Home Group">
+<a class="ip-link" href="pdfs/the-home-group.pdf">
+<div class="ip-card-top">
+<span class="category">Service and Group</span>
+<span class="badge approved">Approved</span>
+</div>
+<h3>The Home Group</h3>
+<p>What a home group is, why members need one, and how committed membership functions.</p>
+<div class="ip-meta">
+<span>Booklet</span>
+<span>6 pages</span>
+<span>236 KB</span>
+<span class="open-label">Open PDF →</span>
+</div>
+</a>
+</article><article class="ip-card" data-search="total abstinence na identity total abstinence, surrender, willingness, commitment, and the na approach to recovery. approved ip" data-status="approved" data-title="Total Abstinence">
+<a class="ip-link" href="pdfs/total-abstinence.pdf">
+<div class="ip-card-top">
+<span class="category">NA Identity</span>
+<span class="badge approved">Approved</span>
+</div>
+<h3>Total Abstinence</h3>
+<p>Total abstinence, surrender, willingness, commitment, and the NA approach to recovery.</p>
+<div class="ip-meta">
+<span>IP</span>
+<span>2 pages</span>
+<span>200 KB</span>
+<span class="open-label">Open PDF →</span>
+</div>
+</a>
+</article><article class="ip-card" data-search="we're not doctors na identity a fellowship-centered discussion of total abstinence, medical treatment, and clean time. approved ip" data-status="approved" data-title="We're Not Doctors">
+<a class="ip-link" href="pdfs/were-not-doctors.pdf">
+<div class="ip-card-top">
+<span class="category">NA Identity</span>
+<span class="badge approved">Approved</span>
+</div>
+<h3>We're Not Doctors</h3>
+<p>A fellowship-centered discussion of total abstinence, medical treatment, and clean time.</p>
+<div class="ip-meta">
+<span>IP</span>
+<span>2 pages</span>
+<span>215 KB</span>
+<span class="open-label">Open PDF →</span>
+</div>
+</a>
+</article></div>
+</section><section class="literature-section" data-section="review">
+<div class="section-heading">
+<div>
+<p class="section-kicker">8 pieces</p>
+<h2>Review &amp; Input Literature</h2>
+</div>
+<p>These pieces remain in development. “Up for Approval” means a motion is pending; it does not mean the piece is approved.</p>
+</div>
+<div class="ip-grid"><article class="ip-card" data-search="a.s.i.s. for narcotics anonymous service and group an introduction to the alternate service informational structure and its home-group-directed service model. review &amp; input ip" data-status="review" data-title="A.S.I.S. for Narcotics Anonymous">
+<a class="ip-link" href="pdfs/asis-for-na.pdf">
+<div class="ip-card-top">
+<span class="category">Service and Group</span>
+<span class="badge review">Review &amp; Input</span>
+</div>
+<h3>A.S.I.S. for Narcotics Anonymous</h3>
+<p>An introduction to the Alternate Service Informational Structure and its home-group-directed service model.</p>
+<div class="ip-meta">
+<span>IP</span>
+<span>2 pages</span>
+<span>267 KB</span>
+<span class="open-label">Open PDF →</span>
+</div>
+</a>
+</article><article class="ip-card" data-search="commitment recovery principles commitment as a spiritual principle, a daily action, and a foundation for recovery. review &amp; input ip" data-status="review" data-title="Commitment">
+<a class="ip-link" href="pdfs/commitment.pdf">
+<div class="ip-card-top">
+<span class="category">Recovery Principles</span>
+<span class="badge review">Review &amp; Input</span>
+</div>
+<h3>Commitment</h3>
+<p>Commitment as a spiritual principle, a daily action, and a foundation for recovery.</p>
+<div class="ip-meta">
+<span>IP</span>
+<span>2 pages</span>
+<span>597 KB</span>
+<span class="open-label">Open PDF →</span>
+</div>
+</a>
+</article><article class="ip-card" data-search="communication recovery principles honest communication, connection, meetings, sponsorship, relationships, and service. review &amp; input ip" data-status="review" data-title="Communication">
+<a class="ip-link" href="pdfs/communication.pdf">
+<div class="ip-card-top">
+<span class="category">Recovery Principles</span>
+<span class="badge review">Review &amp; Input</span>
+</div>
+<h3>Communication</h3>
+<p>Honest communication, connection, meetings, sponsorship, relationships, and service.</p>
+<div class="ip-meta">
+<span>IP</span>
+<span>2 pages</span>
+<span>592 KB</span>
+<span class="open-label">Open PDF →</span>
+</div>
+</a>
+</article><article class="ip-card" data-search="concerning relapse recovery principles a current literary work in progress concerning recovery, relapse, surrender, and returning. up for approval ip" data-status="review" data-title="Concerning Relapse">
+<a class="ip-link" href="pdfs/concerning-relapse-up-for-approval.pdf">
+<div class="ip-card-top">
+<span class="category">Recovery Principles</span>
+<span class="badge pending">Up for Approval</span>
+</div>
+<h3>Concerning Relapse</h3>
+<p>A current literary work in progress concerning recovery, relapse, surrender, and returning.</p>
+<div class="ip-meta">
+<span>IP</span>
+<span>2 pages</span>
+<span>368 KB</span>
+<span class="open-label">Open PDF →</span>
+</div>
+</a>
+</article><article class="ip-card" data-search="ego recovery principles how ego, isolation, fear, control, and self-centeredness can affect recovery. review &amp; input ip" data-status="review" data-title="Ego">
+<a class="ip-link" href="pdfs/ego.pdf">
+<div class="ip-card-top">
+<span class="category">Recovery Principles</span>
+<span class="badge review">Review &amp; Input</span>
+</div>
+<h3>Ego</h3>
+<p>How ego, isolation, fear, control, and self-centeredness can affect recovery.</p>
+<div class="ip-meta">
+<span>IP</span>
+<span>2 pages</span>
+<span>593 KB</span>
+<span class="open-label">Open PDF →</span>
+</div>
+</a>
+</article><article class="ip-card" data-search="meeting etiquette meetings and fellowship practical suggestions for protecting an atmosphere of recovery in na meetings. review &amp; input ip" data-status="review" data-title="Meeting Etiquette">
+<a class="ip-link" href="pdfs/meeting-etiquette.pdf">
+<div class="ip-card-top">
+<span class="category">Meetings and Fellowship</span>
+<span class="badge review">Review &amp; Input</span>
+</div>
+<h3>Meeting Etiquette</h3>
+<p>Practical suggestions for protecting an atmosphere of recovery in NA meetings.</p>
+<div class="ip-meta">
+<span>IP</span>
+<span>2 pages</span>
+<span>607 KB</span>
+<span class="open-label">Open PDF →</span>
+</div>
+</a>
+</article><article class="ip-card" data-search="open participation service and group participation in na service without unnecessarily excluding newcomers or members. review &amp; input ip" data-status="review" data-title="Open Participation">
+<a class="ip-link" href="pdfs/open-participation.pdf">
+<div class="ip-card-top">
+<span class="category">Service and Group</span>
+<span class="badge review">Review &amp; Input</span>
+</div>
+<h3>Open Participation</h3>
+<p>Participation in NA service without unnecessarily excluding newcomers or members.</p>
+<div class="ip-meta">
+<span>IP</span>
+<span>2 pages</span>
+<span>598 KB</span>
+<span class="open-label">Open PDF →</span>
+</div>
+</a>
+</article><article class="ip-card" data-search="reservations recovery principles recognizing reservations and practicing surrender, honesty, willingness, and vigilance. review &amp; input ip" data-status="review" data-title="Reservations">
+<a class="ip-link" href="pdfs/reservations.pdf">
+<div class="ip-card-top">
+<span class="category">Recovery Principles</span>
+<span class="badge review">Review &amp; Input</span>
+</div>
+<h3>Reservations</h3>
+<p>Recognizing reservations and practicing surrender, honesty, willingness, and vigilance.</p>
+<div class="ip-meta">
+<span>IP</span>
+<span>2 pages</span>
+<span>594 KB</span>
+<span class="open-label">Open PDF →</span>
+</div>
+</a>
+</article></div>
+</section><section class="literature-section" data-section="archive">
+<div class="section-heading">
+<div>
+<p class="section-kicker">2 pieces</p>
+<h2>Archived Review Material</h2>
+</div>
+<p>Preserved because it was already in this collection. These documents describe themselves as input/review material but do not appear on the current NAHELP approved or English review lists.</p>
+</div>
+<div class="ip-grid"><article class="ip-card" data-search="one disease, one program na identity an older review document concerning na identity, language, addiction, and total abstinence. archived review ip" data-status="archive" data-title="One Disease, One Program">
+<a class="ip-link" href="pdfs/one-disease-one-program.pdf">
+<div class="ip-card-top">
+<span class="category">NA Identity</span>
+<span class="badge archive">Archived Review</span>
+</div>
+<h3>One Disease, One Program</h3>
+<p>An older review document concerning NA identity, language, addiction, and total abstinence.</p>
+<div class="ip-meta">
+<span>IP</span>
+<span>2 pages</span>
+<span>95 KB</span>
+<span class="open-label">Open PDF →</span>
+</div>
+</a>
+</article><article class="ip-card" data-search="our unity lies in our diversity service and group an older review document concerning autonomy, unity, diversity, and alternative service. archived review ip" data-status="archive" data-title="Our Unity Lies in Our Diversity">
+<a class="ip-link" href="pdfs/our-unity-lies-in-our-diversity.pdf">
+<div class="ip-card-top">
+<span class="category">Service and Group</span>
+<span class="badge archive">Archived Review</span>
+</div>
+<h3>Our Unity Lies in Our Diversity</h3>
+<p>An older review document concerning autonomy, unity, diversity, and alternative service.</p>
+<div class="ip-meta">
+<span>IP</span>
+<span>2 pages</span>
+<span>122 KB</span>
+<span class="open-label">Open PDF →</span>
+</div>
+</a>
+</article></div>
+</section>
+<div class="empty-state" id="emptyState">No literature matched that search and status filter.</div>
+</div>
+</main>
+<footer>Approved files use the current approved print copies. Review files are clearly identified and remain subject to group review and input.</footer>
+<script>
     (() => {
-      const search = document.getElementById('ipSearch');
-      const clear = document.getElementById('clearSearch');
-      const status = document.getElementById('resultsStatus');
-      const empty = document.getElementById('emptyState');
-      const cards = [...document.querySelectorAll('.ip-card')];
-
-      function normalize(value) {
-        return value
-          .toLowerCase()
-          .normalize('NFD')
-          .replace(/[\u0300-\u036f]/g, '')
-          .trim();
-      }
-
-      function runSearch() {
-        const query = normalize(search.value);
-        const terms = query.split(/\s+/).filter(Boolean);
-        let shown = 0;
-
-        cards.forEach((card) => {
-          const haystack = normalize(card.dataset.search || '');
-          const matches = terms.every((term) => haystack.includes(term));
-          card.hidden = !matches;
-
-          if (matches) {
-            shown += 1;
-          }
+      const search=document.getElementById('ipSearch');
+      const clear=document.getElementById('clearSearch');
+      const result=document.getElementById('resultsStatus');
+      const empty=document.getElementById('emptyState');
+      const cards=[...document.querySelectorAll('.ip-card')];
+      const sections=[...document.querySelectorAll('.literature-section')];
+      const filters=[...document.querySelectorAll('.filter-button')];
+      let active='all';
+      const normalize=value=>value.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').trim();
+      function run() {
+        const query=normalize(search.value);
+        const terms=query.split(/\s+/).filter(Boolean);
+        let shown=0;
+        cards.forEach(card=>{
+          const statusMatch=active==='all'||card.dataset.status===active;
+          const haystack=normalize(card.dataset.search||'');
+          const textMatch=terms.every(term=>haystack.includes(term));
+          card.hidden=!(statusMatch&&textMatch);
+          if(!card.hidden) shown++;
         });
-
-        empty.classList.toggle('is-visible', shown === 0);
-
-        status.textContent = query
-          ? `Showing ${shown} matching pamphlet${shown === 1 ? '' : 's'}.`
-          : `Showing all 15 pamphlets.`;
+        sections.forEach(section=>{section.hidden=![...section.querySelectorAll('.ip-card')].some(card=>!card.hidden)});
+        empty.classList.toggle('is-visible',shown===0);
+        const filterName=active==='all'?'':` in ${filters.find(button=>button.dataset.filter===active).textContent.replace(/\s+\d+$/,'')}`;
+        result.textContent=query?`Showing ${shown} matching piece${shown===1?'':'s'}${filterName}.`:`Showing ${shown} literature piece${shown===1?'':'s'}${filterName}.`;
       }
-
-      search.addEventListener('input', runSearch);
-
-      clear.addEventListener('click', () => {
-        search.value = '';
-        runSearch();
-        search.focus();
-      });
+      filters.forEach(button=>button.addEventListener('click',()=>{active=button.dataset.filter;filters.forEach(item=>item.setAttribute('aria-pressed',String(item===button)));run();}));
+      search.addEventListener('input',run);
+      clear.addEventListener('click',()=>{search.value='';active='all';filters.forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.filter==='all')));run();search.focus();});
     })();
   </script>
 </body>
