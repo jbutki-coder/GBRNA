@@ -10,12 +10,20 @@
       "note": "Primary source text for Grey Book Reflection source pages."
     },
     {
-      "id": "basic-text",
-      "title": "Basic Text",
-      "subtitle": "Third Edition, Revised - with original 4th & 9th Traditions",
+      "id": "baby-blue-screen-reading",
+      "title": "The Baby Blue Basic Text",
+      "subtitle": "Third Edition Revised & Restored — Screen-Reading Copy",
+      "cover": "images/literature/basic-text-cover.jpg",
+      "pdf": "literature/baby-blue-third-edition-revised-screen-reading.pdf",
+      "note": "Formatted for ordinary reading on phones, tablets, and computers. Includes the original Fourth and Ninth Traditions."
+    },
+    {
+      "id": "baby-blue-printing-copy",
+      "title": "The Baby Blue Basic Text",
+      "subtitle": "Third Edition Revised — Printing Copy",
       "cover": "images/literature/basic-text-cover.jpg",
       "pdf": "literature/basic-text-third-edition-revised.pdf",
-      "note": "Fellowship-approved Basic Text reprint supplied for this project."
+      "note": "This is the existing Baby Blue file intended for printing."
     },
     {
       "id": "little-white-book",
