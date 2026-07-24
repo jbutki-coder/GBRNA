@@ -60,8 +60,8 @@ main{width:min(100%,1050px);margin:0 auto;padding:2rem}.note{max-width:780px;mar
 .tradition-reading p{margin:0 0 1rem!important;text-align:left!important;text-indent:0!important}
 .tradition-reading p:last-child{margin-bottom:0!important}
 .clean-time-intro{text-indent:0!important;text-align:center!important;margin:0 auto 1.35rem!important;max-width:720px;font:800 1rem/1.55 Arial,sans-serif;color:#2f2922}
-.clean-time-visuals{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(240px,.75fr);gap:1.25rem;align-items:center;margin:1.25rem 0 1.5rem}
-.clean-time-visual{margin:0;padding:1rem;background:#fff;border:1px solid var(--line);border-radius:.65rem;box-shadow:0 8px 22px rgba(21,21,21,.08)}
+.clean-time-visuals{display:flex;justify-content:center;margin:1.25rem 0 1.5rem}
+.clean-time-visual{width:100%;max-width:760px;margin:0;padding:1rem;background:#fff;border:1px solid var(--line);border-radius:.65rem;box-shadow:0 8px 22px rgba(21,21,21,.08)}
 .clean-time-visual img{display:block;width:100%;height:auto;object-fit:contain}
 .clean-time-levels{display:flex;flex-wrap:wrap;justify-content:center;gap:.55rem;margin:1rem 0 1.4rem}
 .clean-time-levels span{padding:.48rem .7rem;border-radius:999px;background:#e8dfcf;border:1px solid var(--line);font:800 .78rem/1 Arial,sans-serif;white-space:nowrap}
@@ -70,7 +70,7 @@ main{width:min(100%,1050px);margin:0 auto;padding:2rem}.note{max-width:780px;mar
 .closing-prayer p{text-indent:0!important;text-align:left!important;margin:0 0 1.15rem!important}
 .closing-prayer p:last-child{margin-bottom:0!important}
 .closing-prayer blockquote{margin:1rem 0 0;padding:1.15rem 1.2rem;border-left:5px solid var(--accent);background:#edf3f8;color:#182838;font-size:1.12em;font-weight:800;font-style:italic;line-height:1.6}
-@media(max-width:720px){.clean-time-visuals{grid-template-columns:1fr}.clean-time-visual{padding:.7rem}}
+@media(max-width:720px){.clean-time-visual{padding:.7rem}}
 
 @media print{body{background:#fff}.site-head,aside,.jump,.note{display:none!important}.layout{display:block}main{width:100%;max-width:none;padding:0}.book-page{min-height:0;margin:0;border:0;box-shadow:none;break-after:page}.page-content{max-width:none;padding:.7in;font-size:12pt}}
 
@@ -278,9 +278,6 @@ main{width:min(100%,1050px);margin:0 auto;padding:2rem}.note{max-width:780px;mar
     <div class="clean-time-visuals">
       <figure class="clean-time-visual">
         <img src="images/clean-time-keytags.png" alt="Narcotics Anonymous clean time keytags for 30 days, 60 days, 90 days, six months, nine months, one year, multiple years, and just for today" loading="lazy">
-      </figure>
-      <figure class="clean-time-visual">
-        <img src="images/clean-time-recovery-statement.png" alt="Recovery statement about making recovery more available and changing the old lie that once an addict always an addict" loading="lazy">
       </figure>
     </div>
     <p class="clean-time-statement">We cannot change the nature of the addict or addiction. We can help to change the old lie, “Once an addict, always an addict,” by striving to make recovery more available. God, help us to remember this difference.</p>
