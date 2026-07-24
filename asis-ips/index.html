@@ -62,6 +62,13 @@
     .empty-state{display:none;padding:2rem;border:2px dashed #a9a093;border-radius:.75rem;text-align:center;color:var(--muted);font-weight:800}
     .empty-state.is-visible{display:block}
     footer{padding:1.5rem 1rem 2rem;border-top:1px solid var(--line);color:#5b646b;text-align:center;font-size:.85rem}
+
+    .literature-disclaimer{margin:0 0 1.35rem;border:2px solid #b9a98d;border-radius:.72rem;background:#fffaf0;box-shadow:0 6px 20px rgba(20,35,48,.07);overflow:hidden}
+    .literature-disclaimer summary{cursor:pointer;padding:1rem 1.1rem;color:var(--navy);background:#eee3cf;font-weight:900;letter-spacing:.015em}
+    .literature-disclaimer summary:hover,.literature-disclaimer summary:focus-visible{background:#e4d4b8;outline:none}
+    .literature-disclaimer-body{padding:1rem 1.1rem;color:#3d4144;font-size:.9rem;line-height:1.55}
+    .literature-disclaimer-body p{margin:.7rem 0}
+    .literature-disclaimer-body .warranty-text{font-weight:900}
     @media(max-width:900px){.ip-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.status-guide{grid-template-columns:1fr}}
     @media(max-width:650px){.site-header{padding-top:2.2rem}.search-row{grid-template-columns:1fr}.clear-button{min-height:2.65rem}.ip-grid{grid-template-columns:1fr}.section-heading{grid-template-columns:1fr;gap:.35rem}.ip-link{min-height:0}}
   </style>
@@ -75,7 +82,7 @@
     <a href="/#search">Search</a>
     <a href="/#library">Library</a>
     <a href="/archive-master-index.html">NA History Archive</a>
-    <a href="/lwb-draft/">Little White Book</a>
+    <a href="/lwb-draft/">Meeting Readings / Seventh Tradition</a>
     <a href="/#download">Download</a>
     <a href="/#audio">Audio</a>
     <a href="/#meetings">Meetings</a>
@@ -102,6 +109,15 @@
 <div class="guide-card"><h2>Archived Review</h2><p>Older input material preserved here, but not found on either current NAHELP status list.</p></div>
 </section>
 <p class="source-note"><strong>Important:</strong> “Up for Approval” is still a pending status. NAHELP says Review &amp; Input literature exists in various stages of development and that participating groups may ultimately approve one, none, all, or any combination. NAHELP also lists the five <strong>CARENA IPs (1976)</strong> as a separate historical collection on its Approved page. See the <a href="https://nahelp.org/approved/" rel="noopener noreferrer" target="_blank">current approved and CARENA lists</a> and <a href="https://nahelp.org/english/" rel="noopener noreferrer" target="_blank">English Review &amp; Input list</a>.</p>
+<details class="literature-disclaimer">
+  <summary>Limited Public Domain Literature Disclaimer</summary>
+  <div class="literature-disclaimer-body">
+    <p><strong>This is free literature released into limited public domain.</strong></p>
+    <p>Anyone is free to copy, publish, use, compile, distribute this literature, by any means, with the following exceptions: a) Only Narcotics Anonymous Home Groups may modify it; b) No one may profit from the sale or distribution of this literature; c) Only Narcotics Anonymous Home Groups may sell this literature; d) All sales by Narcotics Anonymous Home Groups must be at or below their actual cost, which ought never include “man hours” or “volunteer hours” but should be limited to the actual cost of printing and shipping; e) The rights of Narcotics Anonymous Home Groups under this release shall never be delegated to any service body or entity outside the actual Home Groups, NA related or otherwise. f) Any entity whose regular business is the printing and/or binding of books, pamphlets, etc. may charge a fair and reasonable fair market price for the production of this literature for groups and individuals intending to distribute it in accordance with these terms, so long as said entity never acts in the capacity of publisher or distributor of this literature. Drop-shipping orders to legitimate distributors acting in accordance with this release is permissible.</p>
+    <p>In jurisdictions that recognize copyright laws, the author or authors of this literature dedicate limited copyright interest to the public domain in accordance with these terms. We make this dedication for the benefit of the still-suffering addict and public at large and to the detriment of our heirs and successors. We intend this dedication to be an overt act of relinquishment in perpetuity of all present and future monetary rights to this literature under copyright law.</p>
+    <p class="warranty-text">THE LITERATURE IS PROVIDED WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED. IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE THE USE OF THIS LITERATURE BY ANY ENTITY WITH REGARD TO ITS APPLICATION, BE IT IN THE FIELD OF RECOVERY FROM ADDICTION OR OTHERWISE.</p>
+  </div>
+</details>
 <section aria-label="Search and filter literature" class="search-panel">
 <div class="search-row"><input autocomplete="off" class="search-input" id="ipSearch" placeholder="Search by title, subject, category, or status..." type="search"/><button class="clear-button" id="clearSearch" type="button">Clear</button></div>
 <div aria-label="Filter by approval status" class="filter-row" role="group">
