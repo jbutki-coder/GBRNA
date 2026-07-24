@@ -43,31 +43,42 @@
   <link rel="stylesheet" href="css/gbr-source-text.css?v=20260714-all366">
 
 
+  <link rel="stylesheet" href="/css/global-tabs.css?v=20260724-nav1">
+
+  <style>
+    .literature-disclaimer{margin:1.5rem 0 2rem;border:2px solid rgba(86,67,42,.35);border-radius:.7rem;background:#f7f0df;box-shadow:0 8px 24px rgba(0,0,0,.08);overflow:hidden}
+    .literature-disclaimer summary{cursor:pointer;padding:1rem 1.1rem;color:#2d261d;background:#eadfc8;font-weight:900;letter-spacing:.02em}
+    .literature-disclaimer summary:hover,.literature-disclaimer summary:focus-visible{background:#e1d2b5;outline:none}
+    .literature-disclaimer-body{padding:1rem 1.15rem;color:#292621;font-size:.92rem;line-height:1.55}
+    .literature-disclaimer-body p{margin:.75rem 0;text-align:left}
+    .literature-disclaimer-body .warranty-text{font-weight:800}
+  </style>
 </head>
 
 <body>
+<div class="global-tabs-bar">
+  <nav class="global-tabs" aria-label="Complete site navigation">
+    <a href="/#today" aria-current="page">Today</a>
+    <a href="/#archive">Reflection Archive</a>
+    <a href="/#search">Search</a>
+    <a href="/#library">Library</a>
+    <a href="/archive-master-index.html">NA History Archive</a>
+    <a href="/lwb-draft/">Meeting Readings / Seventh Tradition</a>
+    <a href="/#download">Download</a>
+    <a href="/#audio">Audio</a>
+    <a href="/#meetings">Meetings</a>
+    <a href="/asis-ips/">A.S.I.S. Literature</a>
+    <a href="/fsc/">FSC</a>
+    <a href="https://www.nahelp.org" target="_blank" rel="noopener noreferrer">A.S.I.S. Website</a>
+    <a href="/#about">About</a>
+  </nav>
+</div>
   <header class="site-header">
     <div class="wrap header-inner">
       <div>
         <h1>Grey Book Reflection</h1>
         <p class="subhead">Conscienced by the Grey Area Group of NA</p>
       </div>
-
-      <nav class="main-nav" aria-label="Main navigation">
-        <a href="#today" data-nav="today">Today</a>
-        <a href="#archive" data-nav="archive">Reflection Archive</a>
-        <a href="#search" data-nav="search">Search</a>
-        <a href="#library" data-nav="library">Library</a>
-        <a href="/archive-master-index.html">NA History Archive</a>
-        <a href="/lwb-draft/">Little White Book</a>
-        <a href="#download" data-nav="download">Download</a>
-        <a href="#audio" data-nav="audio">Audio</a>
-        <a href="#meetings" data-nav="meetings">Meetings</a>
-        <a href="/asis-ips/">A.S.I.S. Literature</a>
-        <a href="/fsc/">FSC</a>
-        <a href="https://www.nahelp.org" target="_blank" rel="noopener noreferrer">A.S.I.S. Website</a>
-        <a href="#about" data-nav="about">About</a>
-      </nav>
     </div>
   </header>
 
@@ -118,6 +129,16 @@
     </section>
 
     <section id="readingArea" class="reading-stack" aria-live="polite"></section>
+
+    <details class="literature-disclaimer">
+      <summary>Limited Public Domain Literature Disclaimer</summary>
+      <div class="literature-disclaimer-body">
+        <p><strong>This is free literature released into limited public domain.</strong></p>
+        <p>Anyone is free to copy, publish, use, compile, distribute this literature, by any means, with the following exceptions: a) Only Narcotics Anonymous Home Groups may modify it; b) No one may profit from the sale or distribution of this literature; c) Only Narcotics Anonymous Home Groups may sell this literature; d) All sales by Narcotics Anonymous Home Groups must be at or below their actual cost, which ought never include “man hours” or “volunteer hours” but should be limited to the actual cost of printing and shipping; e) The rights of Narcotics Anonymous Home Groups under this release shall never be delegated to any service body or entity outside the actual Home Groups, NA related or otherwise. f) Any entity whose regular business is the printing and/or binding of books, pamphlets, etc. may charge a fair and reasonable fair market price for the production of this literature for groups and individuals intending to distribute it in accordance with these terms, so long as said entity never acts in the capacity of publisher or distributor of this literature. Drop-shipping orders to legitimate distributors acting in accordance with this release is permissible.</p>
+        <p>In jurisdictions that recognize copyright laws, the author or authors of this literature dedicate limited copyright interest to the public domain in accordance with these terms. We make this dedication for the benefit of the still-suffering addict and public at large and to the detriment of our heirs and successors. We intend this dedication to be an overt act of relinquishment in perpetuity of all present and future monetary rights to this literature under copyright law.</p>
+        <p class="warranty-text">THE LITERATURE IS PROVIDED WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED. IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE THE USE OF THIS LITERATURE BY ANY ENTITY WITH REGARD TO ITS APPLICATION, BE IT IN THE FIELD OF RECOVERY FROM ADDICTION OR OTHERWISE.</p>
+      </div>
+    </details>
 
     <section id="library" class="panel literature-library-panel">
       <div class="panel-heading">
