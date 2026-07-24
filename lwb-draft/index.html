@@ -35,12 +35,42 @@ main{width:min(100%,1050px);margin:0 auto;padding:2rem}.note{max-width:780px;mar
 .presentation aside{display:none}.presentation .layout{grid-template-columns:1fr}.presentation main{max-width:none;width:100%;padding:0}.presentation .note{display:none}.presentation .book-page{min-height:calc(100vh - 63px);margin:0;border-radius:0;box-shadow:none}.presentation .page-content{max-width:1100px;font-size:clamp(1.2rem,1.75vw,1.7rem)}
 @media(max-width:850px){.head-main{align-items:flex-start;flex-direction:column}.controls{width:100%;justify-content:flex-start;overflow-x:auto;flex-wrap:nowrap;padding-bottom:.15rem}.layout{grid-template-columns:1fr}aside{display:none;position:static;height:auto}.layout.menu-open aside{display:block}.brand{width:100%}main{padding:.75rem}.page-content{padding:2rem 1.25rem 3rem}.book-page{scroll-margin-top:120px}.page-topline{font-size:.65rem}}
 @media(max-width:470px){.controls button,.controls a{padding:.52rem .6rem;font-size:.7rem}.page-topline{align-items:flex-start;flex-direction:column;gap:.35rem}.page-topline strong{white-space:normal}}
+
+.seventh-intro{text-indent:0!important;text-align:center!important;max-width:680px;margin:0 auto 1.4rem!important;font-family:Arial,sans-serif;font-size:1rem;line-height:1.5}
+.payment-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.2rem;margin-top:1.5rem}
+.payment-card{display:flex;flex-direction:column;align-items:center;gap:.85rem;padding:1.1rem;background:#fff;border:1px solid var(--line);border-radius:.65rem;box-shadow:0 8px 22px rgba(21,21,21,.08);text-align:center}
+.payment-card h3{margin:0;color:var(--accent);font:800 1.15rem/1.2 Arial,sans-serif;text-transform:uppercase;letter-spacing:.04em}
+.payment-card a.qr-link{display:block;width:100%;max-width:360px;border-radius:.55rem;overflow:hidden;background:#fff}
+.payment-card img{display:block;width:100%;height:auto;aspect-ratio:1/1;object-fit:contain;background:#fff}
+.payment-card .pay-button{display:inline-flex;align-items:center;justify-content:center;min-width:170px;padding:.75rem 1rem;border-radius:.5rem;background:var(--accent);color:#fff;text-decoration:none;font:800 .85rem/1 Arial,sans-serif;letter-spacing:.03em}
+.payment-card .pay-button:hover,.payment-card .pay-button:focus{background:#2e587f}
+.payment-instruction{text-indent:0!important;text-align:center!important;margin:.1rem 0 0!important;padding:.65rem .75rem;border:2px solid #6d1e1e;border-radius:.45rem;background:#fff4e8;color:#491717;font:800 .85rem/1.4 Arial,sans-serif}.payment-note{text-indent:0!important;text-align:center!important;margin:1.35rem 0 0!important;color:#514b43;font:700 .82rem/1.45 Arial,sans-serif}
+@media(max-width:700px){.payment-grid{grid-template-columns:1fr}.payment-card{padding:.85rem}.payment-card a.qr-link{max-width:330px}}
+
 @media print{body{background:#fff}.site-head,aside,.jump,.note{display:none!important}.layout{display:block}main{width:100%;max-width:none;padding:0}.book-page{min-height:0;margin:0;border:0;box-shadow:none;break-after:page}.page-content{max-width:none;padding:.7in;font-size:12pt}}
 
 
 </style>
+  <link rel="stylesheet" href="/css/global-tabs.css?v=20260724-nav1">
 </head>
 <body>
+<div class="global-tabs-bar">
+  <nav class="global-tabs" aria-label="Complete site navigation">
+    <a href="/#today">Today</a>
+    <a href="/#archive">Reflection Archive</a>
+    <a href="/#search">Search</a>
+    <a href="/#library">Library</a>
+    <a href="/archive-master-index.html">NA History Archive</a>
+    <a href="/lwb-draft/" aria-current="page">Little White Book</a>
+    <a href="/#download">Download</a>
+    <a href="/#audio">Audio</a>
+    <a href="/#meetings">Meetings</a>
+    <a href="/asis-ips/">A.S.I.S. Literature</a>
+    <a href="/fsc/">FSC</a>
+    <a href="https://www.nahelp.org" target="_blank" rel="noopener noreferrer">A.S.I.S. Website</a>
+    <a href="/#about">About</a>
+  </nav>
+</div>
 <header class="site-head">
   <div class="head-main">
     <div class="brand">
@@ -53,7 +83,6 @@ main{width:min(100%,1050px);margin:0 auto;padding:2rem}.note{max-width:780px;mar
       <button id="full" type="button">Full Screen</button>
       <button type="button" onclick="print()">Print</button>
       <a href="1983-LWB-Draft.pdf" target="_blank" rel="noopener">Original PDF</a>
-      <a href="/" aria-label="Return to Grey Book Reflection">GBRNA Home</a>
     </div>
   </div>
 </header>
@@ -61,7 +90,7 @@ main{width:min(100%,1050px);margin:0 auto;padding:2rem}.note{max-width:780px;mar
   <aside>
     <h1>Contents</h1>
     <p>All 12 pages are selectable text and ready for screen sharing.</p>
-    <nav id="toc"><a href="#page-1"><span>1</span>Who Is an Addict?</a><a href="#page-2"><span>2</span>Why Are We Here?</a><a href="#page-3"><span>3</span>How It Works</a><a href="#page-4"><span>4</span>How It Works — Continued</a><a href="#page-5"><span>5</span>What Can I Do? / Twelve Traditions</a><a href="#page-6"><span>6</span>Twelve Traditions — Continued</a><a href="#page-7"><span>7</span>Twelve Traditions — Conclusion</a><a href="#page-8"><span>8</span>Recovery and Relapse</a><a href="#page-9"><span>9</span>Recovery and Relapse / We Do Recover</a><a href="#page-10"><span>10</span>We Do Recover — Continued</a><a href="#page-11"><span>11</span>We Do Recover / Just for Today</a><a href="#page-12"><span>12</span>Living the Program</a></nav>
+    <nav id="toc"><a href="#page-1"><span>1</span>Who Is an Addict?</a><a href="#page-2"><span>2</span>Why Are We Here?</a><a href="#page-3"><span>3</span>How It Works</a><a href="#page-4"><span>4</span>How It Works — Continued</a><a href="#page-5"><span>5</span>What Can I Do? / Twelve Traditions</a><a href="#page-6"><span>6</span>Twelve Traditions — Continued</a><a href="#page-7"><span>7</span>Twelve Traditions — Conclusion</a><a href="#page-8"><span>8</span>Recovery and Relapse</a><a href="#page-9"><span>9</span>Recovery and Relapse / We Do Recover</a><a href="#page-10"><span>10</span>We Do Recover — Continued</a><a href="#page-11"><span>11</span>We Do Recover / Just for Today</a><a href="#page-12"><span>12</span>Living the Program</a><a href="#seventh-tradition"><span>$</span>Seventh Tradition</a></nav>
   </aside>
   <main>
     <div class="note"><strong>Draft text:</strong> Presented as provided for reading, study, and meeting use.</div>
@@ -160,6 +189,37 @@ main{width:min(100%,1050px);margin:0 auto;padding:2rem}.note{max-width:780px;mar
     <strong>Page 12 of 12</strong>
   </div>
   <div class="page-content"><h2>JUST FOR TODAY</h2><h2>LIVING THE PROGRAM</h2><p class="tell">Tell yourself:</p><p class="jft"><strong>JUST FOR TODAY</strong> my thoughts will be on my recovery,</p><p>living and enjoying life without the use of drugs.</p><p class="jft"><strong>JUST FOR TODAY</strong> I will have faith in someone in N.A.</p><p>who believes in me and wants to help me in my recovery.</p><p class="jft"><strong>JUST FOR TODAY</strong> I will have a program. I will try to</p><p>follow it to the best of my ability.</p><p class="jft"><strong>JUST FOR TODAY</strong> through N.A. I will try to get a</p><p>better perspective on my life.</p><p class="jft"><strong>JUST FOR TODAY</strong> I will be unafraid, my thoughts will be</p><p>on my new associations, people who are not using and who have found a new way of life. So long as I follow that way, I have nothing to fear.</p></div>
+</article>
+
+
+<article class="book-page" id="seventh-tradition">
+  <div class="page-topline">
+    <span>Seventh Tradition Contributions</span>
+    <strong>After the Reading</strong>
+  </div>
+  <div class="page-content">
+    <h2>SEVENTH TRADITION</h2>
+    <p class="seventh-intro">Members may make a Seventh Tradition contribution using either payment option below. Tap a QR code or the button beneath it to open the payment link. In the payment notes or memo section, write <strong>Grey Area Group</strong>.</p>
+    <div class="payment-grid">
+      <section class="payment-card" aria-labelledby="cash-app-title">
+        <h3 id="cash-app-title">Cash App</h3>
+        <a class="qr-link" href="https://cash.app/$BluewaterActivities?qr=1" target="_blank" rel="noopener noreferrer" aria-label="Open the Cash App Seventh Tradition payment link">
+          <img src="images/seventh-tradition-cash-app.jpeg" alt="Cash App QR code for Seventh Tradition contributions" loading="lazy">
+        </a>
+        <a class="pay-button" href="https://cash.app/$BluewaterActivities?qr=1" target="_blank" rel="noopener noreferrer">Open Cash App</a>
+        <p class="payment-instruction"><strong>Notes / memo:</strong> Grey Area Group</p>
+      </section>
+      <section class="payment-card" aria-labelledby="paypal-title">
+        <h3 id="paypal-title">PayPal</h3>
+        <a class="qr-link" href="https://www.paypal.com/qrcodes/p2pqrc/L3RSFQLVRZC7E" target="_blank" rel="noopener noreferrer" aria-label="Open the PayPal Seventh Tradition payment link">
+          <img src="images/seventh-tradition-paypal.jpeg" alt="PayPal QR code for Seventh Tradition contributions" loading="lazy">
+        </a>
+        <a class="pay-button" href="https://www.paypal.com/qrcodes/p2pqrc/L3RSFQLVRZC7E" target="_blank" rel="noopener noreferrer">Open PayPal</a>
+        <p class="payment-instruction"><strong>Notes / memo:</strong> Grey Area Group</p>
+      </section>
+    </div>
+    <p class="payment-note">For every donation, enter <strong>Grey Area Group</strong> in the payment notes or memo section so the contribution is identified correctly.</p>
+  </div>
 </article>
 
   </main>
