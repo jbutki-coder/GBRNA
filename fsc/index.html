@@ -1,0 +1,619 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0d3028">
+
+  <title>FSC 2027 | Fellowship Service Conference</title>
+  <meta
+    name="description"
+    content="FSC 2027 conference information, registration flyer, the 2026 Conference Agenda Report, and the 2025 Fellowship Service Conference minutes."
+  >
+
+  <link rel="icon" href="/icons/favicon.ico?v=3" sizes="any">
+  <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png?v=3">
+
+  <style>
+    :root {
+      --forest: #0d3028;
+      --forest-2: #17483c;
+      --cream: #f5e8ca;
+      --paper: #fbf3df;
+      --orange: #c9561d;
+      --gold: #d79a32;
+      --ink: #23312d;
+      --muted: #68736e;
+      --line: #cbbd9e;
+      --white: #fffdf6;
+      --shadow: 0 14px 36px rgba(30, 47, 40, .16);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 90% 0, rgba(201, 86, 29, .14), transparent 27rem),
+        linear-gradient(180deg, #f1dfb9 0, var(--paper) 27rem, #efe4cc 100%);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.55;
+    }
+
+    a { color: inherit; }
+
+    .wrap {
+      width: min(1160px, calc(100% - 2rem));
+      margin: 0 auto;
+    }
+
+    .site-header {
+      position: relative;
+      overflow: hidden;
+      padding: 1rem 0 3.4rem;
+      color: var(--cream);
+      background:
+        linear-gradient(135deg, rgba(13, 48, 40, .98), rgba(13, 48, 40, .92)),
+        repeating-linear-gradient(10deg, transparent 0 20px, rgba(255,255,255,.025) 20px 21px);
+      border-bottom: 8px solid var(--orange);
+    }
+
+    .site-header::after {
+      content: "";
+      position: absolute;
+      right: -8rem;
+      bottom: -11rem;
+      width: 25rem;
+      height: 25rem;
+      border: 2px solid rgba(245, 232, 202, .16);
+      border-radius: 50%;
+      box-shadow:
+        0 0 0 2rem rgba(245, 232, 202, .035),
+        0 0 0 4rem rgba(245, 232, 202, .025),
+        0 0 0 6rem rgba(245, 232, 202, .018);
+      pointer-events: none;
+    }
+
+    .top-nav {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-wrap: wrap;
+      gap: .55rem;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .home-link,
+    .source-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 2.55rem;
+      padding: .55rem .75rem;
+      border: 1px solid rgba(245, 232, 202, .34);
+      border-radius: .45rem;
+      background: rgba(255,255,255,.07);
+      color: var(--cream);
+      font-size: .82rem;
+      font-weight: 900;
+      text-decoration: none;
+    }
+
+    .home-link:hover,
+    .source-link:hover,
+    .home-link:focus-visible,
+    .source-link:focus-visible {
+      background: rgba(255,255,255,.15);
+      outline: 3px solid rgba(215,154,50,.35);
+      outline-offset: 2px;
+    }
+
+    .hero {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: minmax(0, 1.18fr) minmax(260px, .82fr);
+      gap: 2rem;
+      align-items: end;
+      padding-top: 3.25rem;
+    }
+
+    .eyebrow {
+      margin: 0 0 .55rem;
+      color: var(--gold);
+      font-size: .78rem;
+      font-weight: 900;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    h1,
+    h2,
+    .display-type {
+      font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+      letter-spacing: .025em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      color: var(--cream);
+      font-size: clamp(3.7rem, 12vw, 8.6rem);
+      line-height: .84;
+    }
+
+    h1 span {
+      color: var(--orange);
+    }
+
+    .hero-copy {
+      max-width: 770px;
+      margin: 1.2rem 0 0;
+      color: rgba(255, 253, 246, .88);
+      font-size: clamp(1rem, 2.2vw, 1.18rem);
+    }
+
+    .event-stamp {
+      padding: 1.25rem;
+      border: 1px solid rgba(245,232,202,.34);
+      border-radius: .7rem;
+      background: rgba(255,255,255,.075);
+      box-shadow: 0 10px 28px rgba(0,0,0,.16);
+    }
+
+    .event-stamp p { margin: 0; }
+
+    .event-date {
+      color: var(--cream);
+      font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+      font-size: clamp(1.7rem, 4vw, 2.5rem);
+      letter-spacing: .035em;
+      line-height: 1;
+      text-transform: uppercase;
+    }
+
+    .event-place {
+      margin-top: .65rem !important;
+      color: var(--gold);
+      font-size: .92rem;
+      font-weight: 900;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+
+    main { padding: 2rem 0 4rem; }
+
+    .event-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: .8rem;
+      margin: 0 0 2rem;
+    }
+
+    .fact-card {
+      padding: 1rem;
+      border: 1px solid var(--line);
+      border-radius: .7rem;
+      background: rgba(255,253,246,.88);
+      box-shadow: 0 7px 20px rgba(30,47,40,.08);
+    }
+
+    .fact-card strong {
+      display: block;
+      margin-bottom: .2rem;
+      color: var(--orange);
+      font-size: .72rem;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+    }
+
+    .fact-card span {
+      color: var(--forest);
+      font-weight: 900;
+    }
+
+    .section {
+      margin-top: 2rem;
+      padding: clamp(1rem, 3vw, 1.7rem);
+      border: 1px solid var(--line);
+      border-radius: .85rem;
+      background: rgba(255,253,246,.92);
+      box-shadow: var(--shadow);
+    }
+
+    .section-heading {
+      display: grid;
+      grid-template-columns: minmax(220px, .7fr) minmax(300px, 1.3fr);
+      gap: 1rem;
+      align-items: end;
+      margin-bottom: 1.2rem;
+      padding-bottom: .9rem;
+      border-bottom: 2px solid #d8c9aa;
+    }
+
+    .section-heading h2 {
+      margin: 0;
+      color: var(--forest);
+      font-size: clamp(1.8rem, 4.5vw, 3.15rem);
+      line-height: 1;
+    }
+
+    .section-heading p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .flyer-layout {
+      display: grid;
+      grid-template-columns: minmax(280px, .92fr) minmax(280px, 1.08fr);
+      gap: 1.4rem;
+      align-items: start;
+    }
+
+    .flyer-frame {
+      overflow: hidden;
+      border: 1px solid #9f9275;
+      border-radius: .65rem;
+      background: #e4d0a6;
+      box-shadow: 0 12px 28px rgba(30,47,40,.18);
+    }
+
+    .flyer-frame img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .details-card {
+      padding: 1.15rem;
+      border-left: 6px solid var(--orange);
+      border-radius: .55rem;
+      background: #f7ecd3;
+    }
+
+    .details-card h3 {
+      margin: 0 0 .8rem;
+      color: var(--forest);
+      font-size: 1.2rem;
+    }
+
+    .detail-list {
+      display: grid;
+      gap: .75rem;
+      margin: 0;
+    }
+
+    .detail-list div {
+      padding-bottom: .75rem;
+      border-bottom: 1px solid rgba(126,105,67,.25);
+    }
+
+    .detail-list div:last-child {
+      padding-bottom: 0;
+      border-bottom: 0;
+    }
+
+    .detail-list dt {
+      color: var(--orange);
+      font-size: .73rem;
+      font-weight: 900;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .detail-list dd {
+      margin: .12rem 0 0;
+      color: var(--ink);
+      font-weight: 700;
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .6rem;
+      margin-top: 1rem;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 2.75rem;
+      padding: .65rem .88rem;
+      border: 2px solid var(--forest);
+      border-radius: .48rem;
+      color: #fff;
+      background: var(--forest);
+      font-size: .86rem;
+      font-weight: 900;
+      text-decoration: none;
+    }
+
+    .button.secondary {
+      color: var(--forest);
+      background: transparent;
+    }
+
+    .button:hover,
+    .button:focus-visible {
+      border-color: var(--orange);
+      background: var(--orange);
+      color: #fff;
+      outline: 3px solid rgba(201,86,29,.18);
+      outline-offset: 2px;
+    }
+
+    .document-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .document-card {
+      display: flex;
+      min-height: 280px;
+      flex-direction: column;
+      padding: 1.2rem;
+      border: 1px solid #cbbd9e;
+      border-radius: .72rem;
+      background: linear-gradient(180deg, #fffdf8, #f6ecd7);
+      box-shadow: 0 9px 24px rgba(30,47,40,.1);
+    }
+
+    .document-year {
+      color: var(--orange);
+      font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+      font-size: 2.8rem;
+      line-height: 1;
+    }
+
+    .document-card h3 {
+      margin: .45rem 0 .55rem;
+      color: var(--forest);
+      font-size: 1.3rem;
+      line-height: 1.2;
+    }
+
+    .document-card p {
+      margin: 0;
+      color: #505d57;
+    }
+
+    .document-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .4rem .75rem;
+      margin-top: .9rem;
+      color: var(--muted);
+      font-size: .78rem;
+      font-weight: 800;
+    }
+
+    .document-card .button-row { margin-top: auto; padding-top: 1rem; }
+
+    .motion-list {
+      display: grid;
+      gap: .65rem;
+      margin: 1rem 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .motion-list li {
+      padding: .85rem .95rem;
+      border-left: 5px solid var(--gold);
+      background: #f7ecd3;
+    }
+
+    .motion-list strong { color: var(--forest); }
+
+    .notice {
+      margin-top: 1.25rem;
+      padding: .95rem 1rem;
+      border: 1px solid #d0b37d;
+      border-radius: .55rem;
+      background: #fff5db;
+      color: #5f4b25;
+    }
+
+    .site-footer {
+      padding: 1.5rem 1rem 2rem;
+      border-top: 1px solid var(--line);
+      color: #5b655f;
+      text-align: center;
+      font-size: .86rem;
+    }
+
+    @media (max-width: 900px) {
+      .hero,
+      .flyer-layout,
+      .section-heading { grid-template-columns: 1fr; }
+      .event-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 620px) {
+      .site-header { padding-bottom: 2.5rem; }
+      .hero { padding-top: 2.2rem; }
+      .event-grid,
+      .document-grid { grid-template-columns: 1fr; }
+      .top-nav { align-items: stretch; }
+      .home-link,
+      .source-link { flex: 1 1 auto; justify-content: center; }
+      h1 { font-size: clamp(3.3rem, 23vw, 5.8rem); }
+      .section { padding: 1rem; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <nav class="top-nav" aria-label="FSC page navigation">
+        <a class="home-link" href="/">← Grey Book Reflection Home</a>
+        <a class="source-link" href="https://nahelp.org/f-s-c/" target="_blank" rel="noopener noreferrer">Official FSC Page on NAHELP ↗</a>
+      </nav>
+
+      <div class="hero">
+        <div>
+          <p class="eyebrow">Fellowship Service Conference for Narcotics Anonymous</p>
+          <h1>FSC <span>2027</span></h1>
+          <p class="hero-copy">
+            Conference information for the annual home-group-directed Fellowship Service Conference,
+            together with the latest available Conference Agenda Report and the previous completed conference minutes.
+          </p>
+        </div>
+
+        <div class="event-stamp" aria-label="Conference date and location">
+          <p class="event-date">June 25–27, 2027</p>
+          <p class="event-place">Olivet Mountain Camp · Hamburg, Pennsylvania</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="event-grid" aria-label="FSC 2027 quick facts">
+      <article class="fact-card"><strong>Arrival</strong><span>Friday at 5:00 PM</span></article>
+      <article class="fact-card"><strong>Cost</strong><span>$140 per person</span></article>
+      <article class="fact-card"><strong>Included</strong><span>Meals and lodging</span></article>
+      <article class="fact-card"><strong>Register by</strong><span>June 10, 2027</span></article>
+    </section>
+
+    <section class="section" id="registration">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Current conference information</p>
+          <h2>FSC 2027 Registration</h2>
+        </div>
+        <p>
+          The complete registration form is on the flyer. Open it full size or download the image for printing and sharing with your Home Group.
+        </p>
+      </div>
+
+      <div class="flyer-layout">
+        <a class="flyer-frame" href="images/fsc-2027-registration-flyer.jpg" target="_blank" rel="noopener">
+          <img
+            src="images/fsc-2027-registration-flyer.jpg"
+            alt="FSC 2027 registration flyer with conference dates, location, cost, payment instructions, contact information, packing note, and registration form"
+          >
+        </a>
+
+        <div>
+          <div class="details-card">
+            <h3>Registration details</h3>
+            <dl class="detail-list">
+              <div>
+                <dt>When</dt>
+                <dd>Friday, June 25 through Sunday, June 27, 2027. Arrival is 5:00 PM Friday.</dd>
+              </div>
+              <div>
+                <dt>Where</dt>
+                <dd>Olivet Mountain Camp, 1540 Mountain Avenue, Hamburg, PA 19526.</dd>
+              </div>
+              <div>
+                <dt>Cost</dt>
+                <dd>$140 per person. Meals and lodging are included. There is no separate registration fee.</dd>
+              </div>
+              <div>
+                <dt>Payment</dt>
+                <dd>Make checks payable to Historical Perspective Group of NA. Mail to A.S.I.S. for NA, P.O. Box 4404, Allentown, PA 18105.</dd>
+              </div>
+              <div>
+                <dt>Questions</dt>
+                <dd>Historical Perspective Group — ask for Ray: (610) 428-9923 or matrixmatclub@yahoo.com.</dd>
+              </div>
+              <div>
+                <dt>Packing note</dt>
+                <dd>Bring sheets, towels, and soap. Everything else is provided.</dd>
+              </div>
+            </dl>
+          </div>
+
+          <div class="button-row">
+            <a class="button" href="images/fsc-2027-registration-flyer.jpg" target="_blank" rel="noopener">Open Full-Size Flyer</a>
+            <a class="button secondary" href="images/fsc-2027-registration-flyer.jpg" download="FSC-2027-Registration-Flyer.jpg">Download Flyer</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="conference-materials">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Conference documents</p>
+          <h2>CAR &amp; Minutes</h2>
+        </div>
+        <p>
+          These files are stored directly on this site so Home Groups can open or download them without leaving the FSC page.
+          CAR means Conference Agenda Report.
+        </p>
+      </div>
+
+      <div class="document-grid">
+        <article class="document-card">
+          <div class="document-year">2026</div>
+          <h3>Conference Agenda Report</h3>
+          <p>
+            The New/Old NA Way, Volume 62. Includes the 2026 FSC registration information,
+            conference motions, reports, articles, and the literature pieces presented with motions.
+          </p>
+          <div class="document-meta">
+            <span>40 pages</span>
+            <span>PDF</span>
+            <span>6.2 MB</span>
+          </div>
+          <div class="button-row">
+            <a class="button" href="documents/FSC-2026-Conference-Agenda-Report.pdf" target="_blank" rel="noopener">Read 2026 CAR</a>
+            <a class="button secondary" href="documents/FSC-2026-Conference-Agenda-Report.pdf" download>Download PDF</a>
+          </div>
+        </article>
+
+        <article class="document-card">
+          <div class="document-year">2025</div>
+          <h3>Fellowship Service Conference Minutes</h3>
+          <p>
+            Full minutes from the 2025 conference, including introductions, Home Group reports,
+            old and new business, the Anonymi Foundation report, open forum, finances, web report, and elections.
+          </p>
+          <div class="document-meta">
+            <span>93 pages</span>
+            <span>PDF</span>
+            <span>4.0 MB</span>
+          </div>
+          <div class="button-row">
+            <a class="button" href="documents/FSC-2025-Minutes.pdf" target="_blank" rel="noopener">Read 2025 Minutes</a>
+            <a class="button secondary" href="documents/FSC-2025-Minutes.pdf" download>Download PDF</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="car-summary">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">At a glance</p>
+          <h2>2026 CAR Motions</h2>
+        </div>
+        <p>A quick index only. Read the complete Conference Agenda Report before your Home Group considers or discusses any motion.</p>
+      </div>
+
+      <ul class="motion-list">
+        <li><strong>Proposal 2025-B:</strong> Formally remove “abstain” from the voting procedure.</li>
+        <li><strong>Motion 2026-A:</strong> Participating Home Groups share the cost of the FSC and Anonymi Foundation post-office box.</li>
+        <li><strong>Motion 2026-B:</strong> Approve the informational pamphlet <em>Concerning Relapse</em>.</li>
+        <li><strong>Motion 2026-C:</strong> Approve <em>One Addict’s Experience with Group Conscience through the Steps</em>.</li>
+      </ul>
+
+      <p class="notice">
+        This page reproduces the current FSC 2027 flyer supplied to the Grey Area Group and locally hosts the 2026 Conference Agenda Report and 2025 conference minutes from the FSC materials published through NAHELP.
+      </p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p><em>Fellowship Service Conference information presented for Home Group use and informed Group conscience.</em></p>
+  </footer>
+</body>
+</html>
