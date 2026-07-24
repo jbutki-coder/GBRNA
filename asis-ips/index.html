@@ -5,8 +5,8 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <meta content="#102a43" name="theme-color"/>
-<title>A.S.I.S. Recovery and Service Literature</title>
-<meta content="A status-checked reading library of approved, review and input, and archived A.S.I.S. literature for Narcotics Anonymous." name="description"/>
+<title>A.S.I.S. and CARENA Recovery and Service Literature</title>
+<meta content="A status-checked reading library of A.S.I.S. literature and the historical CARENA IPs of 1976 for Narcotics Anonymous." name="description"/>
 <style>
     :root {
       --navy:#102a43; --navy-light:#1d4d70; --paper:#f4efe5; --card:#fffdf8;
@@ -26,7 +26,7 @@
     .header-copy{max-width:850px;margin:1rem 0 0;color:rgba(255,255,255,.88);font-size:clamp(1rem,2vw,1.16rem)}
     .checked-note{display:inline-flex;margin-top:1.25rem;padding:.62rem .8rem;border:1px solid rgba(255,255,255,.28);border-radius:.55rem;background:rgba(255,255,255,.09);font-size:.88rem;font-weight:800}
     main{padding:2rem 0 4rem}
-    .status-guide{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.8rem;margin-bottom:1.25rem}
+    .status-guide{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.8rem;margin-bottom:1.25rem}
     .guide-card{padding:1rem;border:1px solid var(--line);border-radius:.75rem;background:var(--card);box-shadow:0 6px 20px rgba(20,35,48,.07)}
     .guide-card h2{margin:0 0 .35rem;color:var(--navy);font-size:1.05rem} .guide-card p{margin:0;color:#4f5960;font-size:.9rem}
     .source-note{margin:0 0 1.25rem;padding:1rem 1.1rem;border-left:5px solid var(--accent);border-radius:.45rem;background:#eef7f6;color:#30464a}
@@ -54,7 +54,7 @@
     .ip-card-top{display:flex;min-height:1.7rem;align-items:flex-start;justify-content:space-between;gap:.6rem}
     .category{color:var(--accent-dark);font-size:.72rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase}
     .badge{padding:.22rem .46rem;border-radius:999px;color:#fff;font-size:.65rem;font-weight:900;letter-spacing:.035em;text-transform:uppercase;white-space:nowrap}
-    .badge.approved{background:var(--green)} .badge.review{background:var(--gold)} .badge.pending{background:var(--navy-light)} .badge.archive{background:var(--grey)}
+    .badge.approved{background:var(--green)} .badge.carena{background:#75458c} .badge.review{background:var(--gold)} .badge.pending{background:var(--navy-light)} .badge.archive{background:var(--grey)}
     .ip-card h3{margin:.7rem 0 .55rem;color:var(--navy);font-size:1.34rem;line-height:1.15}
     .ip-card p{margin:0;color:#4f5960;font-size:.93rem}
     .ip-meta{display:flex;flex-wrap:wrap;gap:.4rem .68rem;margin-top:auto;padding-top:1rem;border-top:1px solid #e3ddd2;color:var(--muted);font-size:.76rem;font-weight:800}
@@ -88,8 +88,8 @@
 <header class="site-header">
 <div class="header-inner">
 <p class="eyebrow">Alternate Service Informational Structure</p>
-<h1>A.S.I.S. Recovery &amp; Service Literature</h1>
-<p class="header-copy">Approved literature is separated from unfinished Review &amp; Input work so readers can see the actual standing of every document before opening it.</p>
+<h1>A.S.I.S. &amp; CARENA Recovery &amp; Service Literature</h1>
+<p class="header-copy">A.S.I.S. literature is separated by status, with the five historical CARENA IPs of 1976 kept in their own collection so readers can see what each document is before opening it.</p>
 <div class="checked-note">Status checked against NAHELP on July 24, 2026</div>
 </div>
 </header>
@@ -97,19 +97,21 @@
 <div class="main-inner">
 <section aria-label="Literature status guide" class="status-guide">
 <div class="guide-card"><h2>Approved</h2><p>Approved by participating A.S.I.S. NA Home Groups through the Fellowship Service Conference.</p></div>
+<div class="guide-card"><h2>CARENA IPs (1976)</h2><p>Five historical pamphlets listed separately by NAHELP as the CARENA IP collection.</p></div>
 <div class="guide-card"><h2>Review &amp; Input</h2><p>Still being developed. These pieces may be used or reviewed by autonomous groups, but are not A.S.I.S.-approved literature.</p></div>
 <div class="guide-card"><h2>Archived Review</h2><p>Older input material preserved here, but not found on either current NAHELP status list.</p></div>
 </section>
-<p class="source-note"><strong>Important:</strong> “Up for Approval” is still a pending status. NAHELP says Review &amp; Input literature exists in various stages of development and that participating groups may ultimately approve one, none, all, or any combination. See the <a href="https://nahelp.org/approved/" rel="noopener noreferrer" target="_blank">current approved list</a> and <a href="https://nahelp.org/english/" rel="noopener noreferrer" target="_blank">English Review &amp; Input list</a>.</p>
+<p class="source-note"><strong>Important:</strong> “Up for Approval” is still a pending status. NAHELP says Review &amp; Input literature exists in various stages of development and that participating groups may ultimately approve one, none, all, or any combination. NAHELP also lists the five <strong>CARENA IPs (1976)</strong> as a separate historical collection on its Approved page. See the <a href="https://nahelp.org/approved/" rel="noopener noreferrer" target="_blank">current approved and CARENA lists</a> and <a href="https://nahelp.org/english/" rel="noopener noreferrer" target="_blank">English Review &amp; Input list</a>.</p>
 <section aria-label="Search and filter literature" class="search-panel">
 <div class="search-row"><input autocomplete="off" class="search-input" id="ipSearch" placeholder="Search by title, subject, category, or status..." type="search"/><button class="clear-button" id="clearSearch" type="button">Clear</button></div>
 <div aria-label="Filter by approval status" class="filter-row" role="group">
-<button aria-pressed="true" class="filter-button" data-filter="all" type="button">All 16</button>
+<button aria-pressed="true" class="filter-button" data-filter="all" type="button">All 21</button>
 <button aria-pressed="false" class="filter-button" data-filter="approved" type="button">Approved 6</button>
+<button aria-pressed="false" class="filter-button" data-filter="carena" type="button">CARENA 5</button>
 <button aria-pressed="false" class="filter-button" data-filter="review" type="button">Review &amp; Input 8</button>
 <button aria-pressed="false" class="filter-button" data-filter="archive" type="button">Archived Review 2</button>
 </div>
-<p class="results-status" id="resultsStatus">Showing all 16 literature pieces.</p>
+<p class="results-status" id="resultsStatus">Showing all 21 literature pieces.</p>
 </section>
 <section class="literature-section" data-section="approved">
 <div class="section-heading">
@@ -210,6 +212,52 @@
 </div>
 </a>
 </article></div>
+
+</section><section class="literature-section" data-section="carena">
+<div class="section-heading">
+<div>
+<p class="section-kicker">5 historical IPs</p>
+<h2>CARENA IPs (1976)</h2>
+</div>
+<p>Early approved pamphlets produced by C.A.R.E.N.A. and preserved by NAHELP as a distinct historical collection.</p>
+</div>
+<div class="ip-grid">
+<article class="ip-card" data-search="carena ip 1 who what how and why historical 1976 newcomer na program steps traditions" data-status="carena" data-title="Who, What, How and Why">
+<a class="ip-link" href="pdfs/carena-who-what-how-and-why.pdf">
+<div class="ip-card-top"><span class="category">CARENA · 1976 · IP 1</span><span class="badge carena">Historical</span></div>
+<h3>Who, What, How and Why</h3>
+<p>An early overview of who is an addict, the Narcotics Anonymous program, how it works, and the Twelve Traditions.</p>
+<div class="ip-meta"><span>IP</span><span>2 pages</span><span>960 KB</span><span class="open-label">Open PDF →</span></div>
+</a></article>
+<article class="ip-card" data-search="carena ip 2 the group historical 1976 home group service trusted servants secretary treasurer gsr" data-status="carena" data-title="The Group">
+<a class="ip-link" href="pdfs/carena-the-group.pdf">
+<div class="ip-card-top"><span class="category">CARENA · 1976 · IP 2</span><span class="badge carena">Historical</span></div>
+<h3>The Group</h3>
+<p>An early description of the NA Group, its primary purpose, trusted servants, responsibilities, and service connection.</p>
+<div class="ip-meta"><span>IP</span><span>2 pages</span><span>952 KB</span><span class="open-label">Open PDF →</span></div>
+</a></article>
+<article class="ip-card" data-search="carena ip 3 we made a decision historical 1976 step one admission abstinence meetings recovery" data-status="carena" data-title="We Made a Decision">
+<a class="ip-link" href="pdfs/carena-we-made-a-decision.pdf">
+<div class="ip-card-top"><span class="category">CARENA · 1976 · IP 3</span><span class="badge carena">Historical</span></div>
+<h3>We Made a Decision</h3>
+<p>An early recovery pamphlet about admitting addiction, choosing a life without drugs, meetings, and following shared experience.</p>
+<div class="ip-meta"><span>IP</span><span>2 pages</span><span>956 KB</span><span class="open-label">Open PDF →</span></div>
+</a></article>
+<article class="ip-card" data-search="carena ip 4 another look historical 1976 addiction recovery spiritual principles" data-status="carena" data-title="Another Look">
+<a class="ip-link" href="pdfs/carena-another-look.pdf">
+<div class="ip-card-top"><span class="category">CARENA · 1976 · IP 4</span><span class="badge carena">Historical</span></div>
+<h3>Another Look</h3>
+<p>An early piece offering another look at addiction, recovery, spiritual principles, and the NA way of life.</p>
+<div class="ip-meta"><span>IP</span><span>2 pages</span><span>100 KB</span><span class="open-label">Open PDF →</span></div>
+</a></article>
+<article class="ip-card" data-search="carena ip 5 recovery and relapse historical 1976 abstinence emotional recovery we do recover" data-status="carena" data-title="Recovery and Relapse">
+<a class="ip-link" href="pdfs/carena-recovery-and-relapse.pdf">
+<div class="ip-card-top"><span class="category">CARENA · 1976 · IP 5</span><span class="badge carena">Historical</span></div>
+<h3>Recovery and Relapse</h3>
+<p>An early discussion of abstinence, recovery, relapse, identification, empathy, spiritual growth, and the statement “We do recover.”</p>
+<div class="ip-meta"><span>IP</span><span>2 pages</span><span>870 KB</span><span class="open-label">Open PDF →</span></div>
+</a></article>
+</div>
 </section><section class="literature-section" data-section="review">
 <div class="section-heading">
 <div>
@@ -382,7 +430,7 @@
 <div class="empty-state" id="emptyState">No literature matched that search and status filter.</div>
 </div>
 </main>
-<footer>Approved files use the current approved print copies. Review files are clearly identified and remain subject to group review and input.</footer>
+<footer>Approved A.S.I.S. files use the current approved print copies. CARENA files are preserved as the separate historical 1976 collection listed by NAHELP. Review files remain subject to group review and input.</footer>
 <script>
     (() => {
       const search=document.getElementById('ipSearch');
