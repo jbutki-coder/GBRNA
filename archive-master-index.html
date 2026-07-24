@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
-<title>Complete NA Historical Archive Index — Search Results and Unified Audio Archive v10</title>
+<title>NA History Archive | Grey Book Reflection</title>
 <style>
 :root {
   --ink: #1f2529;
@@ -373,9 +373,43 @@ body.archive-viewer-open {
   }
 }
 
+
+.archive-site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .55rem;
+  margin: 0 0 1rem;
+  padding: .7rem;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: .65rem;
+  box-shadow: 0 6px 18px rgba(0,0,0,.06);
+}
+.archive-site-nav a {
+  display: inline-block;
+  padding: .48rem .68rem;
+  color: #fff;
+  background: var(--blue-dark);
+  border-radius: .4rem;
+  font-size: .86rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+.archive-site-nav a:hover,
+.archive-site-nav a:focus-visible {
+  color: #fff;
+  background: var(--blue);
+}
+
 </style>
 </head>
 <body>
+<nav class="archive-site-nav" aria-label="Grey Book Reflection navigation">
+<a href="/">Grey Book Reflection Home</a>
+<a href="/#library">Literature Library</a>
+<a href="/asis-ips/">A.S.I.S. Literature</a>
+<a href="/fsc/">FSC</a>
+</nav>
 <header class="archive-hero">
 <p class="archive-kicker">Blue Water NA Historical Archive</p>
 <h1>Complete Archive Index</h1>
