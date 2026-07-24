@@ -1,0 +1,78 @@
+/* Shared navigation for every standalone GBRNA index page. */
+.global-tabs-bar {
+  width: 100%;
+  margin: 0;
+  padding: .72rem max(1rem, calc((100vw - 1180px) / 2));
+  color: #f7f1e6;
+  background: #101c22;
+  border-bottom: 4px solid #c79a45;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, .2);
+  font-family: "Courier New", Courier, monospace;
+}
+
+.global-tabs {
+  display: flex !important;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: .46rem;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.global-tabs a {
+  display: inline-flex !important;
+  grid-template-columns: none !important;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.35rem;
+  padding: .52rem .7rem;
+  color: #f7f1e6 !important;
+  background: rgba(255, 255, 255, .045) !important;
+  border: 1px solid rgba(215, 176, 99, .72) !important;
+  border-radius: .34rem;
+  font: 800 .76rem/1.15 "Courier New", Courier, monospace !important;
+  letter-spacing: .015em;
+  text-align: center;
+  text-decoration: none !important;
+  white-space: nowrap;
+  transition: background .15s ease, color .15s ease, transform .15s ease;
+}
+
+.global-tabs a:hover,
+.global-tabs a:focus-visible {
+  color: #151515 !important;
+  background: #d7b063 !important;
+  outline: 3px solid rgba(215, 176, 99, .28);
+  outline-offset: 2px;
+  transform: translateY(-1px);
+}
+
+.global-tabs a[aria-current="page"] {
+  color: #151515 !important;
+  background: #d7b063 !important;
+  border-color: #f2d597 !important;
+}
+
+@media (max-width: 720px) {
+  .global-tabs-bar {
+    padding: .62rem .7rem;
+  }
+
+  .global-tabs {
+    justify-content: flex-start;
+    gap: .38rem;
+  }
+
+  .global-tabs a {
+    flex: 1 1 auto;
+    min-height: 2.45rem;
+    padding: .52rem .58rem;
+    white-space: normal;
+  }
+}
+
+@media print {
+  .global-tabs-bar { display: none !important; }
+}
