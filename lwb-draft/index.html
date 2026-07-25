@@ -63,8 +63,15 @@ main{width:min(100%,1050px);margin:0 auto;padding:2rem}.note{max-width:780px;mar
 .clean-time-visuals{display:flex;justify-content:center;margin:1.25rem 0 1.5rem}
 .clean-time-visual{width:100%;max-width:760px;margin:0;padding:1rem;background:#fff;border:1px solid var(--line);border-radius:.65rem;box-shadow:0 8px 22px rgba(21,21,21,.08)}
 .clean-time-visual img{display:block;width:100%;height:auto;object-fit:contain}
-.clean-time-levels{display:flex;flex-wrap:wrap;justify-content:center;gap:.55rem;margin:1rem 0 1.4rem}
-.clean-time-levels span{padding:.48rem .7rem;border-radius:999px;background:#e8dfcf;border:1px solid var(--line);font:800 .78rem/1 Arial,sans-serif;white-space:nowrap}
+.clean-time-levels{display:flex;flex-wrap:wrap;justify-content:center;gap:.65rem;margin:1rem 0 1.4rem}
+.clean-time-button{appearance:none;border:1px solid rgba(32,61,90,.22);background:linear-gradient(180deg,#f7f1e5,#e7dcc9);color:#203d5a;padding:.7rem .95rem;border-radius:999px;font:900 .84rem/1 Arial,sans-serif;letter-spacing:.02em;white-space:nowrap;cursor:pointer;box-shadow:0 4px 12px rgba(21,21,21,.10);transition:transform .14s ease, box-shadow .14s ease, background .14s ease}
+.clean-time-button:hover,.clean-time-button:focus-visible{transform:translateY(-1px) scale(1.03);box-shadow:0 8px 18px rgba(21,21,21,.14);background:linear-gradient(180deg,#fff8ec,#eadfc8);outline:none}
+.clean-time-button:active{transform:translateY(0) scale(.99)}
+.clean-time-hint{margin:0 auto 1.25rem!important;max-width:760px;text-align:center!important;text-indent:0!important;color:#514b43;font:700 .82rem/1.45 Arial,sans-serif}
+.celebration-overlay{position:fixed;inset:0;pointer-events:none;z-index:9999;overflow:hidden}
+.celebration-overlay canvas{display:block;width:100%;height:100%}
+.celebration-toast{position:fixed;left:50%;top:92px;transform:translateX(-50%) translateY(-14px);padding:.75rem 1rem;border-radius:999px;background:rgba(12,19,26,.92);color:#fff;font:900 .95rem/1 Arial,sans-serif;letter-spacing:.025em;box-shadow:0 10px 24px rgba(0,0,0,.22);opacity:0;pointer-events:none;transition:opacity .22s ease, transform .22s ease;z-index:10000}
+.celebration-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 .clean-time-statement{margin:0 auto!important;max-width:760px;padding:1.1rem 1.2rem;border-left:5px solid #6d1e1e;background:#fffaf0;text-align:center!important;text-indent:0!important;font-weight:800;line-height:1.55}
 .closing-prayer{max-width:760px;margin:0 auto;padding:1.35rem 1.4rem;border:1px solid var(--line);border-radius:.7rem;background:#fffdf8;box-shadow:0 8px 22px rgba(21,21,21,.08)}
 .closing-prayer p{text-indent:0!important;text-align:left!important;margin:0 0 1.15rem!important}
@@ -273,8 +280,16 @@ main{width:min(100%,1050px);margin:0 auto;padding:2rem}.note{max-width:780px;mar
     <h2>CELEBRATE CLEAN TIME</h2>
     <p class="clean-time-intro">At this time, we celebrate clean time and recognize the miracles happening in our Fellowship.</p>
     <div class="clean-time-levels" aria-label="Clean time celebrations">
-      <span>30 Days</span><span>60 Days</span><span>90 Days</span><span>6 Months</span><span>9 Months</span><span>1 Year</span><span>Multiple Years</span><span>Just for Today</span>
+      <button class="clean-time-button" type="button" data-celebration="30 Days">30 Days</button>
+      <button class="clean-time-button" type="button" data-celebration="60 Days">60 Days</button>
+      <button class="clean-time-button" type="button" data-celebration="90 Days">90 Days</button>
+      <button class="clean-time-button" type="button" data-celebration="3 Months">3 Months</button>
+      <button class="clean-time-button" type="button" data-celebration="6 Months">6 Months</button>
+      <button class="clean-time-button" type="button" data-celebration="9 Months">9 Months</button>
+      <button class="clean-time-button" type="button" data-celebration="1 Year">1 Year</button>
+      <button class="clean-time-button" type="button" data-celebration="2 Years">2 Years</button>
     </div>
+    <p class="clean-time-hint">Tap any clean-time button to celebrate with confetti and fireworks on the page.</p>
     <div class="clean-time-visuals">
       <figure class="clean-time-visual">
         <img src="images/clean-time-keytags.png" alt="Narcotics Anonymous clean time keytags for 30 days, 60 days, 90 days, six months, nine months, one year, multiple years, and just for today" loading="lazy">
@@ -300,6 +315,8 @@ main{width:min(100%,1050px);margin:0 auto;padding:2rem}.note{max-width:780px;mar
 
   </main>
 </div>
+<div id="celebration-overlay" class="celebration-overlay" aria-hidden="true"><canvas id="celebration-canvas"></canvas></div>
+<div id="celebration-toast" class="celebration-toast" aria-live="polite"></div>
 <div class="jump"><button id="prev" type="button" aria-label="Previous page">↑</button><button id="next" type="button" aria-label="Next page">↓</button></div>
 <script>
 const pages=[...document.querySelectorAll('.book-page')],links=[...document.querySelectorAll('#toc a')],layout=document.querySelector('.layout');
@@ -313,6 +330,129 @@ full.onclick=async()=>{if(!document.fullscreenElement)await document.documentEle
 menu.onclick=()=>layout.classList.toggle('menu-open');
 links.forEach(a=>a.addEventListener('click',()=>layout.classList.remove('menu-open')));
 addEventListener('keydown',e=>{if(['ArrowDown','PageDown'].includes(e.key)){e.preventDefault();next.click()}if(['ArrowUp','PageUp'].includes(e.key)){e.preventDefault();prev.click()}if(e.key.toLowerCase()==='f')full.click();if(e.key.toLowerCase()==='p')present.click()});
+
+const celebrationButtons=[...document.querySelectorAll('.clean-time-button')];
+const celebrationCanvas=document.getElementById('celebration-canvas');
+const celebrationToast=document.getElementById('celebration-toast');
+const ctx=celebrationCanvas.getContext('2d');
+let particles=[];
+let animationFrame=null;
+let animationEnd=0;
+let burstInterval=null;
+const palette=['#ffd166','#ef476f','#06d6a0','#118ab2','#073b4c','#ff9f1c','#ffffff','#8ecae6'];
+
+function sizeCelebrationCanvas(){
+  const ratio=Math.max(1,window.devicePixelRatio||1);
+  celebrationCanvas.width=Math.floor(window.innerWidth*ratio);
+  celebrationCanvas.height=Math.floor(window.innerHeight*ratio);
+  celebrationCanvas.style.width=window.innerWidth+'px';
+  celebrationCanvas.style.height=window.innerHeight+'px';
+  ctx.setTransform(ratio,0,0,ratio,0,0);
+}
+sizeCelebrationCanvas();
+addEventListener('resize',sizeCelebrationCanvas);
+
+function rand(min,max){return Math.random()*(max-min)+min}
+function choose(arr){return arr[Math.floor(Math.random()*arr.length)]}
+function spawnConfetti(count){
+  for(let i=0;i<count;i++){
+    particles.push({
+      type:'confetti',
+      x:rand(0,window.innerWidth),
+      y:rand(-40,-10),
+      vx:rand(-2.4,2.4),
+      vy:rand(1.5,4.5),
+      size:rand(5,10),
+      color:choose(palette),
+      rotation:rand(0,Math.PI*2),
+      vr:rand(-0.18,0.18),
+      life:rand(70,120)
+    });
+  }
+}
+function spawnFirework(x,y){
+  const count=40;
+  for(let i=0;i<count;i++){
+    const angle=(Math.PI*2/count)*i+rand(-0.04,0.04);
+    const speed=rand(1.8,5.2);
+    particles.push({
+      type:'spark',
+      x,y,
+      vx:Math.cos(angle)*speed,
+      vy:Math.sin(angle)*speed,
+      size:rand(1.8,3.6),
+      color:choose(palette),
+      life:rand(34,58),
+      alpha:1
+    });
+  }
+}
+function renderCelebration(){
+  ctx.clearRect(0,0,window.innerWidth,window.innerHeight);
+  particles=particles.filter(p=>p.life>0);
+  for(const p of particles){
+    p.life-=1;
+    p.x+=p.vx;
+    p.y+=p.vy;
+    if(p.type==='confetti'){
+      p.vy+=0.04;
+      p.rotation+=p.vr;
+      ctx.save();
+      ctx.translate(p.x,p.y);
+      ctx.rotate(p.rotation);
+      ctx.globalAlpha=Math.max(.22,p.life/120);
+      ctx.fillStyle=p.color;
+      ctx.fillRect(-p.size/2,-p.size/2,p.size,p.size*.72);
+      ctx.restore();
+    }else{
+      p.vx*=0.985;
+      p.vy*=0.985;
+      p.vy+=0.015;
+      p.alpha=Math.max(0,p.life/58);
+      ctx.save();
+      ctx.globalAlpha=p.alpha;
+      ctx.fillStyle=p.color;
+      ctx.beginPath();
+      ctx.arc(p.x,p.y,p.size,0,Math.PI*2);
+      ctx.fill();
+      ctx.restore();
+    }
+  }
+  if(Date.now()<animationEnd || particles.length){
+    animationFrame=requestAnimationFrame(renderCelebration);
+  }else{
+    animationFrame=null;
+    ctx.clearRect(0,0,window.innerWidth,window.innerHeight);
+  }
+}
+function showToast(label){
+  celebrationToast.textContent='Celebrating '+label+' clean!';
+  celebrationToast.classList.add('show');
+  clearTimeout(showToast.timer);
+  showToast.timer=setTimeout(()=>celebrationToast.classList.remove('show'),1800);
+}
+function launchCelebration(label){
+  showToast(label);
+  sizeCelebrationCanvas();
+  particles.length=0;
+  ctx.clearRect(0,0,window.innerWidth,window.innerHeight);
+  spawnConfetti(140);
+  const bursts=[
+    [window.innerWidth*.22, window.innerHeight*.28],
+    [window.innerWidth*.78, window.innerHeight*.24],
+    [window.innerWidth*.5, window.innerHeight*.18],
+    [window.innerWidth*.35, window.innerHeight*.42],
+    [window.innerWidth*.68, window.innerHeight*.45]
+  ];
+  bursts.forEach(([x,y],i)=>setTimeout(()=>spawnFirework(x,y),i*170));
+  clearInterval(burstInterval);
+  burstInterval=setInterval(()=>spawnFirework(rand(window.innerWidth*.15,window.innerWidth*.85),rand(window.innerHeight*.12,window.innerHeight*.48)),260);
+  clearTimeout(launchCelebration.stopTimer);
+  launchCelebration.stopTimer=setTimeout(()=>clearInterval(burstInterval),1700);
+  animationEnd=Date.now()+2400;
+  if(!animationFrame) renderCelebration();
+}
+celebrationButtons.forEach(btn=>btn.addEventListener('click',()=>launchCelebration(btn.dataset.celebration||btn.textContent.trim())));
 </script>
 </body>
 </html>
