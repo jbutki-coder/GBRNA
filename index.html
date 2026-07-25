@@ -1,12 +1,12 @@
 <!doctype html>
-<!-- BUILD: HOMEPAGE-MEETING-SECTION-REMOVED-2026-07-25 -->
+<!-- BUILD: ABOUT-SECTION-REBUILT-2026-07-25 -->
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <title>Grey Book Reflection</title>
-  <meta name="description" content="Grey Book Reflection daily reading site — conscienced by the Grey Area Group of NA" />
+  <meta name="description" content="Grey Book Reflection daily reading site — an FSC Review & Input project that began in New York" />
 
   <!-- Browser tab icons -->
   <link rel="icon" href="/icons/favicon.ico?v=3" sizes="any">
@@ -23,7 +23,7 @@
 
   <!-- Shared link preview -->
   <meta property="og:title" content="Grey Book Reflection">
-  <meta property="og:description" content="Daily Grey Book Reflection — conscienced by the Grey Area Group of NA and carried through A.S.I.S.">
+  <meta property="og:description" content="Daily Grey Book Reflection — an FSC Review & Input project that began in New York">
   <meta property="og:image" content="https://gbrna.onrender.com/icons/icon-512.png?v=3">
   <meta property="og:image:secure_url" content="https://gbrna.onrender.com/icons/icon-512.png?v=3">
   <meta property="og:image:type" content="image/png">
@@ -53,6 +53,55 @@
     .literature-disclaimer-body{padding:1rem 1.15rem;color:#292621;font-size:.92rem;line-height:1.55}
     .literature-disclaimer-body p{margin:.75rem 0;text-align:left}
     .literature-disclaimer-body .warranty-text{font-weight:800}
+
+
+    /* Rebuilt About section */
+    .about-rebuilt{position:relative;overflow:hidden;background:linear-gradient(145deg,#f7f0df 0%,#eee1c8 100%);border:2px solid #2b251e}
+    .about-rebuilt::before{content:"";position:absolute;inset:0 0 auto 0;height:7px;background:linear-gradient(90deg,#1b2d28,#bb762a,#1b2d28)}
+    .about-hero{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(230px,.7fr);gap:1.35rem;align-items:stretch;margin-top:.35rem}
+    .about-hero-copy{padding:.25rem 0}
+    .about-hero-copy h2{max-width:780px;margin-bottom:.75rem}
+    .about-lead{max-width:820px;font-size:1.08rem;line-height:1.65}
+    .about-identity{padding:1.15rem 1.2rem;border:1px solid rgba(43,37,30,.35);background:#1d2c28;color:#fff;box-shadow:8px 8px 0 rgba(187,118,42,.22)}
+    .about-identity strong{display:block;margin-bottom:.55rem;color:#e8b766;font:900 .82rem/1.2 Arial,sans-serif;letter-spacing:.09em;text-transform:uppercase}
+    .about-identity p{margin:.55rem 0;color:#f6efe2;line-height:1.5}
+    .about-identity .about-identity-note{padding-top:.7rem;border-top:1px solid rgba(255,255,255,.22);font-size:.88rem;color:#ddd2bf}
+    .about-asis-quote{margin:1.6rem 0;padding:1.2rem 1.3rem;border-left:7px solid #bb762a;background:#fffaf0;box-shadow:0 8px 22px rgba(43,37,30,.09)}
+    .about-asis-quote .quote-label{margin:0 0 .45rem;color:#6f4b1e;font:900 .76rem/1.2 Arial,sans-serif;letter-spacing:.09em;text-transform:uppercase}
+    .about-asis-quote blockquote{margin:.3rem 0 .75rem;color:#1d2c28;font:800 clamp(1.08rem,2vw,1.35rem)/1.45 Georgia,"Times New Roman",serif}
+    .about-asis-quote p:last-child{margin-bottom:0}
+    .about-card-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;margin:1.5rem 0}
+    .about-card{padding:1.1rem 1.15rem;border:1px solid rgba(43,37,30,.28);background:rgba(255,250,240,.86);box-shadow:0 7px 18px rgba(43,37,30,.08)}
+    .about-card .about-card-kicker{display:block;margin-bottom:.45rem;color:#a45f1d;font:900 .72rem/1.2 Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase}
+    .about-card h3{margin:.15rem 0 .65rem;color:#1d2c28;font:900 1.15rem/1.2 Arial,sans-serif}
+    .about-card p{margin:0;line-height:1.55}
+    .about-principles{margin:1.7rem 0;padding:1.25rem;border:1px solid rgba(43,37,30,.3);background:#e7dcc7}
+    .about-section-heading{margin:0 0 .35rem;color:#1d2c28;font:900 clamp(1.25rem,2.3vw,1.65rem)/1.15 Arial,sans-serif}
+    .about-section-intro{margin:.25rem 0 1rem;max-width:860px;line-height:1.55}
+    .about-accordion-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.75rem}
+    .about-accordion-grid details{border:1px solid rgba(43,37,30,.27);background:#fffaf0}
+    .about-accordion-grid summary{cursor:pointer;padding:.85rem 1rem;color:#1d2c28;font:900 .92rem/1.25 Arial,sans-serif;list-style:none}
+    .about-accordion-grid summary::-webkit-details-marker{display:none}
+    .about-accordion-grid summary::after{content:"+";float:right;color:#a45f1d;font-size:1.2rem}
+    .about-accordion-grid details[open] summary::after{content:"−"}
+    .about-accordion-grid details[open] summary{border-bottom:1px solid rgba(43,37,30,.2);background:#f1e5cf}
+    .about-accordion-grid details p{margin:0;padding:.9rem 1rem 1rem;line-height:1.55}
+    .about-documents{margin-top:1.7rem;padding:1.25rem;border:2px solid #1d2c28;background:#f9f3e6}
+    .about-document-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;margin-top:1rem}
+    .about-document-card{display:flex;flex-direction:column;min-height:100%;padding:1.1rem;border:1px solid rgba(43,37,30,.3);background:#fff;box-shadow:0 6px 16px rgba(43,37,30,.08)}
+    .about-document-top{display:flex;align-items:flex-start;justify-content:space-between;gap:.75rem}
+    .about-document-card h4{margin:0;color:#1d2c28;font:900 1.05rem/1.28 Arial,sans-serif}
+    .about-draft-badge{flex:0 0 auto;padding:.3rem .48rem;border:1px solid #a45f1d;background:#fff2d9;color:#7d4817;font:900 .68rem/1 Arial,sans-serif;letter-spacing:.07em;text-transform:uppercase}
+    .about-document-card p{margin:.75rem 0 1rem;line-height:1.52}
+    .about-document-actions{display:flex;flex-wrap:wrap;gap:.55rem;margin-top:auto}
+    .about-document-actions a,.about-action-row a{display:inline-flex;align-items:center;justify-content:center;padding:.68rem .82rem;border:1px solid #1d2c28;background:#1d2c28;color:#fff;text-decoration:none;font:900 .76rem/1 Arial,sans-serif;letter-spacing:.035em}
+    .about-document-actions a.secondary,.about-action-row a.secondary{background:transparent;color:#1d2c28}
+    .about-document-actions a:hover,.about-action-row a:hover{background:#bb762a;border-color:#bb762a;color:#fff}
+    .about-document-note{margin:1rem 0 0;padding:.8rem .9rem;border-left:5px solid #bb762a;background:#f1e5cf;font-size:.9rem;line-height:1.5}
+    .about-action-row{display:flex;flex-wrap:wrap;gap:.65rem;margin-top:1.4rem}
+    @media(max-width:850px){.about-hero,.about-card-grid,.about-accordion-grid,.about-document-grid{grid-template-columns:1fr}.about-identity{box-shadow:5px 5px 0 rgba(187,118,42,.22)}}
+    @media(max-width:500px){.about-rebuilt{padding-left:1rem;padding-right:1rem}.about-action-row a,.about-document-actions a{width:100%}}
+
   </style>
 </head>
 
@@ -78,7 +127,7 @@
     <div class="wrap header-inner">
       <div>
         <h1>Grey Book Reflection</h1>
-        <p class="subhead">Conscienced by the Grey Area Group of NA</p>
+        <p class="subhead">An FSC Review &amp; Input project that began in New York</p>
       </div>
     </div>
   </header>
@@ -112,7 +161,7 @@
           context, listen to NA audio, find virtual and hybrid historical literature meetings,
           and read the books that shaped this project.
         </p>
-        <p class="project-intro-service">Conscienced by the Grey Area Group of Narcotics Anonymous.</p>
+        <p class="project-intro-service">A Fellowship Service Conference Review &amp; Input project that began in New York.</p>
       </div>
 
       <div class="project-intro-actions" aria-label="Quick links">
@@ -273,30 +322,201 @@
       </p>
 
       <p class="small-note">
-        Grey Book Reflection is still in the draft stage. Review and input from NA Groups is encouraged.
+        Grey Book Reflection is an FSC Review &amp; Input project and has not received final conference approval. Review and input from NA Groups is encouraged.
       </p>
     </section>
 
-    <section id="about" class="panel about-panel">
-      <div class="panel-heading">
-        <p class="eyebrow">About This Project</p>
-        <h2>A.S.I.S and the Fellowship Service Conference</h2>
+    <section id="about" class="panel about-panel about-rebuilt">
+      <div class="about-hero">
+        <div class="about-hero-copy">
+          <div class="panel-heading">
+            <p class="eyebrow">About Grey Book Reflection</p>
+            <h2>FSC Review &amp; Input, Home-Group Autonomy &amp; Direct Responsibility</h2>
+          </div>
+          <p class="about-lead">
+            <strong>Grey Book Reflection</strong> is a Fellowship Service Conference project that began in New York.
+            It remains in Review &amp; Input through the FSC and is presented here so NA Groups and members can read,
+            study, discuss, and provide input. This Grey Area Group website also brings historical NA literature,
+            meeting readings, A.S.I.S. and CARENA material, virtual and hybrid meetings, audio, archival documents,
+            and Fellowship Service Conference information together in one place.
+          </p>
+        </div>
+
+        <aside class="about-identity" aria-label="Project identity and independence">
+          <strong>What this site is</strong>
+          <p>A Grey Area Group website that provides access to the FSC Grey Book Reflection Review &amp; Input project and other recovery, literature, meeting, audio, and service resources.</p>
+          <p class="about-identity-note">
+            The Grey Area Group is autonomous. This is not the official website of A.S.I.S., NAHELP, the Fellowship
+            Service Conference, NA World Services, or the entire Fellowship of Narcotics Anonymous.
+          </p>
+        </aside>
       </div>
 
-      <p>
-        <strong>Grey Book Reflection</strong> is a literature project that is still in the draft stage,
-        however many groups use it as NA Literature.
-      </p>
+      <div class="about-asis-quote">
+        <p class="quote-label">A.S.I.S. for NA describes itself as</p>
+        <blockquote>
+          “A world-wide NA Home Group designed to provide our trusted servants—whose service has sometimes isolated
+          them from their local groups—with the love and understanding they need to survive.”
+        </blockquote>
+        <p>
+          The Grey Area Group shares literature and service information connected with A.S.I.S. while retaining its own
+          Group conscience, autonomy, and direct responsibility for this website. Grey Book Reflection itself remains
+          an FSC Review &amp; Input project.
+        </p>
+      </div>
 
-      <p>
-        A.S.I.S. is directly responsible to the NA Groups it serves. This site is maintained to support
-        daily reflection, literature study, review/input, and carrying the NA message.
-      </p>
+      <div class="about-card-grid">
+        <article class="about-card">
+          <span class="about-card-kicker">FSC Review &amp; Input project</span>
+          <h3>Grey Book Reflection</h3>
+          <p>
+            Grey Book Reflection began in New York as an FSC project. It is still being circulated for Review &amp; Input
+            through the Fellowship Service Conference and should not be presented as finally approved literature.
+          </p>
+        </article>
 
-      <p class="small-note">
-        The uploaded project file is titled <em>Gray Book Reflections</em>. The public site uses the
-        project title <em>Grey Book Reflection</em>.
-      </p>
+        <article class="about-card">
+          <span class="about-card-kicker">Website host</span>
+          <h3>Grey Area Group</h3>
+          <p>
+            The Grey Area Group makes this website available and presents Grey Book Reflection for reading, study,
+            and Review &amp; Input. Hosting the project does not make Grey Book Reflection a Grey Area Group project.
+          </p>
+        </article>
+
+        <article class="about-card">
+          <span class="about-card-kicker">Worldwide home group</span>
+          <h3>A.S.I.S. for NA</h3>
+          <p>
+            A.S.I.S. emphasizes trusted service, direct responsibility to the Groups served, open participation,
+            home-group autonomy, and literature developed or approved through Group conscience.
+          </p>
+        </article>
+
+        <article class="about-card">
+          <span class="about-card-kicker">Group-directed service</span>
+          <h3>Fellowship Service Conference</h3>
+          <p>
+            The FSC provides the Review &amp; Input process through which Grey Book Reflection is currently being
+            considered, while also giving NA Groups and trusted servants a place to share information and service needs.
+          </p>
+        </article>
+      </div>
+
+      <section class="about-principles" aria-labelledby="about-principles-title">
+        <h3 id="about-principles-title" class="about-section-heading">Principles behind this work</h3>
+        <p class="about-section-intro">
+          The material below summarizes the themes found in the NAHELP articles you provided. Open any heading to read more.
+        </p>
+
+        <div class="about-accordion-grid">
+          <details>
+            <summary>True Trusted Service</summary>
+            <p>
+              Trusted servants are selected to perform work the Groups need. Their role is service rather than government:
+              they stay informed, report back honestly, seek guidance, and remain accountable to the members and Groups
+              whose trust they carry.
+            </p>
+          </details>
+
+          <details>
+            <summary>Directly Responsible</summary>
+            <p>
+              Direct responsibility works in both directions. Service bodies need clear instructions from the Groups, and
+              Groups need complete and accurate information from their trusted servants. Authority begins with the Group
+              conscience and flows outward only for the work the Groups have requested.
+            </p>
+          </details>
+
+          <details>
+            <summary>Autonomy Without Isolation</summary>
+            <p>
+              Group autonomy gives each NA Home Group the freedom to shape its meeting, literature, and service participation
+              within the Twelve Steps and Twelve Traditions. Autonomy is not separation from the Fellowship; it allows Groups
+              to cooperate freely without being governed by a service body.
+            </p>
+          </details>
+
+          <details>
+            <summary>Why A.S.I.S.?</summary>
+            <p>
+              A.S.I.S. grew from concern that trusted servants and autonomous Groups could become isolated when questioning
+              established service practices. Its stated purpose is to offer connection, historical information, literature,
+              and a home-group setting where service can be examined against the Traditions.
+            </p>
+          </details>
+
+          <details>
+            <summary>Open Participation &amp; Literature</summary>
+            <p>
+              This project values literature created, reviewed, corrected, and used by NA Groups through open participation.
+              Draft, Review &amp; Input, home-group-approved, historically approved, and broadly approved literature are labeled
+              separately so readers can understand each document’s standing.
+            </p>
+          </details>
+
+          <details>
+            <summary>A New Surrender</summary>
+            <p>
+              The service inventory described in the NAHELP material asks members to step back from habit, personalities,
+              and structural conformity, then compare service practices with unity, Group conscience, self-support, and direct
+              responsibility. The goal is not control, but a return to principled service that helps recovery become available.
+            </p>
+          </details>
+        </div>
+      </section>
+
+      <section class="about-documents" aria-labelledby="about-documents-title">
+        <h3 id="about-documents-title" class="about-section-heading">Autonomy &amp; Service Documents</h3>
+        <p class="about-section-intro">
+          These documents present a home-group-autonomy approach to NA service and literature. Both are drafts and are
+          provided for review, discussion, editing, and Group conscience—not as adopted policy of the Grey Area Group or any
+          other NA Group unless that Group formally approves them.
+        </p>
+
+        <div class="about-document-grid">
+          <article class="about-document-card">
+            <div class="about-document-top">
+              <h4>NA Home Group Declaration of Autonomy</h4>
+              <span class="about-draft-badge">June 2023 Draft</span>
+            </div>
+            <p>
+              A proposed declaration affirming a Home Group’s privilege to create, direct, participate in, or discontinue
+              service structures; determine its literature use; and state what authority it does or does not delegate.
+            </p>
+            <div class="about-document-actions">
+              <a href="/about-documents/NA-Home-Group-Declaration-of-Autonomy-June-2023-Draft.pdf" target="_blank" rel="noopener noreferrer">Open PDF</a>
+              <a class="secondary" href="/about-documents/NA-Home-Group-Declaration-of-Autonomy-June-2023-Draft.pdf" download>Download</a>
+            </div>
+          </article>
+
+          <article class="about-document-card">
+            <div class="about-document-top">
+              <h4>Resolution Statement</h4>
+              <span class="about-draft-badge">2019 Draft #2</span>
+            </div>
+            <p>
+              A proposed statement that authority flows from NA Groups outward through service and that Groups may create,
+              reproduce, correct, bundle, or repackage literature for Group use while leaving the Steps and Traditions unchanged.
+            </p>
+            <div class="about-document-actions">
+              <a href="/about-documents/Resolution-Statement-2019-Draft-2.pdf" target="_blank" rel="noopener noreferrer">Open PDF</a>
+              <a class="secondary" href="/about-documents/Resolution-Statement-2019-Draft-2.pdf" download>Download</a>
+            </div>
+          </article>
+        </div>
+
+        <p class="about-document-note">
+          <strong>Draft notice:</strong> Posting a document here does not mean it has been approved by the Grey Area Group,
+          A.S.I.S., the FSC, or the Fellowship of Narcotics Anonymous. Each NA Group may review the material and reach its own conscience.
+        </p>
+      </section>
+
+      <div class="about-action-row" aria-label="Related About links">
+        <a href="/asis-ips/">Browse A.S.I.S. Literature</a>
+        <a href="/fsc/">Open the FSC Page</a>
+        <a class="secondary" href="https://nahelp.org/" target="_blank" rel="noopener noreferrer">Visit NAHELP.org</a>
+      </div>
     </section>
   </main>
 
