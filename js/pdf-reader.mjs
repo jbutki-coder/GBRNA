@@ -1,6 +1,7 @@
 const params = new URLSearchParams(window.location.search);
 const sourceUrl = params.get('url') || '';
-const requestedTitle = params.get('title') || 'Archive PDF';
+const requestedTitle = params.get('title') || 'PDF document';
+const returnUrl = params.get('return') || '/';
 
 const readerTitle = document.getElementById('readerTitle');
 const readerMain = document.getElementById('readerMain');
@@ -11,8 +12,13 @@ const zoomOut = document.getElementById('zoomOut');
 const zoomReset = document.getElementById('zoomReset');
 const zoomIn = document.getElementById('zoomIn');
 const fitWidth = document.getElementById('fitWidth');
-const closeReader = document.getElementById('closeReader');
+const backButton = document.getElementById('backButton');
+const previousPage = document.getElementById('previousPage');
+const nextPage = document.getElementById('nextPage');
+const fullScreen = document.getElementById('fullScreen');
 const zoomLabel = document.getElementById('zoomLabel');
+const openOriginal = document.getElementById('openOriginal');
+const downloadPdf = document.getElementById('downloadPdf');
 
 let pdfjsLib = null;
 let pdfDocument = null;
@@ -20,15 +26,35 @@ let userZoom = 1;
 let renderGeneration = 0;
 let observer = null;
 let resizeTimer = null;
+let currentPageNumber = 1;
 const pageShells = new Map();
 const renderTasks = new Map();
 
 const minZoom = 0.55;
-const maxZoom = 1.8;
+const maxZoom = 2.2;
 const zoomStep = 0.1;
 
+function safeSource() {
+  try {
+    const url = new URL(sourceUrl, window.location.href);
+    url.hash = '';
+    return url;
+  } catch {
+    return null;
+  }
+}
+
+function safeReturn() {
+  try {
+    const url = new URL(returnUrl, window.location.href);
+    return url.origin === window.location.origin ? url.href : '/';
+  } catch {
+    return '/';
+  }
+}
+
 function setControlsDisabled(disabled) {
-  [zoomOut, zoomReset, zoomIn, fitWidth].forEach((button) => {
+  [zoomOut, zoomReset, zoomIn, fitWidth, previousPage, nextPage].forEach((button) => {
     if (button) button.disabled = disabled;
   });
 }
@@ -37,17 +63,24 @@ function addFallbackButtons(container) {
   const actions = document.createElement('div');
   actions.className = 'reader-error-actions';
 
-  const direct = document.createElement('button');
-  direct.type = 'button';
+  const direct = document.createElement('a');
   direct.textContent = 'Open PDF Directly';
-  direct.addEventListener('click', () => window.location.assign(sourceUrl));
+  direct.href = safeSource()?.href || sourceUrl;
+  direct.target = '_blank';
+  direct.rel = 'noopener';
+  direct.dataset.directPdf = '';
 
   const retry = document.createElement('button');
   retry.type = 'button';
   retry.textContent = 'Retry Reader';
   retry.addEventListener('click', () => window.location.reload());
 
-  actions.append(direct, retry);
+  const back = document.createElement('button');
+  back.type = 'button';
+  back.textContent = 'Back to Previous Page';
+  back.addEventListener('click', goBack);
+
+  actions.append(back, direct, retry);
   container.appendChild(actions);
 }
 
@@ -74,7 +107,12 @@ function showError(message, detail = '') {
 }
 
 function updateZoomLabel() {
-  zoomLabel.textContent = `Fit ${Math.round(userZoom * 100)}%`;
+  zoomLabel.textContent = `${Math.round(userZoom * 100)}%`;
+}
+
+function updatePageButtons() {
+  previousPage.disabled = !pdfDocument || currentPageNumber <= 1;
+  nextPage.disabled = !pdfDocument || currentPageNumber >= pdfDocument.numPages;
 }
 
 function cancelRenderTasks() {
@@ -106,75 +144,78 @@ async function importReaderEngine() {
     pdfjsLib.GlobalWorkerOptions.workerSrc = '/pdfjs/legacy/build/pdf.worker.mjs';
   } catch (error) {
     console.error('PDF.js import failed', error);
-    throw new Error(
-      'The PDF.js engine route is missing. This happens when the repository is deployed as a Static Site instead of running server.js as a Node Web Service.'
-    );
+    throw new Error('The PDF.js engine is unavailable. Confirm that the app is running through server.js and that pdfjs-dist is installed.');
   }
 }
 
+async function readResponseBytes(response) {
+  const type = response.headers.get('content-type') || '';
+  if (!response.ok) throw new Error(`The PDF request returned HTTP ${response.status}.`);
+  if (!type.includes('application/pdf') && !type.includes('application/octet-stream')) {
+    throw new Error(`The server returned ${type || 'an unknown file type'} instead of a PDF.`);
+  }
+
+  const total = Number(response.headers.get('content-length') || 0);
+  if (!response.body) return new Uint8Array(await response.arrayBuffer());
+
+  const reader = response.body.getReader();
+  const chunks = [];
+  let loaded = 0;
+  while (true) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    chunks.push(value);
+    loaded += value.byteLength;
+    loadStatus.textContent = total > 0
+      ? `Downloading ${Math.min(100, Math.round((loaded / total) * 100))}%`
+      : `Downloading ${Math.round(loaded / 1024).toLocaleString()} KB`;
+  }
+  const bytes = new Uint8Array(loaded);
+  let offset = 0;
+  for (const chunk of chunks) {
+    bytes.set(chunk, offset);
+    offset += chunk.byteLength;
+  }
+  return bytes;
+}
+
 async function fetchPdfBytes() {
+  const resolved = safeSource();
+  if (!resolved) throw new Error('The PDF address is invalid.');
+
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), 90000);
-  const proxyUrl = `/pdf-proxy?url=${encodeURIComponent(sourceUrl)}`;
+  const isLocal = resolved.origin === window.location.origin;
 
-  try {
-    const response = await fetch(proxyUrl, {
+  async function request(url) {
+    const response = await fetch(url, {
       cache: 'no-store',
       signal: controller.signal,
       headers: { Accept: 'application/pdf' }
     });
+    return readResponseBytes(response);
+  }
 
-    const type = response.headers.get('content-type') || '';
-    if (!response.ok) {
-      let detail = `The PDF proxy returned HTTP ${response.status}.`;
+  try {
+    let bytes;
+    if (isLocal) {
+      bytes = await request(resolved.href);
+    } else {
       try {
-        const body = await response.json();
-        if (body?.error) detail = body.error;
-      } catch {}
-      throw new Error(detail);
-    }
-
-    if (!type.includes('application/pdf') && !type.includes('application/octet-stream')) {
-      throw new Error(`The PDF proxy returned ${type || 'an unknown file type'} instead of a PDF.`);
-    }
-
-    const total = Number(response.headers.get('content-length') || 0);
-    if (!response.body) {
-      const buffer = await response.arrayBuffer();
-      return new Uint8Array(buffer);
-    }
-
-    const reader = response.body.getReader();
-    const chunks = [];
-    let loaded = 0;
-
-    while (true) {
-      const { done, value } = await reader.read();
-      if (done) break;
-      chunks.push(value);
-      loaded += value.byteLength;
-      loadStatus.textContent = total > 0
-        ? `Downloading ${Math.min(100, Math.round((loaded / total) * 100))}%`
-        : `Downloading ${Math.round(loaded / 1024).toLocaleString()} KB`;
-    }
-
-    const bytes = new Uint8Array(loaded);
-    let offset = 0;
-    for (const chunk of chunks) {
-      bytes.set(chunk, offset);
-      offset += chunk.byteLength;
+        loadStatus.textContent = 'Connecting to document…';
+        bytes = await request(resolved.href);
+      } catch (directError) {
+        console.info('Direct external PDF request failed; trying the archive proxy.', directError);
+        loadStatus.textContent = 'Connecting through archive reader…';
+        bytes = await request(`/pdf-proxy?url=${encodeURIComponent(resolved.href)}`);
+      }
     }
 
     const signature = new TextDecoder('ascii').decode(bytes.slice(0, 5));
-    if (signature !== '%PDF-') {
-      throw new Error('The archive server response was not a valid PDF file.');
-    }
-
+    if (signature !== '%PDF-') throw new Error('The requested file was not a valid PDF.');
     return bytes;
   } catch (error) {
-    if (error?.name === 'AbortError') {
-      throw new Error('The PDF download took longer than 90 seconds and was stopped.');
-    }
+    if (error?.name === 'AbortError') throw new Error('The PDF took longer than 90 seconds to load.');
     throw error;
   } finally {
     clearTimeout(timer);
@@ -209,29 +250,21 @@ function createPageShells(pageCount) {
   observer?.disconnect();
 
   const fragment = document.createDocumentFragment();
-  for (let pageNumber = 1; pageNumber <= pageCount; pageNumber += 1) {
-    fragment.appendChild(createPageShell(pageNumber));
-  }
+  for (let pageNumber = 1; pageNumber <= pageCount; pageNumber += 1) fragment.appendChild(createPageShell(pageNumber));
   pageList.appendChild(fragment);
 
   observer = new IntersectionObserver((entries) => {
     for (const entry of entries) {
-      if (!entry.isIntersecting) continue;
-      const shell = entry.target;
-      renderPage(Number(shell.dataset.pageNumber), shell);
+      if (entry.isIntersecting) renderPage(Number(entry.target.dataset.pageNumber), entry.target);
     }
-  }, {
-    root: readerMain,
-    rootMargin: '120% 0px',
-    threshold: 0.01
-  });
+  }, { root: readerMain, rootMargin: '120% 0px', threshold: 0.01 });
 
   for (const shell of pageShells.values()) observer.observe(shell);
 }
 
 async function calculateScale(page) {
   const base = page.getViewport({ scale: 1 });
-  const padding = window.innerWidth <= 680 ? 16 : 34;
+  const padding = window.innerWidth <= 760 ? 16 : 34;
   const available = Math.max(260, readerMain.clientWidth - padding);
   return (available / base.width) * userZoom;
 }
@@ -244,14 +277,13 @@ async function renderPage(pageNumber, shell) {
 
   const canvas = shell.querySelector('canvas');
   const loading = shell.querySelector('.page-loading');
-
   try {
     const page = await pdfDocument.getPage(pageNumber);
     if (generation !== renderGeneration) return;
 
     const scale = await calculateScale(page);
     const viewport = page.getViewport({ scale });
-    const outputScale = Math.min(window.devicePixelRatio || 1, 1.6);
+    const outputScale = Math.min(window.devicePixelRatio || 1, 1.7);
 
     canvas.width = Math.max(1, Math.floor(viewport.width * outputScale));
     canvas.height = Math.max(1, Math.floor(viewport.height * outputScale));
@@ -259,20 +291,11 @@ async function renderPage(pageNumber, shell) {
     canvas.style.height = `${Math.floor(viewport.height)}px`;
     shell.style.minHeight = `${Math.floor(viewport.height)}px`;
 
-    const transform = outputScale === 1
-      ? null
-      : [outputScale, 0, 0, outputScale, 0, 0];
-
-    const task = page.render({
-      canvas,
-      viewport,
-      transform,
-      background: 'rgb(255,255,255)'
-    });
+    const transform = outputScale === 1 ? null : [outputScale, 0, 0, outputScale, 0, 0];
+    const task = page.render({ canvas, viewport, transform, background: 'rgb(255,255,255)' });
     renderTasks.set(pageNumber, task);
     await task.promise;
     renderTasks.delete(pageNumber);
-
     if (generation !== renderGeneration) return;
     loading.hidden = true;
   } catch (error) {
@@ -301,23 +324,43 @@ function setZoom(next) {
   requestAnimationFrame(renderNearbyPages);
 }
 
-async function loadPdf() {
-  readerTitle.textContent = requestedTitle;
-  setControlsDisabled(true);
+function scrollToPage(pageNumber) {
+  if (!pdfDocument) return;
+  const next = Math.min(pdfDocument.numPages, Math.max(1, pageNumber));
+  pageShells.get(next)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
 
-  if (!sourceUrl) {
-    showError('No PDF address was supplied to the reader.');
+function goBack() {
+  const referrer = document.referrer ? new URL(document.referrer, window.location.href) : null;
+  if (window.history.length > 1 && referrer?.origin === window.location.origin) {
+    window.history.back();
     return;
   }
+  window.location.assign(safeReturn());
+}
+
+async function loadPdf() {
+  readerTitle.textContent = requestedTitle;
+  document.title = `${requestedTitle} | PDF Reader`;
+  setControlsDisabled(true);
+
+  const resolved = safeSource();
+  if (!resolved) {
+    showError('No valid PDF address was supplied to the reader.');
+    return;
+  }
+
+  openOriginal.href = resolved.href;
+  downloadPdf.href = resolved.href;
+  downloadPdf.download = decodeURIComponent(resolved.pathname.split('/').pop() || 'document.pdf');
 
   try {
     loadStatus.textContent = 'Starting reader…';
     await importReaderEngine();
-
-    loadStatus.textContent = 'Connecting to archive…';
+    loadStatus.textContent = 'Loading document…';
     const bytes = await fetchPdfBytes();
-
     loadStatus.textContent = 'Opening document…';
+
     const task = pdfjsLib.getDocument({
       data: bytes,
       cMapUrl: '/pdfjs/cmaps/',
@@ -328,12 +371,13 @@ async function loadPdf() {
     pdfDocument = await task.promise;
 
     createPageShells(pdfDocument.numPages);
+    currentPageNumber = 1;
     pageStatus.textContent = `Page 1 of ${pdfDocument.numPages}`;
     loadStatus.textContent = `${pdfDocument.numPages} page${pdfDocument.numPages === 1 ? '' : 's'}`;
     setControlsDisabled(false);
     updateZoomLabel();
+    updatePageButtons();
 
-    // Render page one directly. Do not wait for IntersectionObserver on mobile.
     const firstShell = pageShells.get(1);
     if (firstShell) await renderPage(1, firstShell);
     requestAnimationFrame(renderNearbyPages);
@@ -347,8 +391,14 @@ zoomOut.addEventListener('click', () => setZoom(userZoom - zoomStep));
 zoomIn.addEventListener('click', () => setZoom(userZoom + zoomStep));
 zoomReset.addEventListener('click', () => setZoom(1));
 fitWidth.addEventListener('click', () => setZoom(1));
-closeReader.addEventListener('click', () => {
-  window.parent.postMessage({ type: 'gbr-close-pdf-reader' }, window.location.origin);
+backButton.addEventListener('click', goBack);
+previousPage.addEventListener('click', () => scrollToPage(currentPageNumber - 1));
+nextPage.addEventListener('click', () => scrollToPage(currentPageNumber + 1));
+fullScreen.addEventListener('click', async () => {
+  try {
+    if (!document.fullscreenElement) await document.documentElement.requestFullscreen();
+    else await document.exitFullscreen();
+  } catch {}
 });
 
 readerMain.addEventListener('scroll', () => {
@@ -357,11 +407,14 @@ readerMain.addEventListener('scroll', () => {
     if (!pdfDocument) return;
     let nearest = 1;
     let distance = Infinity;
+    const mainTop = readerMain.getBoundingClientRect().top;
     for (const [pageNumber, shell] of pageShells.entries()) {
-      const value = Math.abs(shell.getBoundingClientRect().top - readerMain.getBoundingClientRect().top - 60);
+      const value = Math.abs(shell.getBoundingClientRect().top - mainTop - 60);
       if (value < distance) { distance = value; nearest = pageNumber; }
     }
+    currentPageNumber = nearest;
     pageStatus.textContent = `Page ${nearest} of ${pdfDocument.numPages}`;
+    updatePageButtons();
   });
 }, { passive: true });
 
