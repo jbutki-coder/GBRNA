@@ -687,7 +687,7 @@ function renderGreyAreaGroup(isPrimary = false) {
         <div>
           <p class="grey-area-group-kicker">Grey Area Group of Narcotics Anonymous</p>
           <h4>Historical Literature Study</h4>
-          <p>This app is conscienced by the Grey Area Group of Narcotics Anonymous.</p>
+          <p>This is the homepage of the Grey Area Group of Narcotics Anonymous. It includes the Daily Grey Book Reading, historical literature study meetings, A.S.I.S. for NA and other historical literature, announcements, audio, service information, archives, and other Group resources. Grey Book Reflection remains an FSC Review &amp; Input project, and featured projects and service communities remain separately identified.</p>
         </div>
       </div>
 
