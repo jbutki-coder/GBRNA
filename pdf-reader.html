@@ -11,25 +11,112 @@
       --navy:#0f2c47;
       --navy2:#173f63;
       --paper:#ece8df;
-      --ink:#1e252a;
       --muted:#657078;
-      --line:#c8c1b5;
-      --gold:#d6bc89;
     }
     *{box-sizing:border-box}
-    html,body{width:100%;height:100%;margin:0;background:var(--paper);color:var(--ink);font-family:Arial,Helvetica,sans-serif}
-    body{display:grid;grid-template-rows:auto auto 1fr;overflow:hidden}
-    .site-tabs{display:flex;gap:.35rem;align-items:center;overflow-x:auto;padding:max(.45rem,env(safe-area-inset-top)) max(.55rem,env(safe-area-inset-right)) .45rem max(.55rem,env(safe-area-inset-left));background:#09131d;border-bottom:1px solid rgba(255,255,255,.13);scrollbar-width:thin}
-    .site-tabs a{flex:0 0 auto;padding:.55rem .7rem;border:1px solid rgba(255,255,255,.2);border-radius:.45rem;color:#fff;background:#172737;text-decoration:none;font-size:.72rem;font-weight:800;white-space:nowrap}
-    .site-tabs a:hover,.site-tabs a:focus-visible{background:#294158;outline:none}
-    .reader-toolbar{position:relative;z-index:20;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:.65rem;align-items:center;padding:.55rem max(.65rem,env(safe-area-inset-right)) .55rem max(.65rem,env(safe-area-inset-left));color:#fff;background:linear-gradient(135deg,var(--navy),var(--navy2));box-shadow:0 5px 18px rgba(0,0,0,.24)}
-    .reader-heading{min-width:0}.reader-kicker{margin:0 0 .12rem;font-size:.61rem;font-weight:900;letter-spacing:.09em;text-transform:uppercase;opacity:.75}.reader-title{margin:0;overflow:hidden;font-size:.95rem;line-height:1.22;text-overflow:ellipsis;white-space:nowrap}
-    .reader-controls{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:.35rem}.reader-controls button,.reader-controls a{min-height:2.15rem;padding:.42rem .58rem;border:1px solid rgba(255,255,255,.4);border-radius:.42rem;color:#fff;background:rgba(255,255,255,.1);font:800 .76rem/1 Arial,sans-serif;text-decoration:none;cursor:pointer;white-space:nowrap}.reader-controls button:active,.reader-controls a:active{background:rgba(255,255,255,.24)}.reader-controls button:disabled{cursor:default;opacity:.45}
-    .reader-main{position:relative;min-height:0;overflow:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;touch-action:pan-x pan-y pinch-zoom;scroll-behavior:smooth}
-    .reader-status{position:sticky;top:0;z-index:10;display:flex;justify-content:space-between;gap:.75rem;padding:.45rem .7rem;border-bottom:1px solid var(--line);background:rgba(247,244,238,.96);color:var(--muted);font-size:.75rem;backdrop-filter:blur(8px)}
-    .page-list{display:grid;gap:1rem;justify-items:center;padding:1rem .5rem 4rem}.pdf-page{position:relative;display:grid;place-items:center;width:min(100%,1100px);min-height:55vh;overflow:hidden;border:1px solid #b8b0a3;border-radius:.35rem;background:#fff;box-shadow:0 7px 22px rgba(0,0,0,.16)}.pdf-page canvas{display:block;max-width:none;background:#fff}.page-label{position:absolute;top:.35rem;left:.4rem;z-index:3;padding:.2rem .38rem;border-radius:.3rem;color:#fff;background:rgba(15,44,71,.8);font-size:.68rem;font-weight:800;pointer-events:none}.page-loading{color:var(--muted);font-size:.85rem}
-    .reader-error{max-width:720px;margin:2rem auto;padding:1rem;border:1px solid #b85656;border-radius:.5rem;background:#fff2f2;color:#6c1717;line-height:1.5}.reader-error strong{display:block;margin-bottom:.55rem}.reader-error p{margin:0 0 .8rem}.reader-error-actions{display:flex;flex-wrap:wrap;gap:.55rem;margin-top:.8rem}.reader-error-actions button,.reader-error-actions a{padding:.65rem .85rem;border:0;border-radius:.42rem;background:var(--navy);color:#fff;font-weight:800;text-decoration:none}
-    @media(max-width:760px){body{grid-template-rows:auto auto 1fr}.reader-toolbar{align-items:start;grid-template-columns:1fr}.reader-title{font-size:.83rem;white-space:normal}.reader-controls{justify-content:flex-start;overflow-x:auto;flex-wrap:nowrap;padding-bottom:.12rem}.reader-controls button,.reader-controls a{flex:0 0 auto;min-height:2rem;padding:.38rem .5rem;font-size:.7rem}.site-tabs{padding-top:max(.4rem,env(safe-area-inset-top))}.pdf-page{min-height:48vh}}
+    html,body{width:100%;height:100%;margin:0}
+    body{
+      display:grid;
+      grid-template-rows:auto auto minmax(0,1fr);
+      overflow:hidden;
+      background:var(--paper);
+      color:#fff;
+      font-family:Arial,Helvetica,sans-serif;
+    }
+    .site-tabs{
+      display:flex;
+      gap:.35rem;
+      align-items:center;
+      overflow-x:auto;
+      padding:max(.45rem,env(safe-area-inset-top)) max(.55rem,env(safe-area-inset-right)) .45rem max(.55rem,env(safe-area-inset-left));
+      background:#09131d;
+      border-bottom:1px solid rgba(255,255,255,.13);
+      -webkit-overflow-scrolling:touch;
+    }
+    .site-tabs a{
+      flex:0 0 auto;
+      padding:.55rem .7rem;
+      border:1px solid rgba(255,255,255,.2);
+      border-radius:.45rem;
+      color:#fff;
+      background:#172737;
+      text-decoration:none;
+      font-size:.72rem;
+      font-weight:800;
+      white-space:nowrap;
+    }
+    .reader-toolbar{
+      position:relative;
+      z-index:5;
+      display:grid;
+      grid-template-columns:minmax(0,1fr) auto;
+      gap:.65rem;
+      align-items:center;
+      padding:.55rem max(.65rem,env(safe-area-inset-right)) .55rem max(.65rem,env(safe-area-inset-left));
+      background:linear-gradient(135deg,var(--navy),var(--navy2));
+      box-shadow:0 5px 18px rgba(0,0,0,.24);
+    }
+    .reader-heading{min-width:0}
+    .reader-kicker{margin:0 0 .12rem;font-size:.61rem;font-weight:900;letter-spacing:.09em;text-transform:uppercase;opacity:.75}
+    .reader-title{margin:0;overflow:hidden;font-size:.95rem;line-height:1.22;text-overflow:ellipsis;white-space:nowrap}
+    .reader-controls{display:flex;justify-content:flex-end;gap:.35rem;overflow-x:auto;-webkit-overflow-scrolling:touch}
+    .reader-controls button,.reader-controls a{
+      flex:0 0 auto;
+      min-height:2.15rem;
+      padding:.42rem .62rem;
+      border:1px solid rgba(255,255,255,.4);
+      border-radius:.42rem;
+      color:#fff;
+      background:rgba(255,255,255,.1);
+      font:800 .76rem/1 Arial,sans-serif;
+      text-decoration:none;
+      cursor:pointer;
+      white-space:nowrap;
+    }
+    .reader-controls button:active,.reader-controls a:active{background:rgba(255,255,255,.24)}
+    .reader-stage{position:relative;min-width:0;min-height:0;overflow:hidden;background:#1d1e20}
+    .pdf-frame{display:block;width:100%;height:100%;border:0;background:#1d1e20}
+    .reader-message{
+      position:absolute;
+      left:50%;
+      bottom:max(.65rem,env(safe-area-inset-bottom));
+      z-index:3;
+      max-width:calc(100% - 1.2rem);
+      transform:translateX(-50%);
+      padding:.42rem .65rem;
+      border-radius:999px;
+      background:rgba(9,19,29,.84);
+      color:#fff;
+      font-size:.7rem;
+      font-weight:700;
+      text-align:center;
+      pointer-events:none;
+      transition:opacity .25s ease;
+    }
+    .reader-error{
+      display:none;
+      position:absolute;
+      inset:1rem;
+      z-index:4;
+      max-width:720px;
+      height:max-content;
+      margin:auto;
+      padding:1rem;
+      border:1px solid #b85656;
+      border-radius:.5rem;
+      background:#fff2f2;
+      color:#6c1717;
+      line-height:1.5;
+    }
+    .reader-error strong{display:block;margin-bottom:.55rem}
+    .reader-error-actions{display:flex;flex-wrap:wrap;gap:.55rem;margin-top:.8rem}
+    .reader-error-actions button,.reader-error-actions a{padding:.65rem .85rem;border:0;border-radius:.42rem;background:var(--navy);color:#fff;font-weight:800;text-decoration:none}
+    @media(max-width:760px){
+      .reader-toolbar{grid-template-columns:1fr;align-items:start}
+      .reader-title{font-size:.83rem;white-space:normal}
+      .reader-controls{justify-content:flex-start;padding-bottom:.12rem}
+      .reader-controls button,.reader-controls a{min-height:2rem;padding:.4rem .55rem;font-size:.7rem}
+    }
   </style>
 </head>
 <body>
@@ -48,30 +135,30 @@
   <header class="reader-toolbar">
     <div class="reader-heading">
       <p class="reader-kicker">Grey Book Reflection PDF Reader</p>
-      <h1 class="reader-title" id="readerTitle">Loading PDF…</h1>
+      <h1 class="reader-title" id="readerTitle">Opening PDF…</h1>
     </div>
     <div class="reader-controls" aria-label="PDF reader controls">
       <button id="backButton" type="button">← Back</button>
-      <button id="previousPage" type="button" aria-label="Previous page">Prev</button>
-      <button id="nextPage" type="button" aria-label="Next page">Next</button>
-      <button id="zoomOut" type="button" aria-label="Zoom out">−</button>
-      <button id="zoomReset" type="button" aria-label="Reset zoom"><span id="zoomLabel">100%</span></button>
-      <button id="zoomIn" type="button" aria-label="Zoom in">+</button>
-      <button id="fitWidth" type="button">Fit</button>
+      <button id="reloadButton" type="button">Reload</button>
       <button id="fullScreen" type="button">Full Screen</button>
-      <a id="openOriginal" href="#" target="_blank" rel="noopener" data-direct-pdf>Original PDF</a>
+      <a id="openOriginal" href="#" target="_blank" rel="noopener" data-direct-pdf>Open Directly</a>
       <a id="downloadPdf" href="#" download data-direct-pdf>Download</a>
     </div>
   </header>
 
-  <main class="reader-main" id="readerMain">
-    <div class="reader-status">
-      <span id="pageStatus">Preparing document…</span>
-      <span id="loadStatus">Connecting…</span>
+  <main class="reader-stage" id="readerStage">
+    <iframe id="pdfFrame" class="pdf-frame" title="PDF document" allow="fullscreen" referrerpolicy="same-origin"></iframe>
+    <div class="reader-message" id="readerMessage">Scroll through the pages. Pinch with two fingers to zoom.</div>
+    <div class="reader-error" id="readerError">
+      <strong>This PDF could not be loaded inside the reader.</strong>
+      <div>Use “Open Directly” below, then return with your browser’s back control.</div>
+      <div class="reader-error-actions">
+        <button id="errorBack" type="button">Back to Previous Page</button>
+        <a id="errorDirect" href="#" target="_blank" rel="noopener" data-direct-pdf>Open PDF Directly</a>
+      </div>
     </div>
-    <div class="page-list" id="pageList"></div>
   </main>
 
-  <script type="module" src="/js/pdf-reader.mjs?v=20260725-universal-v1"></script>
+  <script src="/js/pdf-reader.mjs?v=20260726-native-v2"></script>
 </body>
 </html>
