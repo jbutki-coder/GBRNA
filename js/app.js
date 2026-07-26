@@ -726,90 +726,6 @@ function renderGreyAreaGroup(isPrimary = false) {
   `;
 }
 
-function renderMeetingSchedule(isPrimary = false) {
-  if (!isPrimary) return '';
-
-  return `
-    <section
-      id="meetings"
-      class="meeting-schedule-panel meeting-schedule-inline"
-      data-meeting-schedule
-      aria-label="Meeting schedule"
-    >
-      <div class="meeting-heading">
-        <div>
-          <p class="eyebrow">Find a Meeting</p>
-          <h4>Virtual &amp; Hybrid Meeting Schedule</h4>
-          <p class="meeting-timezone" data-meeting-timezone-label>Times automatically adjust to your local time zone. Virtual and hybrid meetings only. Tap a meeting to open the full details.</p>
-        </div>
-        <div class="meeting-count" data-meeting-count aria-live="polite">Loading meetings…</div>
-      </div>
-
-      <details class="meeting-philosophy-disclaimer">
-        <summary>
-          <span class="meeting-disclaimer-short"><strong>Meeting List Notice:</strong> Most meetings in this directory are Grey Book or other historical NA literature studies. The list includes virtual and hybrid meetings connected with A.S.I.S. For NA and ARNA For NA, two service communities that share a strong emphasis on Group autonomy and direct responsibility to the Groups they serve.</span>
-          <span class="meeting-disclaimer-cue" aria-hidden="true">MORE INFO +</span>
-        </summary>
-
-        <div class="meeting-disclaimer-detail">
-          <h5>About the Meetings in This Directory</h5>
-          <p>Most meetings in this schedule are <strong>Grey Book studies, historical NA literature studies, or meetings that make use of earlier NA recovery literature</strong>. The directory brings together virtual and hybrid meetings connected with <strong>A.S.I.S. For NA</strong> and the <strong>Autonomous Region FOR Narcotics Anonymous (ARNA)</strong>. The two service communities have similar emphases on Group autonomy, direct responsibility to the Groups being served, and service structures that exist to serve rather than govern. Their specific statements and practices are not identical.</p>
-
-          <div class="meeting-disclaimer-group">
-            <h6>A.S.I.S. For NA</h6>
-            <p>A.S.I.S. explicitly emphasizes <strong>complete and total abstinence from all drugs</strong> and gives particular weight to the original Fourth and Ninth Tradition essays. In that service philosophy, the NA Group is autonomous, and service boards or committees are directly responsible to those they serve.</p>
-            <p>The A.S.I.S.-related materials supplied for this project further emphasize that authority begins with the NA Group and flows outward through the service structure. They affirm a Group's right to create, direct, participate in, or discontinue participation in service structures according to the Group's conscience and needs. They also assert broad Group autonomy in the use, reproduction, development, and study of NA recovery literature, while maintaining that the Twelve Steps and Twelve Traditions themselves are not to be altered.</p>
-          </div>
-
-          <div class="meeting-disclaimer-group">
-            <h6>ARNA For NA</h6>
-            <p>ARNA describes itself as a worldwide, non-administrative service and information structure made up of Groups and individual members. Its stated philosophy strongly emphasizes the absolute right of Group autonomy, service committees that serve rather than govern, the Groups as the highest point of service, support for virtual Groups without geographic boundaries, and freedom for Groups to study and use the NA literature they choose within their understanding of the Twelve Traditions.</p>
-            <p>ARNA states that its services should avoid attempts to rule, censor, decide for, dictate to, govern, or control Groups. It also supports Group efforts to make NA recovery literature available and supports the study of historical NA literature.</p>
-          </div>
-
-          <p class="meeting-disclaimer-final"><strong>Directory note:</strong> Each meeting and Group is autonomous. Listing a meeting here is informational and does not mean that every meeting uses the same format, literature, or exact service position. Open the individual meeting details and contact the Group when clarification is needed.</p>
-        </div>
-      </details>
-
-      <div class="meeting-filter-shell">
-        <div class="meeting-day-tabs" data-meeting-day-tabs role="tablist" aria-label="Filter meetings by weekday"></div>
-
-        <div class="meeting-select-filters">
-          <label>
-            <span>City</span>
-            <select data-meeting-city aria-label="Filter meetings by city">
-              <option value="">All Cities</option>
-            </select>
-          </label>
-
-          <label>
-            <span>Location</span>
-            <select data-meeting-location aria-label="Filter meetings by location">
-              <option value="">All Locations</option>
-            </select>
-          </label>
-
-          <label>
-            <span>Venue Type</span>
-            <select data-meeting-mode aria-label="Filter meetings by venue type">
-              <option value="">All Venue Types</option>
-            </select>
-          </label>
-
-          <label>
-            <span>Format</span>
-            <select data-meeting-format aria-label="Filter meetings by format">
-              <option value="">All Formats</option>
-            </select>
-          </label>
-        </div>
-      </div>
-
-      <div data-meeting-results class="meeting-results" aria-live="polite"></div>
-    </section>
-  `;
-}
-
 function renderReviewInputForm(reading, isPrimary = false) {
   const source = reading.source || 'Source reference pending';
   const page = reading.pdfPage ? `GBR PDF p. ${reading.pdfPage}` : '';
@@ -912,7 +828,6 @@ function renderReadingCard(reading, label = '', isPrimary = false) {
         </div>` : ''}
       ${renderGreyBookContext(reading)}
       ${renderGreyAreaGroup(isPrimary)}
-      ${renderMeetingSchedule(isPrimary)}
       ${renderAudioLibrary(isPrimary)}
       ${renderReviewInputForm(reading, isPrimary)}
     </article>
