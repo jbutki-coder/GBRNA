@@ -1,7 +1,7 @@
 {
-  "name": "Grey Book Reflection",
-  "short_name": "GBR",
-  "description": "Daily Grey Book Reflection",
+  "name": "Grey Area Group of Narcotics Anonymous — Grey Book Reflection Daily Reading",
+  "short_name": "GBRNA",
+  "description": "The Grey Area Group homepage with the Daily Grey Book Reading, historical literature meetings, A.S.I.S. for NA literature, announcements, audio, service information, and more.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#f7f1e6",
