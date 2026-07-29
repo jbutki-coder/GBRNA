@@ -26,5 +26,12 @@
                   "audioUrl":  "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-audio/GBR-Source-07-16.mp3",
                   "fileName":  "GBR-Source-07-16.mp3",
                   "updated":  "2026-07-16"
+              },
+    "07-29":  {
+                  "title":  "Grey Book Source Audio - July 29",
+                  "pageLabel":  "Step Eight - GBR Page 50 - Lines 15-18",
+                  "audioUrl":  "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-source-audio/GBR-Source-07-29.mp3",
+                  "fileName":  "GBR-Source-07-29.mp3",
+                  "updated":  "2026-07-29"
               }
 }
