@@ -1519,6 +1519,20 @@
                            "episodeUrl":  "",
                            "duration":  "26:54",
                            "description":  "Chapters 1 through 3 from the Basic Text Revised \u0026 Restored."
+                       },
+                       {
+                           "title":  "4. How It Works",
+                           "audioUrl":  "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-audio/Baby_Blue_4_How_It_Works.mp3",
+                           "episodeUrl":  "",
+                           "duration":  "01:15:34",
+                           "description":  "Chapter 4, How It Works, from the Basic Text Revised \u0026 Restored."
+                       },
+                       {
+                           "title":  "5. What Can I Do?",
+                           "audioUrl":  "https://github.com/jbutki-coder/GBRNA/releases/download/gbr-audio/Baby_Blue_5_What_Can_I_Do.mp3",
+                           "episodeUrl":  "",
+                           "duration":  "01:15:31",
+                           "description":  "Chapter 5, What Can I Do?, from the Basic Text Revised \u0026 Restored."
                        }
                    ]
     }
