@@ -228,12 +228,12 @@
 
 .grey-study-content {
   display: grid;
-  gap: 14px;
+  gap: 24px;
 }
 
 .grey-study-paragraph {
-  padding: 0 0 14px;
-  border-bottom: 1px solid var(--line);
+  padding: 0;
+  border-bottom: 0;
 }
 
 .grey-study-paragraph h3 {
@@ -243,7 +243,17 @@
 
 .grey-study-paragraph p {
   margin: 0;
-  font-size: clamp(1.02rem, 2vw, 1.13rem);
+  max-width: 60ch;
+  font-size: 1.55rem;
+  line-height: 1.62;
+}
+
+.grey-study-paragraph.is-lead p {
+  padding-bottom: 18px;
+  border-bottom: 2px solid var(--gold);
+  font-size: 1.8rem;
+  font-style: italic;
+  font-weight: 700;
 }
 
 .grey-study-open-link {
@@ -267,7 +277,7 @@
 }
 
 .grey-study-paragraph.is-heading {
-  padding: 14px 0 6px;
+  padding: 18px 0 2px;
   border-bottom: 0;
 }
 
@@ -328,6 +338,61 @@ body.grey-study-dark .grey-study-screen-tabs button.is-active {
   color: #14110d;
 }
 
+body.grey-study-dark .grey-study-shell {
+  width: min(1500px, calc(100% - 48px));
+}
+
+body.grey-study-dark .grey-study-reader {
+  padding: 56px;
+  border: 0;
+  box-shadow: none;
+}
+
+body.grey-study-dark .grey-study-section-head {
+  margin-bottom: 42px;
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+body.grey-study-dark .grey-study-section-head h2 {
+  color: #fff;
+  font: 900 4rem/1.05 Arial, Helvetica, sans-serif;
+}
+
+body.grey-study-dark .grey-study-section-head [data-active-group],
+body.grey-study-dark .grey-study-section-head [data-active-meta] {
+  color: #ddd;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body.grey-study-dark .grey-study-content {
+  gap: 40px;
+}
+
+body.grey-study-dark .grey-study-paragraph p {
+  max-width: 62ch;
+  color: #fff;
+  font: 400 2.2rem/1.48 Arial, Helvetica, sans-serif;
+}
+
+body.grey-study-dark .grey-study-paragraph.is-lead p {
+  padding-bottom: 30px;
+  border-bottom-color: #fff;
+  font-size: 2.45rem;
+  font-style: italic;
+}
+
+body.grey-study-dark .grey-study-paragraph h3 {
+  color: #fff;
+  font: 900 3rem/1.1 Arial, Helvetica, sans-serif;
+}
+
+body.grey-study-dark .grey-study-page {
+  color: #bbb;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: .9rem;
+}
+
 @media (max-width: 760px) {
   .grey-study-header .brand-lockup,
   .grey-study-section-head,
@@ -364,6 +429,34 @@ body.grey-study-dark .grey-study-screen-tabs button.is-active {
   .grey-study-screen-row-3 button {
     min-height: 58px;
     font-size: .82rem;
+  }
+
+  .grey-study-paragraph p,
+  .grey-study-paragraph.is-lead p {
+    font-size: 1.25rem;
+    line-height: 1.62;
+  }
+
+  body.grey-study-dark .grey-study-shell {
+    width: min(calc(100% - 20px), 1500px);
+  }
+
+  body.grey-study-dark .grey-study-reader {
+    padding: 24px 18px;
+  }
+
+  body.grey-study-dark .grey-study-section-head h2 {
+    font-size: 2.35rem;
+  }
+
+  body.grey-study-dark .grey-study-paragraph p,
+  body.grey-study-dark .grey-study-paragraph.is-lead p {
+    font-size: 1.35rem;
+    line-height: 1.55;
+  }
+
+  body.grey-study-dark .grey-study-paragraph h3 {
+    font-size: 2rem;
   }
 }
 
