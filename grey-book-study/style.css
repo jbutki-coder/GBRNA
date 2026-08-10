@@ -1,0 +1,257 @@
+.grey-study-header .header-inner {
+  align-items: center;
+}
+
+.grey-study-header-inner {
+  padding-top: 24px;
+  padding-bottom: 24px;
+}
+
+.grey-study-reader-link {
+  flex: 0 0 auto;
+  border: 1px solid var(--gold);
+  color: var(--paper);
+  padding: 10px 14px;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.grey-study-reader-link:hover,
+.grey-study-reader-link:focus-visible {
+  background: var(--gold);
+  color: var(--charcoal);
+}
+
+.grey-study-shell {
+  display: grid;
+  gap: 22px;
+}
+
+.grey-study-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(220px, 310px);
+  gap: 20px;
+  align-items: stretch;
+  padding: clamp(20px, 4vw, 34px);
+  background:
+    linear-gradient(135deg, rgba(32, 29, 25, .92), rgba(45, 41, 35, .86)),
+    url("/images/grey-area-historical-literature-study.png") center right / auto 115% no-repeat;
+  color: var(--paper);
+  border: 1px solid rgba(184, 137, 50, .7);
+  box-shadow: 0 12px 30px var(--shadow);
+}
+
+.grey-study-hero h2 {
+  max-width: 760px;
+}
+
+.grey-study-hero p {
+  max-width: 760px;
+  margin-bottom: 0;
+}
+
+.grey-study-stats {
+  display: grid;
+  gap: 10px;
+  align-content: center;
+}
+
+.grey-study-stats span {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 14px;
+  background: rgba(243, 234, 216, .1);
+  border: 1px solid rgba(243, 234, 216, .26);
+  font-family: "Courier New", Courier, monospace;
+  font-weight: 700;
+}
+
+.grey-study-stats strong {
+  color: var(--gold-soft);
+  font-size: 1.5rem;
+}
+
+.grey-study-controls {
+  display: grid;
+  gap: 14px;
+  padding: 16px;
+  background: rgba(255, 255, 255, .32);
+  border: 1px solid var(--line);
+}
+
+.grey-study-tab-row,
+.grey-study-subtabs,
+.grey-study-section-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.grey-study-tab-row button,
+.grey-study-subtabs button,
+.grey-study-section-actions button,
+.grey-study-tools button {
+  color: var(--ink);
+  background: rgba(255, 255, 255, .35);
+  border-color: var(--line);
+}
+
+.grey-study-tab-row button.is-active,
+.grey-study-subtabs button.is-active {
+  background: var(--charcoal);
+  border-color: var(--gold);
+  color: var(--paper);
+}
+
+.grey-study-subtabs {
+  max-height: 220px;
+  overflow: auto;
+  padding-top: 2px;
+}
+
+.grey-study-subtabs button {
+  text-align: left;
+}
+
+.grey-study-tools {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: end;
+}
+
+.grey-study-search {
+  display: grid;
+  gap: 5px;
+  font-family: "Courier New", Courier, monospace;
+  font-size: .82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.grey-study-search input {
+  width: 100%;
+  min-height: 44px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, .75);
+  color: var(--ink);
+  padding: 9px 12px;
+  font: 700 1rem/1.2 Georgia, "Times New Roman", serif;
+}
+
+.grey-study-reader {
+  margin-top: 0;
+}
+
+.grey-study-section-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  align-items: flex-start;
+  padding-bottom: 14px;
+  margin-bottom: 20px;
+  border-bottom: 2px solid var(--ink);
+}
+
+.grey-study-section-head h2 {
+  margin-bottom: 6px;
+}
+
+.grey-study-section-head p {
+  margin-bottom: 0;
+}
+
+.grey-study-content {
+  display: grid;
+  gap: 14px;
+}
+
+.grey-study-paragraph {
+  padding: 0 0 14px;
+  border-bottom: 1px solid var(--line);
+}
+
+.grey-study-paragraph h3 {
+  margin: 0;
+  font-size: clamp(1.35rem, 3vw, 2rem);
+}
+
+.grey-study-paragraph p {
+  margin: 0;
+  font-size: clamp(1.02rem, 2vw, 1.13rem);
+}
+
+.grey-study-paragraph.is-heading {
+  padding: 14px 0 6px;
+  border-bottom: 0;
+}
+
+.grey-study-page {
+  display: block;
+  margin-top: 6px;
+  color: var(--muted);
+  font-family: "Courier New", Courier, monospace;
+  font-size: .78rem;
+  font-weight: 700;
+}
+
+.grey-study-loading,
+.grey-study-empty {
+  padding: 18px;
+  background: rgba(255, 255, 255, .45);
+  border-left: 5px solid var(--gold);
+  font-family: "Courier New", Courier, monospace;
+  font-weight: 700;
+}
+
+body.grey-study-dark {
+  --paper: #050505;
+  --paper-deep: #111;
+  --ink: #f6f1e7;
+  --muted: #c9bda8;
+  --charcoal: #000;
+  --charcoal-2: #111;
+  --line: rgba(255, 255, 255, .18);
+  --shadow: rgba(0, 0, 0, .5);
+  background: #000;
+  color: #fff;
+}
+
+body.grey-study-dark .global-tabs-bar,
+body.grey-study-dark .site-header,
+body.grey-study-dark .grey-study-reader,
+body.grey-study-dark .grey-study-controls {
+  background: #000;
+}
+
+body.grey-study-dark .grey-study-search input,
+body.grey-study-dark .grey-study-tab-row button,
+body.grey-study-dark .grey-study-subtabs button,
+body.grey-study-dark .grey-study-section-actions button,
+body.grey-study-dark .grey-study-tools button {
+  background: #111;
+  color: #fff;
+}
+
+@media (max-width: 760px) {
+  .grey-study-header .brand-lockup,
+  .grey-study-section-head,
+  .grey-study-tools,
+  .grey-study-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .grey-study-header .brand-lockup {
+    display: grid;
+  }
+
+  .grey-study-reader-link,
+  .grey-study-section-actions button,
+  .grey-study-tools button {
+    width: 100%;
+    text-align: center;
+  }
+}
