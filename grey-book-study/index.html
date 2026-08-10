@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Grey Book Study | GBRNA</title>
+  <meta name="description" content="A GBRNA Grey Book study mirror with full chapter reading, individual Step tabs, and related historical NA literature sections." />
+  <link rel="canonical" href="https://gbrna.onrender.com/grey-book-study/">
+  <link rel="icon" href="/icons/favicon.ico?v=3" sizes="any">
+  <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png?v=3">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" content="#111111">
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="/css/global-tabs.css?v=20260724-nav1">
+  <link rel="stylesheet" href="/grey-book-study/style.css?v=20260810-gb-study">
+</head>
+<body>
+  <div class="global-tabs-bar">
+    <nav class="global-tabs" aria-label="Complete site navigation">
+      <a href="/#today">Today</a>
+      <a href="/#archive">Reflection Archive</a>
+      <a href="/#search">Search</a>
+      <a href="/#library">Library</a>
+      <a href="/grey-book-study/" aria-current="page">Grey Book Study</a>
+      <a href="/archive-master-index.html">NA History Archive</a>
+      <a href="/lwb-draft/">Meeting Readings / Seventh Tradition</a>
+      <a href="/#download">Download</a>
+      <a href="/#audio">Audio</a>
+      <a href="/meetings/">Meetings</a>
+      <a href="/asis-ips/">A.S.I.S. Literature</a>
+      <a href="/fsc/">FSC</a>
+      <a href="https://www.nahelp.org" target="_blank" rel="noopener noreferrer">A.S.I.S. Website</a>
+      <a href="/#about">About</a>
+    </nav>
+  </div>
+
+  <header class="site-header grey-study-header">
+    <div class="wrap header-inner grey-study-header-inner">
+      <div class="brand-lockup">
+        <img class="brand-mark" src="/images/grey-area-historical-literature-study.png" alt="" aria-hidden="true">
+        <div>
+          <p class="eyebrow">GBRNA Historical Literature Study</p>
+          <h1>Grey Book Study</h1>
+          <p class="subhead">A chapter and Step mirror built for reading, study, and screen sharing.</p>
+        </div>
+      </div>
+      <a class="grey-study-reader-link" href="/pdf-reader.html?file=/literature/grey-book-memphis-1981-review-form.pdf">Open PDF</a>
+    </div>
+  </header>
+
+  <main class="wrap main-content grey-study-shell">
+    <section class="grey-study-hero" aria-labelledby="greyStudyTitle">
+      <div>
+        <p class="eyebrow">Modeled after the GPRNA screenshare index</p>
+        <h2 id="greyStudyTitle">Full Grey Book chapters, Steps, and meeting readings in one study section.</h2>
+        <p>
+          Use the internal tabs below to move through chapters, individual Steps, and related readings.
+          These sub-tabs belong only to this Grey Book section and do not change the rest of the GBRNA site.
+        </p>
+      </div>
+      <div class="grey-study-stats" aria-label="Grey Book study contents">
+        <span><strong data-section-count>--</strong> Sections</span>
+        <span><strong data-paragraph-count>--</strong> Paragraphs</span>
+        <span><strong>12</strong> Steps</span>
+      </div>
+    </section>
+
+    <section class="grey-study-controls" aria-label="Grey Book internal navigation">
+      <div class="grey-study-tab-row" role="tablist" aria-label="Grey Book section groups">
+        <button type="button" class="is-active" data-group-tab="chapters">Chapters</button>
+        <button type="button" data-group-tab="steps">Steps</button>
+        <button type="button" data-group-tab="related">Related</button>
+      </div>
+
+      <div class="grey-study-tools">
+        <label class="grey-study-search">
+          <span>Search Grey Book</span>
+          <input type="search" data-search placeholder="Search this study section">
+        </label>
+        <button type="button" data-theme-toggle>Dark screen mode</button>
+      </div>
+
+      <div class="grey-study-subtabs" data-subtabs role="tablist" aria-label="Grey Book internal sub-tabs"></div>
+    </section>
+
+    <section class="grey-study-reader panel" aria-live="polite">
+      <div class="grey-study-section-head">
+        <div>
+          <p class="eyebrow" data-active-group>Chapter</p>
+          <h2 data-active-title>Loading Grey Book...</h2>
+          <p data-active-meta></p>
+        </div>
+        <div class="grey-study-section-actions">
+          <button type="button" data-prev-section>Previous</button>
+          <button type="button" data-next-section>Next</button>
+        </div>
+      </div>
+      <div class="grey-study-loading" data-loading>Loading the Grey Book study text.</div>
+      <div class="grey-study-content" data-content></div>
+    </section>
+  </main>
+
+  <script src="/grey-book-study/study.js?v=20260810-gb-study" defer></script>
+</body>
+</html>
