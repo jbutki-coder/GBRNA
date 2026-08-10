@@ -253,7 +253,10 @@ document.addEventListener("click", (event) => {
   if (event.target.closest("[data-next-section]")) moveSection(1);
 
   if (event.target.closest("[data-theme-toggle]")) {
-    document.body.classList.toggle("grey-study-dark");
+    const toggle = event.target.closest("[data-theme-toggle]");
+    const darkModeOn = document.body.classList.toggle("grey-study-dark");
+    toggle.setAttribute("aria-pressed", String(darkModeOn));
+    toggle.textContent = darkModeOn ? "Light screen mode" : "Dark screen mode";
   }
 });
 
