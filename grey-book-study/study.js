@@ -53,6 +53,68 @@ function normalizeBlock(item) {
   };
 }
 
+function mergeStudyBlocks(blocks) {
+  const merged = [];
+  let paragraph = null;
+
+  const splitReadableParagraph = (block) => {
+    if (block.isHeading || block.text.length <= 520 || typeof Intl?.Segmenter !== "function") {
+      return [block];
+    }
+
+    const sentences = [...new Intl.Segmenter("en", { granularity: "sentence" }).segment(block.text)]
+      .map((part) => part.segment.trim())
+      .filter(Boolean);
+    if (sentences.length < 2) return [block];
+
+    const paragraphs = [];
+    let text = "";
+    sentences.forEach((sentence) => {
+      const nextText = text ? `${text} ${sentence}` : sentence;
+      if (text.length >= 260 && nextText.length > 520) {
+        paragraphs.push({ ...block, text });
+        text = sentence;
+      } else {
+        text = nextText;
+      }
+    });
+    if (text) paragraphs.push({ ...block, text });
+    return paragraphs;
+  };
+
+  const flushParagraph = () => {
+    if (!paragraph) return;
+    paragraph.text = paragraph.text.replace(/\s+/g, " ").trim();
+    paragraph.pages = [...new Set(paragraph.pages)];
+    if (paragraph.text) merged.push(...splitReadableParagraph(paragraph));
+    paragraph = null;
+  };
+
+  blocks.map(normalizeBlock).forEach((block) => {
+    const text = block.text.trim();
+    if (!text) return;
+
+    if (block.isHeading) {
+      flushParagraph();
+      merged.push({ ...block, text });
+      return;
+    }
+
+    if (!paragraph) {
+      paragraph = { ...block, text, pages: [...block.pages] };
+    } else {
+      const separator = paragraph.text.endsWith("-") ? "" : " ";
+      paragraph.text += `${separator}${text}`;
+      paragraph.pages.push(...block.pages);
+    }
+
+    if (/[.!?][\"')\]]?$/.test(text)) flushParagraph();
+  });
+
+  flushParagraph();
+  return merged;
+}
+
 function buildGroups(data) {
   const introBlocks = [
     { kind: "heading", text: "Grey Book Study" },
@@ -60,14 +122,19 @@ function buildGroups(data) {
     { kind: "text", text: "Chapter 1 is Who Is an Addict?, Chapter 2 is What Is the Narcotics Anonymous Program?, Chapter 3 is Why Are We Here?, and Chapter 4 is How It Works." }
   ];
 
-  state.sectionMap = new Map((data.sections || []).map((section) => [
+  const studySections = (data.sections || []).map((section) => ({
+    ...section,
+    mergedBlocks: mergeStudyBlocks(section.blocks || [])
+  }));
+
+  state.sectionMap = new Map(studySections.map((section) => [
     section.id,
     {
       id: section.id,
       name: section.title,
       group: section.group,
       slug: section.slug || slugify(section.title),
-      paragraphs: (section.blocks || []).map(normalizeBlock).filter((item) => item.text.trim()),
+      paragraphs: section.mergedBlocks,
       pages: section.pages || ""
     }
   ]));
@@ -134,7 +201,10 @@ function buildGroups(data) {
     "Why Are We Here?",
     "How It Works"
   ]).size);
-  els.paragraphCount.textContent = String((data.sections || []).reduce((total, section) => total + (section.blocks || []).length, 0));
+  els.paragraphCount.textContent = String(studySections.reduce(
+    (total, section) => total + section.mergedBlocks.filter((block) => !block.isHeading).length,
+    0
+  ));
 }
 
 function allNavItems() {
@@ -220,18 +290,29 @@ function renderContent() {
       ? "Tradition"
       : "Grey Book";
   els.title.textContent = active.name;
-  els.meta.textContent = `${active.paragraphs.length} text lines${active.pages ? ` | GBR pages ${active.pages}` : ""}`;
+  const visibleParagraphs = active.paragraphs.filter((paragraph, index) => !(
+    index === 0 &&
+    paragraph.isHeading &&
+    slugify(paragraph.text) === slugify(active.name)
+  ));
+  const paragraphCount = visibleParagraphs.filter((paragraph) => !paragraph.isHeading).length;
+  els.meta.textContent = `${paragraphCount} paragraphs${active.pages ? ` | GBR pages ${active.pages}` : ""}`;
   const action = active.href ? `
     <p>
       <a class="grey-study-open-link" href="${escapeHtml(active.href)}">Open ${escapeHtml(active.name)}</a>
     </p>
   ` : "";
-  els.content.innerHTML = active.paragraphs.map((paragraph) => {
+  let bodyParagraphIndex = 0;
+  els.content.innerHTML = visibleParagraphs.map((paragraph) => {
     const pages = paragraph.pages.length ? `<span class="grey-study-page">GBR page ${escapeHtml(paragraph.pages.join(", "))}</span>` : "";
     if (paragraph.isHeading) {
       return `<article class="grey-study-paragraph is-heading"><h3>${escapeHtml(paragraph.text)}</h3>${pages}</article>`;
     }
-    return `<article class="grey-study-paragraph"><p>${escapeHtml(paragraph.text)}</p>${pages}</article>`;
+    const leadClass = bodyParagraphIndex === 0 && ["steps", "traditions"].includes(active.group)
+      ? " is-lead"
+      : "";
+    bodyParagraphIndex += 1;
+    return `<article class="grey-study-paragraph${leadClass}"><p>${escapeHtml(paragraph.text)}</p>${pages}</article>`;
   }).join("") + action;
 }
 
