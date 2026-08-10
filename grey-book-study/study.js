@@ -262,11 +262,26 @@ els.search?.addEventListener("input", () => {
   render();
 });
 
-fetch("/data/grey-form-study.json", { cache: "no-store" })
-  .then((response) => {
-    if (!response.ok) throw new Error(`Grey Form data returned ${response.status}`);
-    return response.json();
-  })
+async function loadStudyData() {
+  const paths = [
+    "/grey-book-study/grey-form-study.json",
+    "/data/grey-form-study.json"
+  ];
+
+  const errors = [];
+  for (const path of paths) {
+    try {
+      const response = await fetch(path, { cache: "no-store" });
+      if (response.ok) return response.json();
+      errors.push(`${path} returned ${response.status}`);
+    } catch (error) {
+      errors.push(`${path} failed`);
+    }
+  }
+  throw new Error(errors.join("; "));
+}
+
+loadStudyData()
   .then((data) => {
     buildGroups(data);
     setActive("home");
