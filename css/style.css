@@ -211,6 +211,32 @@ button:focus-visible,
   white-space: nowrap;
 }
 
+.grey-book-study-source-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 38px;
+  margin-top: 5px;
+  padding: 8px 10px;
+  border: 1px solid var(--gold);
+  background: var(--charcoal);
+  color: var(--paper);
+  font-family: "Courier New", Courier, monospace;
+  font-size: .74rem;
+  font-weight: 900;
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+}
+
+.grey-book-study-source-link:hover,
+.grey-book-study-source-link:focus-visible {
+  background: var(--gold);
+  color: var(--charcoal);
+  outline: 3px solid rgba(184, 137, 50, .28);
+  outline-offset: 2px;
+}
+
 .quote {
   margin: 0 0 22px;
   padding: 0 0 18px;
@@ -359,6 +385,7 @@ button:focus-visible,
     align-items: flex-start;
     text-align: left;
   }
+  .grey-book-study-source-link { width: 100%; }
   .page-ref, .source-ref { white-space: normal; }
 }
 
