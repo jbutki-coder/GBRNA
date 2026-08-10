@@ -1,42 +1,24 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Just For Tonight | GBRNA</title>
+  <meta name="description" content="Just For Tonight daily reading site &mdash; a literature project of The Core Group of NA">
+  <link rel="canonical" href="https://gbrna.onrender.com/jft.html">
 
-  <title>Just For Tonight</title>
-  <meta
-    name="description"
-    content="Just For Tonight daily reading site — a literature project of The Core Group of NA"
-  />
-
-  <!-- Browser tab icons -->
   <link rel="icon" href="/icons/favicon.ico?v=3" sizes="any">
   <link rel="shortcut icon" href="/icons/favicon.ico?v=3" type="image/x-icon">
   <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png?v=3">
   <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png?v=3">
-
-  <!-- iPhone / iPad home screen icon -->
   <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png?v=3">
-
-  <!-- Android / app-style install support -->
   <link rel="manifest" href="/site.webmanifest">
   <meta name="theme-color" content="#111111">
 
-  <!-- Shared link preview -->
   <meta property="og:title" content="Just For Tonight">
-  <meta
-    property="og:description"
-    content="Daily Just For Tonight — a literature project of The Core Group of NA"
-  >
-  <meta
-    property="og:image"
-    content="https://gbrna.onrender.com/icons/icon-512.png?v=3"
-  >
-  <meta
-    property="og:image:secure_url"
-    content="https://gbrna.onrender.com/icons/icon-512.png?v=3"
-  >
+  <meta property="og:description" content="Daily Just For Tonight &mdash; a literature project of The Core Group of NA">
+  <meta property="og:image" content="https://gbrna.onrender.com/icons/icon-512.png?v=3">
+  <meta property="og:image:secure_url" content="https://gbrna.onrender.com/icons/icon-512.png?v=3">
   <meta property="og:image:type" content="image/png">
   <meta property="og:image:width" content="512">
   <meta property="og:image:height" content="512">
@@ -44,49 +26,49 @@
   <meta property="og:url" content="https://gbrna.onrender.com/jft.html">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Just For Tonight">
-
-  <!-- Twitter / X preview -->
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Just For Tonight">
-  <meta
-    name="twitter:description"
-    content="Daily Just For Tonight — a literature project of The Core Group of NA"
-  >
-  <meta
-    name="twitter:image"
-    content="https://gbrna.onrender.com/icons/icon-512.png?v=3"
-  >
+  <meta name="twitter:description" content="Daily Just For Tonight &mdash; a literature project of The Core Group of NA">
+  <meta name="twitter:image" content="https://gbrna.onrender.com/icons/icon-512.png?v=3">
 
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="/css/style.css?v=20260810-jft-nav1">
+  <link rel="stylesheet" href="/css/global-tabs.css?v=20260724-nav1">
 </head>
-
 <body>
+  <div class="global-tabs-bar">
+    <nav class="global-tabs" aria-label="Complete site navigation">
+      <a href="/#today">Today</a><a href="/#archive">Reflection Archive</a>
+      <a href="/#search">Search</a><a href="/#library">Library</a>
+      <a href="/grey-book-study/">Grey Book Study</a>
+      <a href="/archive-master-index.html">NA History Archive</a>
+      <a href="/lwb-draft/">Meeting Readings / Seventh Tradition</a>
+      <a href="/#download">Download</a><a href="/#audio">Audio</a>
+      <a href="/meetings/">Meetings</a><a href="/asis-ips/">A.S.I.S. Literature</a>
+      <a href="/fsc/">FSC</a>
+      <a href="https://www.nahelp.org" target="_blank" rel="noopener noreferrer">A.S.I.S. Website</a>
+      <a href="/#about">About</a>
+    </nav>
+  </div>
+
   <header class="site-header">
     <div class="wrap header-inner">
       <div>
         <h1>Just For Tonight</h1>
         <p class="subhead">A Literature Project of The Core Group of NA</p>
       </div>
-
-      <nav class="main-nav" aria-label="Main navigation">
+      <nav class="main-nav" aria-label="Just For Tonight navigation">
         <a href="#today" data-nav="today">Today</a>
         <a href="#archive" data-nav="archive">Archive</a>
         <a href="#search" data-nav="search">Search</a>
         <a href="#download" data-nav="download">Download</a>
-        <a
-          href="https://www.nahelp.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          A.S.I.S.
-        </a>
+        <a href="/grey-book-study/">Grey Book Study</a>
+        <a href="https://www.nahelp.org" target="_blank" rel="noopener noreferrer">A.S.I.S.</a>
         <a href="#about" data-nav="about">About</a>
       </nav>
     </div>
   </header>
 
   <main class="wrap main-content">
-
     <section id="today" class="toolbar" aria-label="Reading controls">
       <button id="prevBtn" type="button">Previous</button>
       <button id="todayBtn" type="button">Today</button>
@@ -95,142 +77,51 @@
       <button id="shareBtn" type="button">Copy Link</button>
     </section>
 
-    <section
-      class="draft-switch"
-      aria-label="Switch daily reading project"
-    >
+    <section class="draft-switch" aria-label="Switch daily reading project">
       <a class="draft-switch-link" href="/">
         <span>Grey Book Reflection</span>
-        <span class="draft-arrow" aria-hidden="true">←</span>
+        <span class="draft-arrow" aria-hidden="true">&larr;</span>
         <span>Just For Tonight</span>
       </a>
     </section>
 
-    <section
-      id="dailyNotice"
-      class="notice hidden"
-      aria-live="polite"
-    ></section>
-
-    <section
-      id="readingArea"
-      class="reading-stack"
-      aria-live="polite"
-    ></section>
+    <section id="dailyNotice" class="notice hidden" aria-live="polite"></section>
+    <section id="readingArea" class="reading-stack" aria-live="polite"></section>
 
     <section id="archive" class="panel">
-      <div class="panel-heading">
-        <p class="eyebrow">Calendar Archive</p>
-        <h2>Browse by Date</h2>
-      </div>
-
+      <div class="panel-heading"><p class="eyebrow">Calendar Archive</p><h2>Browse by Date</h2></div>
       <div id="archiveGrid" class="archive-grid"></div>
     </section>
 
     <section id="search" class="panel">
-      <div class="panel-heading">
-        <p class="eyebrow">Search</p>
-        <h2>Find a Reading</h2>
-      </div>
-
-      <label class="search-label" for="searchInput">
-        Search quote, reflection, or Just For Tonight text
-      </label>
-
-      <input
-        id="searchInput"
-        type="search"
-        placeholder="Try: surrender, meetings, inventory, hope..."
-        autocomplete="off"
-      />
-
-      <div
-        id="searchResults"
-        class="search-results"
-        aria-live="polite"
-      ></div>
+      <div class="panel-heading"><p class="eyebrow">Search</p><h2>Find a Reading</h2></div>
+      <label class="search-label" for="searchInput">Search quote, reflection, or Just For Tonight text</label>
+      <input id="searchInput" type="search" placeholder="Try: surrender, meetings, inventory, hope..." autocomplete="off">
+      <div id="searchResults" class="search-results" aria-live="polite"></div>
     </section>
 
     <section id="download" class="panel download-panel">
-      <div class="panel-heading">
-        <p class="eyebrow">Download</p>
-        <h2>Literature Downloads</h2>
-      </div>
-
-      <p>
-        Download the current <strong>Just For Tonight</strong> draft
-        for Group review, literature study, and input.
-      </p>
-
-      <p>
-        <a
-          class="download-button"
-          href="/downloads/just-for-tonight.pdf"
-          download
-        >
-          Download Just For Tonight PDF
-        </a>
-      </p>
-
-      <p>
-        <a
-          class="download-button"
-          href="https://www.nahelp.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Visit A.S.I.S. / NA Help
-        </a>
-      </p>
-
-      <p class="small-note">
-        Just For Tonight is still in the draft stage. Review and input
-        from NA Groups is encouraged.
-      </p>
+      <div class="panel-heading"><p class="eyebrow">Download</p><h2>Literature Downloads</h2></div>
+      <p>Download the current <strong>Just For Tonight</strong> draft for Group review, literature study, and input.</p>
+      <p><a class="download-button" href="/downloads/Just%20for%20Tonight%20(1).pdf" download>Download Just For Tonight PDF</a></p>
+      <p><a class="download-button" href="https://www.nahelp.org" target="_blank" rel="noopener noreferrer">Visit A.S.I.S. / NA Help</a></p>
+      <p class="small-note">Just For Tonight is still in the draft stage. Review and input from NA Groups is encouraged.</p>
     </section>
 
     <section id="about" class="panel about-panel">
-      <div class="panel-heading">
-        <p class="eyebrow">About This Project</p>
-        <h2>Just For Tonight</h2>
-      </div>
-
-      <p>
-        <strong>Just For Tonight</strong> is an evening meditation
-        literature project of <strong>The Core Group of NA</strong>.
-      </p>
-
-      <p>
-        The project is presented here for daily reading, literature study,
-        Group review, and input from the fellowship.
-      </p>
-
-      <p>
-        A.S.I.S. is directly responsible to the NA Groups it serves and
-        provides a service structure through which participating Groups
-        can cooperate and support fellowship projects while remaining
-        responsible for their own literature and service efforts.
-      </p>
-
-      <p class="small-note">
-        The source project file is titled <em>Just for Tonight</em>.
-        The public site uses the title <em>Just For Tonight</em>.
-      </p>
+      <div class="panel-heading"><p class="eyebrow">About This Project</p><h2>Just For Tonight</h2></div>
+      <p><strong>Just For Tonight</strong> is an evening meditation literature project of <strong>The Core Group of NA</strong>.</p>
+      <p>The project is presented here for daily reading, literature study, Group review, and input from the fellowship.</p>
+      <p>A.S.I.S. is directly responsible to the NA Groups it serves and provides a service structure through which participating Groups can cooperate and support fellowship projects while remaining responsible for their own literature and service efforts.</p>
+      <p class="small-note">The source project file is titled <em>Just for Tonight</em>. The public site uses the title <em>Just For Tonight</em>.</p>
     </section>
-
   </main>
 
   <footer class="site-footer">
-    <div class="wrap">
-      <p>
-        <em>
-          In Loving Service: The Core Group of Narcotics Anonymous
-        </em>
-      </p>
-    </div>
+    <div class="wrap"><p><em>In Loving Service: The Core Group of Narcotics Anonymous</em></p></div>
   </footer>
 
-  <script src="js/jft.js"></script>
+  <script src="/js/jft.js?v=20260810-jft-nav1"></script>
   <script src="/js/pdf-router.js?v=20260726-tradition-six-render-v1" defer></script>
 </body>
 </html>
