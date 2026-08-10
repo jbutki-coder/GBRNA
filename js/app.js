@@ -673,6 +673,53 @@ function renderGreyBookContext(reading) {
   `;
 }
 
+const GREY_BOOK_SECTION_NUMBERS = Object.freeze({
+  one: 1,
+  two: 2,
+  three: 3,
+  four: 4,
+  five: 5,
+  six: 6,
+  seven: 7,
+  eight: 8,
+  nine: 9,
+  ten: 10,
+  eleven: 11,
+  twelve: 12
+});
+
+function greyBookStudyTarget(sectionName) {
+  const section = String(sectionName || '');
+  const numberedSection = section.match(/\b(Step|Tradition)\s+(One|Two|Three|Four|Five|Six|Seven|Eight|Nine|Ten|Eleven|Twelve)\b/i);
+  if (numberedSection) {
+    const kind = numberedSection[1].toLowerCase();
+    const numberWord = numberedSection[2].toLowerCase();
+    return `${kind}-${numberWord}`;
+  }
+
+  const chapter = section.match(/\bChapter\s+(One|Two|Three|Four|Five|Six|Seven|Eight|Nine|Ten)\b/i);
+  if (chapter) return `chapter-${GREY_BOOK_SECTION_NUMBERS[chapter[1].toLowerCase()]}`;
+  if (/\bIntroduction\b/i.test(section)) return 'introduction';
+  if (/\bFor(?:e)?ward\b/i.test(section)) return 'forward';
+  if (/\bSymbol\b/i.test(section)) return 'symbol';
+  return '';
+}
+
+function renderGreyBookStudyLink(reading) {
+  const context = GREY_BOOK_CONTEXT?.contexts?.[reading.id];
+  const target = greyBookStudyTarget(reading.source) || greyBookStudyTarget(context?.section);
+  if (!target) return '';
+
+  const sectionName = context?.section || reading.source || 'Grey Book source';
+  return `
+    <a
+      class="grey-book-study-source-link"
+      href="/grey-book-study/#${escapeHtml(target)}"
+      aria-label="Open ${escapeHtml(sectionName)} in the Grey Book Study"
+    >Open Source in Grey Book Study</a>
+  `;
+}
+
 
 function renderGreyAreaGroup(isPrimary = false) {
   if (!isPrimary) return '';
@@ -817,6 +864,7 @@ function renderReadingCard(reading, label = '', isPrimary = false) {
         <div class="reading-meta">
           <span class="source-ref">${sourceLine}</span>
           <span class="page-ref">GBR PDF p. ${reading.pdfPage}</span>
+          ${renderGreyBookStudyLink(reading)}
         </div>
       </div>
       <blockquote class="quote">${escapeHtml(reading.quote)}</blockquote>
