@@ -1,58 +1,14 @@
 "use strict";
 
-const chapterOrder = [
-  "Our N.A. Symbol",
-  "Introduction",
-  "Chapter One - Who Is an Addict?",
-  "Chapter Two - What Is the Narcotics Anonymous Program?",
-  "Chapter Three - Why Are We Here?",
-  "Chapter Four - How It Works",
-  "Chapter Five - What Can I Do?",
-  "Chapter Six - The Twelve Traditions of N.A.",
-  "Chapter Seven - Recovery and Relapse",
-  "Chapter Eight - We Do Recover",
-  "Chapter Nine - Just for Today",
-  "Chapter Ten - More Will Be Revealed"
-];
-
-const stepOrder = [
-  "Step One",
-  "Step Two",
-  "Step Three",
-  "Step Four",
-  "Step Five",
-  "Step Six",
-  "Step Seven",
-  "Step Eight",
-  "Step Nine",
-  "Step Ten",
-  "Step Eleven",
-  "Step Twelve"
-];
-
-const relatedOrder = [
-  "Our N.A. Symbol",
-  "Introduction",
-  "Chapter Six - The Twelve Traditions of N.A.",
-  "Chapter Eight - We Do Recover",
-  "Chapter Nine - Just for Today"
-];
-
-const groupLabels = {
-  chapters: "Chapter",
-  steps: "Step",
-  related: "Related Reading"
-};
-
 const state = {
-  groups: { chapters: [], steps: [], related: [] },
-  activeGroup: "chapters",
-  activeSlug: "",
+  groups: { chapters: [], steps: [], traditions: [], bottom: [] },
+  sectionMap: new Map(),
+  activeItem: "",
   query: ""
 };
 
 const els = {
-  subtabs: document.querySelector("[data-subtabs]"),
+  screenTabs: document.querySelector("[data-screen-tabs]"),
   content: document.querySelector("[data-content]"),
   loading: document.querySelector("[data-loading]"),
   title: document.querySelector("[data-active-title]"),
@@ -86,8 +42,8 @@ function formatPages(items) {
   return [...pages].join(", ");
 }
 
-function normalizeParagraph(item) {
-  const kind = item.kind || "";
+function normalizeBlock(item) {
+  const kind = item.kind || "text";
   const isHeading = kind.includes("heading") || /^[A-Z0-9 .,'?&-]{4,}$/.test(item.text || "");
   return {
     text: item.text || "",
@@ -97,141 +53,199 @@ function normalizeParagraph(item) {
   };
 }
 
-function makeSection(name, items, group) {
-  const paragraphs = items.map(normalizeParagraph).filter((item) => item.text.trim());
-  return {
-    name,
-    group,
-    slug: slugify(name),
-    paragraphs,
-    pages: formatPages(items)
-  };
-}
-
-function orderedSections(allSections, order, group) {
-  return order
-    .filter((name) => allSections.has(name))
-    .map((name) => makeSection(name, allSections.get(name), group));
-}
-
 function buildGroups(data) {
-  const bySection = new Map();
-  Object.values(data.paragraphs || {}).forEach((item) => {
-    if (!item.section) return;
-    if (!bySection.has(item.section)) bySection.set(item.section, []);
-    bySection.get(item.section).push(item);
+  const introBlocks = [
+    { kind: "heading", text: "Grey Book Study" },
+    { kind: "text", text: "Choose a Step, Tradition, or chapter button above. This layout mirrors the screen-share navigation with all buttons visible at once." },
+    { kind: "text", text: "Chapter 1 is Who Is an Addict?, Chapter 2 is What Is the Narcotics Anonymous Program?, Chapter 3 is Why Are We Here?, and Chapter 4 is How It Works." }
+  ];
+
+  state.sectionMap = new Map((data.sections || []).map((section) => [
+    section.id,
+    {
+      id: section.id,
+      name: section.title,
+      group: section.group,
+      slug: section.slug || slugify(section.title),
+      paragraphs: (section.blocks || []).map(normalizeBlock).filter((item) => item.text.trim()),
+      pages: section.pages || ""
+    }
+  ]));
+  state.sectionMap.set("home", {
+    id: "home",
+    name: "Grey Book Study Home",
+    group: "home",
+    slug: "home",
+    paragraphs: introBlocks.map(normalizeBlock),
+    pages: ""
+  });
+  state.sectionMap.set("gbr", {
+    id: "gbr",
+    name: "GBR",
+    group: "daily",
+    slug: "gbr",
+    href: "/#today",
+    paragraphs: [{ kind: "text", text: "Open the current Grey Book Reflection daily reading.", isHeading: false, pages: [] }],
+    pages: ""
+  });
+  state.sectionMap.set("just-for-tonight", {
+    id: "just-for-tonight",
+    name: "Just For Tonight",
+    group: "daily",
+    slug: "just-for-tonight",
+    href: "/jft.html",
+    paragraphs: [{ kind: "text", text: "Open the current Just For Tonight daily reading.", isHeading: false, pages: [] }],
+    pages: ""
+  });
+  state.sectionMap.set("keytags", {
+    id: "keytags",
+    name: "Keytags",
+    group: "reading",
+    slug: "keytags",
+    href: "/lwb-draft/#keytags",
+    paragraphs: [{ kind: "text", text: "Open the Keytags reading in the meeting readings section.", isHeading: false, pages: [] }],
+    pages: ""
   });
 
-  state.groups.chapters = orderedSections(bySection, chapterOrder, "chapters");
-  state.groups.steps = orderedSections(bySection, stepOrder, "steps");
-  state.groups.related = orderedSections(bySection, relatedOrder, "related");
+  state.groups.steps = (data.groups?.steps || [])
+    .map((id) => state.sectionMap.get(id))
+    .filter(Boolean);
+  state.groups.traditions = (data.groups?.traditions || [])
+    .map((id) => state.sectionMap.get(id))
+    .filter(Boolean);
+  state.groups.bottom = [
+    { label: "HOME", target: "home" },
+    { label: "Who?", target: "chapter-1" },
+    { label: "What?", target: "chapter-2" },
+    { label: "Why?", target: "chapter-3" },
+    { label: "How", target: "chapter-4" },
+    { label: "Twelve Traditions", target: "chapter-6" },
+    { label: "GBR", target: "gbr" },
+    { label: "Just For Tonight", target: "just-for-tonight" },
+    { label: "We Do Recover", target: "chapter-8" },
+    { label: "Keytags", target: "keytags" }
+  ];
 
   els.sectionCount.textContent = String(new Set([
-    ...state.groups.chapters.map((section) => section.name),
-    ...state.groups.steps.map((section) => section.name)
+    ...state.groups.steps.map((section) => section.name),
+    ...state.groups.traditions.map((section) => section.name),
+    "Who Is an Addict?",
+    "What Is the Narcotics Anonymous Program?",
+    "Why Are We Here?",
+    "How It Works"
   ]).size);
-  els.paragraphCount.textContent = String(Object.keys(data.paragraphs || {}).length);
+  els.paragraphCount.textContent = String((data.sections || []).reduce((total, section) => total + (section.blocks || []).length, 0));
 }
 
-function currentSections() {
-  return state.groups[state.activeGroup] || [];
+function allNavItems() {
+  return [
+    ...state.groups.steps.map((section) => ({ label: section.name, target: section.id })),
+    ...state.groups.traditions.map((section) => ({ label: section.name, target: section.id })),
+    ...state.groups.bottom
+  ];
 }
 
-function visibleSections() {
+function navRows() {
   const query = state.query.trim().toLowerCase();
-  const sections = currentSections();
-  if (!query) return sections;
-  return sections.filter((section) =>
-    section.name.toLowerCase().includes(query) ||
-    section.paragraphs.some((paragraph) => paragraph.text.toLowerCase().includes(query))
-  );
+  const rows = [
+    state.groups.steps.map((section) => ({ label: section.name, target: section.id })),
+    state.groups.traditions.map((section) => ({ label: section.name, target: section.id })),
+    state.groups.bottom
+  ];
+  if (!query) return rows;
+  return rows.map((row) => row.filter((item) => {
+    const section = state.sectionMap.get(item.target);
+    return item.label.toLowerCase().includes(query) ||
+      section?.name.toLowerCase().includes(query) ||
+      section?.paragraphs.some((paragraph) => paragraph.text.toLowerCase().includes(query));
+  }));
 }
 
-function setActive(group, slug) {
-  const sections = state.groups[group] || [];
-  if (!sections.length) return;
-  state.activeGroup = group;
-  state.activeSlug = slug || sections[0].slug;
+function setActive(target) {
+  if (!state.sectionMap.has(target)) return;
+  state.activeItem = target;
   render();
 }
 
-function renderGroupTabs() {
-  document.querySelectorAll("[data-group-tab]").forEach((button) => {
-    const isActive = button.dataset.groupTab === state.activeGroup;
-    button.classList.toggle("is-active", isActive);
-    button.setAttribute("aria-selected", String(isActive));
-  });
+function labelHtml(label) {
+  const parts = String(label).split(/\s+/);
+  if ((label.startsWith("Step ") || label.startsWith("Tradition ")) && parts.length === 2) {
+    return `${escapeHtml(parts[0])}<br>${escapeHtml(parts[1])}`;
+  }
+  if (label === "Twelve Traditions") return "Twelve<br>Traditions";
+  if (label === "Just For Tonight") return "Just<br>For<br>Tonight";
+  return escapeHtml(label);
 }
 
-function renderSubtabs() {
-  const sections = visibleSections();
-  if (!sections.some((section) => section.slug === state.activeSlug)) {
-    state.activeSlug = sections[0]?.slug || "";
-  }
-
-  els.subtabs.innerHTML = sections.map((section) => `
+function renderScreenTabs() {
+  const rows = navRows();
+  els.screenTabs.innerHTML = rows.map((row, rowIndex) => `
+    <div class="grey-study-screen-row grey-study-screen-row-${rowIndex + 1}" role="tablist">
+      ${row.map((item) => `
     <button
       type="button"
-      class="${section.slug === state.activeSlug ? "is-active" : ""}"
-      data-section-tab="${escapeHtml(section.slug)}"
+          class="${item.target === state.activeItem ? "is-active" : ""}"
+          data-screen-tab="${escapeHtml(item.target)}"
       role="tab"
-      aria-selected="${section.slug === state.activeSlug ? "true" : "false"}"
-    >${escapeHtml(section.name.replace("Chapter ", "Ch. "))}</button>
+          aria-selected="${item.target === state.activeItem ? "true" : "false"}"
+        >${labelHtml(item.label)}</button>
+      `).join("")}
+    </div>
   `).join("");
 }
 
 function renderContent() {
-  const sections = visibleSections();
-  const active = sections.find((section) => section.slug === state.activeSlug);
+  const active = state.sectionMap.get(state.activeItem);
   els.loading.hidden = true;
 
   if (!active) {
-    els.group.textContent = groupLabels[state.activeGroup] || "Section";
+    els.group.textContent = "Grey Book";
     els.title.textContent = "No matching Grey Book section";
     els.meta.textContent = "Clear the search box to return to the full study mirror.";
     els.content.innerHTML = '<div class="grey-study-empty">No matching section was found.</div>';
     return;
   }
 
-  els.group.textContent = groupLabels[state.activeGroup] || "Section";
+  els.group.textContent = active.group === "steps"
+    ? "Step"
+    : active.group === "traditions"
+      ? "Tradition"
+      : "Grey Book";
   els.title.textContent = active.name;
-  els.meta.textContent = `${active.paragraphs.length} paragraphs${active.pages ? ` | GBR pages ${active.pages}` : ""}`;
+  els.meta.textContent = `${active.paragraphs.length} text lines${active.pages ? ` | GBR pages ${active.pages}` : ""}`;
+  const action = active.href ? `
+    <p>
+      <a class="grey-study-open-link" href="${escapeHtml(active.href)}">Open ${escapeHtml(active.name)}</a>
+    </p>
+  ` : "";
   els.content.innerHTML = active.paragraphs.map((paragraph) => {
     const pages = paragraph.pages.length ? `<span class="grey-study-page">GBR page ${escapeHtml(paragraph.pages.join(", "))}</span>` : "";
     if (paragraph.isHeading) {
       return `<article class="grey-study-paragraph is-heading"><h3>${escapeHtml(paragraph.text)}</h3>${pages}</article>`;
     }
     return `<article class="grey-study-paragraph"><p>${escapeHtml(paragraph.text)}</p>${pages}</article>`;
-  }).join("");
+  }).join("") + action;
 }
 
 function render() {
-  renderGroupTabs();
-  renderSubtabs();
+  renderScreenTabs();
   renderContent();
 }
 
 function moveSection(direction) {
-  const sections = visibleSections();
-  if (!sections.length) return;
-  const index = Math.max(0, sections.findIndex((section) => section.slug === state.activeSlug));
-  const nextIndex = (index + direction + sections.length) % sections.length;
-  state.activeSlug = sections[nextIndex].slug;
+  const items = allNavItems().filter((item) => state.sectionMap.has(item.target));
+  if (!items.length) return;
+  const index = Math.max(0, items.findIndex((item) => item.target === state.activeItem));
+  const nextIndex = (index + direction + items.length) % items.length;
+  state.activeItem = items[nextIndex].target;
   render();
   document.querySelector(".grey-study-reader")?.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
 document.addEventListener("click", (event) => {
-  const groupButton = event.target.closest("[data-group-tab]");
-  if (groupButton) {
-    setActive(groupButton.dataset.groupTab);
-    return;
-  }
-
-  const sectionButton = event.target.closest("[data-section-tab]");
+  const sectionButton = event.target.closest("[data-screen-tab]");
   if (sectionButton) {
-    state.activeSlug = sectionButton.dataset.sectionTab;
-    render();
+    setActive(sectionButton.dataset.screenTab);
     return;
   }
 
@@ -248,16 +262,16 @@ els.search?.addEventListener("input", () => {
   render();
 });
 
-fetch("/data/grey-book-context.json", { cache: "no-store" })
+fetch("/data/grey-form-study.json", { cache: "no-store" })
   .then((response) => {
-    if (!response.ok) throw new Error(`Grey Book data returned ${response.status}`);
+    if (!response.ok) throw new Error(`Grey Form data returned ${response.status}`);
     return response.json();
   })
   .then((data) => {
     buildGroups(data);
-    setActive("chapters", slugify("Chapter One - Who Is an Addict?"));
+    setActive("home");
   })
   .catch((error) => {
     console.error(error);
-    els.loading.textContent = "The Grey Book study text could not be loaded. Try refreshing the page.";
+    els.loading.textContent = "The Grey Form study text could not be loaded. Try refreshing the page.";
   });
