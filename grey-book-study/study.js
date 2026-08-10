@@ -161,10 +161,18 @@ function navRows() {
   }));
 }
 
-function setActive(target) {
+function setActive(target, updateHash = false) {
   if (!state.sectionMap.has(target)) return;
   state.activeItem = target;
+  if (updateHash && location.hash !== `#${target}`) {
+    history.replaceState(null, "", `#${target}`);
+  }
   render();
+}
+
+function targetFromHash() {
+  const target = decodeURIComponent(location.hash.replace(/^#/, "")).trim().toLowerCase();
+  return state.sectionMap.has(target) ? target : "home";
 }
 
 function labelHtml(label) {
@@ -245,7 +253,7 @@ function moveSection(direction) {
 document.addEventListener("click", (event) => {
   const sectionButton = event.target.closest("[data-screen-tab]");
   if (sectionButton) {
-    setActive(sectionButton.dataset.screenTab);
+    setActive(sectionButton.dataset.screenTab, true);
     return;
   }
 
@@ -263,6 +271,10 @@ document.addEventListener("click", (event) => {
 els.search?.addEventListener("input", () => {
   state.query = els.search.value;
   render();
+});
+
+window.addEventListener("hashchange", () => {
+  if (state.sectionMap.size) setActive(targetFromHash());
 });
 
 async function loadStudyData() {
@@ -287,7 +299,7 @@ async function loadStudyData() {
 loadStudyData()
   .then((data) => {
     buildGroups(data);
-    setActive("home");
+    setActive(targetFromHash());
   })
   .catch((error) => {
     console.error(error);
