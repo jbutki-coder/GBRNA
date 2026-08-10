@@ -224,6 +224,104 @@
     ].filter(Boolean).join(", ");
   }
 
+  function shareTimeText(value) {
+    return String(value || "")
+      .replace(/\u202f|\u00a0/g, " ")
+      .replace(/\bAM\b/g, "am")
+      .replace(/\bPM\b/g, "pm")
+      .trim();
+  }
+
+  function compactZoomId(value) {
+    return String(value || "").replace(/\s+/g, "");
+  }
+
+  function meetingShareText(meeting) {
+    const time = meeting.localEnd
+      ? `${shareTimeText(meeting.localStart)} - ${shareTimeText(meeting.localEnd)}`
+      : shareTimeText(meeting.localStart);
+
+    const firstLine = `${meeting.localDay} ${time} ${meeting.name}`.trim();
+    const lines = [firstLine];
+
+    // Hybrid meetings are more useful when the in-person location travels with the share.
+    const place = meetingLocationText(meeting);
+    const inPersonBits = [];
+    if (meeting.mode === "Hybrid") {
+      if (meeting.venue) inPersonBits.push(meeting.venue);
+      if (meeting.address) inPersonBits.push(meeting.address);
+      if (place) inPersonBits.push(place);
+      if (inPersonBits.length) lines.push(inPersonBits.join(", "));
+    }
+
+    const zoomBits = [];
+    if (meeting.zoomId) zoomBits.push(`Zoom ID: ${compactZoomId(meeting.zoomId)}`);
+    if (meeting.passcode) zoomBits.push(`Password: ${meeting.passcode}`);
+    if (zoomBits.length) lines.push(zoomBits.join("   "));
+
+    if (meeting.joinUrl) lines.push(meeting.joinUrl);
+    return lines.join("\n");
+  }
+
+  async function copyText(text) {
+    if (navigator.clipboard && window.isSecureContext) {
+      await navigator.clipboard.writeText(text);
+      return true;
+    }
+
+    const area = document.createElement("textarea");
+    area.value = text;
+    area.setAttribute("readonly", "");
+    area.style.position = "fixed";
+    area.style.opacity = "0";
+    area.style.pointerEvents = "none";
+    document.body.appendChild(area);
+    area.select();
+    area.setSelectionRange(0, area.value.length);
+    const copied = document.execCommand("copy");
+    area.remove();
+    return copied;
+  }
+
+  function showShareStatus(button, text) {
+    if (!button) return;
+    const original = button.dataset.originalLabel || button.textContent.trim() || "SHARE MEETING";
+    button.dataset.originalLabel = original;
+    button.textContent = text;
+    button.classList.add("is-confirmed");
+    window.setTimeout(() => {
+      button.textContent = original;
+      button.classList.remove("is-confirmed");
+    }, 1800);
+  }
+
+  async function shareMeeting(meeting, button) {
+    const text = meetingShareText(meeting);
+    const shareData = {
+      title: `${meeting.name} - NA Meeting`,
+      text
+    };
+
+    if (navigator.share) {
+      try {
+        await navigator.share(shareData);
+        showShareStatus(button, "SHARED");
+        return;
+      } catch (error) {
+        if (error && error.name === "AbortError") return;
+        // Fall through to copy if the native share sheet is unavailable or fails.
+      }
+    }
+
+    try {
+      const copied = await copyText(text);
+      showShareStatus(button, copied ? "COPIED" : "COPY FAILED");
+    } catch (error) {
+      console.error("Meeting share failed", error);
+      showShareStatus(button, "COPY FAILED");
+    }
+  }
+
   function renderMeeting(meeting) {
     const place = meetingLocationText(meeting);
     const zoomBits = [];
@@ -262,7 +360,10 @@
             <span class="meeting-format-chip">${esc(meeting.format)}</span>
           </div>
 
-          <div class="meeting-join-cell">${join}</div>
+          <div class="meeting-join-cell">
+            ${join}
+            <button class="meeting-share-button" type="button" data-share-meeting="${esc(meeting.id)}" aria-label="Share ${esc(meeting.name)} meeting details">SHARE MEETING</button>
+          </div>
         </div>
       </details>`;
   }
@@ -361,6 +462,15 @@
 
     [els.city, els.location, els.mode, els.format].forEach((select) => {
       select?.addEventListener("change", render);
+    });
+
+    els.results.addEventListener("click", (event) => {
+      const button = event.target.closest("[data-share-meeting]");
+      if (!button) return;
+      event.preventDefault();
+      event.stopPropagation();
+      const meeting = meetings.find((item) => item.id === button.dataset.shareMeeting);
+      if (meeting) shareMeeting(meeting, button);
     });
 
     try {
