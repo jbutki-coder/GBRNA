@@ -28,6 +28,11 @@
     .meeting-schedule-panel>.panel-heading h3{margin:.15rem 0 .4rem;font-size:clamp(1.45rem,3.4vw,2.3rem)}
     .meeting-page-footer-note{margin:1.35rem 0 0;color:var(--muted);font-size:.86rem;line-height:1.55}
     @media(max-width:560px){.meeting-page-hero{padding:1rem}.meeting-page-notice{font-size:.86rem}}
+
+    .meeting-share-button{width:100%;margin-top:.75rem;padding:.78rem 1rem;border:2px solid #8f671f;background:#f7f0df;color:#2a241b;font:900 .82rem/1 "Courier New",Courier,monospace;letter-spacing:.055em;cursor:pointer;box-shadow:3px 3px 0 rgba(28,24,18,.16);transition:transform .12s ease,background .12s ease,color .12s ease}
+    .meeting-share-button:hover,.meeting-share-button:focus-visible{background:#2b2721;color:#fff;transform:translateY(-1px);outline:2px solid #c99839;outline-offset:2px}
+    .meeting-share-button.is-confirmed{background:#355b3f;color:#fff;border-color:#355b3f}
+    @media(max-width:560px){.meeting-share-button{font-size:.88rem;padding:.9rem 1rem}}
   </style>
 </head>
 <body>
@@ -37,7 +42,6 @@
     <a href="/#archive">Reflection Archive</a>
     <a href="/#search">Search</a>
     <a href="/#library">Library</a>
-    <a href="/grey-book-study/">Grey Book Study</a>
     <a href="/archive-master-index.html">NA History Archive</a>
     <a href="/lwb-draft/">Meeting Readings / Seventh Tradition</a>
     <a href="/#download">Download</a>
@@ -64,7 +68,7 @@
     <p class="eyebrow">Find a meeting</p>
     <h2 id="meeting-page-title">Virtual &amp; Hybrid NA Meetings</h2>
     <p>Browse the meeting schedule by day, city, location, meeting type, or literature format. Meeting times are automatically displayed in your device’s local time zone.</p>
-    <p>Tap any meeting to see its complete details, Zoom information, join link, and QR code.</p>
+    <p>Tap any meeting to see its complete details, Zoom information, join link, QR code, and a Share Meeting button.</p>
   </section>
 
   <div class="meeting-page-notice"><strong>Meeting-list notice:</strong> Meeting information can change. The individual NA Groups are responsible for their own schedules and meeting links. When possible, verify the information with the Group before attending.</div>
@@ -111,7 +115,7 @@
   </div>
 </footer>
 
-<script src="/js/meetings.js"></script>
+<script src="/js/meetings.js?v=20260809-share1"></script>
   <script src="/js/pdf-router.js?v=20260726-tradition-six-render-v1" defer></script>
 </body>
 </html>
