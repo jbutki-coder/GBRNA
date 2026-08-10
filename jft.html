@@ -1,10 +1,11 @@
 <!doctype html>
+<!-- BUILD: JFT-CURRENT-GBRNA-STRUCTURE-2026-08-10 -->
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Just For Tonight | GBRNA</title>
-  <meta name="description" content="Just For Tonight daily reading site &mdash; a literature project of The Core Group of NA">
+  <meta name="description" content="Just For Tonight daily readings, audio, review and input, historical NA literature, meetings, service information, and recovery resources.">
   <link rel="canonical" href="https://gbrna.onrender.com/jft.html">
 
   <link rel="icon" href="/icons/favicon.ico?v=3" sizes="any">
@@ -15,38 +16,72 @@
   <link rel="manifest" href="/site.webmanifest">
   <meta name="theme-color" content="#111111">
 
-  <meta property="og:title" content="Just For Tonight">
-  <meta property="og:description" content="Daily Just For Tonight &mdash; a literature project of The Core Group of NA">
-  <meta property="og:image" content="https://gbrna.onrender.com/icons/icon-512.png?v=3">
-  <meta property="og:image:secure_url" content="https://gbrna.onrender.com/icons/icon-512.png?v=3">
+  <meta property="og:title" content="Just For Tonight | GBRNA">
+  <meta property="og:description" content="Daily Just For Tonight readings, audio, literature study, and Group review and input.">
+  <meta property="og:image" content="https://gbrna.onrender.com/icons/icon-512.png?v=4">
+  <meta property="og:image:secure_url" content="https://gbrna.onrender.com/icons/icon-512.png?v=4">
   <meta property="og:image:type" content="image/png">
   <meta property="og:image:width" content="512">
   <meta property="og:image:height" content="512">
-  <meta property="og:image:alt" content="Just For Tonight">
+  <meta property="og:image:alt" content="Just For Tonight daily reading project">
   <meta property="og:url" content="https://gbrna.onrender.com/jft.html">
   <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Just For Tonight">
+  <meta property="og:site_name" content="GBRNA">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Just For Tonight">
-  <meta name="twitter:description" content="Daily Just For Tonight &mdash; a literature project of The Core Group of NA">
-  <meta name="twitter:image" content="https://gbrna.onrender.com/icons/icon-512.png?v=3">
+  <meta name="twitter:title" content="Just For Tonight | GBRNA">
+  <meta name="twitter:description" content="Daily Just For Tonight readings, audio, literature study, and Group review and input.">
+  <meta name="twitter:image" content="https://gbrna.onrender.com/icons/icon-512.png?v=4">
 
-  <link rel="stylesheet" href="/css/style.css?v=20260810-jft-nav1">
+  <link rel="stylesheet" href="/css/style.css?v=20260810-jft-current1">
   <link rel="stylesheet" href="/css/global-tabs.css?v=20260724-nav1">
+
+  <style>
+    .literature-disclaimer{margin:1.5rem 0 2rem;border:2px solid rgba(86,67,42,.35);border-radius:6px;background:#f7f0df;box-shadow:0 8px 24px rgba(0,0,0,.08);overflow:hidden}
+    .literature-disclaimer summary{cursor:pointer;padding:1rem 1.1rem;color:#2d261d;background:#eadfc8;font-weight:900;letter-spacing:.02em}
+    .literature-disclaimer summary:hover,.literature-disclaimer summary:focus-visible{background:#e1d2b5;outline:none}
+    .literature-disclaimer-body{padding:1rem 1.15rem;color:#292621;font-size:.92rem;line-height:1.55}
+    .literature-disclaimer-body p{margin:.75rem 0;text-align:left}
+    .literature-disclaimer-body .warranty-text{font-weight:800}
+    .daily-audio-frame{display:block;width:100%;min-height:96px;margin-top:12px;border:1px solid #6e675c;background:#fff}
+    .about-rebuilt{position:relative;overflow:hidden;background:linear-gradient(145deg,#f7f0df 0%,#eee1c8 100%);border:2px solid #2b251e}
+    .about-rebuilt::before{content:"";position:absolute;inset:0 0 auto;height:7px;background:linear-gradient(90deg,#1b2d28,#bb762a,#1b2d28)}
+    .about-hero{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(230px,.7fr);gap:1.35rem;align-items:stretch;margin-top:.35rem}
+    .about-hero-copy{padding:.25rem 0}.about-hero-copy h2{max-width:780px;margin-bottom:.75rem}.about-lead{max-width:820px;font-size:1.08rem;line-height:1.65}
+    .about-identity{padding:1.15rem 1.2rem;border:1px solid rgba(43,37,30,.35);background:#1d2c28;color:#fff;box-shadow:8px 8px 0 rgba(187,118,42,.22)}
+    .about-identity strong{display:block;margin-bottom:.55rem;color:#e8b766;font:900 .82rem/1.2 Arial,sans-serif;letter-spacing:.09em;text-transform:uppercase}
+    .about-identity p{margin:.55rem 0;color:#f6efe2;line-height:1.5}.about-identity .about-identity-note{padding-top:.7rem;border-top:1px solid rgba(255,255,255,.22);font-size:.88rem;color:#ddd2bf}
+    .about-project-quote{margin:1.6rem 0;padding:1.2rem 1.3rem;border-left:7px solid #bb762a;background:#fffaf0;box-shadow:0 8px 22px rgba(43,37,30,.09)}
+    .about-project-quote .quote-label{margin:0 0 .45rem;color:#6f4b1e;font:900 .76rem/1.2 Arial,sans-serif;letter-spacing:.09em;text-transform:uppercase}
+    .about-project-quote blockquote{margin:.3rem 0 .75rem;color:#1d2c28;font:800 1.18rem/1.45 Georgia,"Times New Roman",serif}.about-project-quote p:last-child{margin-bottom:0}
+    .about-card-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;margin:1.5rem 0}.about-card{padding:1.1rem 1.15rem;border:1px solid rgba(43,37,30,.28);background:rgba(255,250,240,.86);box-shadow:0 7px 18px rgba(43,37,30,.08)}
+    .about-card .about-card-kicker{display:block;margin-bottom:.45rem;color:#a45f1d;font:900 .72rem/1.2 Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase}.about-card h3{margin:.15rem 0 .65rem;color:#1d2c28;font:900 1.15rem/1.2 Arial,sans-serif}.about-card p{margin:0;line-height:1.55}
+    .about-principles{margin:1.7rem 0;padding:1.25rem;border:1px solid rgba(43,37,30,.3);background:#e7dcc7}.about-section-heading{margin:0 0 .35rem;color:#1d2c28;font:900 1.45rem/1.15 Arial,sans-serif}.about-section-intro{margin:.25rem 0 1rem;max-width:860px;line-height:1.55}
+    .about-accordion-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.75rem}.about-accordion-grid details{border:1px solid rgba(43,37,30,.27);background:#fffaf0}.about-accordion-grid summary{cursor:pointer;padding:.85rem 1rem;color:#1d2c28;font:900 .92rem/1.25 Arial,sans-serif;list-style:none}.about-accordion-grid summary::-webkit-details-marker{display:none}.about-accordion-grid summary::after{content:"+";float:right;color:#a45f1d;font-size:1.2rem}.about-accordion-grid details[open] summary::after{content:"-"}.about-accordion-grid details[open] summary{border-bottom:1px solid rgba(43,37,30,.2);background:#f1e5cf}.about-accordion-grid details p{margin:0;padding:.9rem 1rem 1rem;line-height:1.55}
+    .about-documents{margin-top:1.7rem;padding:1.25rem;border:2px solid #1d2c28;background:#f9f3e6}.about-document-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;margin-top:1rem}.about-document-card{display:flex;flex-direction:column;min-height:100%;padding:1.1rem;border:1px solid rgba(43,37,30,.3);background:#fff;box-shadow:0 6px 16px rgba(43,37,30,.08)}
+    .about-document-top{display:flex;align-items:flex-start;justify-content:space-between;gap:.75rem}.about-document-card h4{margin:0;color:#1d2c28;font:900 1.05rem/1.28 Arial,sans-serif}.about-draft-badge{flex:0 0 auto;padding:.3rem .48rem;border:1px solid #a45f1d;background:#fff2d9;color:#7d4817;font:900 .68rem/1 Arial,sans-serif;letter-spacing:.07em;text-transform:uppercase}.about-document-card p{margin:.75rem 0 1rem;line-height:1.52}
+    .about-document-actions,.about-action-row{display:flex;flex-wrap:wrap;gap:.55rem}.about-document-actions{margin-top:auto}.about-action-row{margin-top:1.4rem}.about-document-actions a,.about-action-row a{display:inline-flex;align-items:center;justify-content:center;padding:.68rem .82rem;border:1px solid #1d2c28;background:#1d2c28;color:#fff;text-decoration:none;font:900 .76rem/1 Arial,sans-serif;letter-spacing:.035em}.about-document-actions a.secondary,.about-action-row a.secondary{background:transparent;color:#1d2c28}.about-document-actions a:hover,.about-action-row a:hover{background:#bb762a;border-color:#bb762a;color:#fff}.about-document-note{margin:1rem 0 0;padding:.8rem .9rem;border-left:5px solid #bb762a;background:#f1e5cf;font-size:.9rem;line-height:1.5}
+    @media(max-width:850px){.about-hero,.about-card-grid,.about-accordion-grid,.about-document-grid{grid-template-columns:1fr}.about-identity{box-shadow:5px 5px 0 rgba(187,118,42,.22)}}
+    @media(max-width:500px){.about-rebuilt{padding-left:1rem;padding-right:1rem}.about-action-row a,.about-document-actions a{width:100%}}
+  </style>
 </head>
+
 <body>
   <div class="global-tabs-bar">
     <nav class="global-tabs" aria-label="Complete site navigation">
-      <a href="/#today">Today</a><a href="/#archive">Reflection Archive</a>
-      <a href="/#search">Search</a><a href="/#library">Library</a>
+      <a href="#today" aria-current="page">Today</a>
+      <a href="#archive">Reflection Archive</a>
+      <a href="#search">Search</a>
+      <a href="#library">Library</a>
       <a href="/grey-book-study/">Grey Book Study</a>
       <a href="/archive-master-index.html">NA History Archive</a>
       <a href="/lwb-draft/">Meeting Readings / Seventh Tradition</a>
-      <a href="/#download">Download</a><a href="/#audio">Audio</a>
-      <a href="/meetings/">Meetings</a><a href="/asis-ips/">A.S.I.S. Literature</a>
+      <a href="#download">Download</a>
+      <a href="#readingArea">Audio</a>
+      <a href="/meetings/">Meetings</a>
+      <a href="/asis-ips/">A.S.I.S. Literature</a>
       <a href="/fsc/">FSC</a>
       <a href="https://www.nahelp.org" target="_blank" rel="noopener noreferrer">A.S.I.S. Website</a>
-      <a href="/#about">About</a>
+      <a href="#about">About</a>
     </nav>
   </div>
 
@@ -54,17 +89,8 @@
     <div class="wrap header-inner">
       <div>
         <h1>Just For Tonight</h1>
-        <p class="subhead">A Literature Project of The Core Group of NA</p>
+        <p class="subhead">An evening meditation literature project of The Core Group of NA</p>
       </div>
-      <nav class="main-nav" aria-label="Just For Tonight navigation">
-        <a href="#today" data-nav="today">Today</a>
-        <a href="#archive" data-nav="archive">Archive</a>
-        <a href="#search" data-nav="search">Search</a>
-        <a href="#download" data-nav="download">Download</a>
-        <a href="/grey-book-study/">Grey Book Study</a>
-        <a href="https://www.nahelp.org" target="_blank" rel="noopener noreferrer">A.S.I.S.</a>
-        <a href="#about" data-nav="about">About</a>
-      </nav>
     </div>
   </header>
 
@@ -86,16 +112,80 @@
     </section>
 
     <section id="dailyNotice" class="notice hidden" aria-live="polite"></section>
+
+    <section id="newcomer" class="project-intro-panel" aria-label="Just For Tonight project introduction">
+      <div class="project-intro-copy">
+        <p class="eyebrow">For the newcomer and the literature student</p>
+        <h2>Just For Tonight</h2>
+        <p>
+          An evening meditation project created for daily recovery, literature study, Group review, and input.
+          Read tonight's meditation, listen when audio is available, browse the complete calendar archive,
+          study historical NA literature, and share corrections or Group input directly from each reading.
+        </p>
+        <p class="project-intro-service">A literature project of The Core Group of Narcotics Anonymous.</p>
+      </div>
+      <div class="project-intro-actions" aria-label="Quick links">
+        <a href="#today">Read Tonight</a>
+        <a href="/grey-book-study/">Open Grey Book Study</a>
+        <a href="/lwb-draft/">Open Little White Book</a>
+        <a href="#library">Read Literature</a>
+        <a href="/asis-ips/">Read A.S.I.S. Literature</a>
+        <a href="/fsc/">Fellowship Service Conference</a>
+        <a href="/archive-master-index.html">Browse NA History Archive</a>
+        <a href="/meetings/">Find a Meeting</a>
+        <a href="#archive">Browse JFT Archive</a>
+        <a href="#download">Download the Draft</a>
+      </div>
+    </section>
+
     <section id="readingArea" class="reading-stack" aria-live="polite"></section>
 
+    <details class="literature-disclaimer">
+      <summary>Limited Public Domain Literature Disclaimer</summary>
+      <div class="literature-disclaimer-body">
+        <p><strong>This is free literature released into limited public domain.</strong></p>
+        <p>Anyone is free to copy, publish, use, compile, and distribute this literature by any means, with the following exceptions: only Narcotics Anonymous Home Groups may modify it; no one may profit from its sale or distribution; only Narcotics Anonymous Home Groups may sell it; all such sales must be at or below actual printing and shipping cost; and the rights of Narcotics Anonymous Home Groups under this release shall never be delegated to a service body or entity outside the actual Home Groups. A printer or binder may charge a fair market production price when acting only as a producer for groups or individuals distributing the literature under these terms.</p>
+        <p>In jurisdictions that recognize copyright laws, the author or authors dedicate their limited copyright interest to the public domain under these terms for the benefit of the still-suffering addict and the public at large.</p>
+        <p class="warranty-text">THE LITERATURE IS PROVIDED WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED. IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY ARISING FROM THE USE OF THIS LITERATURE.</p>
+      </div>
+    </details>
+
+    <section id="library" class="panel literature-library-panel">
+      <div class="panel-heading">
+        <p class="eyebrow">Historical Literature Library</p>
+        <h2>Read the Books on the Site</h2>
+      </div>
+      <p>Open a cover to read the book in the site reader, or use the download button to save a copy for later.</p>
+      <p><a class="download-button" href="/lwb-draft/">Read the 1983 Little White Book Draft</a></p>
+      <div class="literature-shelf" data-literature-shelf aria-label="Historical NA literature shelf"></div>
+    </section>
+
+    <section id="asis-ips" class="panel asis-ip-panel">
+      <div class="panel-heading">
+        <p class="eyebrow">Recovery and Service Literature</p>
+        <h2>A.S.I.S. Recovery &amp; Service Literature</h2>
+      </div>
+      <p>Browse approved A.S.I.S. literature separately from unfinished Review &amp; Input material, with each piece clearly labeled by its current standing.</p>
+      <p><a class="download-button" href="/asis-ips/">Browse A.S.I.S. Literature</a></p>
+    </section>
+
+    <section id="fsc" class="panel fsc-panel">
+      <div class="panel-heading">
+        <p class="eyebrow">Home-Group-Directed Service</p>
+        <h2>Fellowship Service Conference</h2>
+      </div>
+      <p>Open the current FSC page for conference details, reports, minutes, registration information, and Group-directed service material.</p>
+      <p><a class="download-button" href="/fsc/">Open the Fellowship Service Conference</a></p>
+    </section>
+
     <section id="archive" class="panel">
-      <div class="panel-heading"><p class="eyebrow">Calendar Archive</p><h2>Browse by Date</h2></div>
+      <div class="panel-heading"><p class="eyebrow">Calendar Archive</p><h2>Browse Just For Tonight by Date</h2></div>
       <div id="archiveGrid" class="archive-grid"></div>
     </section>
 
     <section id="search" class="panel">
-      <div class="panel-heading"><p class="eyebrow">Search</p><h2>Find a Reading</h2></div>
-      <label class="search-label" for="searchInput">Search quote, reflection, or Just For Tonight text</label>
+      <div class="panel-heading"><p class="eyebrow">Search</p><h2>Find a Just For Tonight Reading</h2></div>
+      <label class="search-label" for="searchInput">Search quote, reflection, source, or Just For Tonight text</label>
       <input id="searchInput" type="search" placeholder="Try: surrender, meetings, inventory, hope..." autocomplete="off">
       <div id="searchResults" class="search-results" aria-live="polite"></div>
     </section>
@@ -104,24 +194,103 @@
       <div class="panel-heading"><p class="eyebrow">Download</p><h2>Literature Downloads</h2></div>
       <p>Download the current <strong>Just For Tonight</strong> draft for Group review, literature study, and input.</p>
       <p><a class="download-button" href="/downloads/Just%20for%20Tonight%20(1).pdf" download>Download Just For Tonight PDF</a></p>
+      <p><a class="download-button" href="/grey-book-study/">Open the Grey Book Study</a></p>
+      <p><a class="download-button" href="/lwb-draft/">Read the 1983 Little White Book Draft</a></p>
+      <p><a class="download-button" href="/asis-ips/">Read A.S.I.S. Literature</a></p>
       <p><a class="download-button" href="https://www.nahelp.org" target="_blank" rel="noopener noreferrer">Visit A.S.I.S. / NA Help</a></p>
-      <p class="small-note">Just For Tonight is still in the draft stage. Review and input from NA Groups is encouraged.</p>
+      <p class="small-note">Just For Tonight remains in draft form. Review, correction, and input from NA Groups and members is encouraged.</p>
     </section>
 
-    <section id="about" class="panel about-panel">
-      <div class="panel-heading"><p class="eyebrow">About This Project</p><h2>Just For Tonight</h2></div>
-      <p><strong>Just For Tonight</strong> is an evening meditation literature project of <strong>The Core Group of NA</strong>.</p>
-      <p>The project is presented here for daily reading, literature study, Group review, and input from the fellowship.</p>
-      <p>A.S.I.S. is directly responsible to the NA Groups it serves and provides a service structure through which participating Groups can cooperate and support fellowship projects while remaining responsible for their own literature and service efforts.</p>
-      <p class="small-note">The source project file is titled <em>Just for Tonight</em>. The public site uses the title <em>Just For Tonight</em>.</p>
+    <section id="about" class="panel about-panel about-rebuilt">
+      <div class="about-hero">
+        <div class="about-hero-copy">
+          <div class="panel-heading">
+            <p class="eyebrow">About Just For Tonight</p>
+            <h2>Evening Meditation, Literature Study, and Group Review &amp; Input</h2>
+          </div>
+          <p class="about-lead"><strong>Just For Tonight</strong> is an evening meditation literature project of <strong>The Core Group of Narcotics Anonymous</strong>. It is presented here for daily reading, recovery, literature study, discussion, correction, and input from NA members and Groups.</p>
+        </div>
+        <aside class="about-identity" aria-label="Project identity and independence">
+          <strong>What this page is</strong>
+          <p>A daily reading and study page for the current Just For Tonight draft, including audio where available, archives, search, downloads, review forms, and related historical literature resources.</p>
+          <p class="about-identity-note">The Grey Area Group hosts this page as a service. Hosting does not change the project's origin, current literature standing, or the autonomy of any participating NA Group.</p>
+        </aside>
+      </div>
+
+      <div class="about-project-quote">
+        <p class="quote-label">The purpose of the project</p>
+        <blockquote>To offer an evening meditation that helps members close the day in recovery and prepare to continue living the program tomorrow.</blockquote>
+        <p>Each reading may be reviewed on its own page. Corrections, source information, Group input, and suggested changes can be submitted through the Review &amp; Input form displayed with the reading.</p>
+      </div>
+
+      <div class="about-card-grid">
+        <article class="about-card"><span class="about-card-kicker">Evening meditation project</span><h3>Just For Tonight</h3><p>The project provides a dated reading, recovery reflection, and closing Just For Tonight statement for evening use.</p></article>
+        <article class="about-card"><span class="about-card-kicker">Project source</span><h3>The Core Group of NA</h3><p>The source project identifies Just For Tonight as a literature project of The Core Group of Narcotics Anonymous.</p></article>
+        <article class="about-card"><span class="about-card-kicker">Website host</span><h3>Grey Area Group</h3><p>The Grey Area Group maintains the online reader, archive, search, audio links, and review forms as a service to members and Groups.</p></article>
+        <article class="about-card"><span class="about-card-kicker">Literature standing</span><h3>Draft and Review</h3><p>The project remains open to review, correction, discussion, and Group input and should not be represented as finally approved fellowship literature.</p></article>
+      </div>
+
+      <section class="about-principles" aria-labelledby="about-principles-title">
+        <h3 id="about-principles-title" class="about-section-heading">Principles behind this work</h3>
+        <p class="about-section-intro">Open any heading for more information about how this project is presented and reviewed.</p>
+        <div class="about-accordion-grid">
+          <details><summary>Daily Recovery</summary><p>The readings are organized by calendar date so members can use the project as a consistent evening recovery practice while also browsing or searching the complete draft.</p></details>
+          <details><summary>Review &amp; Input</summary><p>Every reading includes a form for corrections, source details, editorial suggestions, and input from individual members or NA Groups.</p></details>
+          <details><summary>Home-Group Autonomy</summary><p>Each NA Home Group remains free to review this material, use or decline it, suggest changes, and reach its own Group conscience.</p></details>
+          <details><summary>Direct Responsibility</summary><p>Service remains accountable to the members and Groups being served. Project identity and literature standing are stated plainly so readers can make informed decisions.</p></details>
+          <details><summary>Clear Literature Standing</summary><p>Draft, Review &amp; Input, historically approved, home-group-approved, and broadly approved literature should be identified separately rather than presented as though each has the same standing.</p></details>
+          <details><summary>Service Without Control</summary><p>Hosting, formatting, and distributing the material are service functions. They do not transfer authority over the literature away from its project or the NA Groups reviewing it.</p></details>
+        </div>
+      </section>
+
+      <section class="about-documents" aria-labelledby="about-documents-title">
+        <h3 id="about-documents-title" class="about-section-heading">Autonomy &amp; Service Documents</h3>
+        <p class="about-section-intro">These drafts present a home-group-autonomy approach to NA service and literature. They are provided for review, discussion, editing, and Group conscience, not as adopted policy unless a Group formally approves them.</p>
+        <div class="about-document-grid">
+          <article class="about-document-card">
+            <div class="about-document-top"><h4>NA Home Group Declaration of Autonomy</h4><span class="about-draft-badge">June 2023 Draft</span></div>
+            <p>A proposed declaration affirming a Home Group's privilege to create, direct, participate in, or discontinue service structures; determine its literature use; and state what authority it delegates.</p>
+            <div class="about-document-actions"><a href="/about-documents/NA-Home-Group-Declaration-of-Autonomy-June-2023-Draft.pdf" data-pdf-title="NA Home Group Declaration of Autonomy - June 2023 Draft">Read PDF</a><a class="secondary" href="/about-documents/NA-Home-Group-Declaration-of-Autonomy-June-2023-Draft.pdf" download>Download PDF</a></div>
+          </article>
+          <article class="about-document-card">
+            <div class="about-document-top"><h4>Resolution Statement</h4><span class="about-draft-badge">2019 Draft #2</span></div>
+            <p>A proposed statement that authority flows from NA Groups outward through service and that Groups may create, reproduce, correct, bundle, or repackage literature for Group use while leaving the Steps and Traditions unchanged.</p>
+            <div class="about-document-actions"><a href="/about-documents/Resolution-Statement-2019-Draft-2.pdf" data-pdf-title="Resolution Statement - 2019 Draft #2">Read PDF</a><a class="secondary" href="/about-documents/Resolution-Statement-2019-Draft-2.pdf" download>Download PDF</a></div>
+          </article>
+        </div>
+        <p class="about-document-note"><strong>Draft notice:</strong> Posting a document here does not mean it has been approved by the Grey Area Group, A.S.I.S., the FSC, or the Fellowship of Narcotics Anonymous. Each NA Group may review the material and reach its own conscience.</p>
+      </section>
+
+      <div class="about-action-row" aria-label="Related About links">
+        <a href="/grey-book-study/">Open Grey Book Study</a>
+        <a href="/asis-ips/">Browse A.S.I.S. Literature</a>
+        <a href="/fsc/">Open the FSC Page</a>
+        <a class="secondary" href="https://nahelp.org/" target="_blank" rel="noopener noreferrer">Visit NAHELP.org</a>
+      </div>
     </section>
   </main>
+
+  <div class="literature-reader-modal" data-literature-reader hidden>
+    <div class="literature-reader-backdrop" data-literature-close></div>
+    <section class="literature-reader-window" role="dialog" aria-modal="true" aria-labelledby="literatureReaderTitle">
+      <header class="literature-reader-header">
+        <div><p class="eyebrow">Historical Literature Reader</p><h2 id="literatureReaderTitle" data-literature-title>Literature Reader</h2></div>
+        <button class="literature-reader-close" type="button" data-literature-close>Close &times;</button>
+      </header>
+      <div class="literature-reader-actions">
+        <a class="download-button" href="#" target="_blank" rel="noopener noreferrer" data-literature-open>Open Full Size</a>
+        <a class="download-button" href="#" download data-literature-download>Download PDF</a>
+      </div>
+      <iframe class="literature-reader-frame" data-literature-frame title="Historical literature PDF reader" loading="lazy"></iframe>
+    </section>
+  </div>
 
   <footer class="site-footer">
     <div class="wrap"><p><em>In Loving Service: The Core Group of Narcotics Anonymous</em></p></div>
   </footer>
 
-  <script src="/js/jft.js?v=20260810-jft-nav1"></script>
+  <script src="/js/jft.js?v=20260810-jft-current1"></script>
+  <script src="/js/literature.js?v=20260810-jft-current1"></script>
   <script src="/js/pdf-router.js?v=20260726-tradition-six-render-v1" defer></script>
 </body>
 </html>
