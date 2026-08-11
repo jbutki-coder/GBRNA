@@ -170,6 +170,7 @@ function buildGroups(data) {
     group: "reading",
     slug: "keytags",
     href: "/lwb-draft/#keytags",
+    openDirectly: true,
     paragraphs: [{ kind: "text", text: "Open the Keytags reading in the meeting readings section.", isHeading: false, pages: [] }],
     pages: ""
   });
@@ -334,7 +335,13 @@ function moveSection(direction) {
 document.addEventListener("click", (event) => {
   const sectionButton = event.target.closest("[data-screen-tab]");
   if (sectionButton) {
-    setActive(sectionButton.dataset.screenTab, true);
+    const target = sectionButton.dataset.screenTab;
+    const section = state.sectionMap.get(target);
+    if (section?.openDirectly && section.href) {
+      location.href = section.href;
+      return;
+    }
+    setActive(target, true);
     return;
   }
 
