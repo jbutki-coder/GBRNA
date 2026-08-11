@@ -60,7 +60,7 @@ main{width:min(100%,1050px);margin:0 auto;padding:2rem}.note{max-width:780px;mar
 .tradition-reading p{margin:0 0 1rem!important;text-align:left!important;text-indent:0!important}
 .tradition-reading p:last-child{margin-bottom:0!important}
 .clean-time-intro{text-indent:0!important;text-align:center!important;margin:0 auto 1.35rem!important;max-width:720px;font:800 1rem/1.55 Arial,sans-serif;color:#2f2922}
-.clean-time-visuals{display:flex;justify-content:center;margin:1.25rem 0 1.5rem}
+.clean-time-visuals{display:flex;justify-content:center;margin:1.25rem 0 1.5rem;scroll-margin-top:7rem}
 .clean-time-visual{width:100%;max-width:760px;margin:0;padding:1rem;background:#fff;border:1px solid var(--line);border-radius:.65rem;box-shadow:0 8px 22px rgba(21,21,21,.08)}
 .clean-time-visual img{display:block;width:100%;height:auto;object-fit:contain}
 .clean-time-levels{display:flex;flex-wrap:wrap;justify-content:center;gap:.65rem;margin:1rem 0 1.4rem}
@@ -289,6 +289,8 @@ body.theater-mode .stage-dimmer{opacity:1}
     <h2>CELEBRATE CLEAN TIME</h2>
     <p class="clean-time-intro">At this time, we celebrate clean time and recognize the miracles happening in our Fellowship.</p>
     <div class="clean-time-levels" aria-label="Clean time celebrations">
+      <button class="clean-time-button" type="button" data-celebration="Just For Today">Just For Today</button>
+      <button class="clean-time-button" type="button" data-celebration="Surrender">Surrender</button>
       <button class="clean-time-button" type="button" data-celebration="30 Days">30 Days</button>
       <button class="clean-time-button" type="button" data-celebration="60 Days">60 Days</button>
       <button class="clean-time-button" type="button" data-celebration="90 Days">90 Days</button>
@@ -299,7 +301,7 @@ body.theater-mode .stage-dimmer{opacity:1}
       <button class="clean-time-button" type="button" data-celebration="2 or More Years">2 or More Years</button>
     </div>
     <p class="clean-time-hint">Tap any clean-time button to celebrate with confetti and fireworks on the page.</p>
-    <div class="clean-time-visuals">
+    <div class="clean-time-visuals" id="keytags">
       <figure class="clean-time-visual">
         <img src="images/clean-time-keytags.png" alt="Narcotics Anonymous clean time keytags for 30 days, 60 days, 90 days, six months, nine months, one year, multiple years, and just for today" loading="lazy">
       </figure>
