@@ -1,0 +1,1142 @@
+{
+  "schemaVersion": 1,
+  "about": {
+    "baseline": "NY project edition currently used to map GBRNA",
+    "chronology": "Earlier historical Review & Input → NY project edition → newer post-NY input",
+    "tiesThatBind": "The Ties That Bind Group material is the newest post-NY input currently loaded for January.",
+    "gratefulWakeUp": "Grateful Wake Up Group material is treated as historical Review & Input preceding the NY project edition. Dates printed in its source are preserved as historical writing dates, not calendar placement dates."
+  },
+  "sourceEditions": [
+    {
+      "key": "gwu-group",
+      "label": "Grateful Wake Up Group of NA — Norfolk, Nebraska",
+      "role": "historical-group-input",
+      "note": "Source document says its dates are for historical purposes."
+    },
+    {
+      "key": "2018-11-03",
+      "label": "GBR A4 Book 03 NOV 2018",
+      "role": "historical-rni-edition"
+    },
+    {
+      "key": "2018-12-15",
+      "label": "GBR A4 Book 15 DEC 2018",
+      "role": "historical-rni-edition"
+    },
+    {
+      "key": "2018-12-29",
+      "label": "GBR A4 Book 29 DEC 2018",
+      "role": "historical-rni-edition"
+    },
+    {
+      "key": "2019-01-26",
+      "label": "GBR A4 Book 26 JAN 2019",
+      "role": "historical-rni-edition"
+    },
+    {
+      "key": "2019-03-02",
+      "label": "GBR A4 Book 2 MAR 2019",
+      "role": "historical-rni-edition"
+    },
+    {
+      "key": "upgrade",
+      "label": "GBR upgrade",
+      "role": "historical-rni-edition"
+    },
+    {
+      "key": "ny-project",
+      "label": "NY project edition",
+      "role": "baseline-current-mapping"
+    },
+    {
+      "key": "ties-that-bind-latest",
+      "label": "The Ties That Bind Group — latest R&I",
+      "role": "post-ny-input"
+    }
+  ],
+  "readings": {
+    "01-01": {
+      "defaultVersion": "ties-that-bind-latest",
+      "versions": [
+        {
+          "key": "ties-that-bind-latest",
+          "label": "The Ties That Bind Group — latest R&I",
+          "group": "The Ties That Bind Group",
+          "position": "after-ny",
+          "status": "Most recent post-NY input currently available",
+          "quote": "We keep what we have only with vigilance….",
+          "source": "Gray Book p. 87 (Chapter 6, Header)",
+          "body": "Vigilance means “stay alert”. Much like soldiers who keep watch that the enemy does not advance, addicts recovering from the disease of addiction must also keep watch over ourselves. We take this action daily, so the addiction does not advance and claim more spiritual territory within us. We work and live the spiritual principles of the twelve steps and twelve traditions as we renew our commitment to our recovery daily. Our daily reprieve is contingent on this spiritual conditioning. Our surrender to the program of Narcotics Anonymous leads to a spiritual awakening. If we are not vigilant our spirits may regress and we will be susceptible to relapses. The steps of Narcotics Anonymous are suggested, therefore vary by individual. The traditions of Narcotics Anonymous are our protection from ourselves; therefore, ought not to be negotiated. Narcotics Anonymous groups must stay vigilant. The traditions are our first line of defense. Practicing our traditions in our groups and service committees keeps the disease from infiltrating our gatherings. Our traditions not only protect us from ourselves, but from outside forces as well. A Higher Power is the only ultimate authority in Narcotics Anonymous as it is expressed through group conscience. This “good orderly direction” and adherence to the spiritual principles will keep us alert and ensure our survival and the survival of Narcotics Anonymous.",
+          "moment": "We keep our spirits awake and vigilant by the application of spiritual principles embodied in the Narcotics Anonymous program.",
+          "proofread": true,
+          "proofreadNote": "Obvious spelling, punctuation, and typographical errors were corrected for web presentation; substantive content was not intentionally changed."
+        }
+      ]
+    },
+    "01-02": {
+      "defaultVersion": "ties-that-bind-latest",
+      "versions": [
+        {
+          "key": "ties-that-bind-latest",
+          "label": "The Ties That Bind Group — latest R&I",
+          "group": "The Ties That Bind Group",
+          "position": "after-ny",
+          "status": "Most recent post-NY input currently available",
+          "quote": "When we pray a remarkable thing happens; we find the means, the ways, and energies to perform tasks far beyond our capabilities.",
+          "source": "Gray Book p. 58 (Step Eleven, lines 23-25)",
+          "body": "The first step in Narcotics Anonymous asks us to admit our powerlessness and unmanageability over the disease of addiction. In the second step we are asked to tap into a power greater than ourselves to relieve our obsession to use. In the third step, we make a decision to turn our will and our lives over to God, as we understand God, for guidance and care. The foundation built from these first three steps is what makes recovery possible. In step eleven, we are suggested to ask for power; the power we ask for is not for power over addiction. The power we are now asking for is knowledge of God’s will for us and the power to carry that out to keep us growing. We ask for the power to live the steps and practice these principles in our daily lives. Without this power we cannot and will not continue this spiritual journey. If we do not, we will return to the hopeless condition we were in when we first found NA. With this power we are transformed into a better condition than we were in before active addiction. It takes prayer and meditation to align our thinking and actions with the ultimate power greater than ourselves. The result will be a better understanding of the world, ourselves, and others than we ever had. The ordinary becomes extraordinary. Our liabilities are minimized and our assets enhanced. We become a tool to help ourselves and others. We are no longer just existing. For the first time we are fully living happy, joyous, and free.",
+          "moment": "We will continue to seek guidance through prayer and meditation. A conscious contact with a God of our own understanding is what makes our recovery possible.",
+          "proofread": true,
+          "proofreadNote": "Obvious spelling, punctuation, and typographical errors were corrected for web presentation; substantive content was not intentionally changed."
+        }
+      ]
+    },
+    "01-03": {
+      "defaultVersion": "ties-that-bind-latest",
+      "versions": [
+        {
+          "key": "ties-that-bind-latest",
+          "label": "The Ties That Bind Group — latest R&I",
+          "group": "The Ties That Bind Group",
+          "position": "after-ny",
+          "status": "Most recent post-NY input currently available",
+          "quote": "The Eleventh Step helps us, in the face of a problem, to be aware of God.",
+          "source": "Gray Book p. 58 (Step Eleven, lines 10-11)",
+          "body": "By the time we get to step eleven, most of us have reached an awareness that we are not alone. We experience and feel the power that first got us clean is still with us today. Throughout our journey, we have experienced miracles we could not explain. We have experienced strength and courage to go through life on its own terms without using drugs or creating unmanageability in our lives. In our fellowship, we see evidence of the same power at work in the lives of others. We see newcomers stay clean and hope return, as their lives are transformed. We also experience peace of mind and serenity we never knew before. Our Gray Book states: \"We begin to find peace unmatchable to a drug-induced high.” We improve and depend on our relationship with the God of our understanding through the good times as well as in the difficult times. Our seventh step reminds us that humility is a good state for an addict to be in. Reliance on God assures that we are not alone. Anonymity means that we cannot do this ourselves. We no longer work the steps just to stay clean even though that is necessary. We live the steps to experience the spiritual awakenings we have witnessed within the fellowship. Our awareness helps us not to forget that in the midst of a storm, our Higher Power is there waiting and willing to help us, if we reach out.",
+          "moment": "We will not forget the power that got us clean is still with us. Our Higher Power will continue to be with us on this journey, if we invite it.",
+          "proofread": true,
+          "proofreadNote": "Obvious spelling, punctuation, and typographical errors were corrected for web presentation; substantive content was not intentionally changed."
+        }
+      ]
+    },
+    "01-04": {
+      "defaultVersion": "ties-that-bind-latest",
+      "versions": [
+        {
+          "key": "ties-that-bind-latest",
+          "label": "The Ties That Bind Group — latest R&I",
+          "group": "The Ties That Bind Group",
+          "position": "after-ny",
+          "status": "Most recent post-NY input currently available",
+          "quote": "...we can finally look others in the eye and be grateful for who we are.",
+          "source": "Gray Book p. 142 (Chapter Eight, lines 13-24)",
+          "body": "For most of us, active addiction filled us with shame and remorse, partially because of the things we had to do to obtain our drugs. We walked with our heads down in shame, and would not look straight ahead because we might have caught someone's eyes looking at us. We stopped looking people straight in the eyes because we felt they might see our guilt and shame. We did not look up because that meant we would have to acknowledge God, symbolically anyway. We knew deep down inside we were not well, but we were powerless. After arriving at Narcotics Anonymous and getting clean, we found we were not alone. We met members that suffered and felt like us. They hugged us, looked in our eyes, and told us we did not have to suffer alone anymore. We felt empathy that we never knew existed. With the help of God, our sponsors, and step work our shame was lifted. Our fifth step revealed that we were only human with a disease. For the first time in a very long time, we could look another person in the eyes and feel a part of. Our eighth and ninth steps provided a way out of that shame. We are given the opportunity to amend our past. We are now able to walk with our heads held high. We can now look people in the eyes and up to our God with humility.",
+          "moment": "Today we have acceptance of who we are. We will continue to improve with the help of God and Narcotics Anonymous.",
+          "proofread": true,
+          "proofreadNote": "Obvious spelling, punctuation, and typographical errors were corrected for web presentation; substantive content was not intentionally changed."
+        }
+      ]
+    },
+    "01-05": {
+      "defaultVersion": "ties-that-bind-latest",
+      "versions": [
+        {
+          "key": "ties-that-bind-latest",
+          "label": "The Ties That Bind Group — latest R&I",
+          "group": "The Ties That Bind Group",
+          "position": "after-ny",
+          "status": "Most recent post-NY input currently available",
+          "quote": "In our experience, the Twelve steps give us a way of life which does more than keep us off drugs.",
+          "source": "Gray Book p. 159 (Chapter Ten, lines 2-3)",
+          "body": "In the first step we find we are powerless over addiction. Narcotics Anonymous is not a drug program; it is a living program. We recover from a hopeless state of mind, body, and spirit that makes up the disease of addiction. Maintaining total and complete abstinence is the cornerstone of the NA program but Narcotics Anonymous is much more than simple abstinence. Since addiction is much more than just using drugs, our recovery must be more than just remaining clean. “I’m not using drugs. Now what?” Addicts must practice spiritual principles in every area of their lives. As we live the spiritual principles within our steps and traditions, our spirits awaken; and we find the benefits of the spiritual fruits the steps and traditions embody. We find a God of our own understanding and we develop a relationship with that God. We have the opportunity for spiritual growth with no limitations. We share this precious gift with others as we carry the message to the addict who still suffers. We awaken others as we are awakened. We also have the opportunity of freedom from self-bondage the disease had kept us in. As a result, we are also given freedom from other people's control over us. The spiritual principles of Narcotics Anonymous can be accessed, if we work for them.",
+          "moment": "The Narcotics Anonymous program helps make the world a much better place to live in, for us and for those around us. We begin seeing the full benefits of the twelve steps and twelve traditions and not limit them to just not using drugs.",
+          "proofread": true,
+          "proofreadNote": "Obvious spelling, punctuation, and typographical errors were corrected for web presentation; substantive content was not intentionally changed."
+        }
+      ]
+    },
+    "01-06": {
+      "defaultVersion": "ties-that-bind-latest",
+      "versions": [
+        {
+          "key": "grateful-wake-up-p73",
+          "label": "Grateful Wake Up Group — historical R&I",
+          "group": "Grateful Wake Up Group of NA, Norfolk, Nebraska",
+          "position": "before-ny",
+          "status": "Historical Review & Input preceding the NY project edition",
+          "historicalDate": "1/5/21",
+          "sourceDocumentPage": 73,
+          "quote": "obsession to use. Our new NA friends offered us a solution to our problem, it was: (",
+          "source": "Gray Book Page IV",
+          "body": "last paragraph) “Based on our collective experience, we believe that every addict, including the ''potential\" addict, suffers from an incurable disease of body, mind and spirit. We were in the grip of a hopeless dilemma. The solution of which is spiritual in nature. Therefore, this book will deal in great part with spiritual matters.”\n\nWhen we first came to NA, we may not have been very trusting. After a time, we saw positive results in other lives which they attributed to living the Twelve Steps. We came to believe the answer to our problems was spiritual in its nature. Many of us had a very complicated relationship with “God”, and could not reconcile that with a loving entity as was suggested by our sponsors and home group. Spirituality doesn’t imply a particular religion or theology it simply means there is a power greater than ourselves. Understanding this allowed us to believe that there is every reason to hope.\n\nAddiction is a disease of body, mind and spirit when we have all three in line, recovery can then take place; if one of these ingredients is missing, our recovery will suffer. When we started to practice a new way of life, we began to see results. When we apply spiritual principles in our daily lives it helps us to deal with many aspects of our disease such as self-centeredness, manipulation and false pride.",
+          "moment": "Being spiritual isn’t limited to only prayer and meditation. We have to practice spirituality in our daily lives to experience growth and recovery.",
+          "mappingConfidence": 0.019,
+          "dateNote": "The source document states that its written dates are for historical purposes; calendar placement here is mapped by the Grey Book quotation/source to the NY project edition."
+        },
+        {
+          "key": "ties-that-bind-latest",
+          "label": "The Ties That Bind Group — latest R&I",
+          "group": "The Ties That Bind Group",
+          "position": "after-ny",
+          "status": "Most recent post-NY input currently available",
+          "quote": "...we believe that every addict, including the ‘potential’ addict, suffers from an incurable disease of body, mind and spirit.",
+          "source": "Gray Book p. iv (Introduction, last paragraph)",
+          "body": "In Narcotics Anonymous, we view addiction as a spiritual malady, not a medical problem. Our literature tells us that addiction is made up of two components, obsession and compulsion. Our drug use was just a symptom of those components. Since a spiritual problem cannot be treated with medication, our solution has to be of a spiritual nature. Narcotics Anonymous views and treats addiction as a threefold disease; physical, mental, and spiritual. Our spiritual solution begins by treating the physical compulsion through complete and total abstinence in the first step. We physically go to meetings, as an act of surrender, and do not use any drugs for any reason. We treat the obsession to use drugs in the second step by tapping into a power greater than ourselves. The process of coming to believe is what restores us to sanity. In the third step, we decide to allow the God of our own understanding, care and guide us by continuing to live the Narcotics Anonymous program. We are granted a daily reprieve from this progressive, fatal, incurable disease. We begin to live drug free lives. Narcotics Anonymous is more than not using drugs. By practicing the principles of the steps and the traditions and sharing this precious gift, we get to live happy, joyous and free.",
+          "moment": "We must use a spiritual solution for our threefold disease and share this message with others.",
+          "proofread": true,
+          "proofreadNote": "Obvious spelling, punctuation, and typographical errors were corrected for web presentation; substantive content was not intentionally changed."
+        }
+      ]
+    },
+    "01-07": {
+      "defaultVersion": "ties-that-bind-latest",
+      "versions": [
+        {
+          "key": "ties-that-bind-latest",
+          "label": "The Ties That Bind Group — latest R&I",
+          "group": "The Ties That Bind Group",
+          "position": "after-ny",
+          "status": "Most recent post-NY input currently available",
+          "quote": "Not only is this way of life superior to the old using life, it is superior to any life that we can conceive.",
+          "source": "Gray Book p. 159 (Chapter Ten, lines 3-5)",
+          "body": "Some people say that recovery and Narcotics Anonymous leaves the person in a better condition than they were in before they even got sick. Narcotics Anonymous not only offers freedom from active addiction, but it offers spiritual awakenings as a result of working and living each step. We learn a new way of life that most addicts could not even conceive of. It offers freedom from our self-imposed prisons. This way of life releases us from bondage of self and from others. Through working and living the spiritual principles of the steps and the traditions, we learn how to accept and love ourselves. We learn how to build healthy relationships with ourselves and others and society at large. One of the greatest gifts is that we establish a relationship with a God of our own understanding. With our Higher Power, all is possible. No longer controlled by anger and fear, our lives are filled with peace of mind and a welcomed concern for others. We finally become useful people and serve as a vessel for good. Our life's hopes and dreams become possible to achieve. As our spirits awaken, we become the people we were meant to be all along. We keep the precious gifts of our enlightenments by sharing them with others who seek our guidance",
+          "moment": "With the help of Narcotics Anonymous and the fellowship, we receive the gift of recovery. We share these gifts with others in recovery and we find our lives superior to anything we have ever known.",
+          "proofread": true,
+          "proofreadNote": "Obvious spelling, punctuation, and typographical errors were corrected for web presentation; substantive content was not intentionally changed."
+        }
+      ]
+    },
+    "01-08": {
+      "defaultVersion": "ties-that-bind-latest",
+      "versions": [
+        {
+          "key": "ties-that-bind-latest",
+          "label": "The Ties That Bind Group — latest R&I",
+          "group": "The Ties That Bind Group",
+          "position": "after-ny",
+          "status": "Most recent post-NY input currently available",
+          "quote": "Our deepest longing and recurring images of the kind of people We’d like to be are only glimpses of God's will for us.",
+          "source": "Gray Book p. 58 (Step Eleven, lines 18-20)",
+          "body": "Our eleventh step in the Grey Book states our conscious contact with our Higher Power reveals God's will for us can become our will for ourselves. This, of course, takes place over time, not overnight. Aligning of God's will with ours is only possible through the transformation that takes place as a result of living the principles of the steps and traditions of Narcotics Anonymous. While living the spiritual principles of the Seventh Step, we start to see glimpses of ourselves temporarily free of certain defects. This revelation gives us hope that freedom from the bond of selfishness is possible. We sense our Higher Power wants us to be healthy, prosperous, and never alone. These are the things we always wanted for ourselves. Our experience demonstrates a new way of life is possible. We are still being molded and shaped. This process will continue for the rest of our journey if we work the steps and apply the principles in our lives. Just for today, there is hope for us to be all we can be. This hope translates into faith as we trust the God of our own understanding. Our higher power will do for us what we cannot do for ourselves. To continue progressing in our recovery we must work with others as we share this precious gift with the still suffering addict.",
+          "moment": "The glimpses of the people we could be give us the hope we need to continue changing.",
+          "proofread": true,
+          "proofreadNote": "Obvious spelling, punctuation, and typographical errors were corrected for web presentation; substantive content was not intentionally changed."
+        }
+      ]
+    },
+    "01-09": {
+      "defaultVersion": "ties-that-bind-latest",
+      "versions": [
+        {
+          "key": "ties-that-bind-latest",
+          "label": "The Ties That Bind Group — latest R&I",
+          "group": "The Ties That Bind Group",
+          "position": "after-ny",
+          "status": "Most recent post-NY input currently available",
+          "quote": "Personality change is a natural progression set in motion by our surrender to the program.",
+          "source": "Gray Book p. 81 (Chapter Five, lines 4-5)",
+          "body": "When we first arrived at a Narcotics Anonymous meeting, we were told the only thing we had to change was everything. This seemed impossible to us because when we were using, the drugs made all the decisions for us. We were not free to make up our own minds. The disease of addiction guided our every thought and action. We were controlled. We were powerless. In Narcotics Anonymous, we surrender to the program’s spiritual principles because our way never worked well for us. The steps and traditions of Narcotics Anonymous can reconstruct our broken personalities. With the help of our Higher Power and our sponsors, we go back in time to when we first picked up, and nurture our lost spirits, which in turn, starts to awaken. The fourth step provides the information and is the vehicle we need to recognize our patterns. This awareness can set us on the right path of change. Since a sick mind cannot cure itself, we need the help of the God of our understanding and others. Taking the correct actions, we start to live our way into thinking differently. Since we live what we believe, we start to change little by little. This is a “just for today” transformation. We could always revert to our old personalities if we fail to practice these principles in our daily affairs. Narcotics Anonymous helps us create a new past, filled with hope, freedom, and joy instead of active addiction and its consequences.",
+          "moment": "We will continue to surrender to win. The change in our personalities will be over time, not overnight.",
+          "proofread": true,
+          "proofreadNote": "Obvious spelling, punctuation, and typographical errors were corrected for web presentation; substantive content was not intentionally changed."
+        }
+      ]
+    },
+    "01-10": {
+      "defaultVersion": "ties-that-bind-latest",
+      "versions": [
+        {
+          "key": "ties-that-bind-latest",
+          "label": "The Ties That Bind Group — latest R&I",
+          "group": "The Ties That Bind Group",
+          "position": "after-ny",
+          "status": "Most recent post-NY input currently available",
+          "quote": "We come to understand that our recovery is a gift from a power greater than ourselves.",
+          "source": "Gray Book p. 11 (Chapter One, lines 11-12)",
+          "body": "When most of us finally arrived at Narcotics Anonymous, we were just seeking relief from our painful lives. The drugs stopped working and were causing us pain. Everything we had tried failed, so we were not sure if Narcotics Anonymous was going to work for us either. We came into NA as drug addicts because we only saw the results of our drug use. Working step one, we realized that we suffered from a disease called addiction. We learned that addiction is a spiritual, mental, and physical disease and the drugs were just a symptom. We also learned that addiction was progressive and fatal and there was no known cure. In Narcotics Anonymous, we are offered a spiritual solution that could treat our disease which makes recovery possible. Recovery in Narcotics Anonymous leaves us in a better condition than we were in before we started using drugs. Recovery consists of spiritual principles manifesting in each one of us to arrest this disease. No human power, medicine, or religion could offer us this solution. It is truly a gift from a power greater than ourselves. In order to keep this “a day at a time” momentum going, we must share it with others.",
+          "moment": "We come to an understanding of this precious gift we call recovery and the source of its power through recovering addicts and empathy.",
+          "proofread": true,
+          "proofreadNote": "Obvious spelling, punctuation, and typographical errors were corrected for web presentation; substantive content was not intentionally changed."
+        }
+      ]
+    },
+    "01-11": {
+      "defaultVersion": "ties-that-bind-latest",
+      "versions": [
+        {
+          "key": "ties-that-bind-latest",
+          "label": "The Ties That Bind Group — latest R&I",
+          "group": "The Ties That Bind Group",
+          "position": "after-ny",
+          "status": "Most recent post-NY input currently available",
+          "quote": "With our Higher Power guiding us, we may never again have to deal with using, but we will always have to deal with staying clean.",
+          "source": "Gray Book p. 147 (Chapter Nine, lines 21-23)",
+          "body": "For us getting clean and staying clean are two different things. We thought we could stop anytime we wanted to. There were plenty of times we stopped using drugs, for some time, only to start using again. We used to look at the stopping, and not staying stopped. Our first step implies if we could not control our drug usage, how could we control our addiction? The obsession to use will remain with us after we abstained from drugs. Only a power greater than ourselves can relieve our obsession to use. This is not anyone’s power; this is not medication or religion. Our second step describes this power as caring and greater than ourselves. Many of us use the group as a whole, as a power greater than we are. Some of us use the spiritual principles of the program, and some of us use nature or the universe. Some of us use all these ideals. We manifest this power as we go to meetings and practice our spiritual principles. This power can also be used to help us change. We never have to return to active addiction. Staying clean involves more than just not picking up. We never knew we had this choice before. When we tap into this Higher Power in Narcotics Anonymous, we are given our power back. Not over our addiction, but power to practice spiritual principles. Our Gray Book implies meetings, traditions, and step work are a fence around our clean time. Being clean is the cornerstone of our program.",
+          "moment": "We use the fellowship to get clean, then we use the God of our own understanding to stay clean and grow.",
+          "proofread": true,
+          "proofreadNote": "Obvious spelling, punctuation, and typographical errors were corrected for web presentation; substantive content was not intentionally changed."
+        }
+      ]
+    },
+    "01-12": {
+      "defaultVersion": "ties-that-bind-latest",
+      "versions": [
+        {
+          "key": "ties-that-bind-latest",
+          "label": "The Ties That Bind Group — latest R&I",
+          "group": "The Ties That Bind Group",
+          "position": "after-ny",
+          "status": "Most recent post-NY input currently available",
+          "quote": "Having had a spiritual awakening as a result of these steps...",
+          "source": "Gray Book p. 59 (Step Twelve, Header)",
+          "body": "The twelfth step implies our spirits awaken as a result of working and living the steps. After putting down the drugs and working step one, our spirits begin to awaken. The fruit of surrender we experienced as a result of the second step continues awakening our spirit. In step three we gain trust in a Higher Power. We continue to turn our will and life over to the care of the God of our own understanding. With every step and every principle we practice daily, our spirits awaken more and more. By the time we reach the twelfth step, we are fully awake. The evidence is in the way we live, carry the message, and practice these principles in all our affairs. Our Gray Book states, “The 12 Steps guide us from a state of humiliation and desperation to a state wherein we are able to act as instruments of God's will.” This awakening is not once and for all. If we stop living the program and helping others our spirits begin regressing again. The result of our recovery regression can be a return to using drugs. This relapse of the spirit is subtle. Sometimes it goes unnoticed until we get ourselves into pain again. Our spiritual awakening must remain progressive. We must keep practicing. Recovery is a continuous journey, so we must keep feeding our spirits to remain awake, vigilant, and growing.",
+          "moment": "If we are not growing, we are going. We must continue to keep our spiritual health progressive.",
+          "proofread": true,
+          "proofreadNote": "Obvious spelling, punctuation, and typographical errors were corrected for web presentation; substantive content was not intentionally changed."
+        }
+      ]
+    },
+    "01-13": {
+      "defaultVersion": "ties-that-bind-latest",
+      "versions": [
+        {
+          "key": "ties-that-bind-latest",
+          "label": "The Ties That Bind Group — latest R&I",
+          "group": "The Ties That Bind Group",
+          "position": "after-ny",
+          "status": "Most recent post-NY input currently available",
+          "quote": "Recovery begins with the first admission of powerlessness.",
+          "source": "Gray Book p. 33 (Step One, line 16)",
+          "body": "At first we used drugs then drugs used us. We told ourselves we could stop if we wanted to, but that desire never came. Toward the end of our drug use, we just wanted to stop hurting. We told ourselves if it was not for the consequences we would still use. We failed to see that we were not addicts because we used drugs; we used drugs because we were addicts. We were never actually powerless over our addiction; it just manifested in our drug use. Inside we were just as unmanageable as on the outside. In fact, it was not until we surrendered that we felt inner unmanageability. After attending some meetings, we began to see that a disconnection from a loving higher power was enough of a consequence to stop using. Our admission in the first step had to be backed up with action. Honesty is a spiritual principle behind this step. Honesty means that we align our actions with the truth. The actions in the steps are what starts the recovery process. The first step implies when we admit our powerlessness and unmanageability, we open the door to recovery. The opposite is also true: we can also close that door with our inaction, so we must continue with a living program.",
+          "moment": "When we gain gratitude, it will show as we share and care the NA way. Our admission of powerlessness will follow a continuing surrender that is backed by action.",
+          "proofread": true,
+          "proofreadNote": "Obvious spelling, punctuation, and typographical errors were corrected for web presentation; substantive content was not intentionally changed."
+        }
+      ]
+    },
+    "01-14": {
+      "defaultVersion": "ties-that-bind-latest",
+      "versions": [
+        {
+          "key": "ties-that-bind-latest",
+          "label": "The Ties That Bind Group — latest R&I",
+          "group": "The Ties That Bind Group",
+          "position": "after-ny",
+          "status": "Most recent post-NY input currently available",
+          "quote": "The Second Step is the most important thing that must happen for us to achieve any sort of ongoing recovery.",
+          "source": "Gray Book p. 34 (Step Two, lines 12-14)",
+          "body": "In Narcotics Anonymous we believe we suffer from a spiritual disease, not a medical one. This disease requires spiritual solutions, not chemical ones. This is the purpose of the second step in Narcotics Anonymous. Our literature implies that the pain of living without drugs or anything to replace them, forces us to seek a Power greater than ourselves that will help us with the withdrawals and obsessions. In the second step we are introduced to this Power. This Power is necessary to begin to achieve ongoing recovery. In active addiction we used everything outside ourselves, including drugs to fill our God-sized hole. We came to believe in a Power greater than ourselves to fill the void that complete and total abstinence has left. Narcotics Anonymous suggests that this Power not be us. Some examples we may use are the Groups and the spiritual Principles. We will use this ever-expanding Power greater than ourselves. Whatever we choose, we must be honest, because we will continuously tap into this Power for guidance and strength throughout our recovery. As we approach the third step, we will start to develop a loving relationship with this Power. This God of our own understanding should be loving, caring, and forgiving. This relationship will be one of the greatest strengths and needs on our journey of recovery.",
+          "moment": "We will choose a loving, caring power that will fill our void and guide us in our recovery. This relationship begins in the second step.",
+          "proofread": true,
+          "proofreadNote": "Obvious spelling, punctuation, and typographical errors were corrected for web presentation; substantive content was not intentionally changed."
+        }
+      ]
+    },
+    "01-15": {
+      "defaultVersion": "ties-that-bind-latest",
+      "versions": [
+        {
+          "key": "ties-that-bind-latest",
+          "label": "The Ties That Bind Group — latest R&I",
+          "group": "The Ties That Bind Group",
+          "position": "after-ny",
+          "status": "Most recent post-NY input currently available",
+          "quote": "Life without fear is a gift we receive for the price of acceptance.",
+          "source": "Gray Book p. 36 (Step Two, lines 13-14)",
+          "body": "Recovery teaches us how having acceptance will free us from feeling as though we are responsible for the disease. The disease manifests itself in ways that affect our attitudes and behaviors. When we find out that we suffer from a spiritual disease and not a moral dilemma, we start to breathe easier. In Narcotics Anonymous we meet people who suffered as we had and found hope. The hope we find in Narcotics Anonymous will free us from the fear that we cannot stay clean. We accept this disease and the solution as well. As we begin trusting in a Higher Power we no longer live in our fears of the past. This newfound hope helps us stay in the moment and prevents fear of tomorrow. As we let go and let God, we enforce our initial surrender. Practicing the principle of open-mindedness leads to the very insights that eluded us all our lives. Fear is replaced by faith as we see evidence of recovering addicts all around us in Narcotics Anonymous. As we accept ourselves, we begin accepting others. We no longer feel alone. We find ourselves among people who suffered from a hopeless state then found a spiritual solution in Narcotics Anonymous.",
+          "moment": "By sharing this spiritual solution with others we become truly grateful for our new way of life. This gratefulness is shown in the way we live.",
+          "proofread": true,
+          "proofreadNote": "Obvious spelling, punctuation, and typographical errors were corrected for web presentation; substantive content was not intentionally changed."
+        }
+      ]
+    },
+    "01-16": {
+      "defaultVersion": "ties-that-bind-latest",
+      "versions": [
+        {
+          "key": "ties-that-bind-latest",
+          "label": "The Ties That Bind Group — latest R&I",
+          "group": "The Ties That Bind Group",
+          "position": "after-ny",
+          "status": "Most recent post-NY input currently available",
+          "quote": "We have feared that if we ever revealed ourselves as we really were, we would surely be rejected.",
+          "source": "Gray Book p. 44 (Step Five, lines 14-15)",
+          "body": "Most of us came to Narcotics Anonymous with low self-esteem. Using drugs was our solution for the feelings we had about ourselves. Feelings of uselessness and not fitting in happened to us years before we picked up drugs. Using drugs seemed to offer some relief; it helped mask our negative feelings of ourselves and others. When the drugs stopped working we used more to cover up the shaken, frightened people we really were. We rejected ourselves, and we thought we would have been rejected by others if they really got to know us. For us, isolation became our way of life; we felt all alone. After arriving at Narcotics Anonymous we heard the experiences of others, began to identify and started feeling hope. Feeling a part of the fellowship we empathized with others. After taking a fifth step with another human, we started losing our fears about others getting to know us as we really are. We started to develop compassion for others, accepting them where they are. The members that were here before us loved us unconditionally as we started loving ourselves. As we practice the spiritual principles contained in the steps with our sponsors and the God of our own understanding, we found self-acceptance",
+          "moment": "Through self-acceptance we stop rejecting ourselves. We will also lose the fear of being rejected by others. Today in the fellowship we are not alone.",
+          "proofread": true,
+          "proofreadNote": "Obvious spelling, punctuation, and typographical errors were corrected for web presentation; substantive content was not intentionally changed."
+        }
+      ]
+    },
+    "01-17": {
+      "defaultVersion": "ties-that-bind-latest",
+      "versions": [
+        {
+          "key": "ties-that-bind-latest",
+          "label": "The Ties That Bind Group — latest R&I",
+          "group": "The Ties That Bind Group",
+          "position": "after-ny",
+          "status": "Most recent post-NY input currently available",
+          "quote": "We were searching for an answer. We reached out and found the hand of Narcotics Anonymous.",
+          "source": "Gray Book p. 25 (Why Are We Here, lines 24-25)",
+          "body": "We were looking for something, though we didn't know what it was yet. We came to our first meeting not knowing we were lost. We just wanted to stop hurting. Not knowing what to expect, we were apprehensive. Though our first meeting was not what we thought. We were glad it was not what we really expected. We had expectations, but feeling welcomed was not one of them. We were invited in, at the door, setting us at ease a little bit. Then we heard others speaking about some ideas we had thought. Wow! Hearing from others, having thoughts and feelings like ours, made us feel a little more comfortable. We had not felt this welcomed or understood maybe ever. We introduced ourselves to the group. The next meeting someone called us by our name. Wow! Someone, anyone, remembered our name? Amazing! They all told us: “Keep coming back!”. After someone else shared to the group, they were also told “Keep coming back!” Could we have finally found a place that would accept us as we really were? There and then we decided to continue showing up at meetings. At our next meeting we found ourselves asking questions. Eventually we even laughed about our exploits with others. Then, after a meeting one evening we were asked if we wanted to go out after the meeting for coffee and pie. After all this and more, we realize we really do belong in the NA Fellowship.",
+          "moment": "Feeling welcomed and energetic about Narcotics Anonymous and the fellowship, we share with others how we feel about NA.",
+          "proofread": true,
+          "proofreadNote": "Obvious spelling, punctuation, and typographical errors were corrected for web presentation; substantive content was not intentionally changed."
+        }
+      ]
+    },
+    "01-18": {
+      "defaultVersion": "ties-that-bind-latest",
+      "versions": [
+        {
+          "key": "ties-that-bind-latest",
+          "label": "The Ties That Bind Group — latest R&I",
+          "group": "The Ties That Bind Group",
+          "position": "after-ny",
+          "status": "Most recent post-NY input currently available",
+          "quote": "Continuing to take personal inventory means that we form a habit of looking at ourselves...",
+          "source": "Gray Book p. 57 (Step Ten, lines 14-15)",
+          "body": "Our tenth step implies we continue to take a personal inventory. All the steps in Narcotics Anonymous are inventory steps. Starting from step one, we looked at our using and the trouble it caused us. In step two we began looking at others to help us come to believe in a power greater than ourselves. In the third we decided to accept guidance from a God of our own understanding. In step four we began looking at our past relationships with people, places, things and our relationship with reality. On step five, we saw what we had become, and with the help of our sponsors and our Higher Power, we worked toward our personality change in steps six and seven. Recovery in Narcotics Anonymous is a daily reprieve, so, living the steps is a continuous cycle. We continue monitoring our attitudes and behaviors and apply the correct principles for change. Recovery in Narcotics Anonymous is a constant removal and replacing old with the new. We get in the habit of looking at ourselves and practicing these spiritual principles, until this habit becomes automatic. Our lives are transformed. We become different people.",
+          "moment": "We will continue practicing the habit of looking at ourselves through a tenth step inventory.",
+          "proofread": true,
+          "proofreadNote": "Obvious spelling, punctuation, and typographical errors were corrected for web presentation; substantive content was not intentionally changed."
+        }
+      ]
+    },
+    "01-19": {
+      "defaultVersion": "ties-that-bind-latest",
+      "versions": [
+        {
+          "key": "ties-that-bind-latest",
+          "label": "The Ties That Bind Group — latest R&I",
+          "group": "The Ties That Bind Group",
+          "position": "after-ny",
+          "status": "Most recent post-NY input currently available",
+          "quote": "As we begin to live in the present, burdens of the past and anxieties of the future slip away.",
+          "source": "Gray Book p. 147 (Chapter Nine, lines 26-28)",
+          "body": "As active addicts we obsessed about everything. It is the disease of addiction. We never lived in the moment even when we were getting loaded; our minds were always thinking about the next drug use. Not living in the moment caused us to live a life filled with emotional instability. We caused our own chaos. The disease of addiction had us in its grip. When we found Narcotics Anonymous, we were told to live in the here and now. It was not easy to stop thinking about the wreckage of our past. We were not too thrilled about the future either. Feeling doomed and hopeless, we returned to a God of our own understanding to relieve our obsessions. Living the program allows us to focus on the present moment. We again begin feeling that all will be well. We no longer feel the need to carry the burdens of the past or the worries of the future. While turning our will and life over to the care of God as we understand Him, our faith grows. Through faith, we continue living in the here and now.",
+          "moment": "Serenity happens by trusting God. This will give us the ability to live in the moment.",
+          "proofread": true,
+          "proofreadNote": "Obvious spelling, punctuation, and typographical errors were corrected for web presentation; substantive content was not intentionally changed."
+        }
+      ]
+    },
+    "01-20": {
+      "defaultVersion": "ties-that-bind-latest",
+      "versions": [
+        {
+          "key": "ties-that-bind-latest",
+          "label": "The Ties That Bind Group — latest R&I",
+          "group": "The Ties That Bind Group",
+          "position": "after-ny",
+          "status": "Most recent post-NY input currently available",
+          "quote": "At last, with the help of the fellowship and our higher power, we have regained our freedom.",
+          "source": "Gray Book p. 160 (Chapter Ten, lines 27-28)",
+          "body": "As using addicts, we lived in our self-made prisons. The disease of addiction had us trapped in a vicious cycle: the getting and using and finding the means to use more. The disease had trapped us in our own minds. We gave up a little of ourselves every time we used. We had no control. We were slaves to addiction, and saw no way out. We became hopeless and helpless. Our prison was self-imposed, and surrender to Narcotics Anonymous was the key. After finding Narcotics Anonymous we were told we never had to use again. We never realized that was a choice. After completing our first step, we were relieved of our drug use. That alone saved our lives, but it was not enough. We needed freedom from our mental prisons. The first step was the key to opening our closed minds. The second step prepared us to surrender. The third step gave us the courage to put that surrender into action. With the help of our sponsors and the God of our own understanding, we continued working the Narcotics Anonymous program. With each step we experience more freedom. Each day we surrender at a deeper level. Surrender had to be followed by action to be complete and total. We applied these principles and found hope.",
+          "moment": "We realized drugs were no longer the answer. We found freedom in Narcotics Anonymous and we must continue this path to keep it.",
+          "proofread": true,
+          "proofreadNote": "Obvious spelling, punctuation, and typographical errors were corrected for web presentation; substantive content was not intentionally changed."
+        }
+      ]
+    },
+    "01-21": {
+      "defaultVersion": "ties-that-bind-latest",
+      "versions": [
+        {
+          "key": "ties-that-bind-latest",
+          "label": "The Ties That Bind Group — latest R&I",
+          "group": "The Ties That Bind Group",
+          "position": "after-ny",
+          "status": "Most recent post-NY input currently available",
+          "quote": "Unity is a reality in Narcotics Anonymous.",
+          "source": "Gray Book p. 91 (Tradition One, line 32)",
+          "body": "We gather in the spirit of unity. Unity means oneness and it welcomes diversity. It is a spiritual principle that we must practice. When we put our common welfare first, our personal welfare benefits. Our personal welfare depends on our shared purpose. We find strength in togetherness. We cannot recover alone. Our self-sufficient attitudes had to go. Without unity we found our lives reverting back to selfish ways. Those who isolate from the fellowship find rough roads back to pain and misery. Staying active in the fellowship promotes unity and that helps us stay clean. With the help of sponsorship we experience unity unlike anything we have ever known. This relationship helps us to reach out to others in the local fellowship. We also go to meetings out of town and we strengthen our unity there also. In our new way of life it is important to remain connected with others on a similar path. Although how we got here differs from one addict to the next, we find common themes in our recovery. As we work our programs and continue to be of service to the fellowship, we support the survival of Narcotics Anonymous as a whole. In This Moment: We will put the common welfare of Narcotics Anonymous in front of our individual wants. No one person is more important than Narcotics Anonymous as a whole.",
+          "moment": "",
+          "proofread": true,
+          "proofreadNote": "Obvious spelling, punctuation, and typographical errors were corrected for web presentation; substantive content was not intentionally changed."
+        }
+      ]
+    },
+    "01-22": {
+      "defaultVersion": "ties-that-bind-latest",
+      "versions": [
+        {
+          "key": "ties-that-bind-latest",
+          "label": "The Ties That Bind Group — latest R&I",
+          "group": "The Ties That Bind Group",
+          "position": "after-ny",
+          "status": "Most recent post-NY input currently available",
+          "quote": "We want to learn to do the things that will transform us into self- affirming people.",
+          "source": "Gray Book p. 26 (Chapter Three, lines 32-33)",
+          "body": "The Basic Text implies Narcotics Anonymous is a program for learning. It is also a program for unlearning. For most of us while in active addiction, our perceptions and perspectives changed. Our literature implies that during active addiction, we forgot social graces. Our living skills were reduced to the animal level. We acquired and learned strange habits and mannerisms. It continues to describe how we forgot to play, feel, and show concern for others. The disease of addiction is not a moral dilemma. It affected most of us. Our spirit was broken before we began using drugs. Our burdened spirit was probably the main reason we used in the first place. Now clean and practicing the spiritual principles contained in the steps and traditions of Narcotics Anonymous, we have to begin all over again. The only thing we have to change about ourselves is everything. First, we learn not to use drugs, then we learn about ourselves, others, the world around us, and most importantly, we learn with each other. As we continue in our journey, we are constantly reforming and challenging our thoughts, feelings, and actions.",
+          "moment": "We will unlearn our ways from active addiction. NA is a program for learning about ourselves, others, and a God of our own understanding. We will continue learning this new way of life, and about God’s will for us.",
+          "proofread": true,
+          "proofreadNote": "Obvious spelling, punctuation, and typographical errors were corrected for web presentation; substantive content was not intentionally changed."
+        }
+      ]
+    },
+    "01-23": {
+      "defaultVersion": "ties-that-bind-latest",
+      "versions": [
+        {
+          "key": "grateful-wake-up-p118",
+          "label": "Grateful Wake Up Group — historical R&I",
+          "group": "Grateful Wake Up Group of NA, Norfolk, Nebraska",
+          "position": "before-ny",
+          "status": "Historical Review & Input preceding the NY project edition",
+          "historicalDate": "",
+          "sourceDocumentPage": 118,
+          "quote": "In This Moment: Our belief grows as we recover in NA learning how to stay on the NA path. \"This lack of daily maintenance can show up in many ways. As our lives become more comfortable, many of us lapse into spiritual complacency, and we find ourselves in the same horror and loss of purpose from which we came. We forget we are given only a daily reprieve. We must ask for help each morning and remember to thank God at night. If we do not maintain our spiritual condition daily, some of us find the resulting pain and confusion lead to a return to drugs and our old way of life. Some have made it back from relapses ... many have not.\" Gray Book",
+          "source": "pg 144 lines 21-30",
+          "body": "When we came to NA our daily maintenance consisted of one thing....the getting and using and finding ways and means to use. We went to any lengths to get drugs yet expect recovery to happen by osmosis. There are days when we may wake up, rushing and forgetting to thank our Higher Power for another day clean. The days we don’t start our day with prayer and meditation, a lack of gratitude can sink in. We allow ourselves to fall into complacency, when we forget to be grateful and rob ourselves from staying in the moment. This complacency pulls us further away from our recovery and from the basics that got us and kept us clean in the beginning. Complacency is dangerous for an addict. Skipping Step work, prayer, meditation, meetings and not reaching out to another recovering addict are signs of a lack of daily maintenance. We no longer participate in any Group or individual service. Many have said they were baffled at how they lost their way, while others have been heard to say they simply stopped their daily maintenance. Some of us have heard a common theme and that was a loss of connection.... with the \"fellowship, with their Higher Power, with others in general.\" It seems the return to isolation as in our past was a common factor for many. So due to lack of daily spiritual maintenance when life on life's terms becomes overwhelming and we're feeling burnt out through personal responsibilities, we can create a sense of alienation towards meetings because we stop doing what we're doing. We pull further into isolation. Prayer and meditation feel meaningless and trying to stay connected with other addicts becomes difficult. Through daily maintenance when things do feel hard, renewing our commitment to recovery won't be as challenging. Long clean time can be an extremely dangerous place for addicts as it can lead to complacency. This is why we see so many come and go from the rooms. Some of us have heard the first year is free. Now it is time to put in the work. Just like everything in life we must learn consistency to grow. Some of our long timers have been heard\n\nto say when asked: How did you do it? What is the secret? The reply: \"Stick to the Basics\". Keeping it simple is a gift that some forget. What we hopefully learned in our early days, works as well now as it did in the past. They say a grateful addict never uses. When we lose our gratitude, we forget the hard work it took to get to a point of freedom. By waking up and beginning our day in prayer and meditation, we acknowledge our Higher Power and all the beauty in our lives. We learn how to practice the principles in all our affairs by utilizing the 5 tools: we call addicts, pray, read NA literature, write Steps and attend meetings. These tools have never failed when implemented daily.",
+          "moment": "We can’t stay clean on yesterday's shower just like we can’t stay clean on yesterday's recovery. It is essential for us to stay in the basics and to put forth the effort to stay clean on a daily basis, despite what’s happening in our lives.",
+          "mappingConfidence": 0.008,
+          "dateNote": "The source document states that its written dates are for historical purposes; calendar placement here is mapped by the Grey Book quotation/source to the NY project edition."
+        },
+        {
+          "key": "ties-that-bind-latest",
+          "label": "The Ties That Bind Group — latest R&I",
+          "group": "The Ties That Bind Group",
+          "position": "after-ny",
+          "status": "Most recent post-NY input currently available",
+          "quote": "This lack of daily maintenance can show up in many ways.",
+          "source": "Gray Book p. 144 (Chapter Nine, lines 21-22)",
+          "body": "The program of Narcotics Anonymous is a twenty-four hour program. We arrest the disease of addiction just for today. We renew our commitment to our recovery on a daily basis. When we go to bed at night, we review our day, our actions, reactions, and attitudes. We check where we could have handled situations better than we did. We take inventory to see if we need to make an amends to someone. This consistent monitoring of our attitudes and behaviors is only half of our daily maintenance. The other half of our daily maintenance is the actual practice of our spiritual principles in all our affairs. We start the next day as soon as we open our eyes. We start with gratitude for waking up. We ask for the strength from the God of our own understanding, to walk the walk. The more we live the spiritual principles embodied in the Narcotics Anonymous program, the less chance our disease will get the best of us. The relapse process usually begins with the loss of our spirituality. We stop being grateful for the things we have. We stop praying. We start to lose patience with people, places, and things. Worrying becomes prayer replacement. Our behavior with ourselves and others will begin to change, then the chaos starts. A lapse in our spirituality can lead to physical relapse. A return to the basics is the only thing that can save us at this point. Taking an immediate inventory can keep us on the right track to move forward. We reconnect with our Higher Power. We renew our surrender to the principles of Narcotics Anonymous, and the recovery process begins again. Helping another suffering addict gets us out of our diseased thinking. We will continue moving forward on this spiritual path by continuing to surrender. We will practice these spiritual principles just for today.",
+          "moment": "",
+          "proofread": true,
+          "proofreadNote": "Obvious spelling, punctuation, and typographical errors were corrected for web presentation; substantive content was not intentionally changed."
+        }
+      ]
+    },
+    "01-24": {
+      "defaultVersion": "ties-that-bind-latest",
+      "versions": [
+        {
+          "key": "ties-that-bind-latest",
+          "label": "The Ties That Bind Group — latest R&I",
+          "group": "The Ties That Bind Group",
+          "position": "after-ny",
+          "status": "Most recent post-NY input currently available",
+          "quote": "Addiction isolated us from people except for the getting, using, and finding ways and means to get more.",
+          "source": "Gray Book p. 7 (Chapter One, lines 12-13)",
+          "body": "In active addiction as our using progressed, our world seemed to get smaller and smaller. As time went on and our disease progressed, we used to live and lived to use. We lost our jobs and became separated from our families and friends. Toward the end we spent a lot of time involved in getting and using drugs. When we ran out of drugs, we spent all our time finding ways and means to get more. One of the traits of addiction is isolation. The disease separated us from our loved ones. Some of us no longer enjoyed hobbies or leisure activities. We forgot how to have fun. Using became our priority and we felt we had no choice in our own destruction. We were powerless over our addiction, and our lives became unmanageable. Many of us became homeless and found ourselves in the streets living in degradation. The most painful part was the isolation our spirits suffered. We had lost ourselves. Eventually, we found Narcotics Anonymous meetings. We found people similar to us in N A. We finally felt a part of something special. We no longer felt alone. This was the end of our isolation. With the help of Narcotics Anonymous, our world began to grow. Some of us became employable, and some of us got our families back. We began to make new friends and participated in our lives, carrying us forward in our new spiritual journey. Moving forward, we must live the principles of Narcotics Anonymous. We must also share this gift with those suffering addicts that seek help. We never have to feel isolated again. In Narcotics Anonymous we are never alone.",
+          "moment": "Our lives as recovering addicts consist of fellowship, family, friends, and our Higher Power. Today we choose recovery instead of isolation.",
+          "proofread": true,
+          "proofreadNote": "Obvious spelling, punctuation, and typographical errors were corrected for web presentation; substantive content was not intentionally changed."
+        }
+      ]
+    },
+    "01-25": {
+      "defaultVersion": "ties-that-bind-latest",
+      "versions": [
+        {
+          "key": "ties-that-bind-latest",
+          "label": "The Ties That Bind Group — latest R&I",
+          "group": "The Ties That Bind Group",
+          "position": "after-ny",
+          "status": "Most recent post-NY input currently available",
+          "quote": "The only way to be rid of a resentment is to develop humility, in the form of forgiveness",
+          "source": "Gray Book p. 76 (Step Twelve, lines 10-11)",
+          "body": "Resentment is an internal burden that only weighs down the one carrying it. We must begin the process of forgiving ourselves and others. We started our transformation when we admitted our powerlessness over our addiction. We refine and strengthen our resolve in steps six and seven. At this point, we are able to forgive and be forgiven by others. Our resentments start fading. We become accountable for our addiction. We also become more willing for recovery when we ask the God of our own understanding to relieve our obsession to use. Our decision to turn our will and life over to God is the beginning of humility. Asking for help made us aware of our own humanity as we develop compassion for others. Patience and tolerance with ourselves helps us to practice these principles toward others. Forgiving others releases us from the bondage of resentment. We begin seeing that forgiveness is really for ourselves.",
+          "moment": "We are released from our resentments by forgiving others. Today with the program and our Higher Power we can live happy, joyous, and free.",
+          "proofread": true,
+          "proofreadNote": "Obvious spelling, punctuation, and typographical errors were corrected for web presentation; substantive content was not intentionally changed."
+        }
+      ]
+    },
+    "01-26": {
+      "defaultVersion": "ties-that-bind-latest",
+      "versions": [
+        {
+          "key": "ties-that-bind-latest",
+          "label": "The Ties That Bind Group — latest R&I",
+          "group": "The Ties That Bind Group",
+          "position": "after-ny",
+          "status": "Most recent post-NY input currently available",
+          "quote": "We went from a state of drugged success and well-being to complete spiritual, mental and emotional bankruptcy.",
+          "source": "Gray Book p. 13 (Chapter One, lines 28-30)",
+          "body": "At first, we used drugs and then drugs used us. Upon our spiritual awakening, our experiences show us that the disease was present long before we used drugs. Step four revealed that we suffered from a disease that led to spiritual decay. For a while many of us thought drugs were the solution; they saved us from ourselves. The drugs helped us survive our feelings and our emotions. We used drugs to fill the void in our lives. The drugs only made our void larger and our lives more painful. After a while, the drugs stopped working. The drugs started using us. Using drugs became our way of life. We suffered emotionally, spiritually, mentally, physically, and our lives became unmanageable. Many of us ended up in jail, institutions, degradation and some died. After trying everything with no success, we stumbled into Narcotics Anonymous. For most of us, it was the last house on the block. In NA, we met people who, like us, suffered from the horrors of addiction. The NA fellowship had a solution and shared it with us. The first thing we had to do was stop using drugs in any form. This leaves a hole inside. We must seek something to fill the void the drugs left. Realizing a power greater than ourselves could relieve us of our obsession to use is essential. We found our solution that eluded us all our lives. A spiritual solution to a spiritual problem called addiction. Our spirits awaken and we come to know a life we never realized was possible before. Recovery in NA leaves us in a better condition than before we got sick. We are welcomed back to the land of the living. We share this message of hope and promise of freedom with others to keep our precious gift.",
+          "moment": "We will stay in the solution. We will keep our spiritual awakening progressing by continuing to practice the program.",
+          "proofread": true,
+          "proofreadNote": "Obvious spelling, punctuation, and typographical errors were corrected for web presentation; substantive content was not intentionally changed."
+        }
+      ]
+    },
+    "01-27": {
+      "defaultVersion": "ties-that-bind-latest",
+      "versions": [
+        {
+          "key": "grateful-wake-up-p131",
+          "label": "Grateful Wake Up Group — historical R&I",
+          "group": "Grateful Wake Up Group of NA, Norfolk, Nebraska",
+          "position": "before-ny",
+          "status": "Historical Review & Input preceding the NY project edition",
+          "historicalDate": "",
+          "sourceDocumentPage": 131,
+          "quote": "In This Moment: We have found a new strength in NA that we never thought we possessed but now know it was always inside us waiting to show itself. We are so grateful for NA every single day we are clean. NA is now home to us. Now and as long as we keep coming back. \"These old ways have to go if we are to find new lives. We will successfully face the days to come if we take advantage of the help the program of Narcotics Anonymous has to offer.",
+          "source": "Gray Book pg 80 lines 19-22",
+          "body": "When we came into NA most of us had shut ourselves off from other's ideas. We may not have realized it at the time, but we were stuck in our thoughts, our ways, etc that open-mindedness was not something most of us had. When first walking through the doors of NA we really had no idea of how the program worked. We had heard that it could possibly help with our disease which is addiction. We had to be willing to try new things because what we had done in the past was clearly not working. Our environment was an excuse to use in the past. We know there is no excuse to use today. It is known that today we are responsible for our own recovery. If something is helping us not be Grateful then we need to find solutions to keep recovering by all means necessary. We step out in faith and take the actions necessary to change.\n\nWe were told that being openminded was a big part of recovery. First, we had to get open to the idea that we are addicts and that using drugs was not a solution for life. Then, we had to get past all the resentments we had towards a Greater Power, so we could find a new way to live. A way of life based in\n\nspiritual principles not in our own thoughts and opinions. After we were able to get some open mindedness, we now were ready to get into action.\n\nRecovery is an active change in our attitudes. New places, new things, new people. Proper preparation prevents poor performance. God is the main ingredient in our recipe of recovery. We don't give up, no matter what, we stay clean.",
+          "moment": "Taking the suggestions of others and living differently than from our past, we had changed our lives into something we may not have thought possible. We had found a way to live.....the NA way.",
+          "mappingConfidence": 0.009,
+          "dateNote": "The source document states that its written dates are for historical purposes; calendar placement here is mapped by the Grey Book quotation/source to the NY project edition."
+        },
+        {
+          "key": "ties-that-bind-latest",
+          "label": "The Ties That Bind Group — latest R&I",
+          "group": "The Ties That Bind Group",
+          "position": "after-ny",
+          "status": "Most recent post-NY input currently available",
+          "quote": "These old ways have to go if we are to find new lives.",
+          "source": "Gray Book p. 80 (Chapter Five, line 19)",
+          "body": "Our character defects were the tools of addiction. These defects made it possible for us to survive our old way of life. Drugs were our solution for a long time before they turned against us. To survive our addiction, we lived by our defects. Narcotics Anonymous is more than just not using drugs and it is not a drug program. NA is a recovery program. In Narcotics Anonymous we are given a new set of tools and they are necessary for our new way of life. Some useful tools are spiritual awakenings, a relationship with a Higher Power, and a relationship with reality. Our old tools do not work in our recovery. Our Gray Book states, \"Letting go of character defects should be done with love.” Fear and hate cannot give us new lives. We no longer need those old survival skills as we are now doing more than just surviving; we are beginning to live rightly. Narcotics Anonymous offers us simple spiritual principles we must practice to continue on this spiritual path.",
+          "moment": "We must keep these new tools polished by continuously using them and sharing them with others or we revert to our old ways.",
+          "proofread": true,
+          "proofreadNote": "Obvious spelling, punctuation, and typographical errors were corrected for web presentation; substantive content was not intentionally changed."
+        }
+      ]
+    },
+    "01-28": {
+      "defaultVersion": "ties-that-bind-latest",
+      "versions": [
+        {
+          "key": "ties-that-bind-latest",
+          "label": "The Ties That Bind Group — latest R&I",
+          "group": "The Ties That Bind Group",
+          "position": "after-ny",
+          "status": "Most recent post-NY input currently available",
+          "quote": "The progression of the disease is an ongoing process, even during abstinence, no matter how long.",
+          "source": "Gray Book p. 128 (Chapter Seven, lines 32-33)",
+          "body": "Our literature implies that we have an incurable disease called addiction. It persists for a long time. It is progressive and fatal. The disease is treatable therefore there is hope. In Narcotics Anonymous the first thing we do is stop using drugs. For us, recovery cannot happen unless we are completely and totally abstinent from all drugs. This is a must, if we are to treat the disease. We suffer from a physical, mental, spiritual and emotional problem which needs a spiritual solution. We arrest the disease on a daily basis when we use spiritual principles to recover from the state of hopelessness. We get a daily reprieve depending on our spiritual condition. Each day our recovery resets when we open our eyes and breathe in a new day. Excited, we continue doing the things that worked the day before. No matter how long we have been recovering and abstinent, the disease is progressing and waiting for an opportunity to resurface. Our vigilance develops through surrender and action. We begin to experience freedom from diseased thinking, and we begin to feel serenity as we live by spiritual principles.",
+          "moment": "Once admitting our powerlessness and unmanageability, we open the door to recovery. There is Hope. Just for today, we do recover.",
+          "proofread": true,
+          "proofreadNote": "Obvious spelling, punctuation, and typographical errors were corrected for web presentation; substantive content was not intentionally changed."
+        }
+      ]
+    },
+    "01-29": {
+      "defaultVersion": "ties-that-bind-latest",
+      "versions": [
+        {
+          "key": "ties-that-bind-latest",
+          "label": "The Ties That Bind Group — latest R&I",
+          "group": "The Ties That Bind Group",
+          "position": "after-ny",
+          "status": "Most recent post-NY input currently available",
+          "quote": "Do we understand and believe that we have no real, long term control over drugs?",
+          "source": "Gray Book p. 31 (Step One, lines 23-25)",
+          "body": "If we have no control over drugs, how can we tell ourselves that one day we can use drugs successfully again? One of the ways the disease of addiction manifests itself is in our drug use. Drug use is only one symptom of the disease. This disease affects our spiritual, emotional, mental, and physical state. We are not addicts because we use drugs, we used drugs because we are addicts. Drug use usually comes at the end of the relapse process. The relapse process begins once we stop using some of the principles embodied in the NA program. Chapter Seven in the Basic Text describes the process that starts the spiritual, emotional, mental, and physical decay that occurs before drug use. Addiction is a progressive, incurable and fatal disease that affects every area of our lives. The most obvious sign of the disease is uncontrollable obsession. After that it is just a matter of time unless we do the things needed to arrest this disease that we begin using drugs again. We are granted a daily reprieve from active drug use. This reprieve is dependent on our continuous spiritual maintenance consisting of actions and steps suggested in the Narcotics Anonymous program. For us, the idea we can ever return to safely using drugs must be shattered. These reservations are sometimes hidden beyond our consciousness and can only be accessed by practicing the principles. The actions we take in Narcotics Anonymous relieve our obsession to use drugs. These actions also keep our spiritual awakening and recovery progressing.",
+          "moment": "Through our actions and honesty, we enforce our belief that we never have to use drugs again, just for today.",
+          "proofread": true,
+          "proofreadNote": "Obvious spelling, punctuation, and typographical errors were corrected for web presentation; substantive content was not intentionally changed."
+        }
+      ]
+    },
+    "01-30": {
+      "defaultVersion": "ties-that-bind-latest",
+      "versions": [
+        {
+          "key": "ties-that-bind-latest",
+          "label": "The Ties That Bind Group — latest R&I",
+          "group": "The Ties That Bind Group",
+          "position": "after-ny",
+          "status": "Most recent post-NY input currently available",
+          "quote": "...giving away that which has been given to us -- is our best possible insurance against relapse...",
+          "source": "Gray Book p. 59 (Step Twelve, lines 21-23)",
+          "body": "In Narcotics Anonymous carrying the message of hope to the sick and suffering addict, not only helps save their life, but ours as well. Since the message is meaningless unless we live it, we surely need to practice what we teach. In Narcotics Anonymous we are given the gift that keeps on giving, as long as we keep giving it. One of the ways we carry the message is staying clean. Our surrender of powerlessness over the disease of addiction gives suffering addicts hope that they too can arrest the disease, and then surrender to the principles of N.A. Our surrender to NA principles offers the suffering addict hope in also surrendering into our way of life. Our time on the program serves as a powerful example to others. When others share their recovery with us, it helps reinforce what they have gained. This way of life and the spiritual awakenings we experience are a result of those and other steps. This program is truly a gift from the God of our own understanding. We keep giving our gift to those seeking recovery. In turn, our gift will keep bringing us blessings. As our spirit awakens, we practice the principles of love and service by continuing to help others. Carrying the message of Narcotics Anonymous is the real reason the program exists. This is all we have to offer. This is our primary purpose.",
+          "moment": "Our best insurance against relapse is living the principles of Step Twelve. This step, along with Tradition Twelve, encompasses our entire program.",
+          "proofread": true,
+          "proofreadNote": "Obvious spelling, punctuation, and typographical errors were corrected for web presentation; substantive content was not intentionally changed."
+        }
+      ]
+    },
+    "01-31": {
+      "defaultVersion": "ties-that-bind-latest",
+      "versions": [
+        {
+          "key": "ties-that-bind-latest",
+          "label": "The Ties That Bind Group — latest R&I",
+          "group": "The Ties That Bind Group",
+          "position": "after-ny",
+          "status": "Most recent post-NY input currently available",
+          "quote": "JUST FOR TODAY I will have faith in someone in N.A. who believes in me and wants to help me in my recovery.",
+          "source": "Gray Book p. 143 (Chapter Nine, Just For Today)",
+          "body": "In Narcotics Anonymous, the heart of recovery from addiction is one addict helping another. This is what sponsorship is about, it is a two-way street because it helps both sponsee and sponsor. When we share our recovery with someone else, we enforce our own recovery. When we first came to Narcotics Anonymous our spirits were broken, we felt helpless and hopeless. Here, in N.A., we met people that felt like us but had found a daily reprieve from that hopeless feeling. We were told that we did not have to suffer anymore, we did not have to use, just for that day. We were told that we were not bad people trying to get good; we were sick people trying to get better. The 'we' of the program helps save our lives. The disease had isolated us, and we thought we would die alone and using. Our literature implies that Narcotics Anonymous is like a ship in the sea of isolation. We are not alone, together we are shipwrecked on the same island. We help each other survive from the horrors of addiction that we experienced. One of the suggestions in Narcotics Anonymous is that we find a sponsor to guide us through the steps and traditions. The Basic Text states: \"The ultimate weapon for recovery is the recovering addict.\" A sponsor is like a human map; they know where we came from. They know where we are going, and they show us how to get there. People in Narcotics Anonymous will walk side by side with us, without motives. Just for today, we never have to be alone again. Just for today, we will have faith in someone in N.A.",
+          "moment": "We will seek to be part of this fellowship. We will choose a person that can guide us through the Narcotics Anonymous Program and into a new way of life.",
+          "proofread": true,
+          "proofreadNote": "Obvious spelling, punctuation, and typographical errors were corrected for web presentation; substantive content was not intentionally changed."
+        }
+      ]
+    },
+    "02-02": {
+      "defaultVersion": "ny-project",
+      "versions": [
+        {
+          "key": "grateful-wake-up-p88",
+          "label": "Grateful Wake Up Group — historical R&I",
+          "group": "Grateful Wake Up Group of NA, Norfolk, Nebraska",
+          "position": "before-ny",
+          "status": "Historical Review & Input preceding the NY project edition",
+          "historicalDate": "",
+          "sourceDocumentPage": 88,
+          "quote": "May 4, 2021 \"Goodwill is best exemplified in service and proper service is ''Doing the right thing for the right reason.",
+          "source": "Gray Book Our Symbol par 4 lines 5-7",
+          "body": "The addict mind goes in many directions, sometimes into the future or back into the past, which propels us into selfish ego driven action. Our brains were wired to do anything to get some-thing. In our addiction we were self centered and motivated; professional manipulators to meet our own needs. In recovery we find that being of service to others requires us to place others before ourselves. Anonymity requires us to be of selfless service, to be of use to the next person. Service should never be used as a way to build our egos or make us feel superior to anyone else. This may seem simple however addiction is an insidious disease and we may find ourselves doing the right thing for the wrong reason: sounding good in a meeting, showing off successes to feed the ego. The disease of addiction is egotistical, self-centered and self-obsessed so why is it any surprise that when some get involved in service these traits come out? NA provides a way for addicts to understand what true service is. We have to get to a point where we can let go of our defects in order to be able to serve others. The Gray Book says in Step 12 \"Having had a spiritual awakening as a result of those steps, we tried to carry this message to addicts and to practice these principles in all our affairs.\" We then are able to practice \"these\" principles, our traditions, in all our affairs. We learn how to carry OUR message of recovery from all mind altering, mood changing drugs to those that want it. We don't have to fight for nonexistent virtues anymore as we see how keeping it simple and staying away from our personal opinions has caused us problems in the past. Service is just that........service. We can ask ourselves some simple questions: is this going to separate or unite addicts in seeking recovery? Are we carrying our message or OUR message? How are we being of service to the still suffering addicts? Are we giving hope that the NA way of Total Abstinence works? Are we seeking direction from a loving, caring God or are we acting on self-will? There are lots of great questions we can ask of ourselves while doing service. It is suggested for Groups to do inventory regarding these issues so we can make sure we are doing the right things for the right reason. Our egos can sometimes get in the way when we think we have a great idea for the fellowship. Some find it extremely useful to connect with our Higher Power before presenting our ideas to the group. When we are truly in line with our Higher Power's will, things just seem to flow effortlessly. Contemplating: am I serving the Addict or my own Ego....Am I expecting a return on my time.....do I see the beauty of growth through carrying the message.... do I keep it anonymous? Serving returns what was freely given to us for somebody else to grow from. To multiply growth, we have to share it. Practicing doing the right thing makes it part of our new lives. \"We ask what they want to do about their problem and how we can help?\" We share our experience and welcome them to join us. The 12 steps provide the map, but each individual's personal experience may vary, in fellowship and goodwill we share experience and guide those who join us -- \"each one teach one\". Our recovery experience and literature is given freely with unconditional love and hope. We cannot change the nature of the Addict or Addiction…. We can help to change the old lie Once and addict, always an addict”, by trying to make recovery more available. God, help us to remember the difference.",
+          "moment": "In addiction we gave ourselves away in some form or another and hoped no one was looking. Now the same principle applies to good will. What we do for others in the shadows is what brightens our relationship with the sunlight of the spirit.",
+          "mappingConfidence": 0.011,
+          "dateNote": "The source document states that its written dates are for historical purposes; calendar placement here is mapped by the Grey Book quotation/source to the NY project edition."
+        }
+      ]
+    },
+    "02-12": {
+      "defaultVersion": "ny-project",
+      "versions": [
+        {
+          "key": "grateful-wake-up-p134",
+          "label": "Grateful Wake Up Group — historical R&I",
+          "group": "Grateful Wake Up Group of NA, Norfolk, Nebraska",
+          "position": "before-ny",
+          "status": "Historical Review & Input preceding the NY project edition",
+          "historicalDate": "",
+          "sourceDocumentPage": 134,
+          "quote": "We regretted the past; we feared the future. We were constantly searching for \"the answer\"--searching for meaninglessness and purposelessness. While using, we lacked the ability to cope with day-to-day affairs. As our addiction caught up to us, we found ourselves in and out of hospitals, jails and institutions more and more.",
+          "source": "Gray Book pg 2 lines 15-20",
+          "body": "When we first came to NA relationships were hard to maintain as we asked our spouses and family members to put us first. As time progressed and our disease progressed, we continued to demand more and more time and emotional reassurance until towards the end our family members and lovers had become tired of our constant need for attention. When this happened our attitude towards them became bitter because we did not understand why they were not interested, in helping or listening to us any longer. Most of us didn't even know how to have a relationship with ourselves when we got to NA. We lived in a nightmare world where we were the victims of life. Most of us hated who we were and almost everyone else that we came into contact with. In reality, relationships were non-existent as we were so self-centered how could we relate with others. Empathy was lacking and many of us were just fighting to survive. We had no idea how to live as our way brought us to the rooms seeking help. When we started using we never thought it could cause us to tear apart relationships with family, friends, coworkers, law officials, etc. until the day we hit rock bottom because of our addiction. Without the help of Narcotics anonymous we would still be destroying the community around us piece by piece. from the time we were in active addiction we constantly were tearing families apart, unintentionally harming the people around us and even worse making a name for ourselves (not a good name either). Between the money and so called “fame” it made us feel invincible. That is when the blindfold had been tied into a knot and sealed on tight. We had no idea what our addiction was doing to our mind, body, and even worse\n\nsoul. Addiction was breaking us down and tearing us apart making our lives out to be insane and unstable. We thought that everything was alright until it was gone, and the voices couldn’t talk anymore. It took some time to fully understand the point we had let our life come to be cause of our addiction which started out being used because of the excuse “I just want to feel better and be more efficient.” It took time away from the drugs to see the insanity.\n\nThe question now is \"are we going to accept help or keep trying to do things our way?\". Today as recovering addicts we learn that although recovery at the group level can be a group effort. One addict helping another is without parallel, but at a personal level we as individual addicts are responsible for our own recovery as well as our own happiness. We cannot rely on others to make us feel happy, wanted or needed. This is something that must come from ourselves. Those of us that have found a new way to live understand it comes by learning how to apply the principles of our 12 Steps to every aspect of our lives. We first have to get out of denial. Once we are there we can reach out and find hope. We become willing to change and then start the inventory process to help that change happen.",
+          "moment": "Through the help of prayer, meditation, and the amazing help of NA we realize would have never opened our eyes and would still be in a full-blown active addiction.",
+          "mappingConfidence": 0.012,
+          "dateNote": "The source document states that its written dates are for historical purposes; calendar placement here is mapped by the Grey Book quotation/source to the NY project edition."
+        }
+      ]
+    },
+    "02-15": {
+      "defaultVersion": "ny-project",
+      "versions": [
+        {
+          "key": "grateful-wake-up-p12",
+          "label": "Grateful Wake Up Group — historical R&I",
+          "group": "Grateful Wake Up Group of NA, Norfolk, Nebraska",
+          "position": "before-ny",
+          "status": "Historical Review & Input preceding the NY project edition",
+          "historicalDate": "",
+          "sourceDocumentPage": 12,
+          "quote": "There is one truth which helps guide us. True spiritual principles are never in conflict; they always complement each other.",
+          "source": "Gray Book pg 94 lines 19-21",
+          "body": "Our second step tells us, “through open minded effort we act our way into right thinking letting our Higher Power find us rather than searching for God with only our minds” GB pg 64 L 24-26 We find that when we do this, we rid ourselves of the personalities, prejudices and self-centeredness that can destroy not only ourselves, but our groups and the people closely associated with us. Conflict is friction and pain caused by selfishness. As addicts we were nothing but selfish. When we let go of selfishness and let a Higher Power guide us, we come to realize we are stronger as a group and unstoppable when working together. We are told we will not have to fight for nonexistent virtues anymore. Why fight when spiritual principles are never in conflict? When we Surrender and see we can let go of whatever gets in the way of serenity we can grow together. Our Steps help us grow and our Traditions help us to Surrender the things that cause conflict within our Group. NA helps us Surrender our egos so that we can find the truth rather than continuing to fight for nonexistent virtues. When we first came to NA we were confused and tired persons. We were tired of ourselves, of our old ideas and sick thoughts. Here in NA we've meet people who learned how to solve their problems. They told us that we need to use spiritual principles. Our thinking is distorted by addiction so self-centeredness penetrates in all our decisions. - If we are open-minded & honest with ourselves we will have no problem developing a loving relationship with God, family and friends. We need to hear others messages of hope. The more we improve our conscious contact with God, through prayer and meditation, the more often we pause when doubtful and say “God, WE DONT KNOW WHAT TO DO PLEASE SHOW US WHICH WAY TO GO?” When we finally get our own selfish motives out of the way, and pray for guidance we begin to find peace. We begin to feel a calm joy. We begin to experience awareness and an empathy with other people that would never be possible using drugs.",
+          "moment": "We practice spiritual principles and we allow the light to shine upon them.",
+          "mappingConfidence": 0.012,
+          "dateNote": "The source document states that its written dates are for historical purposes; calendar placement here is mapped by the Grey Book quotation/source to the NY project edition."
+        }
+      ]
+    },
+    "03-20": {
+      "defaultVersion": "ny-project",
+      "versions": [
+        {
+          "key": "grateful-wake-up-p84",
+          "label": "Grateful Wake Up Group — historical R&I",
+          "group": "Grateful Wake Up Group of NA, Norfolk, Nebraska",
+          "position": "before-ny",
+          "status": "Historical Review & Input preceding the NY project edition",
+          "historicalDate": "",
+          "sourceDocumentPage": 84,
+          "quote": "04.06.21 We had no trouble admitting that addiction had become a destructive power greater than ourselves. It logically follows that there can also be a constructive power greater than ourselves",
+          "source": "GB p 35 L34 - P36 L1",
+          "body": "We had no trouble handing our will, and our literal life over to a dealer to give us any chemical to put in our bodies. We surrendered to drugs over and over every day. We did not care what it was. We were willing to take the chance that it may very well kill us but the chance at a high was more important to get high than living. We woke up and used. We went to work and used. We used to live and lived to use. Many of us have used heavily since we were young and still don’t get it. Some of us died or were hospitalized for periods of time , treatment after treatment, moving to different states running from problems, Where ever we went there we were. We had so many chances We didn't think we deserved, and some of our families eventually gave up on us as well, Addiction is what we think. Our thinking is what destroys us. We may think that we are the ugliest people in the world who doesn't deserve from god more than suffering and our tedium of our lives. We may have spent HOURS locked in a bathroom or closet and then have the audacity to get mad when others ask us to get off our pity pot and attend to our responsibilities such as taking care of our children crying in the next room. We were disgusted when we think of how enslaved we were to our addiction. We tried substituting this and that - it doesn’t matter - We were sick, we loved to get high but hated the consequences. We finally are so over it.NA may be our last chance to get this.. We found that we needed to accept a power greater than ourselves. Many of us had a problem handing our will and our lives over to a higher power for the purpose of recovery. we sought but we could not seem to find a power that we were willing to surrender to. we knew this needed to happen to recover but at times some of us struggle with this conflict every day. We had a a lot of ideas regarding a higher power before entering NA not all of which were positive. We heard from our new friends that the only requirement of a higher power was that it be a loving entity. Seeing others who came into the rooms demonstrate the reality that there was something working in their lives gave many of us the hope to take the leap of faith that it could help us too. We turned to help from the power we found in these meetings. It was a starting point the rest of the steps were the pathway and the tools to develop a relationship with a higher power to sustain us. Eventually, we realized that we didn't use drugs...the drugs use us. This was possibly our first admittance that there was a power greater than ourselves that we couldn't control. When we simplify things it is clear how drugs ran our lives. We eventually are able to see how it wasn't just the drugs, but the disease of addiction that ran our lives. We could see our powerlessness and unmanageability for what it is. In NA we don't stay stuck in the problem. We seek solutions and for there to be any solutions we have to seek them out. Talking about change doesn't make change. Inevitably we tend to take our will back and again have to surrender again and again. As addicts we tend to lean towards a ‘one and done’ mentality, but our Higher Power doesn’t work that way We come to find that there are spiritual principles that are relevant no matter what Greater Power we believe in. Honesty, Open Mindedness and Willingness to try stick out as our first solutions. We learn Surrender is a spiritual principle and that letting go of our ego is always the solution. We can see how the program and the power in having others that have been there done that can help us change our lives. Narcotics Anonymous gives us the gift of belief that there is a power greater than ourselves that we can turn to. We find not all powers greater than us are negative. We come to believe in this power greater than us as we grow. Sometimes our thinking has more of a higher purpose, we are thinking about carrying the message. One addict shared \"What is my message? I don't even know sometimes\". Our message is the NA message. We surrender \"my program\" for \"our program\". We just stay clean even when it doesn't seem worth it. We may not always feel connected with God or a power greater than ourselves. Because we are human and experience living problems. We find a Power greater than ourselves in anything that helps us make one more clean day.",
+          "moment": "Surrendering to a Power greater than ourselves can be a confusing process because it’s not a one time deal. this kind of relationship can not be finalized-it is infinite.",
+          "mappingConfidence": 0.007,
+          "dateNote": "The source document states that its written dates are for historical purposes; calendar placement here is mapped by the Grey Book quotation/source to the NY project edition."
+        }
+      ]
+    },
+    "05-11": {
+      "defaultVersion": "ny-project",
+      "versions": [
+        {
+          "key": "grateful-wake-up-p8",
+          "label": "Grateful Wake Up Group — historical R&I",
+          "group": "Grateful Wake Up Group of NA, Norfolk, Nebraska",
+          "position": "before-ny",
+          "status": "Historical Review & Input preceding the NY project edition",
+          "historicalDate": "",
+          "sourceDocumentPage": 8,
+          "quote": "We remember our part in the divine partnership with God and we are more tolerant and patient with other people.",
+          "source": "Gray Book, p. 56 Lines 28-29 Step Eleven",
+          "body": "Our recovery is our contract with the God of our own understanding, not with anyone or anything else. We pleaded through our surrender in the First Step to get clean. We begged for the obsession to use to be lifted in the Second Step. Now in our Third Step decision, we are deciding to form a partnership with this loving, caring power we met in the prior Step. We call on our Higher Power for strength and guidance as we surrender to the spiritual principles of Narcotics Anonymous. Throughout our recovery we fall short because we're human. We fall short because we suffer from an incurable disease called addiction. Since this disease manifests itself in every area of our lives, we need to live by spiritual principles, in every area of our lives. We need to maintain a conscious contact with our Higher Power to achieve the power to live by spiritual principles. When we fall short, we ask the God of our own understanding, first to forgive us and second to give us the power and courage not to fall short. If we are asking God to be patient and tolerant with us when we fall short, we must apply the same principles to ourselves and others. We have to remember that other people, like us, are still growing emotionally. It would be senseless to get angry or have great expectations from people who like us, are suffering from growing pains. Patience and tolerance are things that are not contained in us, we get it from outside ourselves. We get it from the God of our own understanding, if we ask for it.",
+          "moment": "The same patience and tolerance that we ask for ourselves, we ask for others as well.",
+          "mappingConfidence": 1.0,
+          "dateNote": "The source document states that its written dates are for historical purposes; calendar placement here is mapped by the Grey Book quotation/source to the NY project edition."
+        }
+      ]
+    },
+    "06-09": {
+      "defaultVersion": "ny-project",
+      "versions": [
+        {
+          "key": "grateful-wake-up-p44",
+          "label": "Grateful Wake Up Group — historical R&I",
+          "group": "Grateful Wake Up Group of NA, Norfolk, Nebraska",
+          "position": "before-ny",
+          "status": "Historical Review & Input preceding the NY project edition",
+          "historicalDate": "",
+          "sourceDocumentPage": 44,
+          "quote": "March 30, 2021 “There exists no model of the recovered addict. When the drugs go and the addict works the program, wonderful things happen. Lost dreams awaken and new possibilities spring.” (",
+          "source": "Gray Book P. 142 L 1-4)",
+          "body": "As the Grey Book says \"an addict is a man or woman whose life is controlled by drugs\" It left no room for other activities. It was true in our using now that we are clean, what will we do with our time? We may chase jobs, money, relationships however most of all we need to get well with ourselves inside. NA does not require following any model. We came and stayed willingly. When using we tried to get approval from our families, our employers & our friends. When we focus on others “vision for us” or \"expectations\" we may begin to resent or feel frustrated in our efforts to please others. This comes from lack of self acceptance. We were shattered personalities and we thought if we found good role modelsand acceptance everything would be fine.When the drugs are gone and we seek out a way to fill the gaping hole left behind. We are directed to the steps and traditions as a way to heal the emptiness we experienced when we stopped using drugs and stopped making excuses. When the fog clears and the dust settles the addict, once dormant is awakened to the sunlight of the spirit. Any feelings the drugs kept submerged-in recovery rises to the surface to shine the light of hope for ourselves and others. As we get clean our hopes and dreams wake up again and we are able to achieve things we never thought possible. Not focusing on others response or validations allows us to truly be and give of ourselves without reservations and be of selfless service. Good things happen at the most unexpected times. Bad experiences often hold a silver lining. When we apply principles in our lives, we can see new things, where we can put our efforts and strengths, to do the next right thing and to help the still suffering addict. Such things are rewarding because we can stay clean and develop our lives, friends, fun and communication. It is in Narcotics Anonymous that the chains of addiction are lifted and the addict can finally rise from the ashes. Everyone recovers in their own way and in their own time.",
+          "moment": "Just as each has their own experience with the steps, recovery also has it’s uniqueness. As we develop our spiritual practice we ask for direction and guidance; developing our personal vision & purpose.",
+          "mappingConfidence": 0.023,
+          "dateNote": "The source document states that its written dates are for historical purposes; calendar placement here is mapped by the Grey Book quotation/source to the NY project edition."
+        }
+      ]
+    },
+    "07-01": {
+      "defaultVersion": "ny-project",
+      "versions": [
+        {
+          "key": "grateful-wake-up-p91",
+          "label": "Grateful Wake Up Group — historical R&I",
+          "group": "Grateful Wake Up Group of NA, Norfolk, Nebraska",
+          "position": "before-ny",
+          "status": "Historical Review & Input preceding the NY project edition",
+          "historicalDate": "",
+          "sourceDocumentPage": 91,
+          "quote": "In our addiction, we feared change because we had lost control of our lives and most changes were for the worst.",
+          "source": "Gray Book pg 84 lines 5-6",
+          "body": "One of our biggest fears coming into the rooms is change and we have to change everything to find a new way to live. As addicts we all have control issues. The control of people, places and things was just part of our being. Living in fear was the result of a loss of control. Our adversity to change in our lives was a big part of the Total Fear we lived within. Change in our lives meant a loss of control of a certain aspect of our lives. When it happened, it added to our total desperation.\n\nSome of us thought we loved change and lived for the adrenaline and excitement that comes with the addict lifestyle. What some came to find out was that others feared change. No matter where we were our lives were a mess, and we couldn't face it. In addiction it seemed like every time something changed in our lives, things got worse. We had no clue how to live. Our way wasn't working.\n\nWe come to a place where we embrace the new with an open mind and we let go and feel comfortable with ourselves in any situation. We do this by getting honest with ourselves and others. We now were willing to let go. We admitted and accepted our life was unmanageable. Many of us found the Gift Of Desperation that is needed for us to be willing to try something new. Then we truly understood we need a power greater than ourselves to help us continue on. Nothing we were doing on our own took away the insanity. It had to be a power greater than ourselves that helps us come to believe we could be restored to sanity. That open-mindedness led us to the willingness that is needed to continue. This is H.O.W. we learned to live and it continues with learning more and more about how to live with ourselves and eventually how to live with others.",
+          "moment": "Self deception was a way of life for us to survive, but we don't have to survive any more we get to live a life we choose.",
+          "mappingConfidence": 0.007,
+          "dateNote": "The source document states that its written dates are for historical purposes; calendar placement here is mapped by the Grey Book quotation/source to the NY project edition."
+        }
+      ]
+    },
+    "07-03": {
+      "defaultVersion": "ny-project",
+      "versions": [
+        {
+          "key": "grateful-wake-up-p118",
+          "label": "Grateful Wake Up Group — historical R&I",
+          "group": "Grateful Wake Up Group of NA, Norfolk, Nebraska",
+          "position": "before-ny",
+          "status": "Historical Review & Input preceding the NY project edition",
+          "historicalDate": "",
+          "sourceDocumentPage": 118,
+          "quote": "This lack of daily maintenance can show up in many ways. As our lives become more comfortable, many of us lapse into spiritual complacency, and we find ourselves in the same horror and loss of purpose from which we came. We forget we are given only a daily reprieve. We must ask for help each morning and remember to thank God at night. If we do not maintain our spiritual condition daily, some of us find the resulting pain and confusion lead to a return to drugs and our old way of life. Some have made it back from relapses ... many have not.\" Gray Book",
+          "source": "pg 144 lines 21-30",
+          "body": "When we came to NA our daily maintenance consisted of one thing....the getting and using and finding ways and means to use. We went to any lengths to get drugs yet expect recovery to happen by osmosis. There are days when we may wake up, rushing and forgetting to thank our Higher Power for another day clean. The days we don’t start our day with prayer and meditation, a lack of gratitude can sink in. We allow ourselves to fall into complacency, when we forget to be grateful and rob ourselves from staying in the moment. This complacency pulls us further away from our recovery and from the basics that got us and kept us clean in the beginning. Complacency is dangerous for an addict. Skipping Step work, prayer, meditation, meetings and not reaching out to another recovering addict are signs of a lack of daily maintenance. We no longer participate in any Group or individual service. Many have said they were baffled at how they lost their way, while others have been heard to say they simply stopped their daily maintenance. Some of us have heard a common theme and that was a loss of connection.... with the \"fellowship, with their Higher Power, with others in general.\" It seems the return to isolation as in our past was a common factor for many. So due to lack of daily spiritual maintenance when life on life's terms becomes overwhelming and we're feeling burnt out through personal responsibilities, we can create a sense of alienation towards meetings because we stop doing what we're doing. We pull further into isolation. Prayer and meditation feel meaningless and trying to stay connected with other addicts becomes difficult. Through daily maintenance when things do feel hard, renewing our commitment to recovery won't be as challenging. Long clean time can be an extremely dangerous place for addicts as it can lead to complacency. This is why we see so many come and go from the rooms. Some of us have heard the first year is free. Now it is time to put in the work. Just like everything in life we must learn consistency to grow. Some of our long timers have been heard\n\nto say when asked: How did you do it? What is the secret? The reply: \"Stick to the Basics\". Keeping it simple is a gift that some forget. What we hopefully learned in our early days, works as well now as it did in the past. They say a grateful addict never uses. When we lose our gratitude, we forget the hard work it took to get to a point of freedom. By waking up and beginning our day in prayer and meditation, we acknowledge our Higher Power and all the beauty in our lives. We learn how to practice the principles in all our affairs by utilizing the 5 tools: we call addicts, pray, read NA literature, write Steps and attend meetings. These tools have never failed when implemented daily.",
+          "moment": "We can’t stay clean on yesterday's shower just like we can’t stay clean on yesterday's recovery. It is essential for us to stay in the basics and to put forth the effort to stay clean on a daily basis, despite what’s happening in our lives.",
+          "mappingConfidence": 0.017,
+          "dateNote": "The source document states that its written dates are for historical purposes; calendar placement here is mapped by the Grey Book quotation/source to the NY project edition."
+        }
+      ]
+    },
+    "07-07": {
+      "defaultVersion": "ny-project",
+      "versions": [
+        {
+          "key": "grateful-wake-up-p125",
+          "label": "Grateful Wake Up Group — historical R&I",
+          "group": "Grateful Wake Up Group of NA, Norfolk, Nebraska",
+          "position": "before-ny",
+          "status": "Historical Review & Input preceding the NY project edition",
+          "historicalDate": "",
+          "sourceDocumentPage": 125,
+          "quote": "10 things to be Grateful for after some time. \"Alienation and isolation are symptoms of the mental part of our disease. To the practicing addict, life is just a movement between connections and oblivion.",
+          "source": "Gray Book pg 77 lines 4-6",
+          "body": "When we used drugs, we felt like we finally found the answer because we felt connected and capable of being ourselves, or so we thought. When we didn’t have drugs, we felt depleted and inadequate. It’s no wonder we became addicted. We needed drugs to feel like normal people, and that worked…until it didn’t. Eventually, in desperation we found ourselves in Narcotics Anonymous. During active addiction, alienation and isolation was a defense mechanism to survive. At first, we didn't want people around that would disapprove of the lifestyle we had chosen for ourselves. Then, we simply didn't want people around that would use our drugs. We were selfish and self-centered. As addicts, we want more than anything to make connections in our lives but connecting feels so dangerous. We know we surround ourselves with sick people that are just as self-centered as we are. We know they would throw us to the wolves for another fix because we would do the same thing to them. So, our bonds were shallow, and—for our own protection—they remained that way. This lack of deep connection made us feel not only alone—but abandoned—until we came to the rooms of Narcotics Anonymous. We felt disconnected with the people with which we used drugs because they didn't seem to have the same values as us. We were burned and broken, and when the money was gone, so were our friends. Some still feel disconnected because we haven't learned how to express our thoughts and emotions properly. Now, playing catch up, we don't feel equal to our peers. We separate ourselves from everyone else instead of letting others into our lives. Loved ones didn't understand. We blamed everyone but ourselves for the insanity we created. We kind of hated people. We don't know why, but we don't try to figure it out. We just roll with it because we have to. We don't try, we just do. We used to only do drugs. Now, it seems like we only try to connect with people. We have a really hard time with that. Sometimes we wake up and feel immediately disconnected. We're needy and when we can't feel good right now—sound familiar?—we feel rage in our hearts and minds. We're very sick. Denial ran rampant as we struggled to let go of resentments, anger, fear, etc. Living in the moment seemed impossible. How can we live in moments we aren't even in? Oblivion became the norm and using consumed every part of our lives. How do we get out of this sickness—this disease? NA provided a way for us out of the insanity. NA suggests to cleanse our bodies of all mood-changing and mind-altering drugs if we wanted to recover. This was necessary to face those feelings and fears we had been running from for so long. We keep trying to connect...no matter what. Even when we feel that it's not working, we keep trying. Not feeling connected is almost as bad as doing drugs, if that makes sense. And\n\nwe don't do drugs anymore. So we just try to connect. We connect to recover. We connect to heal. When we arrived, we found the connections we so longed for. For the first time, we were loved because we were addicts, not in spite of it. We could be broken and still be loved. We had found a group of people that just wanted to see us thrive and find peace of mind. Calling other addicts regularly is one of our strongest tools that we have to fight isolation. Never Alone, Never Again, is about being in action. We ask for numbers from other addicts and call them daily. We begin to find hope instead of choosing to be alone. When life's issues arise, we now have a support system ready to share their Experience, Strength, and Hope. We can identify with others, and now—with God, the 12-Steps, the 12 Traditions, our Sponsor, and the Fellowship—we do recover.",
+          "moment": "We are given the gift of finding out we are Never Alone, Never Again. Now, as part of the NA Fellowship, we feel safe and accepted for the first time. We, then are able to join the human race as well. WE BELONG.",
+          "mappingConfidence": 0.004,
+          "dateNote": "The source document states that its written dates are for historical purposes; calendar placement here is mapped by the Grey Book quotation/source to the NY project edition."
+        }
+      ]
+    },
+    "07-18": {
+      "defaultVersion": "ny-project",
+      "versions": [
+        {
+          "key": "grateful-wake-up-p102",
+          "label": "Grateful Wake Up Group — historical R&I",
+          "group": "Grateful Wake Up Group of NA, Norfolk, Nebraska",
+          "position": "before-ny",
+          "status": "Historical Review & Input preceding the NY project edition",
+          "historicalDate": "",
+          "sourceDocumentPage": 102,
+          "quote": "Jail did not help us at all. Medicine, religion and psychiatry seemed to have no answers for us that we could use. All these methods having failed for us, in desperation, we sought help from each other in Narcotics Anonymous.",
+          "source": "Gray Book pg 23 italicized header \"Why are we here\"",
+          "body": "We went to jail, still used. We went to the psychiatrist, still used. We tried by ourselves over and over, still used. There literally were no other methods that had worked for us in the past. Before we finally got clean in Narcotics Anonymous, there were many forms of institutions and programs that society thought could help us: time outs, detention during the schooldays, juvenile centers, psych wards, prisons, detox, drug rehabilitation centers, drug programs, emergency wards and when we exhausted any and all those sources we were on people’s couches. We begged people for a short-term solution but ultimately, WE knew we didn’t want to stop completely. When NA's subcommittees of (Hospitals and Institutions and Public Information) brought the NA message to those institutions, we thought they were giving the help to others and not us. Using drugs was just a means to an end; essentially, our disease was the addictive process to self-obsession. Before we could find recovery and begin to fill the hole in our souls, first we had to completely abstain from all mind altering and mood changing chemicals. Everything, every place and every method we ever tried prior to NA failed. Let's face it when we got here almost everyone, we came into contact with tried curing us. Most of us were preached at, preached over, prescribed drugs to change us, some had been in jail or prison. The thing all of us had in common was that our lives were not improving despite all that offered help. Every one of the methods we attempted, claimed to have either a \"Cure\" or some way they thought we could stop using, including forcing us to, temporarily. None of them really got through in any kind of lasting manner and our using continued to progress. Most did not view our problem as a \"disease\" we were labeled in all sorts of different ways. Morally corrupt, mentally deranged etc, etc. When we are obsessing over something, calling another addict can pull us out of the loop. This time, we are reaching out for help because we cannot do it by ourselves and need a process and community - no matter how much we want to isolate. What works for those that choose the NA way is to have a Fellowship of addicts that understand the disease of addiction and are living the Steps to help us. No one understands an addict like an addict. That is why it is easy for us to call each other out on our BS. We can spot BS because we all earned our BS degree from the school of hard knocks. The NA fellowship is only part of the total solution. NA is a spiritual program that requires reaching a state of desperation, so we find the Gift Of Desperation that is necessary for this program to work. No one can do it for us. Enforced morality lacks power and it must be our choice to change if we are going to. When we are ready, we take the Steps and learn they are the way for us to start to climb out of the pit of insanity we had dug for ourselves.",
+          "moment": "Once we found Narcotics Anonymous most of us realized we had found others who were & are just like us. Finding others who had suffered like us was such a relief",
+          "mappingConfidence": 0.018,
+          "dateNote": "The source document states that its written dates are for historical purposes; calendar placement here is mapped by the Grey Book quotation/source to the NY project edition."
+        }
+      ]
+    },
+    "08-08": {
+      "defaultVersion": "ny-project",
+      "versions": [
+        {
+          "key": "grateful-wake-up-p6",
+          "label": "Grateful Wake Up Group — historical R&I",
+          "group": "Grateful Wake Up Group of NA, Norfolk, Nebraska",
+          "position": "before-ny",
+          "status": "Historical Review & Input preceding the NY project edition",
+          "historicalDate": "",
+          "sourceDocumentPage": 6,
+          "quote": "Grey Book Reflections 10-08-2019 “When we refuse to practice acceptance we are, in effect, denying our faith in a Higher Power. This can lead to many problems and failures.",
+          "source": "Pg. 144 Lns. 10-13",
+          "body": "Just for Today We have been sitting in our own creative misery, most likely blaming others for our problems. We in our own minds have to come to terms that we are addicts and that will never change, our addiction will just get easier to handle in our everyday lives. Being accepted to being and addict within our own self is a very big step in order to keep faith and understanding of our higher power. It’s not until we let our Higher Power lift this weight and help us come to the reality that we have created for ourselves. Surrender is our first solution, simply surrender. Acceptance of life on life’s terms means that we no longer get to call the shots. If we don’t truly accept that we are addicts. Then we can’t truly recover. When we as addicts, can truly accept that we are indeed addicts then that is when recovery can truly start.",
+          "moment": "We quit focusing on the problems and start seeking the solutions.",
+          "mappingConfidence": 0.012,
+          "dateNote": "The source document states that its written dates are for historical purposes; calendar placement here is mapped by the Grey Book quotation/source to the NY project edition."
+        },
+        {
+          "key": "grateful-wake-up-p62",
+          "label": "Grateful Wake Up Group — historical R&I",
+          "group": "Grateful Wake Up Group of NA, Norfolk, Nebraska",
+          "position": "before-ny",
+          "status": "Historical Review & Input preceding the NY project edition",
+          "historicalDate": "",
+          "sourceDocumentPage": 62,
+          "quote": "10-08-2019 “When we refuse to practice acceptance we are, in effect, denying our faith in a Higher Power. This can lead to many problems and failures.",
+          "source": "Pg. 144 Lns. 10-13 Just for Today",
+          "body": "We have been sitting in our own creative misery, most likely blaming others for our problems. We in our own minds have to come to terms that we are addicts and that will never change, our addiction will just get easier to handle in our everyday lives. Being accepted to being and addict within our own self is a very big step in order to keep faith and understanding of our higher power. Its not until we let our Higher Power lift this weight and help us come to the reality that we have created for ourselves. Surrender is our first solution, simply surrender. Acceptance of life on life’s terms means that we no longer get to call the shots. If we don’t truly accept that we are addicts. Then we can’t truly recover. When we as addicts, can truly accept that we are indeed addicts then that is when recovery can truly start.",
+          "moment": "We quit focusing on the problems and start seeking the solutions.",
+          "mappingConfidence": 0.016,
+          "dateNote": "The source document states that its written dates are for historical purposes; calendar placement here is mapped by the Grey Book quotation/source to the NY project edition."
+        }
+      ]
+    },
+    "08-15": {
+      "defaultVersion": "ny-project",
+      "versions": [
+        {
+          "key": "grateful-wake-up-p29",
+          "label": "Grateful Wake Up Group — historical R&I",
+          "group": "Grateful Wake Up Group of NA, Norfolk, Nebraska",
+          "position": "before-ny",
+          "status": "Historical Review & Input preceding the NY project edition",
+          "historicalDate": "",
+          "sourceDocumentPage": 29,
+          "quote": "It took a long time to get where we could admit we were beaten. We are probably not going to recover--physically, mentally or emotionally--overnight.",
+          "source": "Grey book page 40 lines 17-19",
+          "body": "Once coming to the Fellowship of NA it took some of us a while to come to realize we were in the grips of the addiction process. As our thinking cleared, we were able to see the many areas of our lives are impacted; through prayer and action we began the process of recovery. No one can admit our defeat but us. We have to do it. Even when results of our disease are visible, we still can find ourselves in denial. We had to reach our bottom and put the shovel down. As we surrender to reality, we get more honest with ourselves. This is the point where recovery can start. We felt if we laid down the drugs it would fix the problem, we did not realize we had a spiritual disease. Recovery requires we address all areas of our addictive personalities: Physical, Mental and Emotional. In order to fully recover, we had to adhere to complete and total surrender. Since we are impatient people who always wanted results not making efforts to get it - recovery requires being patient. \". This is the moment where our sponsors point out that we cannot recover overnight and we should make some efforts and place results of them in God's hands. Many of us have thought \"Why I do I feel this way\" or \"I should be further in this road\". Having surrendered our addiction to our Higher Power we began to take inventory and change our lives. This can be done only with practicing spiritual principles of the program on daily basis.",
+          "moment": "Step by step it gets better - sometimes just for today sometimes just for a minute. We have to face life on its own terms.",
+          "mappingConfidence": 0.013,
+          "dateNote": "The source document states that its written dates are for historical purposes; calendar placement here is mapped by the Grey Book quotation/source to the NY project edition."
+        },
+        {
+          "key": "grateful-wake-up-p39",
+          "label": "Grateful Wake Up Group — historical R&I",
+          "group": "Grateful Wake Up Group of NA, Norfolk, Nebraska",
+          "position": "before-ny",
+          "status": "Historical Review & Input preceding the NY project edition",
+          "historicalDate": "",
+          "sourceDocumentPage": 39,
+          "quote": "It took a long time to get where we could admit we were beaten. We are probably not going to recover--physically, mentally or emotionally—overnight.",
+          "source": "Grey book page 40 lines 17-19",
+          "body": "Once coming to the Fellowship of NA it took some of us a while to come to realize we were in the grips of the addiction process. As our thinking cleared, we were able to see the many areas of our lives are impacted; through prayer and action we began the process of recovery. No one can admit our defeat but us. We have to do it. Even when results of our disease are visible, we still can find ourselves in denial. We had to reach our bottom and put the shovel down. As we surrender to reality, we get more honest with ourselves. This is the point where recovery can start. We felt if we laid down the drugs it would fix the problem, we did not realize we had a spiritual disease. Recovery requires we address all areas of our addictive personalities: Physical, Mental and Emotional. In order to fully recover, we had to adhere to complete and total surrender. Since we are impatient people who always wanted results not making efforts to get it - recovery requires being patient. \". This is the moment where our sponsors point out that we cannot recover overnight and we should make some efforts and place results of them in God's hands. Many of us have thought \"Why I do I feel this way\" or \"I should be further in this road\". Having surrendered our addiction to our Higher Power we began to take inventory and change our lives. This can be done only with practicing spiritual principles of the program on daily basis.",
+          "moment": "Step by step it gets better - sometimes just for today sometimes just for a minute. We have to face life on its own terms.",
+          "mappingConfidence": 0.013,
+          "dateNote": "The source document states that its written dates are for historical purposes; calendar placement here is mapped by the Grey Book quotation/source to the NY project edition."
+        },
+        {
+          "key": "grateful-wake-up-p66",
+          "label": "Grateful Wake Up Group — historical R&I",
+          "group": "Grateful Wake Up Group of NA, Norfolk, Nebraska",
+          "position": "before-ny",
+          "status": "Historical Review & Input preceding the NY project edition",
+          "historicalDate": "",
+          "sourceDocumentPage": 66,
+          "quote": "11/02/20 “It took a long time to get where we could admit we were beaten. We are probably not going to recover--physically, mentally or emotionally--overnight.",
+          "source": "Grey book page 40 lines 17-19",
+          "body": "Once coming to the Fellowship of NA it took some of us a while to come to realize we were in the grips of the addiction process. As our thinking cleared, we were able to see the many areas of our lives are impacted; through prayer and action we began the process of recovery. No one can admit our defeat but us. We have to do it. Even when results of our disease are visible, we still can find ourselves in denial. We had to reach our bottom and put the shovel down. As we surrender to reality, we get more honest with ourselves. This is the point where recovery can start. We felt if we laid down the drugs it would fix the problem, we did not realize we had a spiritual disease. Recovery requires we address all areas of our addictive personalities: Physical, Mental and Emotional. In order to fully recover, we had to adhere to complete and total surrender. Since we are impatient people who always wanted results not making efforts to get it - recovery requires being patient. \". This is the moment where our sponsors point out that we cannot recover overnight and we should make some efforts and place results of them in God's hands. Many of us have thought \"Why I do I feel this way\" or \"I should be further in this road\". Having surrendered our addiction to our Higher Power we began to take inventory and change our lives. This can be done only with practicing spiritual principles of the program on daily basis.",
+          "moment": "Step by step it gets better - sometimes just for today sometimes just for a minute. We have to face life on its own terms.",
+          "mappingConfidence": 0.013,
+          "dateNote": "The source document states that its written dates are for historical purposes; calendar placement here is mapped by the Grey Book quotation/source to the NY project edition."
+        }
+      ]
+    },
+    "08-20": {
+      "defaultVersion": "ny-project",
+      "versions": [
+        {
+          "key": "grateful-wake-up-p43",
+          "label": "Grateful Wake Up Group — historical R&I",
+          "group": "Grateful Wake Up Group of NA, Norfolk, Nebraska",
+          "position": "before-ny",
+          "status": "Historical Review & Input preceding the NY project edition",
+          "historicalDate": "",
+          "sourceDocumentPage": 43,
+          "quote": "3/16/21 \"As recovering addicts, we found that without our drugs we hurt. The program of Narcotics Anonymous provided an opportunity for us to relieve our pain by applying spiritual principles.",
+          "source": "Gray Book pg 150 lines 5-8",
+          "body": "Every time we used drugs instead of facing life as it is - we suppressed our feelings. It was as if we used drugs to shove them down deep inside where we wouldn't have to deal with it. Some of us started to use to fit in. Some started using to stop pain. For some of us, we used every day. Drugs hurt us so much that we forgot how to live without them. We thought we could handle every problem because we had something to put in our body in one form or another. No matter why we started we all hit a point where we thought drugs were our solution to our problems. Sometimes our disease kept us in a place of fear and isolation. Substances relieved our pain of isolation for a short time and relieved physical pain for a while. Eventually no amount of drugs could relieve our pain. We used more and more trying to make the pain stop yet were tormented as our spirits cried out in agony. The drugs quit working and now they were making the pain worse as they tore us apart from everyone and everything we loved. Eventually we may have found ourselves alone looking at the world at a distance and questioning \"why\"? When drugs were removed from our bodies the pain intensified as some say \"it must get worse before it gets better.\" We now had to face life. We no longer had a crutch to lean on. Our crutch had been broken. We have to learn how to live without anesthesia, or else we will end up loaded. Every time something in our lives is not turned over to the care of a Higher Power it kicks our asses. Now when we are clean and when we meet the same or similar situations our old feelings long suppressed come to the surface. We are reminded of things from our past. We are able to see our fears for what they are and face them instead of running from them. We are able to change the patterns that ruled our lives for so long. If we continue to hide our feelings we become ashamed of ourselves and need to surrender once again. Narcotics Anonymous helps us learn how to live so that we don't have to suffer anymore. NA is a lifelong solution to our problem of addiction. Without drugs in our systems we have tools we are being taught to use that help with the day to day things that cause us pain. We find that we benefit from daily practice of N.A. suggestions. Calling another addict, calling our Sponsor, attending meetings, writing on the Steps, prayer and reading NA literature written by addicts for addicts. Looking to the spiritual principles gives us the strength to move forward and accomplish another day clean. During this time we develop a 6th sense or intuition of what to say or how to act, but it takes time. Recovery itself takes time. Sometimes, we just need to sit on our hands or do things the opposite of what we did in active addiction. Then and only then, do we discover that somehow God removes our pain - just for today.",
+          "moment": "We learn how to live Honestly, with Open mindedness and Willingness to try God's way instead of our own. We are given freedom from the insanity drugs gave us with their false hope.",
+          "mappingConfidence": 0.006,
+          "dateNote": "The source document states that its written dates are for historical purposes; calendar placement here is mapped by the Grey Book quotation/source to the NY project edition."
+        }
+      ]
+    },
+    "09-06": {
+      "defaultVersion": "ny-project",
+      "versions": [
+        {
+          "key": "grateful-wake-up-p24",
+          "label": "Grateful Wake Up Group — historical R&I",
+          "group": "Grateful Wake Up Group of NA, Norfolk, Nebraska",
+          "position": "before-ny",
+          "status": "Historical Review & Input preceding the NY project edition",
+          "historicalDate": "",
+          "sourceDocumentPage": 24,
+          "quote": "We have learned from our group experience that those who keep coming to our meetings regularly stay clean.",
+          "source": "What is the Narcotics Anonymous Program pg 15 header par 3 Lines 7-9",
+          "body": "When we first came to the fellowship of NA we were lost and broken. We came to NA as loners and then found meetings broke our self-built prisons of isolation. For most of us until we surrendered the only thing we did regularly was use drugs. Consistency with anything new was difficult for us. We found a power greater than ourselves in NA meetings. Through meetings we gain strength to stay clean one more day. Other members shared what they learned and passed it to us. Now we know it works. Many of us have found that we cannot stay clean alone. It was suggested to us to go to 90 meetings in 90 days. Regular meeting attendance helps create the footholds for a foundation that we can build on and grow. That foundation is our 12 steps. Our experience is that coming to regular meetings gave us the knowledge of what works for us. We learn what actions we need to take in order to stay clean and recover. We find joy in that we are not alone anymore and don’t feel so isolated. In NA we hear other’s that helps us to see we are not alone. We then are able to open up to others and get vulnerable enough to crack through the thick layers of denial that keep us from seeing our disease exactly as it is. It was only with the Groups experience we learned how to live as we keep coming back one day at a time. As we learn how to communicate with other members we can practice healthy communications outside the Fellowship. We grow by applying spiritual principles both in meetings and society, we get the ability to change ourselves and stay clean while we gain a new sense of freedom.",
+          "moment": "We stay clean one day at a time, we learn how to share and listen, and we commit ourselves to something bigger than us. NA can be the positive life-school for us.",
+          "mappingConfidence": 0.001,
+          "dateNote": "The source document states that its written dates are for historical purposes; calendar placement here is mapped by the Grey Book quotation/source to the NY project edition."
+        }
+      ]
+    },
+    "09-09": {
+      "defaultVersion": "ny-project",
+      "versions": [
+        {
+          "key": "grateful-wake-up-p63",
+          "label": "Grateful Wake Up Group — historical R&I",
+          "group": "Grateful Wake Up Group of NA, Norfolk, Nebraska",
+          "position": "before-ny",
+          "status": "Historical Review & Input preceding the NY project edition",
+          "historicalDate": "",
+          "sourceDocumentPage": 63,
+          "quote": "10-15-2019 “One of our biggest stumbling blocks seems to be in unrealized expectations of ourselves and others.",
+          "source": "Pg. 127 Lns. 32-33 Recovery and Relapse",
+          "body": "We come to the fellowship with many hopes and expectations. We come into Narcotics Anonymous and have no real clue who we are. We come to find we have lots of expectations of ourselves and others that we didn’t recognize before. There are few people who are living out their dreams when the found the rooms. We couldn’t accept our imperfections, so we used drugs to hide from our feelings of inadequacy. During our active addiction, to recover seemed an impossible task for us. The literature makes it clear that many of us had to embrace the Gift Of Desperation. When we act on self-will, we have the need to control things that we ought not. This includes the actions of others and their opinions of us. We separated ourselves from the human race with these expectations. We didn’t allow ourselves or others to be humans. When we get caught up in this way of thinking, we lose sight of the program and its effectiveness in our own lives. Once we finally reach the road to recovery. We realize that we were making it harder on ourselves to achieve true happiness. once this happens, we begin to obsess over our own perspectives and fall back into the closed mindedness patterns that brought us here to begin with. When we decide to stop digging, we find our bottom. Once we realize there is another option we are given the opportunities to live the life that we never dreamed that we could live. We always must keep in mind that our real enemy is within us. NA helps us return to the human experience. We gain relationships that never would have been possible before coming to NA. we became humble by getting to know ourselves better. We learned empathy and accepted others for who they are not in spite of who they are.",
+          "moment": "Too many times we realized we were unprepared to face and embrace our wildest dreams. Recovery provides a lot of blessings in our lives so lets keep our keep head up and our faith strong.",
+          "mappingConfidence": 0.015,
+          "dateNote": "The source document states that its written dates are for historical purposes; calendar placement here is mapped by the Grey Book quotation/source to the NY project edition."
+        }
+      ]
+    },
+    "10-26": {
+      "defaultVersion": "ny-project",
+      "versions": [
+        {
+          "key": "grateful-wake-up-p137",
+          "label": "Grateful Wake Up Group — historical R&I",
+          "group": "Grateful Wake Up Group of NA, Norfolk, Nebraska",
+          "position": "before-ny",
+          "status": "Historical Review & Input preceding the NY project edition",
+          "historicalDate": "",
+          "sourceDocumentPage": 137,
+          "quote": "For years, we have avoided seeing ourselves as we really are. We were ashamed of ourselves and felt isolated from the rest of the world.",
+          "source": "Gray Book pg 44 lines 8-10",
+          "body": "In active addiction we had no idea of who we were or how others perceived us. The drugs had clouded our minds to the point that we had either forgotten who we were, or we had conjured up in our minds people who we once were or had met. In all situations however we were not who we thought we were. In addiction we were like an invisible person to many, because we were centered in the dope not in life. We were in a prison all by ourselves. A death sentence which was self-imposed. We as Addicts often put ourselves in compromising situations. Being A liar, thief, and schemer became a part of our character and a part of our living Instincts. We needed these instincts to survive our way of living in a drug addicted world. Many of us that went down this path were unable to even look at ourselves in the mirror, let alone take a look inside to see who we really were. We were not someone that we wanted to know. We were a stranger to ourselves.\n\nThis in turn led us to a state of isolation. If we are honest with ourselves, we realize this happens because if we didn't want to know ourselves...why would we introduce ourselves to other people. Our only requirement for \"friendship\" was a matching desire to get loaded and that's as deep as our relationships would go. We felt isolated because of the shame that came along with our actions, attitudes and beliefs. The person we lied to the most is ourselves. Denial was much bigger than we thought when we came into the rooms. It normally takes some time for the fog to wear off before we realize this though.\n\nMany of us didn't want to take an honest look because we were afraid of the ghost in the closet. We kept thinking it may jump out and take the life we had gained, from us.\n\nUntil we stopped using, we walked around hollow and dead inside. We didn't have to stay there we found out, as we found addicts that cared in NA. When the fear of change became less than the pain of facing life we chose to recover and try something different. We knew the person that we were before our addiction and knew that we were not that person anymore.",
+          "moment": "Those who live the Steps find much freedom in writing a thorough and fearless inventory.",
+          "mappingConfidence": 0.006,
+          "dateNote": "The source document states that its written dates are for historical purposes; calendar placement here is mapped by the Grey Book quotation/source to the NY project edition."
+        }
+      ]
+    },
+    "10-30": {
+      "defaultVersion": "ny-project",
+      "versions": [
+        {
+          "key": "grateful-wake-up-p23",
+          "label": "Grateful Wake Up Group — historical R&I",
+          "group": "Grateful Wake Up Group of NA, Norfolk, Nebraska",
+          "position": "before-ny",
+          "status": "Historical Review & Input preceding the NY project edition",
+          "historicalDate": "",
+          "sourceDocumentPage": 23,
+          "quote": "Our new found way of life may have its problems. When we ask for help, the road ahead won’t be so rocky.",
+          "source": "Gray Book pg 146 lines 18-19",
+          "body": "In the past, we thought drugs were the solution and we could solve any problem with them. As addicts we were often stuck in painful patterns that repeated themselves over and over again. Being addicted to our old lifestyle caused us major harm just like all the drugs did. We had to ask, “How do we surrender to the NA way of life?” from someone who has. We have heard it said “If the dope don’t kill us the lifestyle will”. Thinking we were independent was a false idea. Finding out we were interdependent, but refused to ask for help until God humbled us. We found we had no choice until realizing we needed to ask for help from those that had experience. We found it hard to ask for help, but when the pain got great enough we surrendered. In life we find there are rocky roads that may have boulders jump out at us that can cause bumps and bruises. A rough patch of road usually makes us slow down and take the time to gain perspective. We have lived far too long as self-centered individuals, and look at what and where that got us. As human beings, through getting clean, we discover ourselves as whole and complete with the help of others. As we learn to surrender our lives over to the road of recovery we find that in the fellowship of NA we find the help needed to smooth out the road to a new life. We learned to seek a power greater than ourselves instead of continuing down the road of the illusion of control. As we grow, we learn to ask for God's will rather than our own. Without our Higher Power we struggle and toil. The hope that a Higher Power gives us is without parallel, hope is such a gift! It brings new light to our life. We came to NA and met people who found the way to overcome their problems without drugs. We started to learn to ask for help and when we became willing enough to apply solutions, as outlined in the Steps, it made our lives better. The results are in God's hands, now we are not alone against our problems. We learn to not take any shortcuts and buy into the whole program so we don’t short change our process.",
+          "moment": "Our new perspective gives us the opportunity to see some of the details we may need to look at or revisit to continue on our path of spiritual growth.",
+          "mappingConfidence": 0.016,
+          "dateNote": "The source document states that its written dates are for historical purposes; calendar placement here is mapped by the Grey Book quotation/source to the NY project edition."
+        },
+        {
+          "key": "grateful-wake-up-p65",
+          "label": "Grateful Wake Up Group — historical R&I",
+          "group": "Grateful Wake Up Group of NA, Norfolk, Nebraska",
+          "position": "before-ny",
+          "status": "Historical Review & Input preceding the NY project edition",
+          "historicalDate": "",
+          "sourceDocumentPage": 65,
+          "quote": "October 6, 2020 “Our new found way of life may have its problems. When we ask for help, the road ahead won’t be so rocky.",
+          "source": "Gray Book pg 146 lines 18-19",
+          "body": "In the past, we thought drugs were the solution and we could solve any problem with them. As addicts we were often stuck in painful patterns that repeated themselves over and over again. Being addicted to our old lifestyle caused us major harm just like all the drugs did. We had to ask, “How do we surrender to the NA way of life?” from someone who has. We have heard it said “If the dope don’t kill us the lifestyle will”. Thinking we were independent was a false idea. Finding out we were interdependent, but refused to ask for help until God humbled us. We found we had no choice until realizing we needed to ask for help from those that had experience. We found it hard to ask for help, but when the pain got great enough we surrendered. In life we find there are rocky roads that may have boulders jump out at us that can cause bumps and bruises. A rough patch of road usually makes us slow down and take the time to gain perspective. We have lived far too long as self-centered individuals, and look at what and where that got us. As human beings, through getting clean, we discover ourselves as whole and complete with the help of others. As we learn to surrender our lives over to the road of recovery we find that in the fellowship of NA we find the help needed to smooth out the road to a new life. We learned to seek a power greater than ourselves instead of continuing down the road of the illusion of control. As we grow, we learn to ask for God's will rather than our own. Without our Higher Power we struggle and toil. The hope that a Higher Power gives us is without parallel, hope is such a gift! It brings new light to our life. We came to NA and met people who found the way to overcome their problems without drugs. We started to learn to ask for help and when we became willing enough to apply solutions, as outlined in the Steps, it made our lives better. The results are in God's hands, now we are not alone against our problems. We learn to not take any shortcuts and buy into the whole program so we don’t short change our process.",
+          "moment": "Our new perspective gives us the opportunity to see some of the details we may need to look at or revisit to continue on our path of spiritual growth.",
+          "mappingConfidence": 0.016,
+          "dateNote": "The source document states that its written dates are for historical purposes; calendar placement here is mapped by the Grey Book quotation/source to the NY project edition."
+        }
+      ]
+    },
+    "11-10": {
+      "defaultVersion": "ny-project",
+      "versions": [
+        {
+          "key": "grateful-wake-up-p116",
+          "label": "Grateful Wake Up Group — historical R&I",
+          "group": "Grateful Wake Up Group of NA, Norfolk, Nebraska",
+          "position": "before-ny",
+          "status": "Historical Review & Input preceding the NY project edition",
+          "historicalDate": "",
+          "sourceDocumentPage": 116,
+          "quote": "We were frightened and ran from the fear, but no matter how far we ran, the fear followed us. We were hopeless, useless and lost.",
+          "source": "Gray Book pg 25 lines",
+          "body": "5-7\n\nWhen we first arrived in NA we were and had been frightened. Anything new terrified us. Run, run, run that was what some of us did while out using. We ran and kept running. What we eventually figured out was we were running from ourselves. None of us came in on a winning streak. The drugs we used, to run from our fears. It didn't matter how much we used our fears still followed us. Most of us didn't even realize that fear was a way of life for us and no amount of drugs was going to rid us of our fear. It only contributed to further beating us into submission. Some of us acted like we were fearless as we went through our lives. We acted tough to hide from the pain. Some saw great potential but never could finish anything we started. We needed to stop running in order to recover. Our first Step helps turn us around and face our disease. Without knowing we have something to face we can't surrender. We surrender to the fact we have the disease of addiction. If we stop here we will surely die insane. So we seek a power greater than ourselves to restore us to sanity. This is where many surrender to the process of the Steps. At the time we may not understand but we are now becoming willing because of seeing the program working in others' lives. That willingness propels us forward on a great run. Going through the Steps we start doing new things to see If we like them. We are no longer afraid of not being perfect.",
+          "moment": "We are on a run that isn't running from our disease but instead is running towards a loving, caring God and seeking God's will for our lives.",
+          "mappingConfidence": 0.007,
+          "dateNote": "The source document states that its written dates are for historical purposes; calendar placement here is mapped by the Grey Book quotation/source to the NY project edition."
+        }
+      ]
+    },
+    "11-30": {
+      "defaultVersion": "ny-project",
+      "versions": [
+        {
+          "key": "grateful-wake-up-p47",
+          "label": "Grateful Wake Up Group — historical R&I",
+          "group": "Grateful Wake Up Group of NA, Norfolk, Nebraska",
+          "position": "before-ny",
+          "status": "Historical Review & Input preceding the NY project edition",
+          "historicalDate": "",
+          "sourceDocumentPage": 47,
+          "quote": "for us to walk our path when we laid it so fast. We can only pray we find the G.ift O.f D.esperation. In This Moment: we will be grateful we have found there is hope without dope. ___ \"Spirituality and sharing is the essence of our recovery.",
+          "source": "Gray book page 129 line 4 and 5.",
+          "body": "During active addiction, many of us built our walls up not letting anyone in. For years we lived a life focused on self and how we felt things should go. We felt we had no one to turn to or to talk with about our problems. We were untrusting of others and afraid of the vulnerability we felt. We were spiritually void. Completely cut off from the world around us with nothing and no one to turn to. Then, coming into Narcotics Anonymous, we began to grow spiritually, starting from a spark as w heard others talk about their experiences. We saw sharing their pain and hurt. In NA, we learn there is more to life than \"just me.\" We have no program if the \"we\" of our program is ignored. We become part of something greater than ourselves. We began to let our walls down little by little sharing more in meetings and growing by the process. Spirituality is very important. We learn to let go and let God. By opening up and developing our Spirituality, we save ourselves from the dark void which previously had consumed us. We come to believe in a Higher Power, greater than ourselves, and find spiritual comfort in our lives and to be able to share that spiritual experience with others. Our program is based on spiritual principles and each of us sharing our ESH. We learn our value as individuals in seeking spiritual solutions.",
+          "moment": "Spirituality and sharing is the essence of our recovery. NA is amazing!",
+          "mappingConfidence": 0.016,
+          "dateNote": "The source document states that its written dates are for historical purposes; calendar placement here is mapped by the Grey Book quotation/source to the NY project edition."
+        }
+      ]
+    },
+    "12-26": {
+      "defaultVersion": "ny-project",
+      "versions": [
+        {
+          "key": "grateful-wake-up-p111",
+          "label": "Grateful Wake Up Group — historical R&I",
+          "group": "Grateful Wake Up Group of NA, Norfolk, Nebraska",
+          "position": "before-ny",
+          "status": "Historical Review & Input preceding the NY project edition",
+          "historicalDate": "",
+          "sourceDocumentPage": 111,
+          "quote": "Asking for help in specific terms usually precedes getting that help. By opening the gates of our hearts, we become ready to receive the help we need.",
+          "source": "Gray Book pg 37",
+          "body": "lines 9-10\n\nWe came into NA full of ourselves. We may have thought we had all the answers, yet our lives were a mess. Many of us blamed everyone but ourselves for the chaos in our lives. Some knew that their lives were a mess and came in desperate for help. In Step One we ask for help. No matter how we got here all of us had to admit our powerlessness over the disease of addiction and accept that our lives had become unmanageable. Without admitting we needed help we couldn't get help. The 1st Step leaves a void that must be filled. Many of us found this is when we started to truly feel the pain of addiction. We no longer had the drugs to fall back on like a crutch to hold us up. We needed to seek a Power Greater than ourselves to restore us to sanity. The process begins when we get vulnerable and ask for help rather than staying in denial swimming in our excuses.\n\nWe build the willingness to ask for help, from a Power greater than ourselves, by witnessing and believing in other addict's restoration to sanity. Open-mindedness is key in turning our belief into faith. When we remain open-minded, we are able to see evidence of a Higher Power at work in the lives of many addicts. This act of witnessing is the personal experience upon which many of us build our faith and willingness to ask for help in learning a new way of life. We learn to not ask for specific things in Step 11 and as we learn how to use the 12 Steps of NA we can grow into that place of manageability with our emotional needs. Today we are learning about how to use the power greater than ourselves in Step Two. As we grow in the program, we begin to realize how important the heart to head connection really is. We now have hope as we see that NA provides us a path to freedom that we hadn't taken before.",
+          "moment": "This part of the process of surrender opens our minds to try something different. As our books says, it was our way of thinking that got us here. By surrendering to a Power Greater than ourselves, we can now ask for specific things humbly to help our recovery.",
+          "mappingConfidence": 0.015,
+          "dateNote": "The source document states that its written dates are for historical purposes; calendar placement here is mapped by the Grey Book quotation/source to the NY project edition."
+        }
+      ]
+    },
+    "12-28": {
+      "defaultVersion": "ny-project",
+      "versions": [
+        {
+          "key": "grateful-wake-up-p85",
+          "label": "Grateful Wake Up Group — historical R&I",
+          "group": "Grateful Wake Up Group of NA, Norfolk, Nebraska",
+          "position": "before-ny",
+          "status": "Historical Review & Input preceding the NY project edition",
+          "historicalDate": "",
+          "sourceDocumentPage": 85,
+          "quote": "4/13/21 \"We are no longer fighting fear, anger, guilt, remorse, self-pity, anxiety, depression and a thousant other ills.",
+          "source": "Gray Book pg 39 lines 25-27",
+          "body": "We experienced depression all the time. Some of us had suicidal thoughts at a very young age. First, drugs silenced this voice in our heads. After years of using, drugs made this voice stronger. After we quit, we were happy for a while, but then the insanity returned. Our lives surely weren't great when we got to the rooms of Narcotics Anonymous. We had so many issues some said \"our issues had issues\". We had to get to a point where we truly understood that our way of living was not working and we needed something else. Fear, anger, guilt, self pity, anxiety. depression and a thousand other problems were very familiar to us. Sometimes, giving these up to a power greater than ourselves seemed impossible. We can't avoid our feelings. At times some have found they are not sure if this whole thing works. At least we are clean. Other addicts, said it takes time. They told us we shouldn't leave before the miracle happens. We are learning to surrender. Feelings are just feelings. As long as we allow our crazy thinking to control us, we become more sick. The solution is somewhere in our Higher Power. We just have to learn how to use this source of strength. People say Steps 1,2, and 3 can help with that. We found that there is a Power Greater than ourselves that can restore us to sanity, if we let it. Once we surrender and let go of the control we tried so long to hold onto, things started to change. We began to see that we did not have to live in the insanity that our disease kept us locked up in for so long. We found hope. Sometimes we found hope by seeing others recover and then we thought if they can recover so can \"I\". The third Step gives us the faith to \"let go and let God\". We were given a way out of the depravity of our lives. We learn to take responsibility for our actions instead of running from them.",
+          "moment": "We surrender our will on a moment by moment basis. If we don't, we will suffer and stay in the prison of our own mind.",
+          "mappingConfidence": 0.007,
+          "dateNote": "The source document states that its written dates are for historical purposes; calendar placement here is mapped by the Grey Book quotation/source to the NY project edition."
+        }
+      ]
+    }
+  }
+}
