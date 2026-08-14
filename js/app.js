@@ -1,6 +1,8 @@
 let REFLECTIONS = [];
 let DAILY_AUDIO = {};
 let GREY_BOOK_CONTEXT = { dates: {}, pages: {} };
+let RNI_HISTORY = { schemaVersion: 1, readings: {} };
+const RNI_SELECTION = Object.create(null);
 let currentId = null;
 
 const monthNames = [
@@ -673,6 +675,7 @@ function renderGreyBookContext(reading) {
   `;
 }
 
+
 const GREY_BOOK_SECTION_NUMBERS = Object.freeze({
   one: 1,
   two: 2,
@@ -853,18 +856,156 @@ function attachReviewForms() {
   });
 }
 
-function renderReadingCard(reading, label = '', isPrimary = false) {
+function getRniRecord(id) {
+  return RNI_HISTORY?.readings?.[id] || null;
+}
+
+function getRniVersion(id, key) {
+  const record = getRniRecord(id);
+  if (!record || !Array.isArray(record.versions)) return null;
+  return record.versions.find((version) => version.key === key) || null;
+}
+
+function getSelectedRniKey(reading) {
+  const record = getRniRecord(reading.id);
+  if (!record) return 'ny-project';
+  return RNI_SELECTION[reading.id] || record.defaultVersion || 'ny-project';
+}
+
+function resolveRniReading(baseReading) {
+  const key = getSelectedRniKey(baseReading);
+  if (key === 'ny-project') {
+    return { ...baseReading, _rniVersionKey: 'ny-project', _rniVersion: null };
+  }
+
+  const version = getRniVersion(baseReading.id, key);
+  if (!version) {
+    return { ...baseReading, _rniVersionKey: 'ny-project', _rniVersion: null };
+  }
+
+  return {
+    ...baseReading,
+    quote: version.quote || baseReading.quote,
+    source: version.source || baseReading.source,
+    body: version.body || baseReading.body,
+    moment: version.moment || '',
+    _rniVersionKey: key,
+    _rniVersion: version
+  };
+}
+
+function renderRniVersionPanel(baseReading, displayReading) {
+  const record = getRniRecord(baseReading.id);
+  if (!record || !Array.isArray(record.versions) || !record.versions.length) return '';
+
+  const currentKey = displayReading._rniVersionKey || 'ny-project';
+  const currentVersion = displayReading._rniVersion;
+  const newer = record.versions.filter((version) => version.position === 'after-ny');
+  const earlier = record.versions.filter((version) => version.position === 'before-ny');
+  const ties = record.versions.find((version) => version.key === 'ties-that-bind-latest');
+
+  let lead = '';
+  if (currentKey === 'ties-that-bind-latest') {
+    lead = `<p><strong>Review &amp; Input Update:</strong> This reading shows the most recent input submitted by <strong>The Ties That Bind Group</strong> after the NY project edition used to map this site.</p>`;
+  } else if (currentKey === 'ny-project') {
+    lead = ties
+      ? `<p><strong>NY Project Edition:</strong> This is the version originally used to map this calendar reading on GBRNA. Newer input from <strong>The Ties That Bind Group</strong> is also available.</p>`
+      : `<p><strong>NY Project Edition:</strong> This remains the current mapped reading. Earlier Review &amp; Input material is available below for historical comparison.</p>`;
+  } else if (currentVersion) {
+    const when = currentVersion.historicalDate ? ` · historical writing date: ${escapeHtml(currentVersion.historicalDate)}` : '';
+    lead = `<p><strong>Earlier Review &amp; Input:</strong> You are viewing ${escapeHtml(currentVersion.group || currentVersion.label || 'historical input')}${when}. The source document states that its dates are historical writing dates, not the final GBR calendar placement.</p>`;
+  }
+
+  const quickButtons = [];
+  if (currentKey !== 'ny-project') {
+    quickButtons.push(`<button type="button" class="rni-switch-button" data-rni-switch="ny-project" data-rni-id="${escapeHtml(baseReading.id)}">View NY Project Edition</button>`);
+  }
+  if (ties && currentKey !== ties.key) {
+    quickButtons.push(`<button type="button" class="rni-switch-button rni-switch-primary" data-rni-switch="${escapeHtml(ties.key)}" data-rni-id="${escapeHtml(baseReading.id)}">View Latest Ties That Bind Input</button>`);
+  }
+
+  const timeline = [];
+  earlier.forEach((version) => {
+    const dateText = version.historicalDate ? ` · ${escapeHtml(version.historicalDate)}` : '';
+    const pageText = version.sourceDocumentPage ? ` · source p. ${escapeHtml(version.sourceDocumentPage)}` : '';
+    timeline.push(`
+      <li class="rni-history-item${currentKey === version.key ? ' is-current' : ''}">
+        <div><strong>${escapeHtml(version.group || version.label || 'Earlier R&I')}</strong>${dateText}${pageText}<small>Historical Review &amp; Input preceding the NY project edition.</small></div>
+        <button type="button" data-rni-switch="${escapeHtml(version.key)}" data-rni-id="${escapeHtml(baseReading.id)}">View</button>
+      </li>`);
+  });
+
+  timeline.push(`
+    <li class="rni-history-item rni-history-baseline${currentKey === 'ny-project' ? ' is-current' : ''}">
+      <div><strong>NY Project Edition</strong><small>Baseline edition originally used to map this site.</small></div>
+      <button type="button" data-rni-switch="ny-project" data-rni-id="${escapeHtml(baseReading.id)}">View</button>
+    </li>`);
+
+  newer.forEach((version) => {
+    timeline.push(`
+      <li class="rni-history-item rni-history-newer${currentKey === version.key ? ' is-current' : ''}">
+        <div><strong>${escapeHtml(version.group || version.label || 'Newer R&I')}</strong><small>${escapeHtml(version.status || 'Post-NY Review & Input')}</small></div>
+        <button type="button" data-rni-switch="${escapeHtml(version.key)}" data-rni-id="${escapeHtml(baseReading.id)}">View</button>
+      </li>`);
+  });
+
+  const proofread = currentVersion?.proofreadNote
+    ? `<p class="rni-proofread-note"><strong>Web presentation note:</strong> ${escapeHtml(currentVersion.proofreadNote)}</p>`
+    : '';
+
+  const sourceCompatibility = currentKey !== 'ny-project'
+    ? `<p class="rni-source-note">Daily audio and the expandable mapped Grey Book source-page view belong to the NY project edition. Switch to the NY version to use those features without mixing editions.</p>`
+    : '';
+
+  return `
+    <aside class="rni-version-panel" aria-label="Grey Book Reflections Review and Input history">
+      ${lead}
+      <div class="rni-quick-actions">${quickButtons.join('')}</div>
+      ${proofread}
+      ${sourceCompatibility}
+      <details class="rni-history-details">
+        <summary>R&amp;I History <span aria-hidden="true">▼</span></summary>
+        <p class="rni-history-intro">Earlier historical Review &amp; Input → NY project edition → newer post-NY input. Versions are shown in place; no PDF is opened.</p>
+        <ol class="rni-history-list">${timeline.join('')}</ol>
+      </details>
+    </aside>`;
+}
+
+function attachRniVersionControls() {
+  document.querySelectorAll('[data-rni-switch]').forEach((button) => {
+    if (button.dataset.bound === 'true') return;
+    button.dataset.bound = 'true';
+    button.addEventListener('click', () => {
+      const id = button.dataset.rniId;
+      const key = button.dataset.rniSwitch;
+      const baseReading = findReading(id);
+      if (!baseReading) return;
+      RNI_SELECTION[id] = key;
+      currentId = id;
+      renderReadings([baseReading]);
+      requestAnimationFrame(() => {
+        document.querySelector(`#reading-${CSS.escape(id)}`)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+  });
+}
+
+function renderReadingCard(reading, label = '', isPrimary = false, baseReading = reading) {
   const sourceLine = reading.source ? escapeHtml(reading.source) : 'Source reference pending';
+  const isNyEdition = (reading._rniVersionKey || 'ny-project') === 'ny-project';
+  const pageMeta = isNyEdition
+    ? `GBR PDF p. ${baseReading.pdfPage}`
+    : `Calendar mapping: ${escapeHtml(baseReading.date)} · NY GBR PDF p. ${baseReading.pdfPage}`;
 
   return `
     <article class="reading-card" id="reading-${reading.id}">
-      ${renderDailyAudio(reading)}
+      ${isNyEdition ? renderDailyAudio(baseReading) : ''}
       <div class="reading-date">
         <h3>${escapeHtml(label || reading.date)}</h3>
         <div class="reading-meta">
           <span class="source-ref">${sourceLine}</span>
-          <span class="page-ref">GBR PDF p. ${reading.pdfPage}</span>
-          ${renderGreyBookStudyLink(reading)}
+          <span class="page-ref">${pageMeta}</span>
+          ${isNyEdition ? renderGreyBookStudyLink(baseReading) : ''}
         </div>
       </div>
       <blockquote class="quote">${escapeHtml(reading.quote)}</blockquote>
@@ -874,7 +1015,8 @@ function renderReadingCard(reading, label = '', isPrimary = false) {
           <h4>In This Moment</h4>
           <p class="moment-text">${escapeHtml(reading.moment)}</p>
         </div>` : ''}
-      ${renderGreyBookContext(reading)}
+      ${renderRniVersionPanel(baseReading, reading)}
+      ${isNyEdition ? renderGreyBookContext(baseReading) : ''}
       ${renderGreyAreaGroup(isPrimary)}
       ${renderAudioLibrary(isPrimary)}
       ${renderReviewInputForm(reading, isPrimary)}
@@ -884,9 +1026,13 @@ function renderReadingCard(reading, label = '', isPrimary = false) {
 
 function renderReadings(readings, notice = '') {
   const area = $('#readingArea');
-  area.innerHTML = readings.map((reading, index) => renderReadingCard(reading, '', index === 0)).join('');
+  area.innerHTML = readings.map((baseReading, index) => {
+    const displayReading = resolveRniReading(baseReading);
+    return renderReadingCard(displayReading, '', index === 0, baseReading);
+  }).join('');
   attachAudioPlayers();
   attachReviewForms();
+  attachRniVersionControls();
   document.dispatchEvent(new CustomEvent('gbr:reading-rendered'));
 
   const noticeEl = $('#dailyNotice');
@@ -953,7 +1099,9 @@ function doSearch(query) {
   }
 
   const matches = REFLECTIONS.filter((r) => {
-    const haystack = `${r.date} ${r.quote} ${r.body} ${r.moment}`.toLowerCase();
+    const versions = getRniRecord(r.id)?.versions || [];
+    const versionText = versions.map((version) => `${version.label || ''} ${version.group || ''} ${version.quote || ''} ${version.body || ''} ${version.moment || ''}`).join(' ');
+    const haystack = `${r.date} ${r.quote} ${r.body} ${r.moment} ${versionText}`.toLowerCase();
     return haystack.includes(q);
   }).slice(0, 40);
 
@@ -1020,6 +1168,14 @@ async function init() {
   const reflectionsResponse = await fetch('data/reflections.json');
   if (!reflectionsResponse.ok) throw new Error('Reflection data not found');
   REFLECTIONS = await reflectionsResponse.json();
+
+  try {
+    const rniResponse = await fetch('data/rni-versions.json', { cache: 'no-store' });
+    if (rniResponse.ok) RNI_HISTORY = await rniResponse.json();
+  } catch (error) {
+    console.warn('Review & Input version history could not be loaded.', error);
+    RNI_HISTORY = { schemaVersion: 1, readings: {} };
+  }
 
   try {
     const audioResponse = await fetch('data/gbr-daily-audio.json', { cache: 'no-store' });
