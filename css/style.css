@@ -2345,3 +2345,18 @@ button:focus-visible,
     width: 100%;
   }
 }
+
+/* Full Review & Input history browser link */
+.rni-browser-link{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  margin-top:.35rem;
+  padding:.68rem .82rem;
+  border:1px solid #5d4a2f;
+  background:#f6ecd7;
+  color:#201b15;
+  font-weight:800;
+  text-decoration:none;
+}
+.rni-browser-link:hover,.rni-browser-link:focus-visible{background:#ead9b8;outline:2px solid #8d672d;outline-offset:2px}
