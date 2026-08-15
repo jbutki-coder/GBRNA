@@ -2,6 +2,16 @@ let DATA=null;
 let FILTER='mapped';
 const esc=(s='')=>String(s).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
 const text=(v={})=>[v.label,v.group,v.quote,v.source,v.body,v.moment,v.historicalDate,(v.historicalDates||[]).join(' '),(v.editions||[]).map(e=>e.label).join(' ')].join(' ').toLowerCase();
+function studyLink(v){
+  const m=v?.greyBookStudy;
+  if(!m?.target||!m?.anchorText)return '';
+  const params=new URLSearchParams();
+  params.set('source',m.anchorText);
+  if(m.citation||v.source)params.set('citation',m.citation||v.source);
+  if(m.printedPage)params.set('page',m.printedPage);
+  if(m.lineLabel)params.set('lines',m.lineLabel);
+  return `<p><a class="history-study-link" href="/grey-book-study/?${esc(params.toString())}#${esc(m.target)}">Open exact source in Grey Book Study</a></p>`;
+}
 function editionList(v){
   if(!Array.isArray(v.editions)||!v.editions.length)return '';
   return `<ul class="history-editions">${v.editions.map(e=>`<li>${esc(e.label)}${e.sourceDocumentPage?` — source p. ${esc(e.sourceDocumentPage)}`:''}</li>`).join('')}</ul>`;
@@ -13,7 +23,7 @@ function card(id,v){
   if(v.historicalDate)extras.push(`historical writing date ${v.historicalDate}`);
   if(Array.isArray(v.historicalDates)&&v.historicalDates.length)extras.push(`historical writing dates ${v.historicalDates.join(', ')}`);
   if(v.sourceDocumentPage)extras.push(`source p. ${v.sourceDocumentPage}`);
-  return `<details class="history-card"><summary><span class="history-card-title">${esc(v.label||v.group||'Historical R&I')}</span><span class="history-card-meta">${esc(date)}${extras.length?' · '+esc(extras.join(' · ')):''}</span></summary><div class="history-card-body"><p class="history-quote">${esc(v.quote||'')}</p><p class="history-source">${esc(v.source||'')}</p>${editionList(v)}<p>${esc(v.body||'')}</p>${v.moment?`<p class="history-moment"><strong>In This Moment:</strong> ${esc(v.moment)}</p>`:''}${v.note?`<p><small>${esc(v.note)}</small></p>`:''}</div></details>`;
+  return `<details class="history-card"><summary><span class="history-card-title">${esc(v.label||v.group||'Historical R&I')}</span><span class="history-card-meta">${esc(date)}${extras.length?' · '+esc(extras.join(' · ')):''}</span></summary><div class="history-card-body"><p class="history-quote">${esc(v.quote||'')}</p><p class="history-source">${esc(v.source||'')}</p>${editionList(v)}${studyLink(v)}<p>${esc(v.body||'')}</p>${v.moment?`<p class="history-moment"><strong>In This Moment:</strong> ${esc(v.moment)}</p>`:''}${v.note?`<p><small>${esc(v.note)}</small></p>`:''}</div></details>`;
 }
 function renderStats(){const r=DATA.mappingReport||{};document.getElementById('historyStats').innerHTML=[
  [r.totalCalendarDaysWithAnyRniHistory||0, 'calendar days with R&I history'],
