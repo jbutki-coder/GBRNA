@@ -4,7 +4,8 @@ const state = {
   groups: { chapters: [], steps: [], traditions: [], bottom: [] },
   sectionMap: new Map(),
   activeItem: "",
-  query: ""
+  query: "",
+  sourceFocus: null
 };
 
 const els = {
@@ -34,6 +35,111 @@ function escapeHtml(value) {
     .replaceAll(">", "&gt;")
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&#039;");
+}
+
+
+function normalizeSourceText(value) {
+  return String(value || "")
+    .normalize("NFKD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/n\.a\./g, "na")
+    .replace(/gray/g, "grey")
+    .replace(/[^a-z0-9]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function sourceMatchScore(query, text) {
+  const q = normalizeSourceText(query);
+  const t = normalizeSourceText(text);
+  if (!q || !t) return 0;
+  if (t.includes(q)) return 1;
+  if (q.includes(t) && t.split(" ").length >= 5) return 0.97;
+
+  const qWords = new Set(q.split(" "));
+  const tWords = new Set(t.split(" "));
+  let shared = 0;
+  qWords.forEach((word) => { if (tWords.has(word)) shared += 1; });
+  const containment = shared / Math.max(1, qWords.size);
+  const union = new Set([...qWords, ...tWords]).size;
+  const jaccard = shared / Math.max(1, union);
+  return (containment * 0.72) + (jaccard * 0.28);
+}
+
+function readSourceFocus() {
+  const params = new URLSearchParams(location.search);
+  const source = params.get("source") || "";
+  if (!source) return null;
+  return {
+    source,
+    citation: params.get("citation") || "",
+    page: params.get("page") || "",
+    lines: params.get("lines") || ""
+  };
+}
+
+function focusSourcePassage(active, visibleParagraphs) {
+  const focus = state.sourceFocus;
+  if (!focus?.source || !active) return;
+  if (targetFromHash() !== active.id) return;
+
+  const articles = [...els.content.querySelectorAll("[data-source-index]")];
+  if (!articles.length) return;
+
+  const normalizedQuery = normalizeSourceText(focus.source);
+  const paragraphTexts = visibleParagraphs.map((paragraph) => normalizeSourceText(paragraph.text));
+  let matchedIndexes = [];
+
+  paragraphTexts.some((text, index) => {
+    if (text && text.includes(normalizedQuery)) {
+      matchedIndexes = [index];
+      return true;
+    }
+    return false;
+  });
+
+  if (!matchedIndexes.length) {
+    for (let index = 0; index < paragraphTexts.length - 1; index += 1) {
+      const pair = `${paragraphTexts[index]} ${paragraphTexts[index + 1]}`.trim();
+      if (pair.includes(normalizedQuery)) {
+        matchedIndexes = [index, index + 1];
+        break;
+      }
+    }
+  }
+
+  if (!matchedIndexes.length) {
+    let bestIndex = -1;
+    let bestScore = 0;
+    visibleParagraphs.forEach((paragraph, index) => {
+      const score = sourceMatchScore(focus.source, paragraph.text);
+      if (score > bestScore) {
+        bestScore = score;
+        bestIndex = index;
+      }
+    });
+    if (bestIndex >= 0 && bestScore >= 0.42) matchedIndexes = [bestIndex];
+  }
+
+  if (!matchedIndexes.length) return;
+
+  matchedIndexes.forEach((index) => articles[index]?.classList.add("is-source-target"));
+  const first = articles[matchedIndexes[0]];
+  if (!first) return;
+
+  const locationBits = [];
+  if (focus.page) locationBits.push(`GBR page ${focus.page}`);
+  if (focus.lines) locationBits.push(`lines ${focus.lines}`);
+  const detail = focus.citation || locationBits.join(" · ") || active.name;
+  const note = document.createElement("div");
+  note.className = "grey-study-source-focus-note";
+  note.innerHTML = `<strong>Exact source passage</strong><span>${escapeHtml(detail)}</span>`;
+  first.before(note);
+
+  requestAnimationFrame(() => {
+    first.scrollIntoView({ behavior: "smooth", block: "center" });
+  });
 }
 
 function formatPages(items) {
@@ -304,17 +410,19 @@ function renderContent() {
     </p>
   ` : "";
   let bodyParagraphIndex = 0;
-  els.content.innerHTML = visibleParagraphs.map((paragraph) => {
+  els.content.innerHTML = visibleParagraphs.map((paragraph, sourceIndex) => {
     const pages = paragraph.pages.length ? `<span class="grey-study-page">GBR page ${escapeHtml(paragraph.pages.join(", "))}</span>` : "";
     if (paragraph.isHeading) {
-      return `<article class="grey-study-paragraph is-heading"><h3>${escapeHtml(paragraph.text)}</h3>${pages}</article>`;
+      return `<article class="grey-study-paragraph is-heading" data-source-index="${sourceIndex}"><h3>${escapeHtml(paragraph.text)}</h3>${pages}</article>`;
     }
     const leadClass = bodyParagraphIndex === 0 && ["steps", "traditions"].includes(active.group)
       ? " is-lead"
       : "";
     bodyParagraphIndex += 1;
-    return `<article class="grey-study-paragraph${leadClass}"><p>${escapeHtml(paragraph.text)}</p>${pages}</article>`;
+    return `<article class="grey-study-paragraph${leadClass}" data-source-index="${sourceIndex}"><p>${escapeHtml(paragraph.text)}</p>${pages}</article>`;
   }).join("") + action;
+
+  focusSourcePassage(active, visibleParagraphs);
 }
 
 function render() {
@@ -383,6 +491,8 @@ async function loadStudyData() {
   }
   throw new Error(errors.join("; "));
 }
+
+state.sourceFocus = readSourceFocus();
 
 loadStudyData()
   .then((data) => {
