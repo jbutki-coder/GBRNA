@@ -894,6 +894,30 @@ function resolveRniReading(baseReading) {
   };
 }
 
+function renderRniEditionMeta(version) {
+  const bits = [];
+  if (Array.isArray(version?.editions) && version.editions.length) {
+    if (version.editions.length === 1) {
+      const ed = version.editions[0];
+      bits.push(`${ed.label || 'historical edition'}${ed.sourceDocumentPage ? ` p. ${ed.sourceDocumentPage}` : ''}`);
+    } else {
+      bits.push(`${version.editions.length} historical editions`);
+    }
+  }
+  if (version?.sourceCalendarDate) bits.push(`source calendar date ${version.sourceCalendarDate}`);
+  if (Array.isArray(version?.historicalDates) && version.historicalDates.length) {
+    bits.push(`historical writing date${version.historicalDates.length > 1 ? 's' : ''}: ${version.historicalDates.join(', ')}`);
+  } else if (version?.historicalDate) {
+    bits.push(`historical writing date: ${version.historicalDate}`);
+  }
+  if (Array.isArray(version?.sourceDocumentPages) && version.sourceDocumentPages.length > 1) {
+    bits.push(`source pp. ${version.sourceDocumentPages.join(', ')}`);
+  } else if (version?.sourceDocumentPage && !(Array.isArray(version?.editions) && version.editions.length)) {
+    bits.push(`source p. ${version.sourceDocumentPage}`);
+  }
+  return bits.length ? ` · ${bits.map(escapeHtml).join(' · ')}` : '';
+}
+
 function renderRniVersionPanel(baseReading, displayReading) {
   const record = getRniRecord(baseReading.id);
   if (!record || !Array.isArray(record.versions) || !record.versions.length) return '';
@@ -912,8 +936,14 @@ function renderRniVersionPanel(baseReading, displayReading) {
       ? `<p><strong>NY Project Edition:</strong> This is the version originally used to map this calendar reading on GBRNA. Newer input from <strong>The Ties That Bind Group</strong> is also available.</p>`
       : `<p><strong>NY Project Edition:</strong> This remains the current mapped reading. Earlier Review &amp; Input material is available below for historical comparison.</p>`;
   } else if (currentVersion) {
-    const when = currentVersion.historicalDate ? ` · historical writing date: ${escapeHtml(currentVersion.historicalDate)}` : '';
-    lead = `<p><strong>Earlier Review &amp; Input:</strong> You are viewing ${escapeHtml(currentVersion.group || currentVersion.label || 'historical input')}${when}. The source document states that its dates are historical writing dates, not the final GBR calendar placement.</p>`;
+    const meta = renderRniEditionMeta(currentVersion);
+    const isGwu = (currentVersion.group || '').includes('Grateful Wake Up');
+    const placementNote = isGwu
+      ? ' The Grateful Wake Up source states that its printed dates are historical writing dates, not final GBR calendar placement.'
+      : currentVersion.sourceCalendarDate
+        ? ' This historical edition explicitly printed that calendar date for the reading.'
+        : ' This version predates the NY project edition and is mapped here only where the Grey Book quotation/source lineage could be established confidently.';
+    lead = `<p><strong>Earlier Review &amp; Input:</strong> You are viewing ${escapeHtml(currentVersion.group || currentVersion.label || 'historical input')}${meta}.${placementNote}</p>`;
   }
 
   const quickButtons = [];
@@ -926,11 +956,10 @@ function renderRniVersionPanel(baseReading, displayReading) {
 
   const timeline = [];
   earlier.forEach((version) => {
-    const dateText = version.historicalDate ? ` · ${escapeHtml(version.historicalDate)}` : '';
-    const pageText = version.sourceDocumentPage ? ` · source p. ${escapeHtml(version.sourceDocumentPage)}` : '';
+    const meta = renderRniEditionMeta(version);
     timeline.push(`
       <li class="rni-history-item${currentKey === version.key ? ' is-current' : ''}">
-        <div><strong>${escapeHtml(version.group || version.label || 'Earlier R&I')}</strong>${dateText}${pageText}<small>Historical Review &amp; Input preceding the NY project edition.</small></div>
+        <div><strong>${escapeHtml(version.label || version.group || 'Earlier R&I')}</strong>${meta}<small>${escapeHtml(version.status || 'Historical Review & Input preceding the NY project edition.')}</small></div>
         <button type="button" data-rni-switch="${escapeHtml(version.key)}" data-rni-id="${escapeHtml(baseReading.id)}">View</button>
       </li>`);
   });
@@ -967,6 +996,7 @@ function renderRniVersionPanel(baseReading, displayReading) {
         <summary>R&amp;I History <span aria-hidden="true">▼</span></summary>
         <p class="rni-history-intro">Earlier historical Review &amp; Input → NY project edition → newer post-NY input. Versions are shown in place; no PDF is opened.</p>
         <ol class="rni-history-list">${timeline.join('')}</ol>
+        <p><a class="rni-browser-link" href="/rni-history/">Browse all mapped and unmapped historical R&amp;I</a></p>
       </details>
     </aside>`;
 }
