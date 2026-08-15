@@ -708,18 +708,42 @@ function greyBookStudyTarget(sectionName) {
   return '';
 }
 
-function renderGreyBookStudyLink(reading) {
-  const context = GREY_BOOK_CONTEXT?.contexts?.[reading.id];
-  const target = greyBookStudyTarget(reading.source) || greyBookStudyTarget(context?.section);
+function renderGreyBookStudyLink(reading, baseReading = reading) {
+  const versionMap = reading?._rniVersion?.greyBookStudy || null;
+  const context = GREY_BOOK_CONTEXT?.contexts?.[baseReading.id];
+  const anchorParagraph = context?.anchorParagraphId
+    ? GREY_BOOK_CONTEXT?.paragraphs?.[context.anchorParagraphId]
+    : null;
+
+  const target = versionMap?.target
+    || greyBookStudyTarget(reading.source)
+    || greyBookStudyTarget(context?.section);
   if (!target) return '';
 
-  const sectionName = context?.section || reading.source || 'Grey Book source';
+  const anchorText = versionMap?.anchorText
+    || anchorParagraph?.text
+    || reading.quote
+    || baseReading.quote
+    || '';
+  const citation = versionMap?.citation || reading.source || baseReading.source || '';
+  const page = versionMap?.printedPage || (context?.sourcePages || [])[0] || '';
+  const lineLabel = versionMap?.lineLabel || context?.lineLabel || '';
+  const sectionName = versionMap?.sectionTitle || context?.section || reading.source || 'Grey Book source';
+
+  const params = new URLSearchParams();
+  if (anchorText) params.set('source', anchorText);
+  if (citation) params.set('citation', citation);
+  if (page) params.set('page', page);
+  if (lineLabel) params.set('lines', lineLabel);
+  const query = params.toString();
+  const href = `/grey-book-study/${query ? `?${query}` : ''}#${target}`;
+
   return `
     <a
       class="grey-book-study-source-link"
-      href="/grey-book-study/#${escapeHtml(target)}"
-      aria-label="Open ${escapeHtml(sectionName)} in the Grey Book Study"
-    >Open Source in Grey Book Study</a>
+      href="${escapeHtml(href)}"
+      aria-label="Open the exact ${escapeHtml(sectionName)} source passage in the Grey Book Study"
+    >Open Exact Source in Grey Book Study</a>
   `;
 }
 
@@ -983,7 +1007,7 @@ function renderRniVersionPanel(baseReading, displayReading) {
     : '';
 
   const sourceCompatibility = currentKey !== 'ny-project'
-    ? `<p class="rni-source-note">Daily audio and the expandable mapped Grey Book source-page view belong to the NY project edition. Switch to the NY version to use those features without mixing editions.</p>`
+    ? `<p class="rni-source-note">Daily audio and the expandable source-page transcript belong to the NY project edition. The Grey Book Study source button follows the Grey Book quotation/source for whichever R&amp;I version you are viewing.</p>`
     : '';
 
   return `
@@ -1035,7 +1059,7 @@ function renderReadingCard(reading, label = '', isPrimary = false, baseReading =
         <div class="reading-meta">
           <span class="source-ref">${sourceLine}</span>
           <span class="page-ref">${pageMeta}</span>
-          ${isNyEdition ? renderGreyBookStudyLink(baseReading) : ''}
+          ${renderGreyBookStudyLink(reading, baseReading)}
         </div>
       </div>
       <blockquote class="quote">${escapeHtml(reading.quote)}</blockquote>
