@@ -465,3 +465,51 @@ body.grey-study-dark .grey-study-page {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
+
+/* Exact Grey Book source deep-linking */
+.grey-study-source-focus-note {
+  margin: 1rem 0 .8rem;
+  padding: .85rem 1rem;
+  border: 2px solid #b87825;
+  border-left-width: 7px;
+  background: #fff3d8;
+  color: #211b14;
+  box-shadow: 0 8px 18px rgba(0,0,0,.08);
+}
+.grey-study-source-focus-note strong {
+  display: block;
+  margin-bottom: .25rem;
+  font: 900 .76rem/1.2 Arial,sans-serif;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: #7d4817;
+}
+.grey-study-source-focus-note span {
+  display: block;
+  line-height: 1.45;
+}
+.grey-study-paragraph.is-source-target {
+  position: relative;
+  border: 3px solid #b87825;
+  background: #fff8e8;
+  box-shadow: 0 0 0 4px rgba(184,120,37,.14), 0 10px 24px rgba(0,0,0,.09);
+}
+.grey-study-paragraph.is-source-target::before {
+  content: "SOURCE PASSAGE";
+  display: inline-block;
+  margin: 0 0 .55rem;
+  padding: .28rem .48rem;
+  background: #1d2c28;
+  color: #fff;
+  font: 900 .68rem/1 Arial,sans-serif;
+  letter-spacing: .08em;
+}
+.grey-study-dark .grey-study-source-focus-note,
+.grey-study-dark .grey-study-paragraph.is-source-target {
+  background: #2c271e;
+  color: #f8edda;
+}
+@media (max-width: 600px) {
+  .grey-study-source-focus-note { margin-top: .6rem; }
+  .grey-study-paragraph.is-source-target { scroll-margin-top: 5rem; }
+}
