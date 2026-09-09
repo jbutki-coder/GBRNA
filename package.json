@@ -1,8 +1,8 @@
 {
   "name": "gbrna-mobile-pdf-reader",
-  "version": "6.0.0",
+  "version": "7.0.0",
   "private": true,
-  "description": "GBRNA site with a checked Node PDF reader, mobile fallback, and same-origin archive PDF proxy.",
+  "description": "GBRNA site with automatic website translation, a checked Node PDF reader, mobile fallback, and same-origin archive PDF proxy.",
   "engines": {
     "node": ">=20 <23"
   },
@@ -14,3 +14,5987 @@
     "pdfjs-dist": "5.7.284"
   }
 }
+
+(() => {
+  'use strict';
+
+  let sourceMap = null;
+  let sourceMapPromise = null;
+
+  function escapeHtml(value) {
+    return String(value ?? '')
+      .replaceAll('&', '&amp;')
+      .replaceAll('<', '&lt;')
+      .replaceAll('>', '&gt;')
+      .replaceAll('"', '&quot;')
+      .replaceAll("'", '&#039;');
+  }
+
+  async function loadSourceMap() {
+    if (sourceMap) return sourceMap;
+    if (!sourceMapPromise) {
+      sourceMapPromise = fetch('data/gbr-source-pages.json', { cache: 'no-store' })
+        .then((response) => {
+          if (!response.ok) throw new Error(`GBR source-page map returned ${response.status}`);
+          return response.json();
+        })
+        .then((data) => {
+          sourceMap = data;
+          return data;
+        });
+    }
+    return sourceMapPromise;
+  }
+
+  function preserveAudioNodes(container) {
+    if (!container) return [];
+    const candidates = [...container.children];
+    return candidates.filter((node) => {
+      if (!(node instanceof HTMLElement)) return false;
+      return Boolean(
+        node.matches('audio, [data-source-audio-player], [data-gbr-source-audio]') ||
+        node.querySelector('audio')
+      );
+    });
+  }
+
+  function renderImages(entry) {
+    return entry.images.map((image, index) => `
+      <figure class="gbr-exact-source-page${index ? ' gbr-exact-source-page-continuation' : ''}">
+        <figcaption>
+          <span>Original 1981 Grey Book manuscript</span>
+          <strong>GBR Page ${escapeHtml(image.printedPage)}</strong>
+        </figcaption>
+        <a href="${escapeHtml(image.url)}" target="_blank" rel="noopener noreferrer">
+          <img
+            src="${escapeHtml(image.url)}"
+            alt="Original Grey Book source page ${escapeHtml(image.printedPage)} for ${escapeHtml(entry.section)}"
+            loading="lazy"
+            decoding="async"
+          >
+        </a>
+      </figure>
+    `).join('');
+  }
+
+  function pageLabel(entry) {
+    const labels = entry.images.map((image) => image.printedPage);
+    if (labels.length === 1) return `Page ${labels[0]}`;
+    return `Pages ${labels[0]}-${labels[labels.length - 1]}`;
+  }
+
+  function applyEntry(card, entry) {
+    const section = card.querySelector('.grey-book-context');
+    if (!section) return;
+
+    const heading = section.querySelector('.grey-book-context-heading h4');
+    const meta = section.querySelector('.grey-book-context-meta');
+    const stamp = section.querySelector('.grey-book-page-stamp');
+    const summaryStrong = section.querySelector('.grey-book-context-summary-copy strong');
+    const summarySmall = section.querySelector('.grey-book-context-summary-copy small');
+    const pagesContainer = section.querySelector('.grey-book-context-pages');
+
+    const label = pageLabel(entry);
+    const details = [entry.section, `GBR ${label}`];
+    if (entry.lineLabel) details.push(entry.lineLabel);
+
+    if (heading) heading.textContent = entry.images.length > 1 ? 'Read the Source Pages' : 'Read the Source Page';
+    if (meta) meta.textContent = details.join(' · ');
+    if (stamp) stamp.textContent = entry.images.length > 1
+      ? `PP. ${entry.images[0].printedPage}-${entry.images[entry.images.length - 1].printedPage}`
+      : `P. ${entry.images[0].printedPage}`;
+    if (summaryStrong) summaryStrong.textContent = `Read Original Grey Book ${label}`;
+    if (summarySmall) {
+      summarySmall.textContent = entry.step
+        ? `${entry.section} only - text from the previous and next Steps is excluded.`
+        : 'The exact cited GBR page is shown with its original page and line numbers.';
+    }
+
+    if (pagesContainer) {
+      const audioNodes = preserveAudioNodes(pagesContainer);
+      audioNodes.forEach((node) => node.remove());
+      pagesContainer.innerHTML = `
+        <div class="gbr-exact-source-pages" data-gbr-exact-source>
+          ${renderImages(entry)}
+          <p class="gbr-exact-source-note">
+            ${entry.step
+              ? `${escapeHtml(entry.section)} is kept within its own Step boundary. No text from the previous or next Step is included.`
+              : 'This image comes from the exact GBR page cited beneath the daily quotation.'}
+          </p>
+        </div>
+      `;
+      audioNodes.forEach((node) => pagesContainer.append(node));
+    }
+
+    section.dataset.gbrExactSource = 'true';
+  }
+
+  async function applyExactSourcePages() {
+    let map;
+    try {
+      map = await loadSourceMap();
+    } catch (error) {
+      console.error('Could not load exact GBR source pages.', error);
+      return;
+    }
+
+    document.querySelectorAll('.reading-card[id^="reading-"]').forEach((card) => {
+      const id = card.id.replace(/^reading-/, '');
+      const entry = map?.entries?.[id];
+      if (entry) applyEntry(card, entry);
+    });
+  }
+
+  document.addEventListener('gbr:reading-rendered', applyExactSourcePages);
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', applyExactSourcePages, { once: true });
+  } else {
+    applyExactSourcePages();
+  }
+})();
+
+let REFLECTIONS = [];
+let DAILY_AUDIO = {};
+let GREY_BOOK_CONTEXT = { dates: {}, pages: {} };
+let RNI_HISTORY = { schemaVersion: 1, readings: {} };
+const RNI_SELECTION = Object.create(null);
+let currentId = null;
+
+const monthNames = [
+  '', 'January', 'February', 'March', 'April', 'May', 'June',
+  'July', 'August', 'September', 'October', 'November', 'December'
+];
+
+const $ = (selector) => document.querySelector(selector);
+
+function pad(n) {
+  return String(n).padStart(2, '0');
+}
+
+function makeId(month, day) {
+  return `${pad(month)}-${pad(day)}`;
+}
+
+function isLeapYear(year) {
+  return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
+}
+
+function todayId() {
+  const today = new Date();
+  return makeId(today.getMonth() + 1, today.getDate());
+}
+
+function findReading(id) {
+  return REFLECTIONS.find((r) => r.id === id);
+}
+
+function getDailyReadings(date = new Date()) {
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
+  const year = date.getFullYear();
+
+  const readings = REFLECTIONS.filter(
+    (r) => r.month === month && r.day === day
+  );
+
+  if (!isLeapYear(year) && month === 2 && day === 28) {
+    const feb29 = findReading('02-29');
+    if (feb29) readings.push(feb29);
+  }
+
+  return readings;
+}
+
+function getReadingIndex(id) {
+  return REFLECTIONS.findIndex((r) => r.id === id);
+}
+
+function moveReading(direction) {
+  const index = getReadingIndex(currentId || todayId());
+
+  if (index < 0) return;
+
+  const nextIndex =
+    (index + direction + REFLECTIONS.length) % REFLECTIONS.length;
+
+  showReadingById(REFLECTIONS[nextIndex].id);
+}
+
+function paragraphHtml(text) {
+  if (!text) return '';
+
+  return text
+    .split(/\n\s*\n/)
+    .map((p) => `<p>${escapeHtml(p)}</p>`)
+    .join('');
+}
+
+function escapeHtml(str) {
+  return String(str)
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#039;');
+}
+
+
+
+function formatAudioTime(seconds) {
+  if (!Number.isFinite(seconds) || seconds < 0) return '--:--';
+
+  const mins = Math.floor(seconds / 60);
+  const secs = Math.floor(seconds % 60);
+
+  return `${mins}:${String(secs).padStart(2, '0')}`;
+}
+
+
+/*
+  ------------------------------------------------------------
+  DAILY REFLECTION AUDIO
+  ------------------------------------------------------------
+
+  Audio belongs to the calendar date.
+
+  This means January audio remains visible even when the newer
+  Ties That Bind Review & Input version is being displayed.
+
+  Example:
+  January 17 always looks for DAILY_AUDIO["01-17"] regardless
+  of which R&I text version is currently selected.
+  ------------------------------------------------------------
+*/
+
+function resolveDailyAudioId(reading) {
+  const candidates = [];
+
+  function addCandidate(value) {
+    const id = String(value || '').trim();
+
+    if (
+      /^\d{2}-\d{2}$/.test(id) &&
+      !candidates.includes(id)
+    ) {
+      candidates.push(id);
+    }
+  }
+
+  // The calendar date currently open on the site.
+  addCandidate(currentId);
+
+  // Standard reflection ID.
+  addCandidate(reading?.id);
+
+  // Possible IDs retained by versioned R&I material.
+  addCandidate(reading?.calendarId);
+  addCandidate(reading?.baseId);
+  addCandidate(reading?.originalId);
+  addCandidate(reading?.readingId);
+  addCandidate(reading?.dateId);
+  addCandidate(reading?.sourceId);
+
+  // Fall back to numeric month/day.
+  if (reading?.month && reading?.day) {
+    addCandidate(
+      makeId(
+        Number(reading.month),
+        Number(reading.day)
+      )
+    );
+  }
+
+  // Final fallback: derive date from text such as "January 17".
+  const dateText = String(reading?.date || '').trim();
+
+  const dateMatch =
+    dateText.match(/^([A-Za-z]+)\s+(\d{1,2})/);
+
+  if (dateMatch) {
+    const monthNumber = monthNames.findIndex(
+      (monthName) =>
+        monthName.toLowerCase() ===
+        dateMatch[1].toLowerCase()
+    );
+
+    if (monthNumber > 0) {
+      addCandidate(
+        makeId(
+          monthNumber,
+          Number(dateMatch[2])
+        )
+      );
+    }
+  }
+
+  // Prefer the first candidate that actually has audio.
+  const matchingId = candidates.find(
+    (id) =>
+      DAILY_AUDIO[id] &&
+      DAILY_AUDIO[id].audioUrl
+  );
+
+  return matchingId || candidates[0] || '';
+}
+
+
+function renderDailyAudio(reading) {
+  const audioId = resolveDailyAudioId(reading);
+  const audio = DAILY_AUDIO[audioId];
+
+  if (!audio || !audio.audioUrl) return '';
+
+  const title =
+    audio.title ||
+    `Grey Book Reflection Audio — ${reading.date}`;
+
+  const alternates = Array.isArray(audio.alternates)
+    ? audio.alternates
+    : [];
+
+  const trackOptions = [
+    {
+      label: 'Main recording',
+      audioUrl: audio.audioUrl,
+      title
+    },
+
+    ...alternates.map((item) => ({
+      label: item.label || 'Alternate recording',
+      audioUrl: item.audioUrl,
+      title: item.label || title
+    }))
+  ];
+
+  const trackPicker =
+    trackOptions.length > 1
+      ? `
+        <label class="audio-variant-picker">
+
+          <span>Recording</span>
+
+          <select data-track-select>
+
+            ${trackOptions
+              .map(
+                (track, index) => `
+                  <option
+                    value="${escapeHtml(track.audioUrl)}"
+                    data-track-title="${escapeHtml(track.title)}"
+                    ${index === 0 ? 'selected' : ''}
+                  >
+                    ${escapeHtml(track.label)}
+                  </option>
+                `
+              )
+              .join('')}
+
+          </select>
+
+        </label>
+      `
+      : '';
+
+  return `
+    <section
+      class="daily-reflection-audio cassette-player"
+      data-audio-player
+      aria-label="Grey Book Reflection audio for ${escapeHtml(reading.date)}"
+    >
+
+      <div class="cassette-topline">
+
+        <div>
+
+          <p class="daily-audio-kicker">
+            Listen to Today's Reflection
+          </p>
+
+          <h4>
+            ${escapeHtml(reading.date)} Audio
+          </h4>
+
+        </div>
+
+        <a
+          class="audio-file-link"
+          data-audio-file-link
+          href="${escapeHtml(audio.audioUrl)}"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          MP3 ↗
+        </a>
+
+      </div>
+
+
+      <audio
+        data-audio
+        preload="none"
+        playsinline
+      >
+
+        <source
+          data-audio-source
+          src="${escapeHtml(audio.audioUrl)}"
+          type="audio/mpeg"
+        >
+
+      </audio>
+
+
+      <div class="cassette-shell">
+
+        <span
+          class="cassette-screw screw-tl"
+          aria-hidden="true"
+        ></span>
+
+        <span
+          class="cassette-screw screw-tr"
+          aria-hidden="true"
+        ></span>
+
+        <span
+          class="cassette-screw screw-bl"
+          aria-hidden="true"
+        ></span>
+
+        <span
+          class="cassette-screw screw-br"
+          aria-hidden="true"
+        ></span>
+
+
+        <div class="cassette-label-strip">
+
+          <span>
+            GREY BOOK REFLECTION
+          </span>
+
+          <strong>
+            ${escapeHtml(reading.date.toUpperCase())}
+          </strong>
+
+          <span>
+            DAILY AUDIO
+          </span>
+
+        </div>
+
+
+        <div
+          class="cassette-window"
+          aria-hidden="true"
+        >
+
+          <span class="cassette-reel cassette-reel-left">
+            <i></i>
+          </span>
+
+          <span class="cassette-tape-band"></span>
+
+          <span class="cassette-reel cassette-reel-right">
+            <i></i>
+          </span>
+
+        </div>
+
+
+        <div class="cassette-counter-row">
+
+          <span data-current-time>
+            0:00
+          </span>
+
+          <span class="cassette-counter-label">
+            TAPE COUNTER
+          </span>
+
+          <span data-duration>
+            --:--
+          </span>
+
+        </div>
+
+
+        <input
+          class="audio-progress"
+          data-progress
+          type="range"
+          min="0"
+          max="1000"
+          value="0"
+          step="1"
+          aria-label="Audio progress"
+        >
+
+      </div>
+
+
+      <div
+        class="cassette-controls"
+        aria-label="Audio controls"
+      >
+
+        <button
+          type="button"
+          data-skip="-15"
+          aria-label="Go back 15 seconds"
+        >
+          ↶<span>15</span>
+        </button>
+
+
+        <button
+          class="audio-play-button"
+          type="button"
+          data-play
+          aria-label="Play ${escapeHtml(reading.date)} audio"
+        >
+
+          <span
+            class="audio-play-symbol"
+            data-play-icon
+            aria-hidden="true"
+          >
+            ▶
+          </span>
+
+          <span
+            class="cassette-control-caption"
+            data-play-text
+          >
+            PLAY
+          </span>
+
+        </button>
+
+
+        <button
+          type="button"
+          data-skip="15"
+          aria-label="Go forward 15 seconds"
+        >
+          ↷<span>15</span>
+        </button>
+
+
+        <button
+          class="audio-speed-button"
+          type="button"
+          data-speed
+        >
+          1×<span>SPEED</span>
+        </button>
+
+      </div>
+
+
+      ${trackPicker}
+
+
+      <p
+        class="audio-status"
+        data-audio-status
+        aria-live="polite"
+      ></p>
+
+    </section>
+  `;
+}
+
+
+function attachAudioPlayers() {
+  document
+    .querySelectorAll('[data-audio-player]')
+    .forEach((card) => {
+
+      if (card.dataset.bound === 'true') return;
+
+      card.dataset.bound = 'true';
+
+      const audio =
+        card.querySelector('[data-audio]');
+
+      const playButton =
+        card.querySelector('[data-play]');
+
+      const playIcon =
+        card.querySelector('[data-play-icon]');
+
+      const playText =
+        card.querySelector('[data-play-text]');
+
+      const progress =
+        card.querySelector('[data-progress]');
+
+      const currentTime =
+        card.querySelector('[data-current-time]');
+
+      const duration =
+        card.querySelector('[data-duration]');
+
+      const speedButton =
+        card.querySelector('[data-speed]');
+
+      const status =
+        card.querySelector('[data-audio-status]');
+
+      const trackSelect =
+        card.querySelector('[data-track-select]');
+
+      const fileLink =
+        card.querySelector('[data-audio-file-link]');
+
+      const sourceEl =
+        card.querySelector('[data-audio-source]');
+
+
+      if (!audio || !playButton || !progress) return;
+
+
+      const speedOptions = [
+        1,
+        1.25,
+        1.5,
+        2
+      ];
+
+      let speedIndex = 0;
+
+
+      function setPlayingState(isPlaying) {
+
+        playIcon.textContent =
+          isPlaying ? 'Ⅱ' : '▶';
+
+        playText.textContent =
+          isPlaying ? 'Pause' : 'Play';
+
+        playButton.setAttribute(
+          'aria-label',
+          isPlaying
+            ? 'Pause audio'
+            : 'Play audio'
+        );
+
+        card.classList.toggle(
+          'is-playing',
+          isPlaying
+        );
+      }
+
+
+      function updateProgress() {
+
+        const pct =
+          Number.isFinite(audio.duration) &&
+          audio.duration > 0
+            ? (
+                audio.currentTime /
+                audio.duration
+              ) * 100
+            : 0;
+
+        progress.value =
+          String(Math.round(pct * 10));
+
+        progress.style.setProperty(
+          '--audio-progress',
+          `${pct}%`
+        );
+
+        currentTime.textContent =
+          formatAudioTime(audio.currentTime);
+
+        duration.textContent =
+          formatAudioTime(audio.duration);
+      }
+
+
+      playButton.addEventListener(
+        'click',
+        async () => {
+
+          if (audio.paused) {
+
+            document
+              .querySelectorAll('audio[data-audio]')
+              .forEach((other) => {
+
+                if (other !== audio) {
+                  other.pause();
+                }
+
+              });
+
+            try {
+
+              await audio.play();
+
+            } catch (error) {
+
+              console.error(error);
+
+              status.textContent =
+                'Audio could not start. Try the MP3 link.';
+            }
+
+          } else {
+
+            audio.pause();
+
+          }
+
+        }
+      );
+
+
+      audio.addEventListener(
+        'play',
+        () => {
+
+          setPlayingState(true);
+          status.textContent = '';
+
+        }
+      );
+
+
+      audio.addEventListener(
+        'pause',
+        () => setPlayingState(false)
+      );
+
+
+      audio.addEventListener(
+        'ended',
+        () => setPlayingState(false)
+      );
+
+
+      audio.addEventListener(
+        'timeupdate',
+        updateProgress
+      );
+
+
+      audio.addEventListener(
+        'loadedmetadata',
+        updateProgress
+      );
+
+
+      audio.addEventListener(
+        'durationchange',
+        updateProgress
+      );
+
+
+      audio.addEventListener(
+        'error',
+        () => {
+
+          setPlayingState(false);
+
+          status.textContent =
+            'This recording could not be loaded. Try the MP3 link.';
+        }
+      );
+
+
+      progress.addEventListener(
+        'input',
+        () => {
+
+          if (
+            !Number.isFinite(audio.duration) ||
+            audio.duration <= 0
+          ) {
+            return;
+          }
+
+          audio.currentTime =
+            (
+              Number(progress.value) /
+              1000
+            ) *
+            audio.duration;
+
+          updateProgress();
+
+        }
+      );
+
+
+      card
+        .querySelectorAll('[data-skip]')
+        .forEach((button) => {
+
+          button.addEventListener(
+            'click',
+            () => {
+
+              const seconds =
+                Number(button.dataset.skip || 0);
+
+              if (
+                !Number.isFinite(audio.duration)
+              ) {
+                return;
+              }
+
+              audio.currentTime =
+                Math.min(
+                  Math.max(
+                    audio.currentTime + seconds,
+                    0
+                  ),
+                  audio.duration
+                );
+
+            }
+          );
+
+        });
+
+
+      speedButton.addEventListener(
+        'click',
+        () => {
+
+          speedIndex =
+            (speedIndex + 1) %
+            speedOptions.length;
+
+          const nextSpeed =
+            speedOptions[speedIndex];
+
+          audio.playbackRate =
+            nextSpeed;
+
+          speedButton.textContent =
+            `${nextSpeed}× Speed`;
+
+        }
+      );
+
+
+      if (trackSelect) {
+
+        trackSelect.addEventListener(
+          'change',
+          () => {
+
+            const option =
+              trackSelect.options[
+                trackSelect.selectedIndex
+              ];
+
+            const wasPlaying =
+              !audio.paused;
+
+            audio.pause();
+
+
+            if (sourceEl) {
+
+              sourceEl.src =
+                trackSelect.value;
+
+            } else {
+
+              audio.src =
+                trackSelect.value;
+
+            }
+
+
+            audio.load();
+
+            fileLink.href =
+              trackSelect.value;
+
+            status.textContent =
+              option.dataset.trackTitle || '';
+
+
+            if (wasPlaying) {
+
+              audio
+                .play()
+                .catch((error) => {
+
+                  console.error(error);
+
+                  status.textContent =
+                    'Recording changed. Press play to continue.';
+
+                });
+
+            }
+
+          }
+        );
+
+      }
+
+
+      updateProgress();
+
+    });
+}
+
+
+
+function renderAudioLibrary(isPrimary = false) {
+  return `
+    <section
+      ${isPrimary ? 'id="audio"' : ''}
+      class="reading-audio-library"
+      data-audio-library
+      aria-label="NA audio library"
+    >
+
+      <div class="audio-library-console">
+
+        <div class="audio-library-heading">
+
+          <p class="audio-library-kicker">
+            NA Audio Library
+          </p>
+
+          <h4>
+            Grey Book &amp; Fellowship Audio
+          </h4>
+
+          <p>
+            Open an audio folder first, then choose the recording you want to hear.
+          </p>
+
+        </div>
+
+
+        <div class="audio-library-selector-block">
+
+          <div class="audio-library-selector-copy">
+
+            <span class="audio-library-selector-label">
+              1. Choose an audio folder
+            </span>
+
+            <span class="audio-library-selector-help">
+              Open this menu to choose the collection.
+            </span>
+
+          </div>
+
+
+          <div class="audio-library-select-wrap">
+
+            <select
+              class="audio-library-select"
+              data-audio-library-collection
+              aria-label="Choose an audio folder"
+            >
+              <option>
+                Loading audio folders…
+              </option>
+            </select>
+
+            <span
+              class="audio-library-select-cue"
+              aria-hidden="true"
+            >
+              OPEN FOLDERS ▼
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <div
+          class="audio-library-selector-block audio-library-episode-block"
+          data-audio-library-episode-block
+          hidden
+        >
+
+          <div class="audio-library-selector-copy">
+
+            <span class="audio-library-selector-label">
+              2. Choose a recording
+            </span>
+
+            <span class="audio-library-selector-help">
+              Now open this menu to see the recordings in that folder.
+            </span>
+
+          </div>
+
+
+          <div class="audio-library-select-wrap">
+
+            <select
+              class="audio-library-select"
+              data-audio-library-episode
+              aria-label="Choose a recording"
+            >
+              <option value="">
+                Choose a recording…
+              </option>
+            </select>
+
+            <span
+              class="audio-library-select-cue"
+              aria-hidden="true"
+            >
+              OPEN RECORDINGS ▼
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <div
+          class="audio-library-now-playing"
+          aria-live="polite"
+        >
+
+          <span
+            class="audio-library-source"
+            data-audio-library-source
+          >
+            Audio Library
+          </span>
+
+          <strong data-audio-library-title>
+            Choose an audio folder, then a recording.
+          </strong>
+
+          <span
+            class="audio-library-duration"
+            data-audio-library-duration
+          ></span>
+
+          <p data-audio-library-description></p>
+
+        </div>
+
+
+        <audio
+          class="audio-library-player"
+          data-audio-library-player
+          controls
+          preload="metadata"
+          playsinline
+        ></audio>
+
+
+        <div class="audio-library-actions">
+
+          <a
+            class="audio-library-external"
+            data-audio-library-external
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            hidden
+          >
+            Open Episode ↗
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+  `;
+}
+
+
+
+function sourceParagraphs(text) {
+  return String(text || '')
+    .split(/\n\s*\n/)
+    .map(
+      (paragraph) =>
+        paragraph
+          .replace(/\s+/g, ' ')
+          .trim()
+    )
+    .filter(Boolean);
+}
+
+
+function sourceWords(text) {
+  return (
+    String(text || '')
+      .toLowerCase()
+      .match(/[a-z0-9']+/g) || []
+  );
+}
+
+
+function suffixPrefixWordOverlap(
+  leftText,
+  rightText
+) {
+
+  const leftWords =
+    sourceWords(leftText);
+
+  const rightWords =
+    sourceWords(rightText);
+
+  const maximum =
+    Math.min(
+      leftWords.length,
+      rightWords.length,
+      120
+    );
+
+
+  for (
+    let size = maximum;
+    size >= 1;
+    size -= 1
+  ) {
+
+    const leftSlice =
+      leftWords.slice(
+        leftWords.length - size
+      );
+
+    const rightSlice =
+      rightWords.slice(0, size);
+
+
+    if (
+      leftSlice.every(
+        (word, index) =>
+          word === rightSlice[index]
+      )
+    ) {
+      return size;
+    }
+
+  }
+
+
+  return 0;
+}
+
+
+function removeLeadingSourceWords(
+  text,
+  count
+) {
+
+  if (!count) {
+    return String(text || '').trim();
+  }
+
+
+  const value =
+    String(text || '');
+
+  const wordPattern =
+    /[A-Za-z0-9']+/g;
+
+  let match;
+  let wordsSeen = 0;
+  let cutAt = 0;
+
+
+  while (
+    (match = wordPattern.exec(value)) !== null
+  ) {
+
+    wordsSeen += 1;
+    cutAt = wordPattern.lastIndex;
+
+    if (wordsSeen >= count) {
+      break;
+    }
+
+  }
+
+
+  if (wordsSeen < count) {
+    return '';
+  }
+
+
+  return value
+    .slice(cutAt)
+    .replace(/^[\s,;:.!?—–-]+/, '')
+    .trim();
+}
+
+
+function mergeSourceParagraphs(
+  leftText,
+  rightText
+) {
+
+  const left =
+    String(leftText || '').trim();
+
+  const right =
+    String(rightText || '').trim();
+
+
+  if (!left) return right;
+  if (!right) return left;
+
+
+  const overlap =
+    suffixPrefixWordOverlap(
+      left,
+      right
+    );
+
+  const remainder =
+    removeLeadingSourceWords(
+      right,
+      overlap
+    );
+
+
+  if (!remainder) {
+    return left;
+  }
+
+
+  return `${left} ${remainder}`
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+
+function sourceParagraphContinues(
+  leftText,
+  rightText
+) {
+
+  const left =
+    String(leftText || '').trim();
+
+  const right =
+    String(rightText || '').trim();
+
+
+  if (!left || !right) {
+    return false;
+  }
+
+
+  const overlap =
+    suffixPrefixWordOverlap(
+      left,
+      right
+    );
+
+
+  if (overlap >= 4) {
+    return true;
+  }
+
+
+  if (!/[.!?]["')\]]?$/.test(left)) {
+    return true;
+  }
+
+
+  if (/^[a-z]/.test(right)) {
+    return true;
+  }
+
+
+  if (/^[A-Z]\.\s+[a-z]/.test(right)) {
+    return true;
+  }
+
+
+  return false;
+}
+
+
+function buildCompleteSourceBlocks(
+  sourcePageNumbers
+) {
+
+  const blocks =
+    sourcePageNumbers
+      .map(
+        (pageNumber) =>
+          GREY_BOOK_CONTEXT?.pages?.[
+            String(pageNumber)
+          ]
+      )
+      .filter(
+        (page) =>
+          page &&
+          page.text
+      )
+      .map(
+        (page) => ({
+          page: Number(page.page),
+          section:
+            page.section ||
+            'Grey Book',
+          paragraphs:
+            sourceParagraphs(page.text)
+        })
+      );
+
+
+  if (!blocks.length) {
+    return null;
+  }
+
+
+  for (
+    let index = 0;
+    index < blocks.length - 1;
+    index += 1
+  ) {
+
+    const leftBlock =
+      blocks[index];
+
+    const rightBlock =
+      blocks[index + 1];
+
+    const leftParagraph =
+      leftBlock.paragraphs[
+        leftBlock.paragraphs.length - 1
+      ];
+
+    const rightParagraph =
+      rightBlock.paragraphs[0];
+
+
+    if (
+      sourceParagraphContinues(
+        leftParagraph,
+        rightParagraph
+      )
+    ) {
+
+      leftBlock.paragraphs[
+        leftBlock.paragraphs.length - 1
+      ] =
+        mergeSourceParagraphs(
+          leftParagraph,
+          rightParagraph
+        );
+
+      rightBlock.paragraphs.shift();
+
+    }
+
+  }
+
+
+  const firstBlock =
+    blocks[0];
+
+  const lastBlock =
+    blocks[blocks.length - 1];
+
+  let contextStartPage =
+    firstBlock.page;
+
+  let contextEndPage =
+    lastBlock.page;
+
+
+  const previousPage =
+    GREY_BOOK_CONTEXT?.pages?.[
+      String(firstBlock.page - 1)
+    ];
+
+
+  if (
+    previousPage?.text &&
+    firstBlock.paragraphs.length
+  ) {
+
+    const previousParagraphs =
+      sourceParagraphs(
+        previousPage.text
+      );
+
+    const previousLast =
+      previousParagraphs[
+        previousParagraphs.length - 1
+      ];
+
+    const sourceFirst =
+      firstBlock.paragraphs[0];
+
+
+    if (
+      sourceParagraphContinues(
+        previousLast,
+        sourceFirst
+      )
+    ) {
+
+      firstBlock.paragraphs[0] =
+        mergeSourceParagraphs(
+          previousLast,
+          sourceFirst
+        );
+
+      contextStartPage =
+        firstBlock.page - 1;
+
+    }
+
+  }
+
+
+  const followingPage =
+    GREY_BOOK_CONTEXT?.pages?.[
+      String(lastBlock.page + 1)
+    ];
+
+
+  if (
+    followingPage?.text &&
+    lastBlock.paragraphs.length
+  ) {
+
+    const followingParagraphs =
+      sourceParagraphs(
+        followingPage.text
+      );
+
+    const sourceLast =
+      lastBlock.paragraphs[
+        lastBlock.paragraphs.length - 1
+      ];
+
+    const followingFirst =
+      followingParagraphs[0];
+
+
+    if (
+      sourceParagraphContinues(
+        sourceLast,
+        followingFirst
+      )
+    ) {
+
+      lastBlock.paragraphs[
+        lastBlock.paragraphs.length - 1
+      ] =
+        mergeSourceParagraphs(
+          sourceLast,
+          followingFirst
+        );
+
+      contextEndPage =
+        lastBlock.page + 1;
+
+    }
+
+  }
+
+
+  return {
+    blocks,
+    contextStartPage,
+    contextEndPage
+  };
+}
+
+
+
+function renderGreyBookContext(reading) {
+
+  const context =
+    GREY_BOOK_CONTEXT?.contexts?.[
+      reading.id
+    ];
+
+
+  if (!context) {
+    return '';
+  }
+
+
+  const paragraphStore =
+    GREY_BOOK_CONTEXT?.paragraphs || {};
+
+
+  const paragraphs =
+    (context.paragraphIds || [])
+      .map(
+        (paragraphId) => ({
+          id: paragraphId,
+          ...paragraphStore[paragraphId]
+        })
+      )
+      .filter(
+        (paragraph) =>
+          paragraph &&
+          paragraph.text
+      );
+
+
+  if (!paragraphs.length) {
+    return '';
+  }
+
+
+  const citedParagraphs =
+    new Set(
+      context.citedParagraphIds || []
+    );
+
+
+  const sourcePages =
+    Array.isArray(context.sourcePages)
+      ? context.sourcePages
+      : [];
+
+
+  const contextPages =
+    Array.isArray(context.contextPages)
+      ? context.contextPages
+      : sourcePages;
+
+
+  const pageWord = (page) =>
+    page === 'Frontispiece'
+      ? 'Frontispiece'
+      : `Page ${page}`;
+
+
+  const pageLabel =
+    sourcePages.length === 1
+      ? pageWord(sourcePages[0])
+      : `Pages ${sourcePages[0]}–${sourcePages[sourcePages.length - 1]}`;
+
+
+  const contextPageLabel =
+    contextPages.length === 1
+      ? pageWord(contextPages[0])
+      : `Pages ${contextPages[0]}–${contextPages[contextPages.length - 1]}`;
+
+
+  const stamp =
+    sourcePages.length === 1
+      ? (
+          sourcePages[0] === 'Frontispiece'
+            ? 'FRONTISPIECE'
+            : `P. ${sourcePages[0]}`
+        )
+      : `PP. ${sourcePages[0]}–${sourcePages[sourcePages.length - 1]}`;
+
+
+  let citedBadgeUsed = false;
+
+
+  const paragraphMarkup =
+    paragraphs
+      .map((paragraph) => {
+
+        const text =
+          escapeHtml(paragraph.text);
+
+        const isCited =
+          citedParagraphs.has(
+            paragraph.id
+          );
+
+        const badge =
+          isCited &&
+          context.lineLabel &&
+          !citedBadgeUsed
+            ? `<span class="gbr-source-line-badge">${escapeHtml(context.lineLabel)}</span>`
+            : '';
+
+
+        if (
+          isCited &&
+          context.lineLabel
+        ) {
+          citedBadgeUsed = true;
+        }
+
+
+        if (
+          paragraph.kind ===
+            'step-heading' ||
+          paragraph.kind ===
+            'chapter-heading' ||
+          paragraph.kind ===
+            'section-heading'
+        ) {
+
+          return `
+            <h5 class="gbr-source-section-heading${isCited ? ' gbr-source-cited' : ''}">
+              ${badge}${text}
+            </h5>
+          `;
+
+        }
+
+
+        if (
+          paragraph.kind ===
+          'heading'
+        ) {
+
+          return `
+            <h6 class="gbr-source-subheading${isCited ? ' gbr-source-cited' : ''}">
+              ${badge}${text}
+            </h6>
+          `;
+
+        }
+
+
+        if (
+          paragraph.kind ===
+          'step-statement'
+        ) {
+
+          return `
+            <p class="gbr-source-step-statement${isCited ? ' gbr-source-cited' : ''}">
+              ${badge}${text}
+            </p>
+          `;
+
+        }
+
+
+        return `
+          <p class="gbr-source-paragraph${isCited ? ' gbr-source-cited' : ''}">
+            ${badge}${text}
+          </p>
+        `;
+
+      })
+      .join('');
+
+
+  const boundaryParts = [];
+
+
+  if (context.boundaryBefore) {
+    boundaryParts.push(
+      'the opening paragraph is completed from the preceding GBR page'
+    );
+  }
+
+
+  if (context.boundaryAfter) {
+    boundaryParts.push(
+      'the closing paragraph is completed on the following GBR page'
+    );
+  }
+
+
+  const sectionNote =
+    context.sectionType === 'step'
+      ? `Only ${context.section} is included; text from the previous and following Steps is excluded.`
+      : `The text remains inside ${context.section}.`;
+
+
+  const boundaryNote =
+    boundaryParts.length
+      ? ` ${boundaryParts.join(' and ')}. No unrelated paragraph from an adjacent page is included.`
+      : ' No neighboring-page text was needed to complete a paragraph.';
+
+
+  const metaParts = [
+    context.section,
+    `GBR ${pageLabel}`
+  ];
+
+
+  if (context.lineLabel) {
+    metaParts.push(
+      context.lineLabel
+    );
+  }
+
+
+  return `
+    <section
+      class="grey-book-context"
+      aria-label="Grey Book source context for ${escapeHtml(reading.date)}"
+    >
+
+      <div class="grey-book-context-heading">
+
+        <div>
+
+          <p class="grey-book-context-kicker">
+            From the Grey Book
+          </p>
+
+          <h4>
+            Read the Source ${sourcePages.length > 1 ? 'Pages' : 'Page'}
+          </h4>
+
+          <p class="grey-book-context-meta">
+            ${metaParts.map(escapeHtml).join(' · ')}
+          </p>
+
+        </div>
+
+        <span
+          class="grey-book-page-stamp"
+          aria-hidden="true"
+        >
+          ${escapeHtml(stamp)}
+        </span>
+
+      </div>
+
+
+      <details class="grey-book-context-details">
+
+        <summary>
+
+          <span class="grey-book-context-summary-copy">
+
+            <strong>
+              Read GBR ${escapeHtml(pageLabel)}
+            </strong>
+
+            <small>
+              Full cited-page text with complete boundary paragraphs.
+            </small>
+
+          </span>
+
+          <span
+            class="grey-book-context-summary-cue"
+            aria-hidden="true"
+          >
+            OPEN ▼
+          </span>
+
+        </summary>
+
+
+        <div class="grey-book-context-pages">
+
+          <div
+            class="grey-book-context-page gbr-source-text-page"
+            data-gbr-source-text
+          >
+
+            <div class="grey-book-context-pagehead">
+
+              <span>
+                Selectable corresponding source text
+              </span>
+
+              <strong>
+                1981 Grey Book · GBR ${escapeHtml(pageLabel)}
+              </strong>
+
+            </div>
+
+
+            <div class="grey-book-context-text gbr-source-text-body">
+
+              ${paragraphMarkup}
+
+            </div>
+
+          </div>
+
+
+          <p class="grey-book-context-note">
+
+            The full cited-page text belonging to ${escapeHtml(context.section)}
+            is shown through ${escapeHtml(contextPageLabel)}.
+
+            ${escapeHtml(sectionNote + boundaryNote)}
+
+          </p>
+
+        </div>
+
+      </details>
+
+    </section>
+  `;
+}
+
+
+
+const GREY_BOOK_SECTION_NUMBERS =
+  Object.freeze({
+    one: 1,
+    two: 2,
+    three: 3,
+    four: 4,
+    five: 5,
+    six: 6,
+    seven: 7,
+    eight: 8,
+    nine: 9,
+    ten: 10,
+    eleven: 11,
+    twelve: 12
+  });
+
+
+function greyBookStudyTarget(sectionName) {
+
+  const section =
+    String(sectionName || '');
+
+
+  const numberedSection =
+    section.match(
+      /\b(Step|Tradition)\s+(One|Two|Three|Four|Five|Six|Seven|Eight|Nine|Ten|Eleven|Twelve)\b/i
+    );
+
+
+  if (numberedSection) {
+
+    const kind =
+      numberedSection[1].toLowerCase();
+
+    const numberWord =
+      numberedSection[2].toLowerCase();
+
+    return `${kind}-${numberWord}`;
+  }
+
+
+  const chapter =
+    section.match(
+      /\bChapter\s+(One|Two|Three|Four|Five|Six|Seven|Eight|Nine|Ten)\b/i
+    );
+
+
+  if (chapter) {
+
+    return `chapter-${
+      GREY_BOOK_SECTION_NUMBERS[
+        chapter[1].toLowerCase()
+      ]
+    }`;
+
+  }
+
+
+  if (/\bIntroduction\b/i.test(section)) {
+    return 'introduction';
+  }
+
+
+  if (/\bFor(?:e)?ward\b/i.test(section)) {
+    return 'forward';
+  }
+
+
+  if (/\bSymbol\b/i.test(section)) {
+    return 'symbol';
+  }
+
+
+  return '';
+}
+
+
+
+function renderGreyBookStudyLink(
+  reading,
+  baseReading = reading
+) {
+
+  const versionMap =
+    reading?._rniVersion?.greyBookStudy ||
+    null;
+
+
+  const context =
+    GREY_BOOK_CONTEXT?.contexts?.[
+      baseReading.id
+    ];
+
+
+  const anchorParagraph =
+    context?.anchorParagraphId
+      ? GREY_BOOK_CONTEXT?.paragraphs?.[
+          context.anchorParagraphId
+        ]
+      : null;
+
+
+  const target =
+    versionMap?.target ||
+    greyBookStudyTarget(reading.source) ||
+    greyBookStudyTarget(context?.section);
+
+
+  if (!target) {
+    return '';
+  }
+
+
+  const anchorText =
+    versionMap?.anchorText ||
+    anchorParagraph?.text ||
+    reading.quote ||
+    baseReading.quote ||
+    '';
+
+
+  const citation =
+    versionMap?.citation ||
+    reading.source ||
+    baseReading.source ||
+    '';
+
+
+  const page =
+    versionMap?.printedPage ||
+    (context?.sourcePages || [])[0] ||
+    '';
+
+
+  const lineLabel =
+    versionMap?.lineLabel ||
+    context?.lineLabel ||
+    '';
+
+
+  const sectionName =
+    versionMap?.sectionTitle ||
+    context?.section ||
+    reading.source ||
+    'Grey Book source';
+
+
+  const params =
+    new URLSearchParams();
+
+
+  if (anchorText) {
+    params.set(
+      'source',
+      anchorText
+    );
+  }
+
+
+  if (citation) {
+    params.set(
+      'citation',
+      citation
+    );
+  }
+
+
+  if (page) {
+    params.set(
+      'page',
+      page
+    );
+  }
+
+
+  if (lineLabel) {
+    params.set(
+      'lines',
+      lineLabel
+    );
+  }
+
+
+  const query =
+    params.toString();
+
+
+  const href =
+    `/grey-book-study/${
+      query
+        ? `?${query}`
+        : ''
+    }#${target}`;
+
+
+  return `
+    <a
+      class="grey-book-study-source-link"
+      href="${escapeHtml(href)}"
+      aria-label="Open the exact ${escapeHtml(sectionName)} source passage in the Grey Book Study"
+    >
+      Open Exact Source in Grey Book Study
+    </a>
+  `;
+}
+
+
+
+function renderGreyAreaGroup(
+  isPrimary = false
+) {
+
+  if (!isPrimary) {
+    return '';
+  }
+
+
+  return `
+    <section
+      id="grey-area-group"
+      class="grey-area-group-panel"
+      aria-label="Grey Area Group of Narcotics Anonymous"
+    >
+
+      <div class="grey-area-group-heading">
+
+        <div>
+
+          <p class="grey-area-group-kicker">
+            Grey Area Group of Narcotics Anonymous
+          </p>
+
+          <h4>
+            Historical Literature Study
+          </h4>
+
+          <p>
+            This is the homepage of the Grey Area Group of Narcotics Anonymous.
+            It includes the Daily Grey Book Reading, historical literature study
+            meetings, A.S.I.S. for NA and other historical literature,
+            announcements, audio, service information, archives, and other
+            Group resources. Grey Book Reflection remains an FSC Review &amp;
+            Input project, and featured projects and service communities remain
+            separately identified.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="grey-area-flyer-stage">
+
+        <a
+          class="grey-area-flyer-link"
+          href="images/grey-area-historical-literature-study.png"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Open the Grey Area Historical Literature Study flyer full size"
+        >
+
+          <img
+            class="grey-area-flyer-image"
+            src="images/grey-area-historical-literature-study.png"
+            alt="Grey Area Historical Literature Study flyer. Every Monday at 8:30 PM Eastern Time on Zoom. Meeting ID 872 6843 7641. Passcode 1953."
+            loading="lazy"
+            decoding="async"
+          >
+
+          <span class="grey-area-flyer-caption">
+            Open flyer full size ↗
+          </span>
+
+        </a>
+
+      </div>
+
+
+      <div class="grey-area-meeting-strip">
+
+        <div class="grey-area-meeting-copy">
+
+          <strong>
+            Every Monday · 8:30 PM Eastern Time
+          </strong>
+
+          <span>
+            Zoom ID: 872 6843 7641 · Passcode: 1953
+          </span>
+
+        </div>
+
+
+        <a
+          class="grey-area-join-button"
+          href="https://us06web.zoom.us/j/87268437641?pwd=n573F6qbqxcD5dh0mtPaqvgvozvnbb.1"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Join Grey Area Study ↗
+        </a>
+
+      </div>
+
+    </section>
+  `;
+}
+
+
+
+function renderReviewInputForm(
+  reading,
+  isPrimary = false
+) {
+
+  const source =
+    reading.source ||
+    'Source reference pending';
+
+
+  const page =
+    reading.pdfPage
+      ? `GBR PDF p. ${reading.pdfPage}`
+      : '';
+
+
+  const siteLink =
+    `${location.origin}${location.pathname}#${reading.id}`;
+
+
+  return `
+    <section
+      ${isPrimary ? 'id="review-input"' : ''}
+      class="review-input"
+      aria-label="Review and input for ${escapeHtml(reading.date)}"
+    >
+
+      <h4>
+        Review &amp; Input
+      </h4>
+
+      <p class="review-help">
+        Share review, correction, Group input, or literature feedback for this reading.
+      </p>
+
+
+      <form
+        class="review-form"
+        action="https://formspree.io/f/xbdvjywr"
+        method="POST"
+      >
+
+        <input
+          type="hidden"
+          name="reading_date"
+          value="${escapeHtml(reading.date)}"
+        >
+
+        <input
+          type="hidden"
+          name="reading_id"
+          value="${escapeHtml(reading.id)}"
+        >
+
+        <input
+          type="hidden"
+          name="gray_book_source"
+          value="${escapeHtml(source)}"
+        >
+
+        <input
+          type="hidden"
+          name="gbr_pdf_page"
+          value="${escapeHtml(page)}"
+        >
+
+        <input
+          type="hidden"
+          name="site_link"
+          value="${escapeHtml(siteLink)}"
+        >
+
+        <input
+          type="hidden"
+          name="_subject"
+          value="GBR Review/Input — ${escapeHtml(reading.date)}"
+        >
+
+
+        <label>
+
+          Name or Group
+
+          <input
+            type="text"
+            name="name_or_group"
+            autocomplete="name"
+            placeholder="Name or Home Group"
+          >
+
+        </label>
+
+
+        <label>
+
+          Email
+
+          <input
+            type="email"
+            name="email"
+            autocomplete="email"
+            placeholder="Only if you want a response"
+          >
+
+        </label>
+
+
+        <label>
+
+          Review / Input <span>(required)</span>
+
+          <textarea
+            name="message"
+            required
+            placeholder="Enter review, correction, Group input, or suggested changes..."
+          ></textarea>
+
+        </label>
+
+
+        <button type="submit">
+          Submit Review/Input
+        </button>
+
+
+        <p
+          class="form-status"
+          aria-live="polite"
+        ></p>
+
+      </form>
+
+    </section>
+  `;
+}
+
+
+
+function attachReviewForms() {
+
+  document
+    .querySelectorAll('.review-form')
+    .forEach((form) => {
+
+      if (form.dataset.bound === 'true') {
+        return;
+      }
+
+
+      form.dataset.bound = 'true';
+
+
+      form.addEventListener(
+        'submit',
+        async (event) => {
+
+          event.preventDefault();
+
+
+          const button =
+            form.querySelector(
+              'button[type="submit"]'
+            );
+
+
+          const status =
+            form.querySelector(
+              '.form-status'
+            );
+
+
+          const oldText =
+            button.textContent;
+
+
+          button.disabled = true;
+          button.textContent =
+            'Submitting...';
+
+
+          status.textContent = '';
+          status.className =
+            'form-status';
+
+
+          try {
+
+            const response =
+              await fetch(
+                form.action,
+                {
+                  method: 'POST',
+                  body:
+                    new FormData(form),
+                  headers: {
+                    'Accept':
+                      'application/json'
+                  }
+                }
+              );
+
+
+            if (!response.ok) {
+              throw new Error(
+                'Form submission failed'
+              );
+            }
+
+
+            form.reset();
+
+
+            status.textContent =
+              'Thank you. Your review/input has been submitted.';
+
+
+            status.classList.add(
+              'success'
+            );
+
+
+          } catch (error) {
+
+            console.error(error);
+
+
+            status.textContent =
+              'Something went wrong. Please try again, or copy your input before refreshing.';
+
+
+            status.classList.add(
+              'error'
+            );
+
+
+          } finally {
+
+            button.disabled = false;
+            button.textContent =
+              oldText;
+
+          }
+
+        }
+      );
+
+    });
+
+}
+
+
+
+function getRniRecord(id) {
+  return (
+    RNI_HISTORY?.readings?.[id] ||
+    null
+  );
+}
+
+
+function getRniVersion(id, key) {
+
+  const record =
+    getRniRecord(id);
+
+
+  if (
+    !record ||
+    !Array.isArray(record.versions)
+  ) {
+    return null;
+  }
+
+
+  return (
+    record.versions.find(
+      (version) =>
+        version.key === key
+    ) ||
+    null
+  );
+}
+
+
+function getSelectedRniKey(reading) {
+
+  const record =
+    getRniRecord(reading.id);
+
+
+  if (!record) {
+    return 'ny-project';
+  }
+
+
+  return (
+    RNI_SELECTION[reading.id] ||
+    record.defaultVersion ||
+    'ny-project'
+  );
+}
+
+
+
+function resolveRniReading(baseReading) {
+
+  const key =
+    getSelectedRniKey(
+      baseReading
+    );
+
+
+  if (key === 'ny-project') {
+
+    return {
+      ...baseReading,
+      _rniVersionKey:
+        'ny-project',
+      _rniVersion:
+        null
+    };
+
+  }
+
+
+  const version =
+    getRniVersion(
+      baseReading.id,
+      key
+    );
+
+
+  if (!version) {
+
+    return {
+      ...baseReading,
+      _rniVersionKey:
+        'ny-project',
+      _rniVersion:
+        null
+    };
+
+  }
+
+
+  return {
+    ...baseReading,
+
+    quote:
+      version.quote ||
+      baseReading.quote,
+
+    source:
+      version.source ||
+      baseReading.source,
+
+    body:
+      version.body ||
+      baseReading.body,
+
+    moment:
+      version.moment ||
+      '',
+
+    _rniVersionKey:
+      key,
+
+    _rniVersion:
+      version
+  };
+
+}
+
+
+
+function renderRniEditionMeta(version) {
+
+  const bits = [];
+
+
+  if (
+    Array.isArray(version?.editions) &&
+    version.editions.length
+  ) {
+
+    if (
+      version.editions.length === 1
+    ) {
+
+      const ed =
+        version.editions[0];
+
+
+      bits.push(
+        `${ed.label || 'historical edition'}${
+          ed.sourceDocumentPage
+            ? ` p. ${ed.sourceDocumentPage}`
+            : ''
+        }`
+      );
+
+    } else {
+
+      bits.push(
+        `${version.editions.length} historical editions`
+      );
+
+    }
+
+  }
+
+
+  if (version?.sourceCalendarDate) {
+
+    bits.push(
+      `source calendar date ${version.sourceCalendarDate}`
+    );
+
+  }
+
+
+  if (
+    Array.isArray(version?.historicalDates) &&
+    version.historicalDates.length
+  ) {
+
+    bits.push(
+      `historical writing date${
+        version.historicalDates.length > 1
+          ? 's'
+          : ''
+      }: ${version.historicalDates.join(', ')}`
+    );
+
+  } else if (
+    version?.historicalDate
+  ) {
+
+    bits.push(
+      `historical writing date: ${version.historicalDate}`
+    );
+
+  }
+
+
+  if (
+    Array.isArray(version?.sourceDocumentPages) &&
+    version.sourceDocumentPages.length > 1
+  ) {
+
+    bits.push(
+      `source pp. ${version.sourceDocumentPages.join(', ')}`
+    );
+
+  } else if (
+    version?.sourceDocumentPage &&
+    !(
+      Array.isArray(version?.editions) &&
+      version.editions.length
+    )
+  ) {
+
+    bits.push(
+      `source p. ${version.sourceDocumentPage}`
+    );
+
+  }
+
+
+  return bits.length
+    ? ` · ${bits.map(escapeHtml).join(' · ')}`
+    : '';
+}
+
+
+
+function renderRniVersionPanel(
+  baseReading,
+  displayReading
+) {
+
+  const record =
+    getRniRecord(
+      baseReading.id
+    );
+
+
+  if (
+    !record ||
+    !Array.isArray(record.versions) ||
+    !record.versions.length
+  ) {
+    return '';
+  }
+
+
+  const currentKey =
+    displayReading._rniVersionKey ||
+    'ny-project';
+
+
+  const currentVersion =
+    displayReading._rniVersion;
+
+
+  const newer =
+    record.versions.filter(
+      (version) =>
+        version.position ===
+        'after-ny'
+    );
+
+
+  const earlier =
+    record.versions.filter(
+      (version) =>
+        version.position ===
+        'before-ny'
+    );
+
+
+  const ties =
+    record.versions.find(
+      (version) =>
+        version.key ===
+        'ties-that-bind-latest'
+    );
+
+
+  let lead = '';
+
+
+  if (
+    currentKey ===
+    'ties-that-bind-latest'
+  ) {
+
+    lead = `
+      <p>
+        <strong>
+          Review &amp; Input Update:
+        </strong>
+        This reading shows the most recent input submitted by
+        <strong>
+          The Ties That Bind Group
+        </strong>
+        after the NY project edition used to map this site.
+      </p>
+    `;
+
+  } else if (
+    currentKey ===
+    'ny-project'
+  ) {
+
+    lead = ties
+      ? `
+        <p>
+          <strong>
+            NY Project Edition:
+          </strong>
+          This is the version originally used to map this calendar
+          reading on GBRNA. Newer input from
+          <strong>
+            The Ties That Bind Group
+          </strong>
+          is also available.
+        </p>
+      `
+      : `
+        <p>
+          <strong>
+            NY Project Edition:
+          </strong>
+          This remains the current mapped reading. Earlier Review
+          &amp; Input material is available below for historical comparison.
+        </p>
+      `;
+
+  } else if (
+    currentVersion
+  ) {
+
+    const meta =
+      renderRniEditionMeta(
+        currentVersion
+      );
+
+
+    const isGwu =
+      (currentVersion.group || '')
+        .includes(
+          'Grateful Wake Up'
+        );
+
+
+    const placementNote =
+      isGwu
+        ? ' The Grateful Wake Up source states that its printed dates are historical writing dates, not final GBR calendar placement.'
+        : currentVersion.sourceCalendarDate
+          ? ' This historical edition explicitly printed that calendar date for the reading.'
+          : ' This version predates the NY project edition and is mapped here only where the Grey Book quotation/source lineage could be established confidently.';
+
+
+    lead = `
+      <p>
+        <strong>
+          Earlier Review &amp; Input:
+        </strong>
+        You are viewing
+        ${escapeHtml(
+          currentVersion.group ||
+          currentVersion.label ||
+          'historical input'
+        )}
+        ${meta}.
+        ${placementNote}
+      </p>
+    `;
+
+  }
+
+
+  const quickButtons = [];
+
+
+  if (
+    currentKey !==
+    'ny-project'
+  ) {
+
+    quickButtons.push(
+      `
+        <button
+          type="button"
+          class="rni-switch-button"
+          data-rni-switch="ny-project"
+          data-rni-id="${escapeHtml(baseReading.id)}"
+        >
+          View NY Project Edition
+        </button>
+      `
+    );
+
+  }
+
+
+  if (
+    ties &&
+    currentKey !== ties.key
+  ) {
+
+    quickButtons.push(
+      `
+        <button
+          type="button"
+          class="rni-switch-button rni-switch-primary"
+          data-rni-switch="${escapeHtml(ties.key)}"
+          data-rni-id="${escapeHtml(baseReading.id)}"
+        >
+          View Latest Ties That Bind Input
+        </button>
+      `
+    );
+
+  }
+
+
+  const timeline = [];
+
+
+  earlier.forEach(
+    (version) => {
+
+      const meta =
+        renderRniEditionMeta(
+          version
+        );
+
+
+      timeline.push(
+        `
+          <li
+            class="rni-history-item${
+              currentKey === version.key
+                ? ' is-current'
+                : ''
+            }"
+          >
+
+            <div>
+
+              <strong>
+                ${escapeHtml(
+                  version.label ||
+                  version.group ||
+                  'Earlier R&I'
+                )}
+              </strong>
+
+              ${meta}
+
+              <small>
+                ${escapeHtml(
+                  version.status ||
+                  'Historical Review & Input preceding the NY project edition.'
+                )}
+              </small>
+
+            </div>
+
+
+            <button
+              type="button"
+              data-rni-switch="${escapeHtml(version.key)}"
+              data-rni-id="${escapeHtml(baseReading.id)}"
+            >
+              View
+            </button>
+
+          </li>
+        `
+      );
+
+    }
+  );
+
+
+  timeline.push(
+    `
+      <li
+        class="rni-history-item rni-history-baseline${
+          currentKey === 'ny-project'
+            ? ' is-current'
+            : ''
+        }"
+      >
+
+        <div>
+
+          <strong>
+            NY Project Edition
+          </strong>
+
+          <small>
+            Baseline edition originally used to map this site.
+          </small>
+
+        </div>
+
+
+        <button
+          type="button"
+          data-rni-switch="ny-project"
+          data-rni-id="${escapeHtml(baseReading.id)}"
+        >
+          View
+        </button>
+
+      </li>
+    `
+  );
+
+
+  newer.forEach(
+    (version) => {
+
+      timeline.push(
+        `
+          <li
+            class="rni-history-item rni-history-newer${
+              currentKey === version.key
+                ? ' is-current'
+                : ''
+            }"
+          >
+
+            <div>
+
+              <strong>
+                ${escapeHtml(
+                  version.group ||
+                  version.label ||
+                  'Newer R&I'
+                )}
+              </strong>
+
+              <small>
+                ${escapeHtml(
+                  version.status ||
+                  'Post-NY Review & Input'
+                )}
+              </small>
+
+            </div>
+
+
+            <button
+              type="button"
+              data-rni-switch="${escapeHtml(version.key)}"
+              data-rni-id="${escapeHtml(baseReading.id)}"
+            >
+              View
+            </button>
+
+          </li>
+        `
+      );
+
+    }
+  );
+
+
+  const proofread =
+    currentVersion?.proofreadNote
+      ? `
+        <p class="rni-proofread-note">
+          <strong>
+            Web presentation note:
+          </strong>
+          ${escapeHtml(currentVersion.proofreadNote)}
+        </p>
+      `
+      : '';
+
+
+  const sourceCompatibility =
+    currentKey !== 'ny-project'
+      ? `
+        <p class="rni-source-note">
+          Daily audio and the expandable source-page transcript belong
+          to the NY project edition. The Grey Book Study source button
+          follows the Grey Book quotation/source for whichever R&amp;I
+          version you are viewing.
+        </p>
+      `
+      : '';
+
+
+  return `
+    <aside
+      class="rni-version-panel"
+      aria-label="Grey Book Reflections Review and Input history"
+    >
+
+      ${lead}
+
+
+      <div class="rni-quick-actions">
+
+        ${quickButtons.join('')}
+
+      </div>
+
+
+      ${proofread}
+
+      ${sourceCompatibility}
+
+
+      <details class="rni-history-details">
+
+        <summary>
+
+          R&amp;I History
+
+          <span aria-hidden="true">
+            ▼
+          </span>
+
+        </summary>
+
+
+        <p class="rni-history-intro">
+          Earlier historical Review &amp; Input → NY project edition →
+          newer post-NY input. Versions are shown in place; no PDF is opened.
+        </p>
+
+
+        <ol class="rni-history-list">
+
+          ${timeline.join('')}
+
+        </ol>
+
+
+        <p>
+          <a
+            class="rni-browser-link"
+            href="/rni-history/"
+          >
+            Browse all mapped and unmapped historical R&amp;I
+          </a>
+        </p>
+
+      </details>
+
+    </aside>
+  `;
+}
+
+
+
+function attachRniVersionControls() {
+
+  document
+    .querySelectorAll(
+      '[data-rni-switch]'
+    )
+    .forEach((button) => {
+
+      if (
+        button.dataset.bound ===
+        'true'
+      ) {
+        return;
+      }
+
+
+      button.dataset.bound =
+        'true';
+
+
+      button.addEventListener(
+        'click',
+        () => {
+
+          const id =
+            button.dataset.rniId;
+
+          const key =
+            button.dataset.rniSwitch;
+
+
+          const baseReading =
+            findReading(id);
+
+
+          if (!baseReading) {
+            return;
+          }
+
+
+          RNI_SELECTION[id] =
+            key;
+
+
+          currentId =
+            id;
+
+
+          renderReadings([
+            baseReading
+          ]);
+
+
+          requestAnimationFrame(
+            () => {
+
+              document
+                .querySelector(
+                  `#reading-${CSS.escape(id)}`
+                )
+                ?.scrollIntoView({
+                  behavior: 'smooth',
+                  block: 'start'
+                });
+
+            }
+          );
+
+        }
+      );
+
+    });
+
+}
+
+
+
+/*
+  ------------------------------------------------------------
+  IMPORTANT CHANGE
+  ------------------------------------------------------------
+
+  The audio player is ALWAYS rendered from baseReading.
+
+  It no longer disappears when the selected text is Ties That
+  Bind or another Review & Input version.
+  ------------------------------------------------------------
+*/
+
+function renderReadingCard(
+  reading,
+  label = '',
+  isPrimary = false,
+  baseReading = reading
+) {
+
+  const sourceLine =
+    reading.source
+      ? escapeHtml(reading.source)
+      : 'Source reference pending';
+
+
+  const isNyEdition =
+    (
+      reading._rniVersionKey ||
+      'ny-project'
+    ) === 'ny-project';
+
+
+  const pageMeta =
+    isNyEdition
+      ? `GBR PDF p. ${baseReading.pdfPage}`
+      : `Calendar mapping: ${escapeHtml(baseReading.date)} · NY GBR PDF p. ${baseReading.pdfPage}`;
+
+
+  return `
+    <article
+      class="reading-card"
+      id="reading-${baseReading.id}"
+    >
+
+      ${renderDailyAudio(baseReading)}
+
+
+      <div class="reading-date">
+
+        <h3>
+          ${escapeHtml(label || reading.date)}
+        </h3>
+
+
+        <div class="reading-meta">
+
+          <span class="source-ref">
+            ${sourceLine}
+          </span>
+
+          <span class="page-ref">
+            ${pageMeta}
+          </span>
+
+          ${renderGreyBookStudyLink(
+            reading,
+            baseReading
+          )}
+
+        </div>
+
+      </div>
+
+
+      <blockquote class="quote">
+        ${escapeHtml(reading.quote)}
+      </blockquote>
+
+
+      <div class="body-text">
+        ${paragraphHtml(reading.body)}
+      </div>
+
+
+      ${
+        reading.moment
+          ? `
+            <div class="moment-box">
+
+              <h4>
+                In This Moment
+              </h4>
+
+              <p class="moment-text">
+                ${escapeHtml(reading.moment)}
+              </p>
+
+            </div>
+          `
+          : ''
+      }
+
+
+      ${renderRniVersionPanel(
+        baseReading,
+        reading
+      )}
+
+
+      ${
+        isNyEdition
+          ? renderGreyBookContext(
+              baseReading
+            )
+          : ''
+      }
+
+
+      ${renderGreyAreaGroup(
+        isPrimary
+      )}
+
+
+      ${renderAudioLibrary(
+        isPrimary
+      )}
+
+
+      ${renderReviewInputForm(
+        reading,
+        isPrimary
+      )}
+
+    </article>
+  `;
+}
+
+
+
+function renderReadings(
+  readings,
+  notice = ''
+) {
+
+  const area =
+    $('#readingArea');
+
+
+  area.innerHTML =
+    readings
+      .map(
+        (
+          baseReading,
+          index
+        ) => {
+
+          const displayReading =
+            resolveRniReading(
+              baseReading
+            );
+
+
+          return renderReadingCard(
+            displayReading,
+            '',
+            index === 0,
+            baseReading
+          );
+
+        }
+      )
+      .join('');
+
+
+  attachAudioPlayers();
+  attachReviewForms();
+  attachRniVersionControls();
+
+
+  document.dispatchEvent(
+    new CustomEvent(
+      'gbr:reading-rendered'
+    )
+  );
+
+
+  const noticeEl =
+    $('#dailyNotice');
+
+
+  if (notice) {
+
+    noticeEl.textContent =
+      notice;
+
+    noticeEl.classList.remove(
+      'hidden'
+    );
+
+  } else {
+
+    noticeEl.classList.add(
+      'hidden'
+    );
+
+    noticeEl.textContent =
+      '';
+
+  }
+
+}
+
+
+
+function showToday() {
+
+  const date =
+    new Date();
+
+
+  const readings =
+    getDailyReadings(date);
+
+
+  currentId =
+    readings[0]?.id ||
+    todayId();
+
+
+  const notice =
+    readings.length > 1
+      ? 'Non-leap year handling: the February 29 reflection is included with February 28 today.'
+      : '';
+
+
+  renderReadings(
+    readings,
+    notice
+  );
+
+
+  location.hash =
+    'today';
+}
+
+
+
+function showReadingById(id) {
+
+  const reading =
+    findReading(id);
+
+
+  if (!reading) {
+    return showToday();
+  }
+
+
+  currentId =
+    id;
+
+
+  renderReadings([
+    reading
+  ]);
+
+
+  location.hash =
+    id;
+
+
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+
+}
+
+
+
+function renderArchive() {
+
+  const byMonth =
+    new Map();
+
+
+  REFLECTIONS.forEach(
+    (r) => {
+
+      if (
+        !byMonth.has(r.month)
+      ) {
+
+        byMonth.set(
+          r.month,
+          []
+        );
+
+      }
+
+
+      byMonth
+        .get(r.month)
+        .push(r);
+
+    }
+  );
+
+
+  $('#archiveGrid').innerHTML =
+    [...byMonth.entries()]
+      .map(
+        ([month, readings]) => `
+          <div class="month-card">
+
+            <h3>
+              ${monthNames[month]}
+            </h3>
+
+            <div class="days">
+
+              ${readings
+                .map(
+                  (r) => `
+                    <a
+                      class="archive-link"
+                      href="#${r.id}"
+                      data-id="${r.id}"
+                    >
+                      ${r.day}
+                    </a>
+                  `
+                )
+                .join('')}
+
+            </div>
+
+          </div>
+        `
+      )
+      .join('');
+
+
+  document
+    .querySelectorAll(
+      '.archive-link'
+    )
+    .forEach((link) => {
+
+      link.addEventListener(
+        'click',
+        (event) => {
+
+          event.preventDefault();
+
+          showReadingById(
+            link.dataset.id
+          );
+
+        }
+      );
+
+    });
+
+}
+
+
+
+function doSearch(query) {
+
+  const q =
+    query
+      .trim()
+      .toLowerCase();
+
+
+  const results =
+    $('#searchResults');
+
+
+  if (q.length < 2) {
+
+    results.innerHTML =
+      '<p class="small-note">Type at least two letters to search the reflections.</p>';
+
+    return;
+
+  }
+
+
+  const matches =
+    REFLECTIONS
+      .filter((r) => {
+
+        const versions =
+          getRniRecord(r.id)
+            ?.versions ||
+          [];
+
+
+        const versionText =
+          versions
+            .map(
+              (version) =>
+                `${
+                  version.label || ''
+                } ${
+                  version.group || ''
+                } ${
+                  version.quote || ''
+                } ${
+                  version.body || ''
+                } ${
+                  version.moment || ''
+                }`
+            )
+            .join(' ');
+
+
+        const haystack =
+          `${
+            r.date
+          } ${
+            r.quote
+          } ${
+            r.body
+          } ${
+            r.moment
+          } ${
+            versionText
+          }`
+            .toLowerCase();
+
+
+        return haystack.includes(q);
+
+      })
+      .slice(0, 40);
+
+
+  if (!matches.length) {
+
+    results.innerHTML =
+      '<p class="small-note">No reflections matched that search.</p>';
+
+    return;
+
+  }
+
+
+  results.innerHTML =
+    matches
+      .map((r) => {
+
+        const snippetSource =
+          `${
+            r.date
+          } ${
+            r.source || ''
+          } ${
+            r.quote
+          } ${
+            r.body
+          } ${
+            r.moment
+          }`;
+
+
+        const lower =
+          snippetSource
+            .toLowerCase();
+
+
+        const idx =
+          lower.indexOf(q);
+
+
+        const start =
+          Math.max(
+            0,
+            idx - 70
+          );
+
+
+        const snippet =
+          snippetSource.slice(
+            start,
+            start + 190
+          );
+
+
+        return `
+          <a
+            class="result-card"
+            href="#${r.id}"
+            data-id="${r.id}"
+          >
+
+            <strong>
+              ${escapeHtml(r.date)}
+            </strong>
+
+            <p>
+              ${escapeHtml(snippet)}
+              ${
+                snippet.length >= 190
+                  ? '...'
+                  : ''
+              }
+            </p>
+
+          </a>
+        `;
+
+      })
+      .join('');
+
+
+  document
+    .querySelectorAll(
+      '.result-card'
+    )
+    .forEach((card) => {
+
+      card.addEventListener(
+        'click',
+        (event) => {
+
+          event.preventDefault();
+
+          showReadingById(
+            card.dataset.id
+          );
+
+        }
+      );
+
+    });
+
+}
+
+
+
+async function copyLink() {
+
+  const id =
+    currentId ||
+    todayId();
+
+
+  const url =
+    `${location.origin}${location.pathname}#${id}`;
+
+
+  try {
+
+    await navigator.clipboard.writeText(
+      url
+    );
+
+
+    const btn =
+      $('#shareBtn');
+
+
+    const old =
+      btn.textContent;
+
+
+    btn.textContent =
+      'Copied';
+
+
+    setTimeout(
+      () => {
+        btn.textContent =
+          old;
+      },
+      1200
+    );
+
+
+  } catch (err) {
+
+    prompt(
+      'Copy this link:',
+      url
+    );
+
+  }
+
+}
+
+
+
+function handleHash() {
+
+  const hash =
+    location.hash.replace(
+      '#',
+      ''
+    );
+
+
+  if (
+    !hash ||
+    hash === 'today'
+  ) {
+
+    showToday();
+
+    return;
+
+  }
+
+
+  if (
+    /^\d{2}-\d{2}$/.test(hash)
+  ) {
+
+    showReadingById(hash);
+
+    return;
+
+  }
+
+
+  if (
+    !$('#readingArea')
+      .innerHTML
+      .trim()
+  ) {
+
+    const readings =
+      getDailyReadings(
+        new Date()
+      );
+
+
+    currentId =
+      readings[0]?.id ||
+      todayId();
+
+
+    renderReadings(
+      readings
+    );
+
+  }
+
+}
+
+
+
+async function init() {
+
+  const reflectionsResponse =
+    await fetch(
+      'data/reflections.json'
+    );
+
+
+  if (
+    !reflectionsResponse.ok
+  ) {
+
+    throw new Error(
+      'Reflection data not found'
+    );
+
+  }
+
+
+  REFLECTIONS =
+    await reflectionsResponse.json();
+
+
+  try {
+
+    const rniResponse =
+      await fetch(
+        'data/rni-versions.json',
+        {
+          cache: 'no-store'
+        }
+      );
+
+
+    if (rniResponse.ok) {
+
+      RNI_HISTORY =
+        await rniResponse.json();
+
+    }
+
+
+  } catch (error) {
+
+    console.warn(
+      'Review & Input version history could not be loaded.',
+      error
+    );
+
+
+    RNI_HISTORY = {
+      schemaVersion: 1,
+      readings: {}
+    };
+
+  }
+
+
+  try {
+
+    const audioResponse =
+      await fetch(
+        'data/gbr-daily-audio.json',
+        {
+          cache: 'no-store'
+        }
+      );
+
+
+    if (audioResponse.ok) {
+
+      DAILY_AUDIO =
+        await audioResponse.json();
+
+    }
+
+
+  } catch (error) {
+
+    console.warn(
+      'Daily reflection audio map could not be loaded.',
+      error
+    );
+
+
+    DAILY_AUDIO = {};
+
+  }
+
+
+  try {
+
+    const contextResponse =
+      await fetch(
+        'data/grey-book-context.json',
+        {
+          cache: 'no-store'
+        }
+      );
+
+
+    if (contextResponse.ok) {
+
+      GREY_BOOK_CONTEXT =
+        await contextResponse.json();
+
+    }
+
+
+  } catch (error) {
+
+    console.warn(
+      'Grey Book source context could not be loaded.',
+      error
+    );
+
+
+    GREY_BOOK_CONTEXT = {
+      dates: {},
+      pages: {}
+    };
+
+  }
+
+
+  renderArchive();
+
+  handleHash();
+
+
+  $('#prevBtn').addEventListener(
+    'click',
+    () => moveReading(-1)
+  );
+
+
+  $('#nextBtn').addEventListener(
+    'click',
+    () => moveReading(1)
+  );
+
+
+  $('#todayBtn').addEventListener(
+    'click',
+    showToday
+  );
+
+
+  $('#randomBtn').addEventListener(
+    'click',
+    () => {
+
+      const pick =
+        REFLECTIONS[
+          Math.floor(
+            Math.random() *
+            REFLECTIONS.length
+          )
+        ];
+
+
+      showReadingById(
+        pick.id
+      );
+
+    }
+  );
+
+
+  $('#shareBtn').addEventListener(
+    'click',
+    copyLink
+  );
+
+
+  $('#searchInput').addEventListener(
+    'input',
+    (event) =>
+      doSearch(
+        event.target.value
+      )
+  );
+
+
+  window.addEventListener(
+    'hashchange',
+    handleHash
+  );
+
+}
+
+
+
+init().catch(
+  (error) => {
+
+    console.error(error);
+
+
+    $('#readingArea').innerHTML = `
+      <article class="reading-card">
+
+        <h3>
+          Something went wrong loading the reflections.
+        </h3>
+
+        <p>
+          Please make sure data/reflections.json is present.
+        </p>
+
+      </article>
+    `;
+
+  }
+);
+
+(() => {
+  'use strict';
+
+  let sourceAudioMap = {};
+
+  const escapeHtml = (value) => String(value ?? '')
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#039;');
+
+  const formatTime = (seconds) => {
+    if (!Number.isFinite(seconds) || seconds < 0) return '--:--';
+    const minutes = Math.floor(seconds / 60);
+    const remainder = Math.floor(seconds % 60);
+    return `${minutes}:${String(remainder).padStart(2, '0')}`;
+  };
+
+  function readingIdFromCard(card) {
+    const match = String(card?.id || '').match(/^reading-(\d{2}-\d{2})$/);
+    return match ? match[1] : '';
+  }
+
+  function sourceAudioMarkup(readingId, entry) {
+    const title = entry.title || `Grey Book Source Audio — ${readingId}`;
+    const pageLabel = entry.pageLabel || 'Mapped Grey Book source page';
+    const audioUrl = entry.audioUrl;
+
+    return `
+      <section
+        class="daily-reflection-audio cassette-player source-page-audio"
+        data-source-audio-player
+        data-source-audio-injected
+        aria-label="${escapeHtml(title)}"
+      >
+        <div class="cassette-topline">
+          <div>
+            <p class="daily-audio-kicker">Listen to the Source Page</p>
+            <h4>${escapeHtml(title)}</h4>
+            <p class="source-page-audio-label">${escapeHtml(pageLabel)}</p>
+          </div>
+          <a
+            class="audio-file-link"
+            href="${escapeHtml(audioUrl)}"
+            target="_blank"
+            rel="noopener noreferrer"
+          >AUDIO ↗</a>
+        </div>
+
+        <audio data-source-audio preload="metadata" playsinline src="${escapeHtml(audioUrl)}"></audio>
+
+        <div class="cassette-shell">
+          <span class="cassette-screw screw-tl" aria-hidden="true"></span>
+          <span class="cassette-screw screw-tr" aria-hidden="true"></span>
+          <span class="cassette-screw screw-bl" aria-hidden="true"></span>
+          <span class="cassette-screw screw-br" aria-hidden="true"></span>
+
+          <div class="cassette-label-strip">
+            <span>GREY BOOK SOURCE</span>
+            <strong>${escapeHtml(readingId)}</strong>
+            <span>PAGE AUDIO</span>
+          </div>
+
+          <div class="cassette-window" aria-hidden="true">
+            <span class="cassette-reel cassette-reel-left"><i></i></span>
+            <span class="cassette-tape-band"></span>
+            <span class="cassette-reel cassette-reel-right"><i></i></span>
+          </div>
+
+          <div class="cassette-counter-row">
+            <span data-source-current-time>0:00</span>
+            <span class="cassette-counter-label">TAPE COUNTER</span>
+            <span data-source-duration>--:--</span>
+          </div>
+
+          <input
+            class="audio-progress"
+            data-source-progress
+            type="range"
+            min="0"
+            max="1000"
+            value="0"
+            step="1"
+            aria-label="Source audio progress"
+          >
+        </div>
+
+        <div class="cassette-controls" aria-label="Source audio controls">
+          <button type="button" data-source-skip="-15" aria-label="Go back 15 seconds">↶<span>15</span></button>
+          <button class="audio-play-button" type="button" data-source-play aria-label="Play source audio">
+            <span class="audio-play-symbol" data-source-play-icon aria-hidden="true">▶</span>
+            <span class="cassette-control-caption" data-source-play-text>PLAY</span>
+          </button>
+          <button type="button" data-source-skip="15" aria-label="Go forward 15 seconds">↷<span>15</span></button>
+          <button class="audio-speed-button" type="button" data-source-speed>1×<span>SPEED</span></button>
+        </div>
+
+        <p class="audio-status" data-source-status aria-live="polite"></p>
+      </section>
+    `;
+  }
+
+  function bindSourcePlayer(player) {
+    if (!player || player.dataset.bound === 'true') return;
+    player.dataset.bound = 'true';
+
+    const audio = player.querySelector('[data-source-audio]');
+    const playButton = player.querySelector('[data-source-play]');
+    const playIcon = player.querySelector('[data-source-play-icon]');
+    const playText = player.querySelector('[data-source-play-text]');
+    const progress = player.querySelector('[data-source-progress]');
+    const currentTime = player.querySelector('[data-source-current-time]');
+    const duration = player.querySelector('[data-source-duration]');
+    const speedButton = player.querySelector('[data-source-speed]');
+    const status = player.querySelector('[data-source-status]');
+
+    if (!audio || !playButton || !progress) return;
+
+    const speeds = [1, 1.25, 1.5, 2];
+    let speedIndex = 0;
+
+    const setPlaying = (playing) => {
+      playIcon.textContent = playing ? 'Ⅱ' : '▶';
+      playText.textContent = playing ? 'PAUSE' : 'PLAY';
+      playButton.setAttribute('aria-label', playing ? 'Pause source audio' : 'Play source audio');
+      player.classList.toggle('is-playing', playing);
+    };
+
+    const updateProgress = () => {
+      const percent = Number.isFinite(audio.duration) && audio.duration > 0
+        ? (audio.currentTime / audio.duration) * 100
+        : 0;
+      progress.value = String(Math.round(percent * 10));
+      progress.style.setProperty('--audio-progress', `${percent}%`);
+      currentTime.textContent = formatTime(audio.currentTime);
+      duration.textContent = formatTime(audio.duration);
+    };
+
+    playButton.addEventListener('click', async () => {
+      if (audio.paused) {
+        document.querySelectorAll('audio').forEach((other) => {
+          if (other !== audio) other.pause();
+        });
+
+        try {
+          await audio.play();
+        } catch (error) {
+          console.error(error);
+          status.textContent = 'Audio could not start. Try the AUDIO link.';
+        }
+      } else {
+        audio.pause();
+      }
+    });
+
+    audio.addEventListener('play', () => {
+      setPlaying(true);
+      status.textContent = '';
+    });
+    audio.addEventListener('pause', () => setPlaying(false));
+    audio.addEventListener('ended', () => setPlaying(false));
+    audio.addEventListener('timeupdate', updateProgress);
+    audio.addEventListener('loadedmetadata', updateProgress);
+    audio.addEventListener('durationchange', updateProgress);
+    audio.addEventListener('error', () => {
+      setPlaying(false);
+      status.textContent = 'This source recording could not be loaded. Try the AUDIO link.';
+    });
+
+    progress.addEventListener('input', () => {
+      if (!Number.isFinite(audio.duration) || audio.duration <= 0) return;
+      audio.currentTime = (Number(progress.value) / 1000) * audio.duration;
+      updateProgress();
+    });
+
+    player.querySelectorAll('[data-source-skip]').forEach((button) => {
+      button.addEventListener('click', () => {
+        const seconds = Number(button.dataset.sourceSkip || 0);
+        const maximum = Number.isFinite(audio.duration) ? audio.duration : Number.MAX_SAFE_INTEGER;
+        audio.currentTime = Math.min(Math.max(audio.currentTime + seconds, 0), maximum);
+      });
+    });
+
+    speedButton.addEventListener('click', () => {
+      speedIndex = (speedIndex + 1) % speeds.length;
+      const speed = speeds[speedIndex];
+      audio.playbackRate = speed;
+      speedButton.innerHTML = `${speed}×<span>SPEED</span>`;
+    });
+
+    updateProgress();
+  }
+
+  function installSmallStyles() {
+    if (document.getElementById('source-page-audio-styles')) return;
+    const style = document.createElement('style');
+    style.id = 'source-page-audio-styles';
+    style.textContent = `
+      .source-page-audio { margin: 0 0 1.25rem; }
+      .source-page-audio-label { margin: .2rem 0 0; opacity: .78; font-size: .9rem; }
+    `;
+    document.head.appendChild(style);
+  }
+
+  function renderSourceAudioPlayers() {
+    document.querySelectorAll('.reading-card').forEach((card) => {
+      card.querySelectorAll('[data-source-audio-injected]').forEach((node) => node.remove());
+
+      const readingId = readingIdFromCard(card);
+      const entry = sourceAudioMap[readingId];
+      if (!readingId || !entry?.audioUrl) return;
+
+      const sourcePages = card.querySelector('.grey-book-context-details .grey-book-context-pages');
+      const sourceDetails = card.querySelector('.grey-book-context-details');
+      const target = sourcePages || sourceDetails;
+      if (!target) return;
+
+      const wrapper = document.createElement('div');
+      wrapper.innerHTML = sourceAudioMarkup(readingId, entry).trim();
+      const player = wrapper.firstElementChild;
+
+      if (sourcePages) {
+        sourcePages.prepend(player);
+      } else {
+        sourceDetails.append(player);
+      }
+
+      bindSourcePlayer(player);
+    });
+  }
+
+  async function loadSourceAudioMap() {
+    try {
+      const response = await fetch('data/gbr-source-audio.json', { cache: 'no-store' });
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      sourceAudioMap = await response.json();
+    } catch (error) {
+      console.warn('Grey Book source audio map could not be loaded.', error);
+      sourceAudioMap = {};
+    }
+
+    renderSourceAudioPlayers();
+  }
+
+  installSmallStyles();
+  document.addEventListener('gbr:reading-rendered', renderSourceAudioPlayers);
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', loadSourceAudioMap, { once: true });
+  } else {
+    loadSourceAudioMap();
+  }
+})();
+
+(() => {
+  'use strict';
+
+  const READER_PATH = '/pdf-reader.html';
+  const HOSTING_NOTICE_ID = 'tradition-six-hosting-notice';
+
+  function addHostingNotice() {
+    if (!document.body || document.getElementById(HOSTING_NOTICE_ID)) return;
+
+    if (!document.getElementById('tradition-six-hosting-notice-style')) {
+      const style = document.createElement('style');
+      style.id = 'tradition-six-hosting-notice-style';
+      style.textContent = `
+        #${HOSTING_NOTICE_ID}{
+          box-sizing:border-box;
+          width:min(1120px,calc(100% - 2rem));
+          margin:2rem auto;
+          padding:0;
+          border:2px solid #2b251e;
+          border-left:8px solid #b87923;
+          background:#f5ead4;
+          color:#2b251e;
+          box-shadow:8px 8px 0 rgba(43,37,30,.14);
+          font-family:Georgia,"Times New Roman",serif;
+        }
+        #${HOSTING_NOTICE_ID} .tradition-six-inner{padding:1.05rem 1.2rem 1.15rem}
+        #${HOSTING_NOTICE_ID} .tradition-six-label{
+          margin:0 0 .35rem;
+          color:#8a5718;
+          font:900 .76rem/1.25 Arial,sans-serif;
+          letter-spacing:.1em;
+          text-transform:uppercase;
+        }
+        #${HOSTING_NOTICE_ID} h2{
+          margin:.1rem 0 .55rem;
+          color:#201b16;
+          font:900 clamp(1.12rem,2.5vw,1.45rem)/1.22 Arial,sans-serif;
+        }
+        #${HOSTING_NOTICE_ID} p:last-child{
+          margin:.2rem 0 0;
+          font-size:clamp(.96rem,2vw,1.05rem);
+          line-height:1.55;
+        }
+        #${HOSTING_NOTICE_ID} strong{font-weight:800}
+        @media(max-width:600px){
+          #${HOSTING_NOTICE_ID}{width:calc(100% - 1rem);margin:1.25rem auto;border-left-width:6px;box-shadow:4px 4px 0 rgba(43,37,30,.13)}
+          #${HOSTING_NOTICE_ID} .tradition-six-inner{padding:.9rem .9rem 1rem}
+        }
+      `;
+      document.head.append(style);
+    }
+
+    const notice = document.createElement('aside');
+    notice.id = HOSTING_NOTICE_ID;
+    notice.setAttribute('aria-labelledby', 'tradition-six-hosting-title');
+    notice.innerHTML = `
+      <div class="tradition-six-inner">
+        <p class="tradition-six-label">Tradition Six Hosting Statement</p>
+        <h2 id="tradition-six-hosting-title">Technical hosting does not mean affiliation or endorsement</h2>
+        <p>
+          In keeping with the spirit of Narcotics Anonymous’ Sixth Tradition, the <strong>GBRNA website</strong>
+          and the <strong>Grey Area Group</strong> are not affiliated with, sponsored by, or endorsed by
+          <strong>Render</strong> or <strong>onrender.com</strong>, and neither endorses Render or its services.
+          Render is used only as an independent technical hosting provider. The appearance of
+          “onrender.com” in this website’s address reflects hosting only and does not imply any Narcotics
+          Anonymous affiliation, sponsorship, approval, or endorsement.
+        </p>
+      </div>
+    `;
+
+    const footer = document.querySelector('footer.site-footer, body > footer');
+    if (footer) footer.before(notice);
+    else document.body.append(notice);
+  }
+
+  function isPdfUrl(url) {
+    try {
+      const parsed = new URL(url, window.location.href);
+      return /\.pdf$/i.test(parsed.pathname);
+    } catch {
+      return false;
+    }
+  }
+
+  function readableTitle(link, url) {
+    const explicit = link.dataset.pdfTitle || link.closest('[data-title]')?.dataset.title || link.getAttribute('aria-label') || link.getAttribute('title');
+    if (explicit && explicit.trim()) return explicit.trim();
+
+    const text = (link.textContent || '').replace(/\s+/g, ' ').trim();
+    if (text && !/^(open|read|view|pdf|download|open pdf|read pdf|view pdf)$/i.test(text)) {
+      return text;
+    }
+
+    try {
+      const pathname = new URL(url, window.location.href).pathname;
+      const filename = decodeURIComponent(pathname.split('/').pop() || 'PDF document');
+      return filename.replace(/\.pdf$/i, '').replace(/[-_]+/g, ' ').replace(/\s+/g, ' ').trim() || 'PDF document';
+    } catch {
+      return 'PDF document';
+    }
+  }
+
+  function buildReaderUrl(link) {
+    const resolved = new URL(link.href, window.location.href);
+    const params = new URLSearchParams();
+    params.set('url', resolved.href);
+    params.set('title', readableTitle(link, resolved.href));
+    params.set('return', window.location.href);
+    return `${READER_PATH}?${params.toString()}`;
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', addHostingNotice, { once: true });
+  } else {
+    addHostingNotice();
+  }
+
+  document.addEventListener('click', (event) => {
+    if (event.defaultPrevented || event.button !== 0) return;
+    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+
+    const link = event.target.closest('a[href]');
+    if (!link) return;
+    if (link.hasAttribute('download')) return;
+    if (link.dataset.directPdf !== undefined || link.dataset.noPdfReader !== undefined) return;
+    if (link.closest('[data-disable-pdf-reader]')) return;
+    if (!isPdfUrl(link.href)) return;
+
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    window.location.assign(buildReaderUrl(link));
+  }, true);
+})();
+
+(() => {
+  'use strict';
+
+  const params = new URLSearchParams(window.location.search);
+  const sourceUrl = params.get('url') || '';
+  const requestedTitle = params.get('title') || 'PDF document';
+  const returnUrl = params.get('return') || '/';
+
+  const readerTitle = document.getElementById('readerTitle');
+  const readerStage = document.getElementById('readerStage');
+  const pdfScroll = document.getElementById('pdfScroll');
+  const pdfPages = document.getElementById('pdfPages');
+  const readerStatus = document.getElementById('readerStatus');
+  const readerError = document.getElementById('readerError');
+  const readerErrorText = document.getElementById('readerErrorText');
+  const backButton = document.getElementById('backButton');
+  const prevPage = document.getElementById('prevPage');
+  const nextPage = document.getElementById('nextPage');
+  const pageReadout = document.getElementById('pageReadout');
+  const zoomOut = document.getElementById('zoomOut');
+  const zoomIn = document.getElementById('zoomIn');
+  const zoomReadout = document.getElementById('zoomReadout');
+  const fitWidth = document.getElementById('fitWidth');
+  const fullScreen = document.getElementById('fullScreen');
+  const openOriginal = document.getElementById('openOriginal');
+  const downloadPdf = document.getElementById('downloadPdf');
+  const errorBack = document.getElementById('errorBack');
+  const retryReader = document.getElementById('retryReader');
+  const errorDirect = document.getElementById('errorDirect');
+
+  let pdfDocument = null;
+  let pageObserver = null;
+  let currentPage = 1;
+  let zoom = 1;
+  let fitWidthPixels = 0;
+  let renderGeneration = 0;
+  const visibleRatios = new Map();
+  const renderTasks = new Map();
+  const renderedPages = new Set();
+
+  const pdfJsSources = [
+    {
+      script: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js',
+      worker: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js'
+    },
+    {
+      script: 'https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.min.js',
+      worker: 'https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.worker.min.js'
+    },
+    {
+      script: 'https://unpkg.com/pdfjs-dist@3.11.174/build/pdf.min.js',
+      worker: 'https://unpkg.com/pdfjs-dist@3.11.174/build/pdf.worker.min.js'
+    }
+  ];
+
+  function resolvedSource() {
+    try {
+      const url = new URL(sourceUrl, window.location.href);
+      if (!/^https?:$/.test(url.protocol)) return null;
+      return url;
+    } catch {
+      return null;
+    }
+  }
+
+  function resolvedReturn() {
+    try {
+      const url = new URL(returnUrl, window.location.href);
+      return url.origin === window.location.origin ? url.href : '/';
+    } catch {
+      return '/';
+    }
+  }
+
+  function goBack() {
+    let referrer = null;
+    try {
+      referrer = document.referrer ? new URL(document.referrer, window.location.href) : null;
+    } catch {
+      referrer = null;
+    }
+
+    if (window.history.length > 1 && referrer?.origin === window.location.origin) {
+      window.history.back();
+      return;
+    }
+    window.location.assign(resolvedReturn());
+  }
+
+  function showStatus(message) {
+    readerStatus.textContent = message;
+    readerStatus.hidden = false;
+  }
+
+  function hideStatus() {
+    readerStatus.hidden = true;
+  }
+
+  function showError(message) {
+    hideStatus();
+    readerErrorText.textContent = message;
+    readerError.style.display = 'block';
+  }
+
+  function clearError() {
+    readerError.style.display = 'none';
+  }
+
+  function loadScript(src) {
+    return new Promise((resolve, reject) => {
+      const script = document.createElement('script');
+      script.src = src;
+      script.async = true;
+      script.crossOrigin = 'anonymous';
+      script.onload = () => resolve();
+      script.onerror = () => {
+        script.remove();
+        reject(new Error(`Could not load ${src}`));
+      };
+      document.head.appendChild(script);
+    });
+  }
+
+  async function loadPdfJs() {
+    if (window.pdfjsLib?.getDocument) return window.pdfjsLib;
+
+    for (const source of pdfJsSources) {
+      try {
+        showStatus('Loading the multipage reader…');
+        await loadScript(source.script);
+        if (!window.pdfjsLib?.getDocument) throw new Error('PDF.js did not initialize.');
+        window.pdfjsLib.GlobalWorkerOptions.workerSrc = source.worker;
+        return window.pdfjsLib;
+      } catch (error) {
+        console.warn(error);
+      }
+    }
+
+    throw new Error('The reader engine could not be downloaded from any of its backup locations.');
+  }
+
+  function calculateFitWidth() {
+    fitWidthPixels = Math.max(280, Math.min(1100, pdfScroll.clientWidth - 18));
+  }
+
+  function createPageShells(totalPages) {
+    pdfPages.replaceChildren();
+    calculateFitWidth();
+
+    for (let pageNumber = 1; pageNumber <= totalPages; pageNumber += 1) {
+      const shell = document.createElement('section');
+      shell.className = 'pdf-page';
+      shell.id = `pdf-page-${pageNumber}`;
+      shell.dataset.pageNumber = String(pageNumber);
+      shell.dataset.renderGeneration = '-1';
+      shell.style.width = `${Math.round(fitWidthPixels * zoom)}px`;
+      shell.style.minHeight = `${Math.round(fitWidthPixels * zoom * 1.294)}px`;
+
+      const number = document.createElement('span');
+      number.className = 'pdf-page-number';
+      number.textContent = String(pageNumber);
+
+      const loading = document.createElement('div');
+      loading.className = 'pdf-page-loading';
+      loading.textContent = `Page ${pageNumber}`;
+
+      shell.append(number, loading);
+      pdfPages.appendChild(shell);
+    }
+  }
+
+  function updateNavigation() {
+    const total = pdfDocument?.numPages || 0;
+    pageReadout.textContent = total ? `${currentPage} / ${total}` : '— / —';
+    prevPage.disabled = !total || currentPage <= 1;
+    nextPage.disabled = !total || currentPage >= total;
+    zoomReadout.textContent = `${Math.round(zoom * 100)}%`;
+  }
+
+  function setCurrentPage(pageNumber) {
+    if (!pdfDocument) return;
+    const next = Math.max(1, Math.min(pdfDocument.numPages, Number(pageNumber) || 1));
+    if (next !== currentPage) currentPage = next;
+    updateNavigation();
+    trimDistantCanvases();
+  }
+
+  function scrollToPage(pageNumber) {
+    const shell = document.getElementById(`pdf-page-${pageNumber}`);
+    if (!shell) return;
+    setCurrentPage(pageNumber);
+    shell.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'center' });
+    renderPage(pageNumber).catch((error) => console.warn(error));
+  }
+
+  function updateCurrentFromVisibility() {
+    let bestPage = currentPage;
+    let bestRatio = -1;
+    for (const [pageNumber, ratio] of visibleRatios.entries()) {
+      if (ratio > bestRatio) {
+        bestRatio = ratio;
+        bestPage = pageNumber;
+      }
+    }
+    setCurrentPage(bestPage);
+  }
+
+  function startObservers() {
+    pageObserver?.disconnect();
+    visibleRatios.clear();
+
+    pageObserver = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        const pageNumber = Number(entry.target.dataset.pageNumber);
+        if (entry.isIntersecting) {
+          visibleRatios.set(pageNumber, entry.intersectionRatio);
+          renderPage(pageNumber).catch((error) => console.warn(error));
+          renderPage(pageNumber - 1).catch(() => {});
+          renderPage(pageNumber + 1).catch(() => {});
+        } else {
+          visibleRatios.delete(pageNumber);
+        }
+      }
+      updateCurrentFromVisibility();
+    }, {
+      root: pdfScroll,
+      rootMargin: '120% 0px 120% 0px',
+      threshold: [0.01, 0.15, 0.35, 0.6]
+    });
+
+    document.querySelectorAll('.pdf-page').forEach((page) => pageObserver.observe(page));
+  }
+
+  async function renderPage(pageNumber, force = false) {
+    if (!pdfDocument || pageNumber < 1 || pageNumber > pdfDocument.numPages) return;
+
+    const shell = document.getElementById(`pdf-page-${pageNumber}`);
+    if (!shell) return;
+
+    const requestedGeneration = renderGeneration;
+    const existingGeneration = Number(shell.dataset.renderGeneration);
+    if (!force && renderedPages.has(pageNumber) && existingGeneration === requestedGeneration) return;
+    if (renderTasks.has(pageNumber)) return renderTasks.get(pageNumber);
+
+    const task = (async () => {
+      const page = await pdfDocument.getPage(pageNumber);
+      if (requestedGeneration !== renderGeneration) return;
+
+      const baseViewport = page.getViewport({ scale: 1 });
+      const cssWidth = fitWidthPixels * zoom;
+      const cssScale = cssWidth / baseViewport.width;
+      const cssViewport = page.getViewport({ scale: cssScale });
+      const outputScale = Math.min(window.devicePixelRatio || 1, 1.75);
+      const renderViewport = page.getViewport({ scale: cssScale * outputScale });
+
+      const canvas = document.createElement('canvas');
+      const context = canvas.getContext('2d', { alpha: false });
+      if (!context) throw new Error('Canvas is unavailable in this browser.');
+
+      canvas.width = Math.max(1, Math.floor(renderViewport.width));
+      canvas.height = Math.max(1, Math.floor(renderViewport.height));
+      canvas.style.width = `${Math.round(cssViewport.width)}px`;
+      canvas.style.height = `${Math.round(cssViewport.height)}px`;
+
+      shell.style.width = `${Math.round(cssViewport.width)}px`;
+      shell.style.height = `${Math.round(cssViewport.height)}px`;
+      shell.style.minHeight = '0';
+
+      const numberBadge = shell.querySelector('.pdf-page-number');
+      const oldCanvas = shell.querySelector('canvas');
+      if (oldCanvas) oldCanvas.remove();
+      shell.appendChild(canvas);
+      if (numberBadge) shell.appendChild(numberBadge);
+
+      const renderTask = page.render({ canvasContext: context, viewport: renderViewport });
+      renderTasks.set(pageNumber, renderTask.promise);
+      await renderTask.promise;
+
+      if (requestedGeneration !== renderGeneration) {
+        canvas.remove();
+        return;
+      }
+
+      shell.querySelector('.pdf-page-loading')?.remove();
+      shell.dataset.renderGeneration = String(requestedGeneration);
+      shell.dataset.baseWidth = String(cssViewport.width / zoom);
+      shell.dataset.baseHeight = String(cssViewport.height / zoom);
+      renderedPages.add(pageNumber);
+    })().finally(() => {
+      renderTasks.delete(pageNumber);
+    });
+
+    renderTasks.set(pageNumber, task);
+    return task;
+  }
+
+  function trimDistantCanvases() {
+    if (renderedPages.size <= 12) return;
+
+    for (const pageNumber of Array.from(renderedPages)) {
+      if (Math.abs(pageNumber - currentPage) <= 5) continue;
+      const shell = document.getElementById(`pdf-page-${pageNumber}`);
+      const canvas = shell?.querySelector('canvas');
+      if (!shell || !canvas) continue;
+
+      canvas.width = 1;
+      canvas.height = 1;
+      canvas.remove();
+      if (!shell.querySelector('.pdf-page-loading')) {
+        const loading = document.createElement('div');
+        loading.className = 'pdf-page-loading';
+        loading.textContent = `Page ${pageNumber}`;
+        shell.appendChild(loading);
+      }
+      shell.dataset.renderGeneration = '-1';
+      renderedPages.delete(pageNumber);
+    }
+  }
+
+  function applyZoom(nextZoom) {
+    zoom = Math.max(0.65, Math.min(2.5, Math.round(nextZoom * 100) / 100));
+    renderGeneration += 1;
+    updateNavigation();
+
+    document.querySelectorAll('.pdf-page').forEach((shell) => {
+      const baseWidth = Number(shell.dataset.baseWidth) || fitWidthPixels;
+      const baseHeight = Number(shell.dataset.baseHeight) || fitWidthPixels * 1.294;
+      const width = baseWidth * zoom;
+      const height = baseHeight * zoom;
+      shell.style.width = `${Math.round(width)}px`;
+      shell.style.height = `${Math.round(height)}px`;
+      shell.style.minHeight = '0';
+
+      const canvas = shell.querySelector('canvas');
+      if (canvas) {
+        canvas.style.width = `${Math.round(width)}px`;
+        canvas.style.height = `${Math.round(height)}px`;
+      }
+    });
+
+    renderPage(currentPage, true).catch((error) => console.warn(error));
+    renderPage(currentPage - 1, true).catch(() => {});
+    renderPage(currentPage + 1, true).catch(() => {});
+  }
+
+  let resizeTimer = null;
+  function handleResize() {
+    window.clearTimeout(resizeTimer);
+    resizeTimer = window.setTimeout(() => {
+      const oldFit = fitWidthPixels || 1;
+      calculateFitWidth();
+      if (Math.abs(fitWidthPixels - oldFit) < 8) return;
+
+      renderGeneration += 1;
+      for (const pageNumber of Array.from(renderedPages)) {
+        const shell = document.getElementById(`pdf-page-${pageNumber}`);
+        const canvas = shell?.querySelector('canvas');
+        canvas?.remove();
+        if (shell && !shell.querySelector('.pdf-page-loading')) {
+          const loading = document.createElement('div');
+          loading.className = 'pdf-page-loading';
+          loading.textContent = `Page ${pageNumber}`;
+          shell.appendChild(loading);
+        }
+        if (shell) {
+          shell.dataset.renderGeneration = '-1';
+          shell.dataset.baseWidth = '';
+          shell.dataset.baseHeight = '';
+          shell.style.width = `${Math.round(fitWidthPixels * zoom)}px`;
+          shell.style.height = `${Math.round(fitWidthPixels * zoom * 1.294)}px`;
+        }
+      }
+      renderedPages.clear();
+      renderPage(currentPage, true).catch((error) => console.warn(error));
+      scrollToPage(currentPage);
+    }, 250);
+  }
+
+  async function openDocument() {
+    clearError();
+    pdfPages.replaceChildren();
+    visibleRatios.clear();
+    renderedPages.clear();
+    renderGeneration += 1;
+    currentPage = 1;
+    updateNavigation();
+
+    const source = resolvedSource();
+    if (!source) {
+      readerTitle.textContent = 'Invalid PDF link';
+      showError('The PDF address is missing or invalid.');
+      return;
+    }
+
+    const directUrl = source.href;
+    openOriginal.href = directUrl;
+    errorDirect.href = directUrl;
+    downloadPdf.href = directUrl;
+    downloadPdf.download = decodeURIComponent(source.pathname.split('/').pop() || 'document.pdf');
+
+    try {
+      const pdfjsLib = await loadPdfJs();
+      showStatus('Opening the PDF…');
+
+      const loadingTask = pdfjsLib.getDocument({
+        url: directUrl,
+        cMapPacked: true,
+        useSystemFonts: true
+      });
+
+      pdfDocument = await loadingTask.promise;
+      createPageShells(pdfDocument.numPages);
+      updateNavigation();
+      startObservers();
+      hideStatus();
+      await renderPage(1, true);
+      renderPage(2).catch(() => {});
+    } catch (error) {
+      console.error(error);
+      showError(error?.message || 'The PDF could not be loaded by the multipage reader.');
+    }
+  }
+
+  readerTitle.textContent = requestedTitle;
+  document.title = `${requestedTitle} | PDF Reader`;
+
+  backButton.addEventListener('click', goBack);
+  errorBack.addEventListener('click', goBack);
+  retryReader.addEventListener('click', openDocument);
+  prevPage.addEventListener('click', () => scrollToPage(currentPage - 1));
+  nextPage.addEventListener('click', () => scrollToPage(currentPage + 1));
+  zoomOut.addEventListener('click', () => applyZoom(zoom - 0.15));
+  zoomIn.addEventListener('click', () => applyZoom(zoom + 0.15));
+  fitWidth.addEventListener('click', () => applyZoom(1));
+  fullScreen.addEventListener('click', async () => {
+    try {
+      if (!document.fullscreenElement) {
+        await readerStage.requestFullscreen();
+      } else {
+        await document.exitFullscreen();
+      }
+    } catch {
+      // iPhone Safari may not expose fullscreen for page elements.
+    }
+  });
+  window.addEventListener('resize', handleResize, { passive: true });
+
+  openDocument();
+})();
+
+(function () {
+  "use strict";
+
+  const CONFIG_ENDPOINT = "/api/translation/config";
+  const TRANSLATE_ENDPOINT = "/api/translation";
+  const STORAGE_KEY = "gbrna-preferred-language";
+  const BATCH_ITEM_LIMIT = 80;
+  const BATCH_CHARACTER_LIMIT = 18000;
+  const VIEWPORT_MARGIN = "900px 0px";
+  const RTL_LANGUAGES = new Set(["ar", "ckb", "dv", "fa", "he", "iw", "ps", "sd", "ug", "ur", "yi"]);
+  const SKIPPED_TAGS = new Set([
+    "AUDIO", "CANVAS", "CODE", "IFRAME", "NOSCRIPT", "PRE", "SCRIPT", "STYLE", "SVG", "TEXTAREA", "VIDEO"
+  ]);
+  const TRANSLATABLE_ATTRIBUTES = ["aria-label", "placeholder", "title"];
+  const LANGUAGE_CODES = [
+    "af", "sq", "am", "ar", "hy", "as", "ay", "az", "eu", "be", "bn", "bs", "bg", "my", "ca",
+    "ceb", "zh-CN", "zh-TW", "co", "hr", "cs", "da", "dv", "nl", "eo", "et", "ee", "fil", "fi",
+    "fr", "gl", "ka", "de", "el", "gn", "gu", "ht", "ha", "haw", "he", "hi", "hmn", "hu", "is",
+    "ig", "id", "ga", "it", "ja", "jv", "kn", "kk", "km", "rw", "ko", "ku", "ky", "lo", "la",
+    "lv", "lt", "lb", "mk", "mg", "ms", "ml", "mt", "mi", "mr", "mn", "ne", "no", "or", "ps",
+    "fa", "pl", "pt", "pa", "qu", "ro", "ru", "sm", "gd", "sr", "st", "sn", "sd", "si", "sk",
+    "sl", "so", "es", "su", "sw", "sv", "tg", "ta", "tt", "te", "th", "ti", "tr", "tk", "uk",
+    "ur", "ug", "uz", "vi", "cy", "xh", "yi", "yo", "zu"
+  ];
+  const FALLBACK_NAMES = {
+    af: "Afrikaans", sq: "Shqip", am: "አማርኛ", ar: "العربية", hy: "Հայերեն", as: "অসমীয়া",
+    ay: "Aymara", az: "Azərbaycan", eu: "Euskara", be: "Беларуская", bn: "বাংলা", bs: "Bosanski",
+    bg: "Български", my: "မြန်မာ", ca: "Català", ceb: "Cebuano", "zh-CN": "中文（简体）",
+    "zh-TW": "中文（繁體）", co: "Corsu", hr: "Hrvatski", cs: "Čeština", da: "Dansk", dv: "ދިވެހި",
+    nl: "Nederlands", eo: "Esperanto", et: "Eesti", ee: "Eʋegbe", fil: "Filipino", fi: "Suomi",
+    fr: "Français", gl: "Galego", ka: "ქართული", de: "Deutsch", el: "Ελληνικά", gn: "Guaraní",
+    gu: "ગુજરાતી", ht: "Kreyòl ayisyen", ha: "Hausa", haw: "ʻŌlelo Hawaiʻi", he: "עברית", hi: "हिन्दी",
+    hmn: "Hmong", hu: "Magyar", is: "Íslenska", ig: "Igbo", id: "Bahasa Indonesia", ga: "Gaeilge",
+    it: "Italiano", ja: "日本語", jv: "Basa Jawa", kn: "ಕನ್ನಡ", kk: "Қазақша", km: "ខ្មែរ", rw: "Kinyarwanda",
+    ko: "한국어", ku: "Kurdî", ky: "Кыргызча", lo: "ລາວ", la: "Latina", lv: "Latviešu", lt: "Lietuvių",
+    lb: "Lëtzebuergesch", mk: "Македонски", mg: "Malagasy", ms: "Bahasa Melayu", ml: "മലയാളം",
+    mt: "Malti", mi: "Māori", mr: "मराठी", mn: "Монгол", ne: "नेपाली", no: "Norsk", or: "ଓଡ଼ିଆ",
+    ps: "پښتو", fa: "فارسی", pl: "Polski", pt: "Português", pa: "ਪੰਜਾਬੀ", qu: "Runasimi", ro: "Română",
+    ru: "Русский", sm: "Gagana Samoa", gd: "Gàidhlig", sr: "Српски", st: "Sesotho", sn: "Shona",
+    sd: "سنڌي", si: "සිංහල", sk: "Slovenčina", sl: "Slovenščina", so: "Soomaali", es: "Español",
+    su: "Basa Sunda", sw: "Kiswahili", sv: "Svenska", tg: "Тоҷикӣ", ta: "தமிழ்", tt: "Татарча",
+    te: "తెలుగు", th: "ไทย", ti: "ትግርኛ", tr: "Türkçe", tk: "Türkmençe", uk: "Українська",
+    ur: "اردو", ug: "ئۇيغۇرچە", uz: "O‘zbekcha", vi: "Tiếng Việt", cy: "Cymraeg", xh: "isiXhosa",
+    yi: "ייִדיש", yo: "Yorùbá", zu: "isiZulu"
+  };
+
+  const originalDocumentLanguage = document.documentElement.lang || "en";
+  const originalDocumentDirection = document.documentElement.dir || "";
+  const textRecords = new WeakMap();
+  const attributeRecords = new WeakMap();
+  const observedElements = new WeakSet();
+  const revealedElements = new WeakSet();
+  const waitingByElement = new WeakMap();
+  const pendingItems = new Map();
+  let targetLanguage = "en";
+  let requestInProgress = false;
+  let flushTimer = 0;
+  let retryNotBefore = 0;
+  let consecutiveFailures = 0;
+  let intersectionObserver = null;
+  let statusElement = null;
+  let languageSelect = null;
+  let nextItemId = 1;
+
+  function normalizeLanguage(value) {
+    const raw = String(value || "").trim().replace(/_/g, "-");
+    const lower = raw.toLowerCase();
+    if (!lower) return "en";
+    if (lower === "zh" || lower.startsWith("zh-hans") || lower === "zh-cn" || lower === "zh-sg") return "zh-CN";
+    if (lower.startsWith("zh-hant") || ["zh-tw", "zh-hk", "zh-mo"].includes(lower)) return "zh-TW";
+    if (lower.startsWith("pt")) return "pt";
+    if (lower === "iw") return "he";
+    const base = lower.split("-")[0];
+    return LANGUAGE_CODES.includes(base) ? base : "en";
+  }
+
+  function browserLanguage() {
+    const values = Array.isArray(navigator.languages) && navigator.languages.length
+      ? navigator.languages
+      : [navigator.language || "en"];
+    for (const value of values) {
+      const normalized = normalizeLanguage(value);
+      if (normalized !== "en") return normalized;
+      if (String(value).toLowerCase().startsWith("en")) return "en";
+    }
+    return "en";
+  }
+
+  function displayName(code) {
+    try {
+      if (typeof Intl.DisplayNames === "function") {
+        const names = new Intl.DisplayNames([code, navigator.language || "en"], { type: "language" });
+        const name = names.of(code);
+        if (name) return name.charAt(0).toUpperCase() + name.slice(1);
+      }
+    } catch {
+      // Use the stable native-name list below.
+    }
+    return FALLBACK_NAMES[code] || code;
+  }
+
+  function safeStoredLanguage() {
+    try {
+      const stored = localStorage.getItem(STORAGE_KEY);
+      if (stored === "auto" || stored === "en" || LANGUAGE_CODES.includes(stored)) return stored;
+    } catch {
+      // Storage can be disabled; automatic language selection still works.
+    }
+    return "auto";
+  }
+
+  function storeLanguage(value) {
+    try {
+      localStorage.setItem(STORAGE_KEY, value);
+    } catch {
+      // The choice simply will not persist when storage is unavailable.
+    }
+  }
+
+  function setStatus(message, state) {
+    if (!statusElement) return;
+    statusElement.textContent = message;
+    statusElement.dataset.state = state || "idle";
+  }
+
+  function createTranslationBar() {
+    const bar = document.createElement("div");
+    bar.className = "gbrna-translation-bar notranslate";
+    bar.setAttribute("translate", "no");
+    bar.setAttribute("role", "region");
+    bar.setAttribute("aria-label", "Website language");
+
+    const inner = document.createElement("div");
+    inner.className = "gbrna-translation-inner";
+
+    const label = document.createElement("label");
+    label.className = "gbrna-translation-label";
+    label.htmlFor = "gbrnaLanguageSelect";
+    label.textContent = "Language / Idioma / Langue";
+
+    languageSelect = document.createElement("select");
+    languageSelect.id = "gbrnaLanguageSelect";
+    languageSelect.className = "gbrna-translation-select";
+    languageSelect.setAttribute("aria-label", "Choose website language");
+
+    const automaticOption = document.createElement("option");
+    automaticOption.value = "auto";
+    automaticOption.textContent = `Automatic — ${displayName(browserLanguage())}`;
+    languageSelect.appendChild(automaticOption);
+
+    const englishOption = document.createElement("option");
+    englishOption.value = "en";
+    englishOption.textContent = "English — Original";
+    languageSelect.appendChild(englishOption);
+
+    for (const code of LANGUAGE_CODES) {
+      const option = document.createElement("option");
+      option.value = code;
+      option.lang = code;
+      option.textContent = displayName(code);
+      languageSelect.appendChild(option);
+    }
+
+    statusElement = document.createElement("p");
+    statusElement.className = "gbrna-translation-status";
+    statusElement.setAttribute("aria-live", "polite");
+    statusElement.textContent = "Checking translation…";
+
+    inner.append(label, languageSelect, statusElement);
+    bar.appendChild(inner);
+    document.body.insertBefore(bar, document.body.firstChild);
+
+    languageSelect.addEventListener("change", () => {
+      const choice = languageSelect.value;
+      storeLanguage(choice);
+      applyLanguage(choice === "auto" ? browserLanguage() : choice);
+    });
+  }
+
+  function shouldSkipElement(element) {
+    if (!element || SKIPPED_TAGS.has(element.tagName)) return true;
+    return Boolean(
+      element.closest('.gbrna-translation-bar, [translate="no"], .notranslate, [data-no-translate]')
+    );
+  }
+
+  function isUsefulText(value) {
+    const trimmed = String(value || "").trim();
+    if (!trimmed || trimmed.length < 2) return false;
+    return /[\p{L}]/u.test(trimmed);
+  }
+
+  function itemKey(item) {
+    return item.kind === "text"
+      ? `text:${item.id}`
+      : `attribute:${item.id}:${item.attribute}`;
+  }
+
+  function textItem(node) {
+    let record = textRecords.get(node);
+    if (!record) {
+      record = { id: nextItemId++, original: node.data, translated: null, language: null };
+      textRecords.set(node, record);
+    } else if (record.translated !== node.data && record.original !== node.data) {
+      record.original = node.data;
+      record.translated = null;
+      record.language = null;
+    }
+    return { kind: "text", id: record.id, node, record };
+  }
+
+  function attributeItem(element, attribute) {
+    let records = attributeRecords.get(element);
+    if (!records) {
+      records = new Map();
+      attributeRecords.set(element, records);
+    }
+    let record = records.get(attribute);
+    const current = element.getAttribute(attribute) || "";
+    if (!record) {
+      record = { id: nextItemId++, original: current, translated: null, language: null };
+      records.set(attribute, record);
+    } else if (record.translated !== current && record.original !== current) {
+      record.original = current;
+      record.translated = null;
+      record.language = null;
+    }
+    return { kind: "attribute", id: record.id, element, attribute, record };
+  }
+
+  function queueItem(item) {
+    const source = item.record.original;
+    if (!isUsefulText(source)) return;
+    if (item.record.language === targetLanguage && item.record.translated) return;
+    pendingItems.set(itemKey(item), item);
+    scheduleFlush();
+  }
+
+  function queueWhenVisible(element, item) {
+    if (!intersectionObserver || revealedElements.has(element)) {
+      queueItem(item);
+      return;
+    }
+    let items = waitingByElement.get(element);
+    if (!items) {
+      items = new Map();
+      waitingByElement.set(element, items);
+    }
+    items.set(itemKey(item), item);
+  }
+
+  function registerElement(element) {
+    if (!element || shouldSkipElement(element)) return;
+
+    for (const attribute of TRANSLATABLE_ATTRIBUTES) {
+      if (element.hasAttribute(attribute)) queueWhenVisible(element, attributeItem(element, attribute));
+    }
+
+    for (const node of element.childNodes) {
+      if (node.nodeType === Node.TEXT_NODE) queueWhenVisible(element, textItem(node));
+    }
+
+    if (intersectionObserver && !observedElements.has(element) && !revealedElements.has(element)) {
+      observedElements.add(element);
+      intersectionObserver.observe(element);
+    }
+  }
+
+  function registerSubtree(root) {
+    if (!root) return;
+    if (root.nodeType === Node.TEXT_NODE) {
+      const parent = root.parentElement;
+      if (parent && !shouldSkipElement(parent)) {
+        queueWhenVisible(parent, textItem(root));
+        registerElement(parent);
+      }
+      return;
+    }
+    if (root.nodeType !== Node.ELEMENT_NODE && root.nodeType !== Node.DOCUMENT_NODE) return;
+
+    const element = root.nodeType === Node.ELEMENT_NODE ? root : null;
+    if (element && shouldSkipElement(element)) return;
+    if (element) registerElement(element);
+
+    const walker = document.createTreeWalker(root, NodeFilter.SHOW_ELEMENT);
+    let current = walker.nextNode();
+    while (current) {
+      registerElement(current);
+      current = walker.nextNode();
+    }
+  }
+
+  function restoreOriginals() {
+    pendingItems.clear();
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT | NodeFilter.SHOW_ELEMENT);
+    let current = walker.currentNode;
+    while (current) {
+      if (current.nodeType === Node.TEXT_NODE) {
+        const record = textRecords.get(current);
+        if (record && record.translated === current.data) current.data = record.original;
+        if (record) {
+          record.translated = null;
+          record.language = null;
+        }
+      } else if (current.nodeType === Node.ELEMENT_NODE) {
+        const records = attributeRecords.get(current);
+        if (records) {
+          for (const [attribute, record] of records) {
+            if (current.getAttribute(attribute) === record.translated) current.setAttribute(attribute, record.original);
+            record.translated = null;
+            record.language = null;
+          }
+        }
+      }
+      current = walker.nextNode();
+    }
+  }
+
+  function scheduleFlush() {
+    if (requestInProgress || flushTimer || targetLanguage === "en") return;
+    const delay = Math.max(80, retryNotBefore - Date.now());
+    flushTimer = window.setTimeout(() => {
+      flushTimer = 0;
+      flushPending();
+    }, delay);
+  }
+
+  function takeBatch() {
+    const batch = [];
+    let characters = 0;
+    for (const [key, item] of pendingItems) {
+      const length = item.record.original.length;
+      if (batch.length && (batch.length >= BATCH_ITEM_LIMIT || characters + length > BATCH_CHARACTER_LIMIT)) break;
+      pendingItems.delete(key);
+      batch.push(item);
+      characters += length;
+    }
+    return batch;
+  }
+
+  async function flushPending() {
+    if (requestInProgress || targetLanguage === "en" || !pendingItems.size) return;
+    const requestLanguage = targetLanguage;
+    const batch = takeBatch();
+    if (!batch.length) return;
+
+    requestInProgress = true;
+    setStatus(`Translating visible content into ${displayName(requestLanguage)}…`, "working");
+
+    try {
+      const response = await fetch(TRANSLATE_ENDPOINT, {
+        method: "POST",
+        credentials: "same-origin",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          target: requestLanguage,
+          texts: batch.map((item) => item.record.original)
+        })
+      });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok || !Array.isArray(payload.translations)) {
+        throw new Error(payload.message || "Translation service did not return a usable response.");
+      }
+      if (requestLanguage !== targetLanguage) return;
+
+      batch.forEach((item, index) => {
+        const translated = String(payload.translations[index] || item.record.original);
+        item.record.translated = translated;
+        item.record.language = requestLanguage;
+        if (item.kind === "text") {
+          if (item.node.isConnected) item.node.data = translated;
+        } else if (item.element.isConnected) {
+          item.element.setAttribute(item.attribute, translated);
+        }
+      });
+      consecutiveFailures = 0;
+      retryNotBefore = 0;
+      setStatus(`Showing ${displayName(requestLanguage)}. Machine translation.`, "ready");
+    } catch (error) {
+      consecutiveFailures += 1;
+      if (consecutiveFailures <= 3) {
+        batch.forEach((item) => pendingItems.set(itemKey(item), item));
+        retryNotBefore = Date.now() + Math.min(60000, 5000 * (2 ** (consecutiveFailures - 1)));
+      }
+      const message = error && error.message ? error.message : "Translation is temporarily unavailable.";
+      setStatus(
+        consecutiveFailures <= 3 ? message : `${message} Choose the language again to retry.`,
+        "error"
+      );
+    } finally {
+      requestInProgress = false;
+      if (pendingItems.size && consecutiveFailures <= 3) scheduleFlush();
+    }
+  }
+
+  function applyLanguage(language) {
+    const nextLanguage = normalizeLanguage(language);
+    targetLanguage = nextLanguage;
+    consecutiveFailures = 0;
+    retryNotBefore = 0;
+    restoreOriginals();
+
+    if (nextLanguage === "en") {
+      document.documentElement.lang = originalDocumentLanguage;
+      if (originalDocumentDirection) document.documentElement.dir = originalDocumentDirection;
+      else document.documentElement.removeAttribute("dir");
+      setStatus("Showing the original English.", "ready");
+      return;
+    }
+
+    document.documentElement.lang = nextLanguage;
+    document.documentElement.dir = RTL_LANGUAGES.has(nextLanguage) ? "rtl" : "ltr";
+    registerSubtree(document.body);
+  }
+
+  function startObservers() {
+    intersectionObserver = typeof IntersectionObserver === "function"
+      ? new IntersectionObserver((entries) => {
+          for (const entry of entries) {
+            if (!entry.isIntersecting) continue;
+            revealedElements.add(entry.target);
+            const items = waitingByElement.get(entry.target);
+            if (items) {
+              for (const item of items.values()) queueItem(item);
+              items.clear();
+            }
+            intersectionObserver.unobserve(entry.target);
+          }
+        }, { rootMargin: VIEWPORT_MARGIN })
+      : null;
+
+    const observer = new MutationObserver((mutations) => {
+      if (targetLanguage === "en") return;
+      for (const mutation of mutations) {
+        if (mutation.type === "characterData") {
+          registerSubtree(mutation.target);
+        } else if (mutation.type === "attributes") {
+          registerElement(mutation.target);
+        } else {
+          mutation.addedNodes.forEach(registerSubtree);
+        }
+      }
+    });
+    observer.observe(document.body, {
+      subtree: true,
+      childList: true,
+      characterData: true,
+      attributes: true,
+      attributeFilter: TRANSLATABLE_ATTRIBUTES
+    });
+  }
+
+  async function initialize() {
+    createTranslationBar();
+    startObservers();
+
+    let configuration = null;
+    try {
+      const response = await fetch(CONFIG_ENDPOINT, { credentials: "same-origin" });
+      if (response.ok) configuration = await response.json();
+    } catch {
+      // The page may have been opened as a local file or from static-only hosting.
+    }
+
+    const translationEnabled = Boolean(configuration && configuration.enabled);
+    languageSelect.disabled = !translationEnabled;
+    const savedChoice = safeStoredLanguage();
+    languageSelect.value = savedChoice;
+
+    if (!translationEnabled) {
+      setStatus("Translation needs to be enabled by the site administrator.", "error");
+      return;
+    }
+
+    const detectedLanguage = browserLanguage() !== "en"
+      ? browserLanguage()
+      : normalizeLanguage(configuration.suggestedLanguage);
+    const chosenLanguage = savedChoice === "auto" ? detectedLanguage : savedChoice;
+    applyLanguage(chosenLanguage);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initialize, { once: true });
+  } else {
+    initialize();
+  }
+})();
+
+let READINGS = [];
+let DAILY_AUDIO = {};
+let currentId = null;
+
+const CONFIG = {
+  projectName: 'Just For Tonight',
+  shortName: 'JFT',
+  dataUrl: 'data/jft.json',
+  formSubjectPrefix: 'JFT Review/Input',
+  pdfLabel: 'JFT PDF p.',
+  sourceFallback: 'Source reference pending',
+  reviewHelp: 'Share review, correction, Group input, or literature feedback for this reading.',
+  momentTitle: 'Just For Tonight',
+  noReadingMessage: 'No Just For Tonight reading was found for this date in the source draft.'
+};
+
+const monthNames = [
+  '', 'January', 'February', 'March', 'April', 'May', 'June',
+  'July', 'August', 'September', 'October', 'November', 'December'
+];
+
+const $ = (selector) => document.querySelector(selector);
+
+function pad(n) {
+  return String(n).padStart(2, '0');
+}
+
+function makeId(month, day) {
+  return `${pad(month)}-${pad(day)}`;
+}
+
+function isLeapYear(year) {
+  return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
+}
+
+function todayId() {
+  const today = new Date();
+  return makeId(today.getMonth() + 1, today.getDate());
+}
+
+function findReading(id) {
+  return READINGS.find((r) => r.id === id);
+}
+
+function getDailyReadings(date = new Date()) {
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
+  const year = date.getFullYear();
+  const readings = READINGS.filter((r) => r.month === month && r.day === day);
+
+  if (!isLeapYear(year) && month === 2 && day === 28) {
+    const feb29Readings = READINGS.filter((r) => r.month === 2 && r.day === 29);
+    feb29Readings.forEach((reading) => readings.push(reading));
+  }
+
+  return readings;
+}
+
+function getReadingIndex(id) {
+  return READINGS.findIndex((r) => r.id === id);
+}
+
+function moveReading(direction) {
+  const index = getReadingIndex(currentId || todayId());
+  if (index < 0) return;
+  const nextIndex = (index + direction + READINGS.length) % READINGS.length;
+  showReadingById(READINGS[nextIndex].id);
+}
+
+function paragraphHtml(text) {
+  if (!text) return '';
+  return text
+    .split(/\n\s*\n/)
+    .map((p) => `<p>${escapeHtml(p)}</p>`)
+    .join('');
+}
+
+function escapeHtml(str) {
+  return String(str || '')
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#039;');
+}
+
+function renderDailyAudio(reading) {
+  const audio = DAILY_AUDIO[reading.id];
+  if (!audio) return '';
+
+  const previewUrl = audio.previewUrl ||
+    (audio.fileId ? `https://drive.google.com/file/d/${encodeURIComponent(audio.fileId)}/preview` : '');
+
+  if (!previewUrl) return '';
+
+  const title = audio.title || `Just For Tonight Audio — ${reading.date}`;
+
+  return `
+    <section class="daily-reflection-audio" aria-label="Just For Tonight audio for ${escapeHtml(reading.date)}">
+      <p class="daily-audio-kicker">Listen to Tonight's Reading</p>
+      <h4>${escapeHtml(reading.date)} Audio</h4>
+      <iframe
+        class="daily-audio-frame"
+        src="${escapeHtml(previewUrl)}"
+        title="${escapeHtml(title)}"
+        loading="lazy"
+        allow="autoplay"
+      ></iframe>
+    </section>
+  `;
+}
+
+function renderReviewInputForm(reading) {
+  const source = reading.source || CONFIG.sourceFallback;
+  const page = reading.pdfPage ? `${CONFIG.pdfLabel} ${reading.pdfPage}` : '';
+  const siteLink = `${location.origin}${location.pathname}#${reading.id}`;
+
+  return `
+    <section class="review-input" aria-label="Review and input for ${escapeHtml(reading.date)}">
+      <h4>Review &amp; Input</h4>
+      <p class="review-help">${escapeHtml(CONFIG.reviewHelp)}</p>
+
+      <form class="review-form" action="https://formspree.io/f/xbdvjywr" method="POST">
+        <input type="hidden" name="project" value="${escapeHtml(CONFIG.projectName)}">
+        <input type="hidden" name="reading_date" value="${escapeHtml(reading.date)}">
+        <input type="hidden" name="reading_id" value="${escapeHtml(reading.id)}">
+        <input type="hidden" name="source_reference" value="${escapeHtml(source)}">
+        <input type="hidden" name="pdf_page" value="${escapeHtml(page)}">
+        <input type="hidden" name="site_link" value="${escapeHtml(siteLink)}">
+        <input type="hidden" name="_subject" value="${escapeHtml(CONFIG.formSubjectPrefix)} — ${escapeHtml(reading.date)}">
+
+        <label>
+          Name or Group
+          <input type="text" name="name_or_group" autocomplete="name" placeholder="Name or Home Group">
+        </label>
+
+        <label>
+          Email
+          <input type="email" name="email" autocomplete="email" placeholder="Only if you want a response">
+        </label>
+
+        <label>
+          Review / Input <span>(required)</span>
+          <textarea name="message" required placeholder="Enter review, correction, Group input, or suggested changes..."></textarea>
+        </label>
+
+        <button type="submit">Submit Review/Input</button>
+        <p class="form-status" aria-live="polite"></p>
+      </form>
+    </section>
+  `;
+}
+
+function attachReviewForms() {
+  document.querySelectorAll('.review-form').forEach((form) => {
+    if (form.dataset.bound === 'true') return;
+    form.dataset.bound = 'true';
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const button = form.querySelector('button[type="submit"]');
+      const status = form.querySelector('.form-status');
+      const oldText = button.textContent;
+
+      button.disabled = true;
+      button.textContent = 'Submitting...';
+      status.textContent = '';
+      status.className = 'form-status';
+
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (!response.ok) throw new Error('Form submission failed');
+
+        form.reset();
+        status.textContent = 'Thank you. Your review/input has been submitted.';
+        status.classList.add('success');
+      } catch (error) {
+        console.error(error);
+        status.textContent = 'Something went wrong. Please try again, or copy your input before refreshing.';
+        status.classList.add('error');
+      } finally {
+        button.disabled = false;
+        button.textContent = oldText;
+      }
+    });
+  });
+}
+
+function renderReadingCard(reading, label = '') {
+  const sourceLine = reading.source ? escapeHtml(reading.source) : CONFIG.sourceFallback;
+  const pageLine = reading.pdfPage ? `${CONFIG.pdfLabel} ${reading.pdfPage}` : '';
+
+  return `
+    <article class="reading-card" id="reading-${reading.id}">
+      <div class="reading-date">
+        <h3>${escapeHtml(label || reading.date)}</h3>
+        <div class="reading-meta">
+          <span class="source-ref">${sourceLine}</span>
+          ${pageLine ? `<span class="page-ref">${escapeHtml(pageLine)}</span>` : ''}
+        </div>
+      </div>
+      <blockquote class="quote">${escapeHtml(reading.quote)}</blockquote>
+      <div class="body-text">${paragraphHtml(reading.body)}</div>
+      ${reading.moment ? `
+        <div class="moment-box">
+          <h4>${escapeHtml(CONFIG.momentTitle)}</h4>
+          <p class="moment-text">${escapeHtml(reading.moment)}</p>
+        </div>` : ''}
+      ${renderDailyAudio(reading)}
+      ${renderReviewInputForm(reading)}
+    </article>
+  `;
+}
+
+function renderReadings(readings, notice = '') {
+  const area = $('#readingArea');
+
+  if (!readings.length) {
+    area.innerHTML = `<article class="reading-card"><h3>${escapeHtml(CONFIG.noReadingMessage)}</h3><p>Please check the archive or source draft for this date.</p></article>`;
+  } else {
+    area.innerHTML = readings.map((reading) => renderReadingCard(reading)).join('');
+    attachReviewForms();
+  }
+
+  const noticeEl = $('#dailyNotice');
+  if (notice) {
+    noticeEl.textContent = notice;
+    noticeEl.classList.remove('hidden');
+  } else {
+    noticeEl.classList.add('hidden');
+    noticeEl.textContent = '';
+  }
+}
+
+function showToday() {
+  const date = new Date();
+  const readings = getDailyReadings(date);
+  currentId = readings[0]?.id || todayId();
+  const notice = readings.length > 1 && date.getMonth() + 1 === 2 && date.getDate() === 28
+    ? 'Non-leap year handling: the February 29 reflection is included with February 28 today.'
+    : '';
+  renderReadings(readings, notice);
+  location.hash = 'today';
+}
+
+function showReadingById(id) {
+  const reading = findReading(id);
+  if (!reading) return showToday();
+  currentId = id;
+  renderReadings([reading]);
+  location.hash = id;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function renderArchive() {
+  const byMonth = new Map();
+  READINGS.forEach((r) => {
+    if (!byMonth.has(r.month)) byMonth.set(r.month, []);
+    byMonth.get(r.month).push(r);
+  });
+
+  $('#archiveGrid').innerHTML = [...byMonth.entries()].map(([month, readings]) => `
+    <div class="month-card">
+      <h3>${monthNames[month]}</h3>
+      <div class="days">
+        ${readings.map((r) => `<a class="archive-link" href="#${r.id}" data-id="${r.id}">${r.day}</a>`).join('')}
+      </div>
+    </div>
+  `).join('');
+
+  document.querySelectorAll('.archive-link').forEach((link) => {
+    link.addEventListener('click', (event) => {
+      event.preventDefault();
+      showReadingById(link.dataset.id);
+    });
+  });
+}
+
+function doSearch(query) {
+  const q = query.trim().toLowerCase();
+  const results = $('#searchResults');
+
+  if (q.length < 2) {
+    results.innerHTML = `<p class="small-note">Type at least two letters to search ${escapeHtml(CONFIG.projectName)}.</p>`;
+    return;
+  }
+
+  const matches = READINGS.filter((r) => {
+    const haystack = `${r.date} ${r.source || ''} ${r.quote} ${r.body} ${r.moment}`.toLowerCase();
+    return haystack.includes(q);
+  }).slice(0, 40);
+
+  if (!matches.length) {
+    results.innerHTML = '<p class="small-note">No readings matched that search.</p>';
+    return;
+  }
+
+  results.innerHTML = matches.map((r) => {
+    const snippetSource = `${r.date} ${r.source || ''} ${r.quote} ${r.body} ${r.moment}`;
+    const lower = snippetSource.toLowerCase();
+    const idx = lower.indexOf(q);
+    const start = Math.max(0, idx - 70);
+    const snippet = snippetSource.slice(start, start + 190);
+    return `
+      <a class="result-card" href="#${r.id}" data-id="${r.id}">
+        <strong>${escapeHtml(r.date)}</strong>
+        <p>${escapeHtml(snippet)}${snippet.length >= 190 ? '...' : ''}</p>
+      </a>`;
+  }).join('');
+
+  document.querySelectorAll('.result-card').forEach((card) => {
+    card.addEventListener('click', (event) => {
+      event.preventDefault();
+      showReadingById(card.dataset.id);
+    });
+  });
+}
+
+async function copyLink() {
+  const id = currentId || todayId();
+  const url = `${location.origin}${location.pathname}#${id}`;
+  try {
+    await navigator.clipboard.writeText(url);
+    const btn = $('#shareBtn');
+    const old = btn.textContent;
+    btn.textContent = 'Copied';
+    setTimeout(() => { btn.textContent = old; }, 1200);
+  } catch (err) {
+    prompt('Copy this link:', url);
+  }
+}
+
+function handleHash() {
+  const hash = location.hash.replace('#', '');
+  if (!hash || hash === 'today') {
+    showToday();
+    return;
+  }
+  if (/^\d{2}-\d{2}(?:-\d+)?$/.test(hash)) {
+    showReadingById(hash);
+    return;
+  }
+  if (!$('#readingArea').innerHTML.trim()) {
+    const readings = getDailyReadings(new Date());
+    currentId = readings[0]?.id || todayId();
+    renderReadings(readings);
+  }
+}
+
+async function init() {
+  const res = await fetch(CONFIG.dataUrl);
+  if (!res.ok) throw new Error(`${CONFIG.projectName} data not found`);
+  READINGS = await res.json();
+
+  try {
+    const audioResponse = await fetch('data/jft-daily-audio.json', { cache: 'no-store' });
+    if (audioResponse.ok) DAILY_AUDIO = await audioResponse.json();
+  } catch (error) {
+    console.warn('Just For Tonight daily audio map could not be loaded.', error);
+    DAILY_AUDIO = {};
+  }
+
+  renderArchive();
+  handleHash();
+
+  $('#prevBtn').addEventListener('click', () => moveReading(-1));
+  $('#nextBtn').addEventListener('click', () => moveReading(1));
+  $('#todayBtn').addEventListener('click', showToday);
+  $('#randomBtn').addEventListener('click', () => {
+    const pick = READINGS[Math.floor(Math.random() * READINGS.length)];
+    showReadingById(pick.id);
+  });
+  $('#shareBtn').addEventListener('click', copyLink);
+  $('#searchInput').addEventListener('input', (event) => doSearch(event.target.value));
+
+  window.addEventListener('hashchange', handleHash);
+}
+
+init().catch((error) => {
+  console.error(error);
+  $('#readingArea').innerHTML = `<article class="reading-card"><h3>Something went wrong loading ${escapeHtml(CONFIG.projectName)}.</h3><p>Please make sure ${escapeHtml(CONFIG.dataUrl)} is present.</p></article>`;
+});
+
+(() => {
+  const shelf = document.querySelector('[data-literature-shelf]');
+  const reader = document.querySelector('[data-literature-reader]');
+  if (!shelf || !reader) return;
+
+  const titleEl = reader.querySelector('[data-literature-title]');
+  const frame = reader.querySelector('[data-literature-frame]');
+  const openLink = reader.querySelector('[data-literature-open]');
+  const downloadLink = reader.querySelector('[data-literature-download]');
+  const closeButtons = reader.querySelectorAll('[data-literature-close]');
+  let lastTrigger = null;
+
+  const escapeHtml = (value) => String(value ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+
+  function openReader(book, trigger) {
+    const readerUrl = book.readerUrl || (book.pdf ? `${book.pdf}#view=FitH` : '');
+    const openUrl = book.openUrl || book.readerUrl || book.pdf || '';
+    const downloadUrl = book.downloadUrl || book.pdf || '';
+    if (!readerUrl) return;
+    lastTrigger = trigger || null;
+    titleEl.textContent = book.title;
+    frame.src = readerUrl;
+    openLink.href = openUrl;
+    downloadLink.href = downloadUrl;
+    if (book.pdf && !book.downloadUrl) {
+      downloadLink.setAttribute('download', book.pdf.split('/').pop() || 'literature.pdf');
+    } else {
+      downloadLink.removeAttribute('download');
+      downloadLink.setAttribute('target', '_blank');
+      downloadLink.setAttribute('rel', 'noopener noreferrer');
+    }
+    reader.hidden = false;
+    document.body.classList.add('reader-open');
+    reader.querySelector('.literature-reader-close')?.focus();
+  }
+
+  function closeReader() {
+    reader.hidden = true;
+    frame.src = 'about:blank';
+    document.body.classList.remove('reader-open');
+    if (lastTrigger && typeof lastTrigger.focus === 'function') lastTrigger.focus();
+  }
+
+  function renderBook(book) {
+    const readable = Boolean(book.pdf || book.readerUrl);
+    const downloadable = Boolean(book.pdf || book.downloadUrl);
+    const disabled = !readable;
+    const buttonText = disabled ? 'PDF Needed' : 'Read on Site';
+    const downloadHref = book.downloadUrl || book.pdf || '';
+    const downloadHtml = !downloadable
+      ? '<span class="literature-download-disabled">Download unavailable</span>'
+      : `<a href="${escapeHtml(downloadHref)}"${book.downloadUrl ? ' target="_blank" rel="noopener noreferrer"' : ' download'}>Download</a>`;
+
+    return `
+      <article class="literature-book-card${disabled ? ' is-pending' : ''}">
+        <button
+          class="literature-cover-button"
+          type="button"
+          data-literature-open-book="${escapeHtml(book.id)}"
+          ${disabled ? 'disabled aria-disabled="true"' : ''}
+        >
+          <img src="${escapeHtml(book.cover)}" alt="${escapeHtml(book.title)} cover" loading="lazy">
+          <span>${buttonText}</span>
+        </button>
+        <div class="literature-book-copy">
+          <h3>${escapeHtml(book.title)}</h3>
+          <p class="literature-book-subtitle">${escapeHtml(book.subtitle)}</p>
+          <p>${escapeHtml(book.note || '')}</p>
+          <div class="literature-book-actions">
+            ${downloadHtml}
+          </div>
+        </div>
+      </article>
+    `;
+  }
+
+  fetch('data/literature-library.json')
+    .then((response) => {
+      if (!response.ok) throw new Error('Could not load literature library.');
+      return response.json();
+    })
+    .then((data) => {
+      const books = Array.isArray(data.books) ? data.books : [];
+      shelf.innerHTML = books.map(renderBook).join('');
+      shelf.addEventListener('click', (event) => {
+        const trigger = event.target.closest('[data-literature-open-book]');
+        if (!trigger) return;
+        const book = books.find((item) => item.id === trigger.dataset.literatureOpenBook);
+        if (book) openReader(book, trigger);
+      });
+    })
+    .catch((error) => {
+      console.error(error);
+      shelf.innerHTML = '<p class="small-note">The literature library could not be loaded.</p>';
+    });
+
+  closeButtons.forEach((button) => button.addEventListener('click', closeReader));
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && !reader.hidden) closeReader();
+  });
+})();
+
+(function () {
+  let libraryPromise = null;
+
+  function getLibrary() {
+    if (!libraryPromise) {
+      libraryPromise = fetch('data/audio-library.json', { cache: 'no-store' })
+        .then((response) => {
+          if (!response.ok) throw new Error('Audio library data not found');
+          return response.json();
+        });
+    }
+    return libraryPromise;
+  }
+
+  function makeOptionLabel(track) {
+    return track.duration
+      ? `${track.title} — ${track.duration}`
+      : track.title;
+  }
+
+  function populateCollectionSelect(select, collections) {
+    select.innerHTML = '<option value="">Choose an audio folder…</option>';
+
+    collections.forEach((collection, collectionIndex) => {
+      const option = document.createElement('option');
+      option.value = String(collectionIndex);
+      option.textContent = collection.label || 'Audio Folder';
+      select.appendChild(option);
+    });
+  }
+
+  function populateEpisodeSelect(select, collection) {
+    select.innerHTML = '<option value="">Choose a recording…</option>';
+
+    (collection.tracks || []).forEach((track, trackIndex) => {
+      const option = document.createElement('option');
+      option.value = String(trackIndex);
+      option.textContent = makeOptionLabel(track);
+      select.appendChild(option);
+    });
+  }
+
+  function resetPlayer(section, message) {
+    const audio = section.querySelector('[data-audio-library-player]');
+    const title = section.querySelector('[data-audio-library-title]');
+    const source = section.querySelector('[data-audio-library-source]');
+    const duration = section.querySelector('[data-audio-library-duration]');
+    const description = section.querySelector('[data-audio-library-description]');
+    const external = section.querySelector('[data-audio-library-external]');
+
+    if (audio) {
+      audio.pause();
+      audio.removeAttribute('src');
+      audio.load();
+    }
+
+    if (source) source.textContent = 'Audio Library';
+    if (title) title.textContent = message || 'Choose an audio folder, then a recording.';
+    if (duration) duration.textContent = '';
+    if (description) description.textContent = '';
+
+    if (external) {
+      external.href = '#';
+      external.hidden = true;
+    }
+  }
+
+  function updatePlayer(section, collection, track) {
+    const audio = section.querySelector('[data-audio-library-player]');
+    const title = section.querySelector('[data-audio-library-title]');
+    const source = section.querySelector('[data-audio-library-source]');
+    const duration = section.querySelector('[data-audio-library-duration]');
+    const description = section.querySelector('[data-audio-library-description]');
+    const external = section.querySelector('[data-audio-library-external]');
+
+    if (!audio || !collection || !track) return;
+
+    audio.pause();
+    audio.src = track.audioUrl || '';
+    audio.load();
+
+    if (title) title.textContent = track.title || 'Untitled recording';
+    if (source) source.textContent = collection.label || 'Audio Library';
+    if (duration) duration.textContent = track.duration ? `Duration: ${track.duration}` : '';
+    if (description) description.textContent = track.description || collection.description || '';
+
+    if (external) {
+      if (track.episodeUrl) {
+        external.href = track.episodeUrl;
+        external.hidden = false;
+      } else {
+        external.href = '#';
+        external.hidden = true;
+      }
+    }
+  }
+
+  async function initSection(section) {
+    if (!section || section.dataset.audioLibraryBound === 'true') return;
+    section.dataset.audioLibraryBound = 'true';
+
+    const collectionSelect = section.querySelector('[data-audio-library-collection]');
+    const episodeBlock = section.querySelector('[data-audio-library-episode-block]');
+    const episodeSelect = section.querySelector('[data-audio-library-episode]');
+    const title = section.querySelector('[data-audio-library-title]');
+    const description = section.querySelector('[data-audio-library-description]');
+
+    if (!collectionSelect || !episodeSelect || !episodeBlock) return;
+
+    try {
+      const collections = await getLibrary();
+      populateCollectionSelect(collectionSelect, collections);
+      resetPlayer(section, 'Choose an audio folder, then a recording.');
+
+      collectionSelect.addEventListener('change', () => {
+        const collectionIndex = Number(collectionSelect.value);
+        const collection = collections[collectionIndex];
+
+        episodeSelect.innerHTML = '<option value="">Choose a recording…</option>';
+
+        if (!collectionSelect.value || !collection) {
+          episodeBlock.hidden = true;
+          resetPlayer(section, 'Choose an audio folder, then a recording.');
+          return;
+        }
+
+        populateEpisodeSelect(episodeSelect, collection);
+        episodeBlock.hidden = false;
+        resetPlayer(section, `Open the ${collection.label} recording list below.`);
+
+        // Keep the newly revealed episode selector in view on smaller screens.
+        if (window.matchMedia('(max-width: 680px)').matches) {
+          requestAnimationFrame(() => {
+            episodeBlock.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          });
+        }
+      });
+
+      episodeSelect.addEventListener('change', () => {
+        const collectionIndex = Number(collectionSelect.value);
+        const trackIndex = Number(episodeSelect.value);
+        const collection = collections[collectionIndex];
+        const track = collection?.tracks?.[trackIndex];
+
+        if (!episodeSelect.value || !collection || !track) {
+          if (collection) {
+            resetPlayer(section, `Choose a recording from ${collection.label}.`);
+          }
+          return;
+        }
+
+        updatePlayer(section, collection, track);
+      });
+    } catch (error) {
+      console.error(error);
+      collectionSelect.innerHTML = '<option>Audio library unavailable</option>';
+      collectionSelect.disabled = true;
+      episodeBlock.hidden = true;
+      if (title) title.textContent = 'Audio could not be loaded.';
+      if (description) {
+        description.textContent = 'Make sure data/audio-library.json is uploaded with the site files.';
+      }
+    }
+  }
+
+  function initAudioLibraries() {
+    document.querySelectorAll('[data-audio-library]').forEach(initSection);
+  }
+
+  window.initAudioLibraries = initAudioLibraries;
+
+  document.addEventListener('gbr:reading-rendered', initAudioLibraries);
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAudioLibraries);
+  } else {
+    initAudioLibraries();
+  }
+})();
