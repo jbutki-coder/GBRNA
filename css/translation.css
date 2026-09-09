@@ -1,0 +1,106 @@
+/* GBRNA automatic translation control. Kept independent so it works on every page theme. */
+.gbrna-translation-bar {
+  position: relative;
+  z-index: 1100;
+  width: 100%;
+  margin: 0;
+  padding: .55rem max(1rem, calc((100vw - 1180px) / 2));
+  color: #f8f0df;
+  background: #2b251e;
+  border-bottom: 1px solid rgba(215, 176, 99, .72);
+  box-shadow: 0 3px 12px rgba(0, 0, 0, .18);
+  font: 700 .8rem/1.25 "Courier New", Courier, monospace;
+  text-align: left;
+}
+
+.gbrna-translation-inner {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: .65rem;
+  width: 100%;
+  margin: 0;
+}
+
+.gbrna-translation-label {
+  margin: 0;
+  color: #f8f0df;
+  font: inherit;
+  letter-spacing: .025em;
+  white-space: nowrap;
+}
+
+.gbrna-translation-select {
+  width: min(18rem, 48vw);
+  min-height: 2.25rem;
+  margin: 0;
+  padding: .4rem 2rem .4rem .65rem;
+  color: #17130f;
+  background: #fffaf0;
+  border: 1px solid #d7b063;
+  border-radius: .25rem;
+  font: 800 .8rem/1.2 Arial, sans-serif;
+  cursor: pointer;
+}
+
+.gbrna-translation-select:focus-visible {
+  outline: 3px solid rgba(215, 176, 99, .42);
+  outline-offset: 2px;
+}
+
+.gbrna-translation-select:disabled {
+  color: #696157;
+  background: #d9d1c3;
+  cursor: not-allowed;
+}
+
+.gbrna-translation-status {
+  max-width: 25rem;
+  margin: 0;
+  color: #d9ccb6;
+  font: 600 .72rem/1.25 Arial, sans-serif;
+}
+
+.gbrna-translation-status[data-state="error"] {
+  color: #ffd0c8;
+}
+
+body.gbrna-pdf-reader {
+  grid-template-rows: auto auto auto minmax(0, 1fr);
+}
+
+body.presentation > .gbrna-translation-bar {
+  display: none;
+}
+
+html[dir="rtl"] .gbrna-translation-inner {
+  direction: rtl;
+}
+
+@media (max-width: 680px) {
+  .gbrna-translation-bar {
+    padding: .55rem .7rem;
+  }
+
+  .gbrna-translation-inner {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    justify-content: stretch;
+    gap: .4rem .55rem;
+  }
+
+  .gbrna-translation-select {
+    width: 100%;
+  }
+
+  .gbrna-translation-status {
+    grid-column: 1 / -1;
+    text-align: right;
+  }
+}
+
+@media print {
+  .gbrna-translation-bar {
+    display: none !important;
+  }
+}
