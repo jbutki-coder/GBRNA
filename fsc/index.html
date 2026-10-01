@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#0d3028">
+  <meta name="theme-color" content="#142237">
 
   <title>FSC 2027 | Fellowship Service Conference</title>
   <meta
@@ -16,17 +16,17 @@
 
   <style>
     :root {
-      --forest: #0d3028;
-      --forest-2: #17483c;
-      --cream: #f5e8ca;
-      --paper: #fbf3df;
-      --orange: #c9561d;
-      --gold: #d79a32;
-      --ink: #23312d;
-      --muted: #68736e;
-      --line: #cbbd9e;
-      --white: #fffdf6;
-      --shadow: 0 14px 36px rgba(30, 47, 40, .16);
+      --forest: #142237;
+      --forest-2: #1d304a;
+      --cream: #fff8ed;
+      --paper: #f5f1ea;
+      --orange: #8e2145;
+      --gold: #ead8bd;
+      --ink: #172235;
+      --muted: #667082;
+      --line: #cfc4b7;
+      --white: #fffefa;
+      --shadow: 0 14px 36px rgba(20, 34, 55, .18);
     }
 
     * { box-sizing: border-box; }
@@ -37,8 +37,8 @@
       margin: 0;
       color: var(--ink);
       background:
-        radial-gradient(circle at 90% 0, rgba(201, 86, 29, .14), transparent 27rem),
-        linear-gradient(180deg, #f1dfb9 0, var(--paper) 27rem, #efe4cc 100%);
+        radial-gradient(circle at 88% 0, rgba(142, 33, 69, .14), transparent 28rem),
+        linear-gradient(180deg, #e9edf2 0, var(--paper) 28rem, #ede7df 100%);
       font-family: Arial, Helvetica, sans-serif;
       line-height: 1.55;
     }
@@ -56,8 +56,8 @@
       padding: 1rem 0 3.4rem;
       color: var(--cream);
       background:
-        linear-gradient(135deg, rgba(13, 48, 40, .98), rgba(13, 48, 40, .92)),
-        repeating-linear-gradient(10deg, transparent 0 20px, rgba(255,255,255,.025) 20px 21px);
+        linear-gradient(180deg, rgba(142, 33, 69, .98) 0 35%, rgba(20, 34, 55, .98) 35% 100%),
+        repeating-linear-gradient(10deg, transparent 0 20px, rgba(255,255,255,.03) 20px 21px);
       border-bottom: 8px solid var(--orange);
     }
 
@@ -68,12 +68,12 @@
       bottom: -11rem;
       width: 25rem;
       height: 25rem;
-      border: 2px solid rgba(245, 232, 202, .16);
+      border: 2px solid rgba(255, 248, 237, .18);
       border-radius: 50%;
       box-shadow:
-        0 0 0 2rem rgba(245, 232, 202, .035),
-        0 0 0 4rem rgba(245, 232, 202, .025),
-        0 0 0 6rem rgba(245, 232, 202, .018);
+        0 0 0 2rem rgba(255, 248, 237, .04),
+        0 0 0 4rem rgba(255, 248, 237, .03),
+        0 0 0 6rem rgba(255, 248, 237, .02);
       pointer-events: none;
     }
 
@@ -93,9 +93,9 @@
       align-items: center;
       min-height: 2.55rem;
       padding: .55rem .75rem;
-      border: 1px solid rgba(245, 232, 202, .34);
+      border: 1px solid rgba(255, 248, 237, .36);
       border-radius: .45rem;
-      background: rgba(255,255,255,.07);
+      background: rgba(255,255,255,.08);
       color: var(--cream);
       font-size: .82rem;
       font-weight: 900;
@@ -107,7 +107,7 @@
     .home-link:focus-visible,
     .source-link:focus-visible {
       background: rgba(255,255,255,.15);
-      outline: 3px solid rgba(215,154,50,.35);
+      outline: 3px solid rgba(234,216,189,.38);
       outline-offset: 2px;
     }
 
@@ -147,6 +147,7 @@
 
     h1 span {
       color: var(--orange);
+      text-shadow: 0 2px 0 rgba(255,255,255,.18);
     }
 
     .hero-copy {
@@ -158,9 +159,9 @@
 
     .event-stamp {
       padding: 1.25rem;
-      border: 1px solid rgba(245,232,202,.34);
+      border: 1px solid rgba(255,248,237,.36);
       border-radius: .7rem;
-      background: rgba(255,255,255,.075);
+      background: rgba(255,255,255,.09);
       box-shadow: 0 10px 28px rgba(0,0,0,.16);
     }
 
@@ -197,8 +198,8 @@
       padding: 1rem;
       border: 1px solid var(--line);
       border-radius: .7rem;
-      background: rgba(255,253,246,.88);
-      box-shadow: 0 7px 20px rgba(30,47,40,.08);
+      background: rgba(255,254,250,.92);
+      box-shadow: 0 7px 20px rgba(20,34,55,.09);
     }
 
     .fact-card strong {
@@ -220,7 +221,7 @@
       padding: clamp(1rem, 3vw, 1.7rem);
       border: 1px solid var(--line);
       border-radius: .85rem;
-      background: rgba(255,253,246,.92);
+      background: rgba(255,254,250,.94);
       box-shadow: var(--shadow);
     }
 
@@ -231,7 +232,7 @@
       align-items: end;
       margin-bottom: 1.2rem;
       padding-bottom: .9rem;
-      border-bottom: 2px solid #d8c9aa;
+      border-bottom: 2px solid #d3c5b4;
     }
 
     .section-heading h2 {
@@ -255,10 +256,10 @@
 
     .flyer-frame {
       overflow: hidden;
-      border: 1px solid #9f9275;
+      border: 1px solid #142237;
       border-radius: .65rem;
-      background: #e4d0a6;
-      box-shadow: 0 12px 28px rgba(30,47,40,.18);
+      background: #142237;
+      box-shadow: 0 12px 28px rgba(20,34,55,.22);
     }
 
     .flyer-frame img {
@@ -271,7 +272,7 @@
       padding: 1.15rem;
       border-left: 6px solid var(--orange);
       border-radius: .55rem;
-      background: #f7ecd3;
+      background: #f4eadf;
     }
 
     .details-card h3 {
@@ -288,7 +289,7 @@
 
     .detail-list div {
       padding-bottom: .75rem;
-      border-bottom: 1px solid rgba(126,105,67,.25);
+      border-bottom: 1px solid rgba(20,34,55,.16);
     }
 
     .detail-list div:last-child {
@@ -342,7 +343,7 @@
       border-color: var(--orange);
       background: var(--orange);
       color: #fff;
-      outline: 3px solid rgba(201,86,29,.18);
+      outline: 3px solid rgba(142,33,69,.22);
       outline-offset: 2px;
     }
 
@@ -357,10 +358,10 @@
       min-height: 280px;
       flex-direction: column;
       padding: 1.2rem;
-      border: 1px solid #cbbd9e;
+      border: 1px solid #cfc4b7;
       border-radius: .72rem;
-      background: linear-gradient(180deg, #fffdf8, #f6ecd7);
-      box-shadow: 0 9px 24px rgba(30,47,40,.1);
+      background: linear-gradient(180deg, #fffefa, #f1e8dc);
+      box-shadow: 0 9px 24px rgba(20,34,55,.11);
     }
 
     .document-year {
@@ -379,7 +380,7 @@
 
     .document-card p {
       margin: 0;
-      color: #505d57;
+      color: #4f5968;
     }
 
     .document-meta {
@@ -405,7 +406,7 @@
     .motion-list li {
       padding: .85rem .95rem;
       border-left: 5px solid var(--gold);
-      background: #f7ecd3;
+      background: #f4eadf;
     }
 
     .motion-list strong { color: var(--forest); }
@@ -413,16 +414,16 @@
     .notice {
       margin-top: 1.25rem;
       padding: .95rem 1rem;
-      border: 1px solid #d0b37d;
+      border: 1px solid #cbb49d;
       border-radius: .55rem;
-      background: #fff5db;
-      color: #5f4b25;
+      background: #fff7ea;
+      color: #3e3440;
     }
 
     .site-footer {
       padding: 1.5rem 1rem 2rem;
       border-top: 1px solid var(--line);
-      color: #5b655f;
+      color: #5d6675;
       text-align: center;
       font-size: .86rem;
     }
