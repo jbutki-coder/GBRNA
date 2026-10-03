@@ -60,7 +60,8 @@
     .about-documents{margin-top:1.7rem;padding:1.25rem;border:2px solid #1d2c28;background:#f9f3e6}.about-document-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;margin-top:1rem}.about-document-card{display:flex;flex-direction:column;min-height:100%;padding:1.1rem;border:1px solid rgba(43,37,30,.3);background:#fff;box-shadow:0 6px 16px rgba(43,37,30,.08)}
     .about-document-top{display:flex;align-items:flex-start;justify-content:space-between;gap:.75rem}.about-document-card h4{margin:0;color:#1d2c28;font:900 1.05rem/1.28 Arial,sans-serif}.about-draft-badge{flex:0 0 auto;padding:.3rem .48rem;border:1px solid #a45f1d;background:#fff2d9;color:#7d4817;font:900 .68rem/1 Arial,sans-serif;letter-spacing:.07em;text-transform:uppercase}.about-document-card p{margin:.75rem 0 1rem;line-height:1.52}
     .about-document-actions,.about-action-row{display:flex;flex-wrap:wrap;gap:.55rem}.about-document-actions{margin-top:auto}.about-action-row{margin-top:1.4rem}.about-document-actions a,.about-action-row a{display:inline-flex;align-items:center;justify-content:center;padding:.68rem .82rem;border:1px solid #1d2c28;background:#1d2c28;color:#fff;text-decoration:none;font:900 .76rem/1 Arial,sans-serif;letter-spacing:.035em}.about-document-actions a.secondary,.about-action-row a.secondary{background:transparent;color:#1d2c28}.about-document-actions a:hover,.about-action-row a:hover{background:#bb762a;border-color:#bb762a;color:#fff}.about-document-note{margin:1rem 0 0;padding:.8rem .9rem;border-left:5px solid #bb762a;background:#f1e5cf;font-size:.9rem;line-height:1.5}
-    @media(max-width:850px){.about-hero,.about-card-grid,.about-accordion-grid,.about-document-grid{grid-template-columns:1fr}.about-identity{box-shadow:5px 5px 0 rgba(187,118,42,.22)}}
+    .baby-blue-compat-panel{border-color:#1d2c28;background:#f7f0df}.baby-blue-compat-intro{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(230px,.75fr);gap:1rem;align-items:start;margin:1rem 0}.baby-blue-compat-note{padding:1rem 1.1rem;border-left:6px solid #bb762a;background:#fffaf0;font-weight:800;line-height:1.55}.baby-blue-compat-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.65rem}.baby-blue-compat-stat{padding:.85rem;border:1px solid rgba(43,37,30,.28);background:#fff;color:#1d2c28}.baby-blue-compat-stat strong{display:block;font:900 1.55rem/1 Arial,sans-serif}.baby-blue-compat-stat span{display:block;margin-top:.28rem;font:900 .72rem/1.2 Arial,sans-serif;letter-spacing:.06em;text-transform:uppercase}.baby-blue-compat-tools{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:.75rem;margin:1rem 0}.baby-blue-compat-tools input,.baby-blue-compat-tools select{min-height:46px;border:2px solid #1d2c28;background:#fff;color:#1d2c28;padding:.65rem .75rem;font:800 .92rem/1 Arial,sans-serif}.baby-blue-compat-table-wrap{overflow:auto;border:1px solid rgba(43,37,30,.3);background:#fff}.baby-blue-compat-table{width:100%;border-collapse:collapse;min-width:650px}.baby-blue-compat-table th,.baby-blue-compat-table td{padding:.72rem .75rem;border-bottom:1px solid rgba(43,37,30,.16);text-align:left;vertical-align:top}.baby-blue-compat-table th{position:sticky;top:0;background:#1d2c28;color:#fff;font:900 .72rem/1.2 Arial,sans-serif;letter-spacing:.06em;text-transform:uppercase}.baby-blue-compat-table td{font-size:.92rem;line-height:1.4}.baby-blue-compat-badge{display:inline-flex;align-items:center;padding:.28rem .45rem;border-radius:999px;font:900 .68rem/1 Arial,sans-serif;letter-spacing:.04em;text-transform:uppercase}.baby-blue-compat-badge.matched{background:#d9f3df;color:#174b24}.baby-blue-compat-badge.outside-baby-blue-screen-copy{background:#fff0c2;color:#604500}.baby-blue-compat-badge.needs-review{background:#f8d8d8;color:#641f1f}.baby-blue-compat-actions{display:flex;flex-wrap:wrap;gap:.55rem;margin-top:1rem}.baby-blue-compat-actions a{display:inline-flex;align-items:center;justify-content:center;padding:.7rem .85rem;border:1px solid #1d2c28;background:#1d2c28;color:#fff;text-decoration:none;font:900 .76rem/1 Arial,sans-serif}.baby-blue-compat-actions a.secondary{background:transparent;color:#1d2c28}.baby-blue-compat-empty{padding:1rem;background:#fffaf0;border-left:5px solid #bb762a;font-weight:800}
+    @media(max-width:850px){.about-hero,.about-card-grid,.about-accordion-grid,.about-document-grid,.baby-blue-compat-intro{grid-template-columns:1fr}.about-identity{box-shadow:5px 5px 0 rgba(187,118,42,.22)}.baby-blue-compat-tools{grid-template-columns:1fr}.baby-blue-compat-stats{grid-template-columns:1fr}}
     @media(max-width:500px){.about-rebuilt{padding-left:1rem;padding-right:1rem}.about-action-row a,.about-document-actions a{width:100%}}
   </style>
   <link rel="stylesheet" href="/css/translation.css?v=20261003-1">
@@ -127,7 +128,7 @@
       </div>
       <div class="project-intro-actions" aria-label="Quick links">
         <a href="#today">Read Tonight</a>
-        <a href="/lwb-draft/#baby-blue-jft">Baby Blue JFT</a>
+        <a href="#baby-blue-compatibility">Baby Blue BT References</a>
         <a href="/grey-book-study/">Open Grey Book Study</a>
         <a href="/lwb-draft/">Open Little White Book</a>
         <a href="#library">Read Literature</a>
@@ -151,6 +152,42 @@
         <p class="warranty-text">THE LITERATURE IS PROVIDED WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED. IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY ARISING FROM THE USE OF THIS LITERATURE.</p>
       </div>
     </details>
+
+    <section id="baby-blue-compatibility" class="panel baby-blue-compat-panel">
+      <div class="panel-heading">
+        <p class="eyebrow">Reference Converter</p>
+        <h2>JFT Daily Meditation Book to Baby Blue Basic Text</h2>
+      </div>
+      <div class="baby-blue-compat-intro">
+        <p class="baby-blue-compat-note">This tool converts the <strong>Just For Today Daily Meditations</strong> Basic Text source references toward the <strong>Baby Blue Basic Text</strong>. It does not tie the meditation book to Chapter Nine; it checks each daily meditation quote against the Baby Blue screen-reading copy and shows the matching Baby Blue page when found.</p>
+        <div class="baby-blue-compat-stats" aria-label="Baby Blue compatibility totals">
+          <div class="baby-blue-compat-stat"><strong data-bb-total>--</strong><span>Daily entries</span></div>
+          <div class="baby-blue-compat-stat"><strong data-bb-matched>--</strong><span>Matched pages</span></div>
+          <div class="baby-blue-compat-stat"><strong data-bb-outside>--</strong><span>Outside copy</span></div>
+          <div class="baby-blue-compat-stat"><strong data-bb-review>--</strong><span>Needs review</span></div>
+        </div>
+      </div>
+      <div class="baby-blue-compat-tools">
+        <label>
+          <span class="sr-only">Search Baby Blue compatibility references</span>
+          <input type="search" data-bb-search placeholder="Search date, title, Basic Text page, or Baby Blue page">
+        </label>
+        <label>
+          <span class="sr-only">Filter Baby Blue compatibility references</span>
+          <select data-bb-filter>
+            <option value="all">All entries</option>
+            <option value="matched">Matched Baby Blue pages</option>
+            <option value="outside-baby-blue-screen-copy">Outside Baby Blue Book One copy</option>
+            <option value="needs-review">Needs manual review</option>
+          </select>
+        </label>
+      </div>
+      <div class="baby-blue-compat-table-wrap" data-bb-table></div>
+      <div class="baby-blue-compat-actions">
+        <a href="/pdf-reader.html?file=/literature/baby-blue-third-edition-revised-screen-reading.pdf">Open Baby Blue PDF</a>
+        <a class="secondary" href="/downloads/Just%20for%20Tonight%20(1).pdf">Open Current JFT Draft PDF</a>
+      </div>
+    </section>
 
     <section id="library" class="panel literature-library-panel">
       <div class="panel-heading">
@@ -195,7 +232,7 @@
     <section id="download" class="panel download-panel">
       <div class="panel-heading"><p class="eyebrow">Download</p><h2>Literature Downloads</h2></div>
       <p>Download the current <strong>Just For Tonight</strong> draft for Group review, literature study, and input.</p>
-      <p><a class="download-button" href="/lwb-draft/#baby-blue-jft">Open Baby Blue-Compatible JFT Tab</a></p>
+      <p><a class="download-button" href="#baby-blue-compatibility">Open Baby Blue BT Reference Converter</a></p>
       <p><a class="download-button" href="/downloads/Just%20for%20Tonight%20(1).pdf" download>Download Just For Tonight PDF</a></p>
       <p><a class="download-button" href="/grey-book-study/">Open the Grey Book Study</a></p>
       <p><a class="download-button" href="/lwb-draft/">Read the 1983 Little White Book Draft</a></p>
@@ -293,6 +330,7 @@
   </footer>
 
   <script src="/js/jft.js?v=20260810-jft-current1"></script>
+  <script src="/js/jft-baby-blue-compatibility.js?v=20261003-2"></script>
   <script src="/js/literature.js?v=20260810-jft-current1"></script>
   <script src="/js/pdf-router.js?v=20260726-tradition-six-render-v1" defer></script>
   <script src="/js/translation.js?v=20261003-1" defer></script>
