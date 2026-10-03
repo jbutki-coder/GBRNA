@@ -31,9 +31,10 @@ main{width:min(100%,1050px);margin:0 auto;padding:2rem}.note{max-width:780px;mar
 .page-topline{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.85rem 1.2rem;background:var(--deep);border-bottom:1px solid var(--line);color:#3a332b;font:700 .72rem/1.2 Arial,sans-serif;letter-spacing:.07em;text-transform:uppercase}.page-topline span{min-width:0}.page-topline strong{white-space:nowrap}
 .page-content{max-width:780px;margin:0 auto;padding:3rem 3.2rem 4rem;font-size:clamp(1.08rem,1.35vw,1.28rem);line-height:1.58}.page-content h2{margin:0 0 1.25rem;color:var(--accent);text-align:center;font:800 clamp(1.35rem,2.3vw,2rem)/1.12 Arial,sans-serif;letter-spacing:.055em;text-transform:uppercase}.page-content p{margin:0 0 1.15rem;text-align:justify;text-indent:1.7em}.page-content h2+p,.numbered,.tell,.jft{text-indent:0}
 .numbered{display:grid;grid-template-columns:2.15rem 1fr;gap:.55rem;text-align:left!important}.numbered b{color:#6d1e1e}.tell{font-weight:700}.jft{padding:.75rem 1rem;background:rgba(32,61,90,.07);border-left:4px solid var(--accent);text-align:left!important}
+.baby-blue-jft-panel{display:grid;gap:1rem;margin-top:.75rem}.baby-blue-jft-lead{text-indent:0!important;text-align:left!important;padding:1rem 1.1rem;border-left:5px solid var(--accent);background:#edf3f8;font:800 1rem/1.55 Arial,sans-serif}.baby-blue-jft-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}.baby-blue-jft-card{padding:1rem;border:1px solid var(--line);border-radius:.55rem;background:#fffdf8;box-shadow:0 7px 18px rgba(21,21,21,.08)}.baby-blue-jft-card h3{margin:0 0 .65rem;color:var(--accent);font:900 1rem/1.2 Arial,sans-serif;text-transform:uppercase;letter-spacing:.04em}.baby-blue-jft-card p,.baby-blue-jft-card li{text-indent:0!important;text-align:left!important}.baby-blue-jft-card p{margin:0 0 .75rem!important}.baby-blue-jft-card p:last-child{margin-bottom:0!important}.baby-blue-jft-card ul,.baby-blue-jft-card ol{margin:.4rem 0 0;padding-left:1.25rem}.baby-blue-jft-card li{margin:.45rem 0;line-height:1.45}.baby-blue-jft-actions{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:.2rem}.baby-blue-jft-actions a{display:inline-flex;align-items:center;justify-content:center;padding:.72rem .9rem;border:1px solid var(--accent);background:var(--accent);color:#fff;text-decoration:none;border-radius:.4rem;font:900 .8rem/1 Arial,sans-serif;letter-spacing:.03em}.baby-blue-jft-actions a.secondary{background:#fff;color:var(--accent)}.baby-blue-jft-actions a:hover,.baby-blue-jft-actions a:focus-visible{background:#6d1e1e;border-color:#6d1e1e;color:#fff}.baby-blue-jft-source{font-family:Arial,sans-serif;font-size:.88rem;color:#514b43}
 .jump{position:fixed;right:1rem;bottom:1rem;z-index:40;display:flex;gap:.4rem}.jump button{width:3rem;height:3rem;border:1px solid rgba(255,255,255,.28);border-radius:50%;background:rgba(12,19,26,.92);color:#fff;font-size:1.15rem}
 .presentation aside{display:none}.presentation .layout{grid-template-columns:1fr}.presentation main{max-width:none;width:100%;padding:0}.presentation .note{display:none}.presentation .book-page{min-height:calc(100vh - 63px);margin:0;border-radius:0;box-shadow:none}.presentation .page-content{max-width:1100px;font-size:clamp(1.2rem,1.75vw,1.7rem)}
-@media(max-width:850px){.head-main{align-items:flex-start;flex-direction:column}.controls{width:100%;justify-content:flex-start;overflow-x:auto;flex-wrap:nowrap;padding-bottom:.15rem}.layout{grid-template-columns:1fr}aside{display:none;position:static;height:auto}.layout.menu-open aside{display:block}.brand{width:100%}main{padding:.75rem}.page-content{padding:2rem 1.25rem 3rem}.book-page{scroll-margin-top:120px}.page-topline{font-size:.65rem}}
+@media(max-width:850px){.head-main{align-items:flex-start;flex-direction:column}.controls{width:100%;justify-content:flex-start;overflow-x:auto;flex-wrap:nowrap;padding-bottom:.15rem}.layout{grid-template-columns:1fr}aside{display:none;position:static;height:auto}.layout.menu-open aside{display:block}.brand{width:100%}main{padding:.75rem}.page-content{padding:2rem 1.25rem 3rem}.book-page{scroll-margin-top:120px}.page-topline{font-size:.65rem}.baby-blue-jft-grid{grid-template-columns:1fr}}
 @media(max-width:470px){.controls button,.controls a{padding:.52rem .6rem;font-size:.7rem}.page-topline{align-items:flex-start;flex-direction:column;gap:.35rem}.page-topline strong{white-space:normal}}
 
 .seventh-intro{text-indent:0!important;text-align:center!important;max-width:680px;margin:0 auto 1.4rem!important;font-family:Arial,sans-serif;font-size:1rem;line-height:1.5}
@@ -132,7 +133,7 @@ body.theater-mode .stage-dimmer{opacity:1}
   <aside>
     <h1>Contents</h1>
     <p>All 12 pages are selectable text and ready for screen sharing.</p>
-    <nav id="toc"><a href="#page-1"><span>1</span>Who Is an Addict?</a><a href="#page-2"><span>2</span>Why Are We Here?</a><a href="#page-3"><span>3</span>How It Works</a><a href="#page-4"><span>4</span>How It Works — Continued</a><a href="#page-5"><span>5</span>What Can I Do? / Twelve Traditions</a><a href="#page-6"><span>6</span>Twelve Traditions — Continued</a><a href="#page-7"><span>7</span>Twelve Traditions — Conclusion</a><a href="#page-8"><span>8</span>Recovery and Relapse</a><a href="#page-9"><span>9</span>Recovery and Relapse / We Do Recover</a><a href="#page-10"><span>10</span>We Do Recover — Continued</a><a href="#page-11"><span>11</span>We Do Recover / Just for Today</a><a href="#page-12"><span>12</span>Living the Program</a><a href="#seventh-tradition"><span>$</span>Seventh Tradition</a><a href="#clean-time"><span>★</span>Clean Time Celebration</a><a href="#ending-group-prayer"><span>🙏</span>Ending Group Prayer</a></nav>
+    <nav id="toc"><a href="#page-1"><span>1</span>Who Is an Addict?</a><a href="#page-2"><span>2</span>Why Are We Here?</a><a href="#page-3"><span>3</span>How It Works</a><a href="#page-4"><span>4</span>How It Works — Continued</a><a href="#page-5"><span>5</span>What Can I Do? / Twelve Traditions</a><a href="#page-6"><span>6</span>Twelve Traditions — Continued</a><a href="#page-7"><span>7</span>Twelve Traditions — Conclusion</a><a href="#page-8"><span>8</span>Recovery and Relapse</a><a href="#page-9"><span>9</span>Recovery and Relapse / We Do Recover</a><a href="#page-10"><span>10</span>We Do Recover — Continued</a><a href="#page-11"><span>11</span>We Do Recover / Just for Today</a><a href="#page-12"><span>12</span>Living the Program</a><a href="#baby-blue-jft"><span>BB</span>Baby Blue JFT</a><a href="#seventh-tradition"><span>$</span>Seventh Tradition</a><a href="#clean-time"><span>★</span>Clean Time Celebration</a><a href="#ending-group-prayer"><span>🙏</span>Ending Group Prayer</a></nav>
   </aside>
   <main>
     <div class="note"><strong>Draft text:</strong> Presented as provided for reading, study, and meeting use.</div>
@@ -240,6 +241,55 @@ body.theater-mode .stage-dimmer{opacity:1}
     <strong>Page 12 of 12</strong>
   </div>
   <div class="page-content"><h2>JUST FOR TODAY</h2><h2>LIVING THE PROGRAM</h2><p class="tell">Tell yourself:</p><p class="jft"><strong>JUST FOR TODAY</strong> my thoughts will be on my recovery,</p><p>living and enjoying life without the use of drugs.</p><p class="jft"><strong>JUST FOR TODAY</strong> I will have faith in someone in N.A.</p><p>who believes in me and wants to help me in my recovery.</p><p class="jft"><strong>JUST FOR TODAY</strong> I will have a program. I will try to</p><p>follow it to the best of my ability.</p><p class="jft"><strong>JUST FOR TODAY</strong> through N.A. I will try to get a</p><p>better perspective on my life.</p><p class="jft"><strong>JUST FOR TODAY</strong> I will be unafraid, my thoughts will be</p><p>on my new associations, people who are not using and who have found a new way of life. So long as I follow that way, I have nothing to fear.</p></div>
+</article>
+
+<article class="book-page" id="baby-blue-jft">
+  <div class="page-topline">
+    <span>Baby Blue-Compatible Just For Today</span>
+    <strong>Compatibility Tab</strong>
+  </div>
+  <div class="page-content">
+    <h2>BABY BLUE JFT</h2>
+    <section class="baby-blue-jft-panel" aria-labelledby="baby-blue-jft-title">
+      <p id="baby-blue-jft-title" class="baby-blue-jft-lead">Use this tab when the meeting is following the Baby Blue Basic Text and wants the Just For Today draft to line up with Chapter Nine, <em>Just For Today - Living the Program</em>.</p>
+      <div class="baby-blue-jft-grid">
+        <section class="baby-blue-jft-card">
+          <h3>Baby Blue anchor</h3>
+          <p>The Baby Blue screen-reading copy places Chapter Nine at page 48. This meeting tab keeps the five Just For Today statements together as the bridge into the daily draft reader.</p>
+          <p class="baby-blue-jft-source"><strong>Source:</strong> Baby Blue Basic Text, Chapter Nine, page 48.</p>
+        </section>
+        <section class="baby-blue-jft-card">
+          <h3>Daily draft reader</h3>
+          <p>The dated Just For Tonight draft remains in the daily reader, with calendar archive, search, audio where available, and review/input forms for Group feedback.</p>
+          <div class="baby-blue-jft-actions">
+            <a href="/jft.html#today">Open Today's JFT Draft</a>
+            <a class="secondary" href="/jft.html#archive">Browse Calendar Archive</a>
+          </div>
+        </section>
+      </div>
+      <section class="baby-blue-jft-card">
+        <h3>Meeting reading order</h3>
+        <ol>
+          <li>Read the Baby Blue Chapter Nine opening below.</li>
+          <li>Open today's dated Just For Tonight draft reading.</li>
+          <li>Use the Review/Input form on the dated reading for corrections, source notes, or Group conscience.</li>
+        </ol>
+      </section>
+      <section class="baby-blue-jft-card">
+        <h3>Chapter Nine opening</h3>
+        <p class="tell">Tell yourself:</p>
+        <p class="jft"><strong>JUST FOR TODAY</strong> my thoughts will be on my recovery, living and enjoying life without the use of drugs.</p>
+        <p class="jft"><strong>JUST FOR TODAY</strong> I will have faith in someone in N.A. who believes in me and wants to help me in my recovery.</p>
+        <p class="jft"><strong>JUST FOR TODAY</strong> I will have a program. I will try to follow it to the best of my ability.</p>
+        <p class="jft"><strong>JUST FOR TODAY</strong> through N.A. I will try to get a better perspective on my life.</p>
+        <p class="jft"><strong>JUST FOR TODAY</strong> I will be unafraid, my thoughts will be on my new associations, people who are not using and who have found a new way of life. So long as I follow that way, I have nothing to fear.</p>
+      </section>
+      <div class="baby-blue-jft-actions">
+        <a href="/pdf-reader.html?file=/literature/baby-blue-third-edition-revised-screen-reading.pdf">Open Baby Blue PDF</a>
+        <a class="secondary" href="/downloads/Just%20for%20Tonight%20(1).pdf">Open JFT Draft PDF</a>
+      </div>
+    </section>
+  </div>
 </article>
 
 
