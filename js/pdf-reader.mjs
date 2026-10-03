@@ -5,6 +5,7 @@
   const sourceUrl = params.get('url') || '';
   const requestedTitle = params.get('title') || 'PDF document';
   const returnUrl = params.get('return') || '/';
+  const requestedPage = Math.max(1, Number(params.get('page')) || 1);
 
   const readerTitle = document.getElementById('readerTitle');
   const readerStage = document.getElementById('readerStage');
@@ -410,11 +411,14 @@
 
       pdfDocument = await loadingTask.promise;
       createPageShells(pdfDocument.numPages);
+      currentPage = Math.min(requestedPage, pdfDocument.numPages);
       updateNavigation();
       startObservers();
       hideStatus();
-      await renderPage(1, true);
-      renderPage(2).catch(() => {});
+      await renderPage(currentPage, true);
+      scrollToPage(currentPage);
+      renderPage(currentPage - 1).catch(() => {});
+      renderPage(currentPage + 1).catch(() => {});
     } catch (error) {
       console.error(error);
       showError(error?.message || 'The PDF could not be loaded by the multipage reader.');
