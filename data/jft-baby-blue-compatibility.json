@@ -8,8 +8,8 @@
   },
   "stats": {
     "entries": 366,
-    "matched": 174,
-    "outsideBabyBlueScreenCopy": 54,
+    "matched": 175,
+    "outsideBabyBlueScreenCopy": 53,
     "needsReview": 138,
     "missingDates": [
       "04-04",
@@ -4476,10 +4476,10 @@
       "basicTextPageEnd": null,
       "jftPdfPage": 143,
       "jftPdfColumn": "right",
-      "babyBluePage": null,
-      "matchConfidence": 0.241,
-      "status": "outside-baby-blue-screen-copy",
-      "babyBlueCitation": "No match in Baby Blue screen-reading Book One copy"
+      "babyBluePage": 53,
+      "matchConfidence": 1,
+      "status": "matched",
+      "babyBlueCitation": "Baby Blue p. 53"
     },
     {
       "id": "10-04",
