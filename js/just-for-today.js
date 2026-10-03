@@ -98,12 +98,16 @@ function babyBlueHelp(reading) {
 function renderBabyBlueReference(reading) {
   const status = reading.babyBlueStatus || "needs-review";
   const citation = reading.babyBlueCitation || "Needs manual Baby Blue review";
+  const locationLine = reading.babyBlueLocation
+    ? `<p><strong>Location:</strong> ${escapeHtml(reading.babyBlueLocation)}</p>`
+    : "";
 
   return `
     <div class="jft-reference-grid">
       <div class="jft-reference-box ${escapeHtml(status)}">
         <span>Baby Blue Basic Text</span>
         <strong>${escapeHtml(citation)}</strong>
+        ${locationLine}
         <p>${escapeHtml(babyBlueStatusLabel(status))}. ${escapeHtml(babyBlueHelp(reading))}</p>
       </div>
       <div class="jft-reference-box">
@@ -117,6 +121,7 @@ function renderBabyBlueReference(reading) {
 
 function renderReadingCard(reading) {
   const sourceLine = reading.source || "Source reference pending";
+  const babyBlueActionLabel = reading.babyBluePage ? "Open Baby Blue Page" : "Open Baby Blue PDF";
   return `
     <article class="reading-card" id="reading-${escapeHtml(reading.id)}">
       <div class="reading-date">
@@ -139,10 +144,10 @@ function renderReadingCard(reading) {
 
       <div class="jft-card-actions">
         <a href="${escapeHtml(readerUrl(JFT_PDF_URL, "Just For Today", reading.pdfPage))}">Open JFT PDF Page</a>
-        <a class="secondary" href="${escapeHtml(readerUrl(BABY_BLUE_PDF_URL, "Baby Blue Basic Text"))}">Open Baby Blue PDF</a>
+        <a class="secondary" href="${escapeHtml(readerUrl(BABY_BLUE_PDF_URL, "Baby Blue Basic Text", reading.babyBluePage))}">${escapeHtml(babyBlueActionLabel)}</a>
         <a class="secondary" href="/downloads/Just-For-Today.pdf" download>Download JFT PDF</a>
       </div>
-      <p class="jft-status-note">Baby Blue references are shown from the current matching map and flagged when a date still needs manual review.</p>
+      <p class="jft-status-note">Matched Baby Blue references open directly to the listed PDF page; unmatched dates are flagged for manual review.</p>
     </article>
   `;
 }
