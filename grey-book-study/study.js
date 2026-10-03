@@ -20,6 +20,46 @@ const els = {
   paragraphCount: document.querySelector("[data-paragraph-count]")
 };
 
+const bookPageRanges = {
+  symbol: { label: "Frontispiece" },
+  forward: { label: "i-ii" },
+  introduction: { label: "iii-v" },
+  "chapter-1": { start: 1, end: 14 },
+  "chapter-2": { start: 15, end: 22 },
+  "chapter-3": { start: 23, end: 27 },
+  "chapter-4": { start: 28, end: 29 },
+  "step-one": { start: 30, end: 33 },
+  "step-two": { start: 34, end: 36 },
+  "step-three": { start: 37, end: 39 },
+  "step-four": { start: 40, end: 42 },
+  "step-five": { start: 43, end: 45 },
+  "step-six": { start: 46, end: 47 },
+  "step-seven": { start: 48, end: 49 },
+  "step-eight": { start: 50, end: 51 },
+  "step-nine": { start: 52, end: 53 },
+  "step-ten": { start: 54, end: 56 },
+  "step-eleven": { start: 57, end: 59 },
+  "step-twelve": { start: 60, end: 77 },
+  "chapter-5": { start: 78, end: 86 },
+  "chapter-6": { start: 87, end: 89 },
+  "tradition-one": { start: 90, end: 91 },
+  "tradition-two": { start: 92, end: 96 },
+  "tradition-three": { start: 97, end: 99 },
+  "tradition-four": { start: 100, end: 101 },
+  "tradition-five": { start: 102, end: 103 },
+  "tradition-six": { start: 103, end: 105 },
+  "tradition-seven": { start: 106, end: 107 },
+  "tradition-eight": { start: 108, end: 109 },
+  "tradition-nine": { start: 110, end: 111 },
+  "tradition-ten": { start: 112, end: 112 },
+  "tradition-eleven": { start: 113, end: 114 },
+  "tradition-twelve": { start: 115, end: 117 },
+  "chapter-7": { start: 118, end: 131 },
+  "chapter-8": { start: 132, end: 142 },
+  "chapter-9": { start: 143, end: 149 },
+  "chapter-10": { start: 150, end: 161 }
+};
+
 function slugify(value) {
   return String(value)
     .toLowerCase()
@@ -142,83 +182,51 @@ function focusSourcePassage(active, visibleParagraphs) {
   });
 }
 
-function formatPages(items) {
-  const pages = new Set();
-  items.forEach((item) => (item.pages || []).forEach((page) => pages.add(page)));
-  return [...pages].join(", ");
+function formatBookRange(range) {
+  if (!range) return "";
+  if (range.label) return range.label;
+  if (range.start === range.end) return String(range.start);
+  return `${range.start}-${range.end}`;
 }
 
-function normalizeBlock(item) {
+function normalizeBlock(item, sourceIndex = 0) {
   const kind = item.kind || "text";
   const isHeading = kind.includes("heading") || /^[A-Z0-9 .,'?&-]{4,}$/.test(item.text || "");
   return {
     text: item.text || "",
     kind,
     isHeading,
-    pages: item.pages || []
+    pages: item.pages || [],
+    sourceIndex
   };
 }
 
-function mergeStudyBlocks(blocks) {
-  const merged = [];
-  let paragraph = null;
+function pageLabelsForRange(range) {
+  if (!range) return ["Study"];
+  if (range.label) return [range.label];
+  const pages = [];
+  for (let page = range.start; page <= range.end; page += 1) pages.push(String(page));
+  return pages;
+}
 
-  const splitReadableParagraph = (block) => {
-    if (block.isHeading || block.text.length <= 520 || typeof Intl?.Segmenter !== "function") {
-      return [block];
-    }
+function buildBookLines(section) {
+  const lines = (section.blocks || [])
+    .map((item, sourceIndex) => normalizeBlock(item, sourceIndex))
+    .map((line) => ({ ...line, text: line.text.trim() }))
+    .filter((line) => line.text);
+  const pageLabels = pageLabelsForRange(bookPageRanges[section.id]);
+  const lineCounts = new Map(pageLabels.map((label) => [label, 0]));
 
-    const sentences = [...new Intl.Segmenter("en", { granularity: "sentence" }).segment(block.text)]
-      .map((part) => part.segment.trim())
-      .filter(Boolean);
-    if (sentences.length < 2) return [block];
-
-    const paragraphs = [];
-    let text = "";
-    sentences.forEach((sentence) => {
-      const nextText = text ? `${text} ${sentence}` : sentence;
-      if (text.length >= 260 && nextText.length > 520) {
-        paragraphs.push({ ...block, text });
-        text = sentence;
-      } else {
-        text = nextText;
-      }
-    });
-    if (text) paragraphs.push({ ...block, text });
-    return paragraphs;
-  };
-
-  const flushParagraph = () => {
-    if (!paragraph) return;
-    paragraph.text = paragraph.text.replace(/\s+/g, " ").trim();
-    paragraph.pages = [...new Set(paragraph.pages)];
-    if (paragraph.text) merged.push(...splitReadableParagraph(paragraph));
-    paragraph = null;
-  };
-
-  blocks.map(normalizeBlock).forEach((block) => {
-    const text = block.text.trim();
-    if (!text) return;
-
-    if (block.isHeading) {
-      flushParagraph();
-      merged.push({ ...block, text });
-      return;
-    }
-
-    if (!paragraph) {
-      paragraph = { ...block, text, pages: [...block.pages] };
-    } else {
-      const separator = paragraph.text.endsWith("-") ? "" : " ";
-      paragraph.text += `${separator}${text}`;
-      paragraph.pages.push(...block.pages);
-    }
-
-    if (/[.!?][\"')\]]?$/.test(text)) flushParagraph();
+  return lines.map((line, index) => {
+    const pageIndex = Math.min(
+      pageLabels.length - 1,
+      Math.floor((index * pageLabels.length) / Math.max(1, lines.length))
+    );
+    const page = pageLabels[pageIndex];
+    const lineNumber = (lineCounts.get(page) || 0) + 1;
+    lineCounts.set(page, lineNumber);
+    return { ...line, bookPage: page, lineNumber };
   });
-
-  flushParagraph();
-  return merged;
 }
 
 function buildGroups(data) {
@@ -230,7 +238,8 @@ function buildGroups(data) {
 
   const studySections = (data.sections || []).map((section) => ({
     ...section,
-    mergedBlocks: mergeStudyBlocks(section.blocks || [])
+    bookLines: buildBookLines(section),
+    pageLabel: formatBookRange(bookPageRanges[section.id])
   }));
 
   state.sectionMap = new Map(studySections.map((section) => [
@@ -240,8 +249,9 @@ function buildGroups(data) {
       name: section.title,
       group: section.group,
       slug: section.slug || slugify(section.title),
-      paragraphs: section.mergedBlocks,
-      pages: section.pages || ""
+      paragraphs: section.bookLines,
+      pages: section.pageLabel || "",
+      isBookStudySection: true
     }
   ]));
   state.sectionMap.set("home", {
@@ -249,7 +259,11 @@ function buildGroups(data) {
     name: "Grey Book Study Home",
     group: "home",
     slug: "home",
-    paragraphs: introBlocks.map(normalizeBlock),
+    paragraphs: introBlocks.map((block, index) => ({
+      ...normalizeBlock(block, index),
+      bookPage: "Home",
+      lineNumber: index + 1
+    })),
     pages: ""
   });
   state.sectionMap.set("gbr", {
@@ -258,7 +272,7 @@ function buildGroups(data) {
     group: "daily",
     slug: "gbr",
     href: "/#today",
-    paragraphs: [{ kind: "text", text: "Open the current Grey Book Reflection daily reading.", isHeading: false, pages: [] }],
+    paragraphs: [{ kind: "text", text: "Open the current Grey Book Reflection daily reading.", isHeading: false, pages: [], bookPage: "Link", lineNumber: 1 }],
     pages: ""
   });
   state.sectionMap.set("just-for-tonight", {
@@ -267,7 +281,7 @@ function buildGroups(data) {
     group: "daily",
     slug: "just-for-tonight",
     href: "/jft.html",
-    paragraphs: [{ kind: "text", text: "Open the current Just For Tonight daily reading.", isHeading: false, pages: [] }],
+    paragraphs: [{ kind: "text", text: "Open the current Just For Tonight daily reading.", isHeading: false, pages: [], bookPage: "Link", lineNumber: 1 }],
     pages: ""
   });
   state.sectionMap.set("keytags", {
@@ -277,7 +291,7 @@ function buildGroups(data) {
     slug: "keytags",
     href: "/lwb-draft/#keytags",
     openDirectly: true,
-    paragraphs: [{ kind: "text", text: "Open the Keytags reading in the meeting readings section.", isHeading: false, pages: [] }],
+    paragraphs: [{ kind: "text", text: "Open the Keytags reading in the meeting readings section.", isHeading: false, pages: [], bookPage: "Link", lineNumber: 1 }],
     pages: ""
   });
 
@@ -309,7 +323,7 @@ function buildGroups(data) {
     "How It Works"
   ]).size);
   els.paragraphCount.textContent = String(studySections.reduce(
-    (total, section) => total + section.mergedBlocks.filter((block) => !block.isHeading).length,
+    (total, section) => total + section.bookLines.filter((block) => !block.isHeading).length,
     0
   ));
 }
@@ -401,25 +415,40 @@ function renderContent() {
     index === 0 &&
     paragraph.isHeading &&
     slugify(paragraph.text) === slugify(active.name)
-  ));
+  )).map((paragraph, visibleIndex) => ({ ...paragraph, visibleIndex }));
   const paragraphCount = visibleParagraphs.filter((paragraph) => !paragraph.isHeading).length;
-  els.meta.textContent = `${paragraphCount} paragraphs${active.pages ? ` | GBR pages ${active.pages}` : ""}`;
+  els.meta.textContent = `${paragraphCount} book lines${active.pages ? ` | GBR pages ${active.pages}` : ""}`;
   const action = active.href ? `
     <p>
       <a class="grey-study-open-link" href="${escapeHtml(active.href)}">Open ${escapeHtml(active.name)}</a>
     </p>
   ` : "";
-  let bodyParagraphIndex = 0;
-  els.content.innerHTML = visibleParagraphs.map((paragraph, sourceIndex) => {
-    const pages = paragraph.pages.length ? `<span class="grey-study-page">GBR page ${escapeHtml(paragraph.pages.join(", "))}</span>` : "";
-    if (paragraph.isHeading) {
-      return `<article class="grey-study-paragraph is-heading" data-source-index="${sourceIndex}"><h3>${escapeHtml(paragraph.text)}</h3>${pages}</article>`;
-    }
-    const leadClass = bodyParagraphIndex === 0 && ["steps", "traditions"].includes(active.group)
-      ? " is-lead"
-      : "";
-    bodyParagraphIndex += 1;
-    return `<article class="grey-study-paragraph${leadClass}" data-source-index="${sourceIndex}"><p>${escapeHtml(paragraph.text)}</p>${pages}</article>`;
+  const pageGroups = visibleParagraphs.reduce((groups, line) => {
+    const page = line.bookPage || "Study";
+    if (!groups.has(page)) groups.set(page, []);
+    groups.get(page).push(line);
+    return groups;
+  }, new Map());
+  els.content.innerHTML = [...pageGroups.entries()].map(([page, lines]) => {
+    const firstLine = lines[0]?.lineNumber || 1;
+    const lastLine = lines.at(-1)?.lineNumber || firstLine;
+    const pageLabel = /^\d+$/.test(page) ? `GBR page ${page}` : page;
+    return `
+      <article class="grey-study-book-page" data-book-page="${escapeHtml(page)}">
+        <header class="grey-study-book-page-head">
+          <span>${escapeHtml(pageLabel)}</span>
+          <span>Lines ${escapeHtml(firstLine)}-${escapeHtml(lastLine)}</span>
+        </header>
+        <ol class="grey-study-lines">
+          ${lines.map((line) => `
+            <li class="grey-study-line${line.isHeading ? " is-heading" : ""}" data-source-index="${line.visibleIndex}">
+              <span class="grey-study-line-number">${escapeHtml(line.lineNumber)}</span>
+              <span class="grey-study-line-text">${escapeHtml(line.text)}</span>
+            </li>
+          `).join("")}
+        </ol>
+      </article>
+    `;
   }).join("") + action;
 
   focusSourcePassage(active, visibleParagraphs);

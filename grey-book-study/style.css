@@ -228,7 +228,74 @@
 
 .grey-study-content {
   display: grid;
-  gap: 24px;
+  gap: 28px;
+}
+
+.grey-study-book-page {
+  overflow: hidden;
+  border: 2px solid var(--charcoal);
+  background: rgba(255, 255, 255, .46);
+  box-shadow: 8px 8px 0 rgba(0, 0, 0, .1);
+}
+
+.grey-study-book-page-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  align-items: center;
+  padding: 10px 14px;
+  border-bottom: 2px solid var(--charcoal);
+  background: var(--charcoal);
+  color: var(--paper);
+  font: 900 .82rem/1.2 "Courier New", Courier, monospace;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+
+.grey-study-lines {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  padding: 10px 0 12px;
+  list-style: none;
+}
+
+.grey-study-line {
+  display: grid;
+  grid-template-columns: 4.25rem minmax(0, 1fr);
+  gap: 14px;
+  align-items: baseline;
+  min-height: 2.35rem;
+  padding: 3px 18px 3px 0;
+}
+
+.grey-study-line:nth-child(even) {
+  background: rgba(255, 255, 255, .34);
+}
+
+.grey-study-line-number {
+  display: block;
+  color: var(--muted);
+  font: 900 .86rem/1.2 "Courier New", Courier, monospace;
+  text-align: right;
+  user-select: none;
+}
+
+.grey-study-line-text {
+  display: block;
+  max-width: 68ch;
+  color: var(--ink);
+  font-size: 1.32rem;
+  line-height: 1.42;
+}
+
+.grey-study-line.is-heading .grey-study-line-text {
+  padding-top: 10px;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 1.42rem;
+  font-weight: 900;
+  letter-spacing: .05em;
+  text-transform: uppercase;
 }
 
 .grey-study-paragraph {
@@ -366,7 +433,41 @@ body.grey-study-dark .grey-study-section-head [data-active-meta] {
 }
 
 body.grey-study-dark .grey-study-content {
-  gap: 40px;
+  gap: 42px;
+}
+
+body.grey-study-dark .grey-study-book-page {
+  border-color: #fff;
+  background: #050505;
+  box-shadow: none;
+}
+
+body.grey-study-dark .grey-study-book-page-head {
+  border-bottom-color: #fff;
+  background: #fff;
+  color: #000;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body.grey-study-dark .grey-study-line:nth-child(even) {
+  background: rgba(255, 255, 255, .06);
+}
+
+body.grey-study-dark .grey-study-line-number {
+  color: #bbb;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body.grey-study-dark .grey-study-line-text {
+  max-width: 70ch;
+  color: #fff;
+  font: 400 1.62rem/1.5 Arial, Helvetica, sans-serif;
+}
+
+body.grey-study-dark .grey-study-line.is-heading .grey-study-line-text {
+  color: #fff;
+  font: 900 1.9rem/1.22 Arial, Helvetica, sans-serif;
+  letter-spacing: .04em;
 }
 
 body.grey-study-dark .grey-study-paragraph p {
@@ -437,6 +538,28 @@ body.grey-study-dark .grey-study-page {
     line-height: 1.62;
   }
 
+  .grey-study-book-page-head {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .grey-study-line {
+    grid-template-columns: 3.25rem minmax(0, 1fr);
+    gap: 10px;
+    min-height: 2.1rem;
+    padding-right: 12px;
+  }
+
+  .grey-study-line-text {
+    font-size: 1.06rem;
+    line-height: 1.48;
+  }
+
+  .grey-study-line.is-heading .grey-study-line-text {
+    font-size: 1.14rem;
+  }
+
   body.grey-study-dark .grey-study-shell {
     width: min(calc(100% - 20px), 1500px);
   }
@@ -453,6 +576,15 @@ body.grey-study-dark .grey-study-page {
   body.grey-study-dark .grey-study-paragraph.is-lead p {
     font-size: 1.35rem;
     line-height: 1.55;
+  }
+
+  body.grey-study-dark .grey-study-line-text {
+    font-size: 1.16rem;
+    line-height: 1.5;
+  }
+
+  body.grey-study-dark .grey-study-line.is-heading .grey-study-line-text {
+    font-size: 1.35rem;
   }
 
   body.grey-study-dark .grey-study-paragraph h3 {
@@ -494,6 +626,10 @@ body.grey-study-dark .grey-study-page {
   background: #fff8e8;
   box-shadow: 0 0 0 4px rgba(184,120,37,.14), 0 10px 24px rgba(0,0,0,.09);
 }
+.grey-study-line.is-source-target {
+  background: #fff8e8;
+  box-shadow: inset 6px 0 0 #b87825;
+}
 .grey-study-paragraph.is-source-target::before {
   content: "SOURCE PASSAGE";
   display: inline-block;
@@ -505,7 +641,8 @@ body.grey-study-dark .grey-study-page {
   letter-spacing: .08em;
 }
 .grey-study-dark .grey-study-source-focus-note,
-.grey-study-dark .grey-study-paragraph.is-source-target {
+.grey-study-dark .grey-study-paragraph.is-source-target,
+.grey-study-dark .grey-study-line.is-source-target {
   background: #2c271e;
   color: #f8edda;
 }
