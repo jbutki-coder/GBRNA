@@ -60,6 +60,7 @@
   let intersectionObserver = null;
   let statusElement = null;
   let languageSelect = null;
+  let serverTranslationEnabled = false;
   let nextItemId = 1;
 
   function normalizeLanguage(value) {
@@ -115,6 +116,24 @@
     } catch {
       // The choice simply will not persist when storage is unavailable.
     }
+  }
+
+  function googleTranslateUrl(language) {
+    const url = new URL("https://translate.google.com/translate");
+    url.searchParams.set("sl", "auto");
+    url.searchParams.set("tl", normalizeLanguage(language));
+    url.searchParams.set("u", window.location.href);
+    return url.toString();
+  }
+
+  function openGoogleTranslate(language) {
+    const nextLanguage = normalizeLanguage(language);
+    if (nextLanguage === "en") {
+      setStatus("Showing the original English.", "ready");
+      return;
+    }
+    setStatus(`Opening ${displayName(nextLanguage)} with Google Translate…`, "working");
+    window.location.href = googleTranslateUrl(nextLanguage);
   }
 
   function setStatus(message, state) {
@@ -173,7 +192,9 @@
     languageSelect.addEventListener("change", () => {
       const choice = languageSelect.value;
       storeLanguage(choice);
-      applyLanguage(choice === "auto" ? browserLanguage() : choice);
+      const nextLanguage = choice === "auto" ? browserLanguage() : choice;
+      if (serverTranslationEnabled) applyLanguage(nextLanguage);
+      else openGoogleTranslate(nextLanguage);
     });
   }
 
@@ -463,12 +484,12 @@
     }
 
     const translationEnabled = Boolean(configuration && configuration.enabled);
-    languageSelect.disabled = !translationEnabled;
+    serverTranslationEnabled = translationEnabled;
     const savedChoice = safeStoredLanguage();
     languageSelect.value = savedChoice;
 
     if (!translationEnabled) {
-      setStatus("Translation needs to be enabled by the site administrator.", "error");
+      setStatus("Choose a language to open this page with Google Translate.", "ready");
       return;
     }
 
