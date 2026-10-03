@@ -55,6 +55,7 @@ function bbRenderTable() {
     return;
   }
 
+  const shouldLinkDates = bbEls.table.dataset.bbDateLinks === "true";
   bbEls.table.innerHTML = `
     <table class="baby-blue-compat-table">
       <thead>
@@ -68,7 +69,7 @@ function bbRenderTable() {
       <tbody>
         ${entries.map((entry) => `
           <tr>
-            <td><a href="#${bbEscape(entry.id)}">${bbEscape(entry.date)}</a></td>
+            <td>${shouldLinkDates ? `<a href="#${bbEscape(entry.id)}">${bbEscape(entry.date)}</a>` : bbEscape(entry.date)}</td>
             <td>${bbEscape(entry.originalCitation)}</td>
             <td>${bbEscape(entry.babyBlueCitation)}</td>
             <td><span class="baby-blue-compat-badge ${bbEscape(entry.status)}">${bbEscape(bbStatusLabel(entry.status))}</span></td>
