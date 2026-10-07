@@ -23,9 +23,21 @@ for (const page of pages) {
       .map((match) => [match[1], match[2]]));
     return attributes;
   }).filter(({ rel }) => ["icon", "shortcut icon", "apple-touch-icon", "apple-touch-icon-precomposed"].includes(rel));
-  assert.deepEqual(icons.map(({ rel, href }) => [rel, href]), expected, `${page}: shared AF icons`);
+  const preserved = ["archive-master-index.html", "lwb-draft/index.html"].includes(page);
+  if (preserved) {
+    const original = execFileSync("git", ["show", `c85757a:${page}`], { cwd: root, encoding: "utf8" });
+    const originalIcons = [...original.matchAll(/<link\b[^>]*\brel="(?:icon|shortcut icon|apple-touch-icon)"[^>]*>/gi)]
+      .map(([tag]) => tag);
+    assert.deepEqual(icons.map(({ rel, href }) => [rel, href]), originalIcons.map((tag) => [
+      tag.match(/rel="([^"]*)"/)[1], tag.match(/href="([^"]*)"/)[1],
+    ]), `${page}: preserve its distinct icon`);
+  } else {
+    assert.deepEqual(icons.map(({ rel, href }) => [rel, href]), expected, `${page}: shared AF icons`);
+  }
   for (const { href, type } of icons) {
-    const asset = fs.readFileSync(path.join(root, href.split("?")[0]));
+    const assetPath = href.startsWith("/") ? path.join(root, href.split("?")[0])
+      : path.resolve(root, path.dirname(page), href.split("?")[0]);
+    const asset = fs.readFileSync(assetPath);
     assert.ok(asset.length > 0, `${page}: icon file exists`);
     if (type === "image/png") {
       assert.equal(asset.subarray(0, 8).toString("hex"), "89504e470d0a1a0a", "PNG signature");
@@ -34,4 +46,4 @@ for (const page of pages) {
     }
   }
 }
-console.log(`Shared AF icons verified on ${pages.length} HTML pages.`);
+console.log(`Icons verified on ${pages.length} HTML pages; distinct archive and meeting icons preserved.`);
