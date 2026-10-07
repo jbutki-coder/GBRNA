@@ -28,7 +28,7 @@ class ArchiveIndex(HTMLParser):
         if "id" in attrs:
             assert attrs["id"] not in self.ids, "Duplicate collection anchor"
             self.ids.add(attrs["id"])
-        if tag in {"h2", "h3"}:
+        if tag in {"h2", "h3", "h4"}:
             self.heading = tag
             self.text = []
         if tag == "a":
@@ -49,8 +49,10 @@ class ArchiveIndex(HTMLParser):
             text = "".join(self.text)
             if tag == "h2":
                 self.context = [text]
-            else:
+            elif tag == "h3":
                 self.context = self.context[:1] + [text]
+            else:
+                self.context = self.context[:2] + [text]
             self.heading = None
         if tag == "a" and self.link:
             self.files.append((self.link, "".join(self.text), list(self.context)))
@@ -71,8 +73,20 @@ assert len(michigan_presentations) == 1 and michigan_presentations[0][1] == "PRE
 assert urlsplit(michigan_presentations[0][0]["href"]).path.endswith("/PRESENTATION-2.pptx"), "Keep the original Presentation 2 link"
 for heading, count in Counter(context[0] for _, _, context in index.files).items():
     assert int(re.search(r"\(([\d,]+)\)$", heading)[1].replace(",", "")) == count, "Collection counts must reflect the remaining files"
-for context, count in Counter(tuple(context) for _, _, context in index.files).items():
+group_counts = Counter(tuple(context[:depth]) for _, _, context in index.files for depth in range(2, len(context) + 1))
+for context, count in group_counts.items():
     assert int(re.search(r"\(([\d,]+)\)$", context[-1])[1].replace(",", "")) == count, "Group counts must reflect the remaining files"
+history_sources = [(attrs, title, context) for attrs, title, context in index.files if any(heading.startswith("NA History: Books, Magazines & Articles") for heading in context)]
+assert len(history_sources) == 44
+assert len({context[-1] for _, _, context in history_sources}) == 3, "History sources must have three readable groups"
+assert all(len(context) == 3 and attrs["data-file-ext"] == "pdf" for attrs, _, context in history_sources)
+assert {"na-history-books-articles", "na-history-sources-1", "na-history-sources-2", "na-history-sources-3"} <= index.ids
+assert not any("NA History \u2014 Books, Magazines & Articles /" in heading for _, _, context in index.files for heading in context), "Do not expose raw folder paths as history headings"
+assert any("Chapter 7 - Narcotics Anonymous" in title for _, title, _ in history_sources), "Keep the NA book excerpts"
+assert any("New York NA's Our Way of Life" in title for _, title, _ in history_sources), "Keep the historical NA press references"
+adjacent_titles = {title for _, title, context in index.files if context[0].startswith("NA Adjacent")}
+assert any("The Night Cap (AA)" in title for title in adjacent_titles)
+assert any("Recovery Through AA" in title for title in adjacent_titles)
 drive_count = 0
 for attrs, title, context in index.files:
     url = urlsplit(attrs["href"])
@@ -86,7 +100,8 @@ for attrs, title, context in index.files:
     assert not re.search(r"\bARNA\b|Autonomous Region of Narcotics Anonymous|Bo-Sewell-Declaration-7\.30\.20|Seeking[ _-]Traditional[ _-]Solutions[ _-]July[ _-]2026", labels, re.I), "ARNA material must stay out of the archive"
     compact = re.sub(r"[^a-z0-9]", "", labels.lower())
     assert not any(term in compact for term in ("ascgrievance", "personalnotes", "wordpressarchive", "naarchivepublisher", "chatgptgbrna")), title
-    assert attrs["data-file-ext"] not in {"zip", "ini"}, "Unreviewed packages and system files must stay out"
+    assert attrs["data-file-ext"] not in {"zip", "ini", "db"}, "Unreviewed packages and system files must stay out"
+    assert not re.search(r"Skinny girls|Old Grand-Dad|Notes to Thirst For Freedom|Notes to Monkey on my Back", title, re.I), "Unrelated articles, advertisements, and working notes must stay out"
     if url.hostname in {"drive.google.com", "docs.google.com"}:
         drive_count += 1
         assert "/file/d/" in url.path or re.match(r"/(document|spreadsheets|presentation)/d/", url.path), "Direct file link required"
