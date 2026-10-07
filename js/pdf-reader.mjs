@@ -186,20 +186,26 @@
     trimDistantCanvases();
   }
 
-  function scrollToPage(pageNumber) {
+  function scrollToPage(pageNumber, behavior = 'smooth') {
     const shell = document.getElementById(`pdf-page-${pageNumber}`);
     if (!shell) return;
     setCurrentPage(pageNumber);
-    shell.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'center' });
+    shell.scrollIntoView({ behavior, block: 'start', inline: 'center' });
     renderPage(pageNumber).catch((error) => console.warn(error));
   }
 
   function updateCurrentFromVisibility() {
     let bestPage = currentPage;
-    let bestRatio = -1;
-    for (const [pageNumber, ratio] of visibleRatios.entries()) {
-      if (ratio > bestRatio) {
-        bestRatio = ratio;
+    let bestVisibleHeight = 0;
+    const viewport = pdfScroll.getBoundingClientRect();
+    // Observer margins preload nearby pages; only the real viewport selects the current page.
+    for (const pageNumber of visibleRatios.keys()) {
+      const shell = document.getElementById(`pdf-page-${pageNumber}`);
+      if (!shell) continue;
+      const bounds = shell.getBoundingClientRect();
+      const visibleHeight = Math.max(0, Math.min(bounds.bottom, viewport.bottom) - Math.max(bounds.top, viewport.top));
+      if (visibleHeight > bestVisibleHeight) {
+        bestVisibleHeight = visibleHeight;
         bestPage = pageNumber;
       }
     }
@@ -411,12 +417,13 @@
 
       pdfDocument = await loadingTask.promise;
       createPageShells(pdfDocument.numPages);
-      currentPage = Math.min(requestedPage, pdfDocument.numPages);
+      const initialPage = Math.min(requestedPage, pdfDocument.numPages);
+      currentPage = initialPage;
       updateNavigation();
-      startObservers();
       hideStatus();
-      await renderPage(currentPage, true);
-      scrollToPage(currentPage);
+      await renderPage(initialPage, true);
+      scrollToPage(initialPage, 'instant');
+      startObservers();
       renderPage(currentPage - 1).catch(() => {});
       renderPage(currentPage + 1).catch(() => {});
     } catch (error) {
