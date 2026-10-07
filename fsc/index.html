@@ -90,8 +90,7 @@
       align-items: center;
     }
 
-    .home-link,
-    .source-link {
+    .home-link {
       display: inline-flex;
       align-items: center;
       min-height: 2.55rem;
@@ -106,12 +105,29 @@
     }
 
     .home-link:hover,
-    .source-link:hover,
-    .home-link:focus-visible,
-    .source-link:focus-visible {
+    .home-link:focus-visible {
       background: rgba(255,255,255,.15);
       outline: 3px solid rgba(234,216,189,.38);
       outline-offset: 2px;
+    }
+
+    .nahelp-banner {
+      display: block;
+      width: min(360px, 100%);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .nahelp-banner img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .nahelp-banner:hover,
+    .nahelp-banner:focus-visible {
+      outline: 3px solid var(--gold);
+      outline-offset: 3px;
     }
 
     .hero {
@@ -446,8 +462,7 @@
       .event-grid,
       .document-grid { grid-template-columns: 1fr; }
       .top-nav { align-items: stretch; }
-      .home-link,
-      .source-link { flex: 1 1 auto; justify-content: center; }
+      .home-link { flex: 1 1 auto; justify-content: center; }
       h1 { font-size: clamp(3.3rem, 23vw, 5.8rem); }
       .section { padding: 1rem; }
     }
@@ -478,7 +493,9 @@
   <header class="site-header">
     <div class="wrap">
       <nav class="top-nav" aria-label="FSC page navigation">
-        <a class="source-link" href="https://nahelp.org/f-s-c/" target="_blank" rel="noopener noreferrer">Official FSC Page on NAHELP ↗</a>
+        <a class="nahelp-banner" href="https://nahelp.org/" target="_blank" rel="noopener noreferrer" aria-label="Visit NAHELP.org (opens in a new tab)" title="Visit NAHELP.org">
+          <img src="/fsc/images/nahelp-banner.png" width="1891" height="832" alt="Anonymi Foundation - More Will Be Revealed - NAHELP.org" fetchpriority="high">
+        </a>
       </nav>
 
       <div class="hero">
