@@ -107,6 +107,9 @@ function renderBabyBlueReference(reading) {
   const locationLine = reading.babyBlueLocation
     ? `<p><strong>Location:</strong> ${escapeHtml(reading.babyBlueLocation)}</p>`
     : "";
+  const wording = status === "matched" && reading.babyBluePrintedPageVerified && reading.babyBlueQuote
+    ? `<div class="jft-baby-blue-wording"><h4>Baby Blue wording</h4><blockquote>${escapeHtml(reading.babyBlueQuote)}</blockquote></div>`
+    : "";
 
   return `
     <div class="jft-reference-grid">
@@ -114,6 +117,7 @@ function renderBabyBlueReference(reading) {
         <span>Baby Blue Basic Text</span>
         <strong>${escapeHtml(citation)}</strong>
         ${locationLine}
+        ${wording}
         <p>${escapeHtml(babyBlueStatusLabel(status))}. ${escapeHtml(babyBlueHelp(reading))}</p>
       </div>
       <div class="jft-reference-box">
@@ -252,6 +256,7 @@ function doSearch(query) {
       reading.source,
       reading.babyBlueCitation,
       reading.babyBlueLocation,
+      reading.babyBlueQuote,
       reading.quote,
       reading.body,
       reading.moment
@@ -265,7 +270,7 @@ function doSearch(query) {
   }
 
   results.innerHTML = matches.map((reading) => {
-    const snippetSource = `${reading.date} ${reading.title} ${reading.babyBlueCitation || ""} ${reading.quote} ${reading.body}`;
+    const snippetSource = `${reading.date} ${reading.title} ${reading.babyBlueCitation || ""} ${reading.quote} ${reading.babyBlueQuote || ""} ${reading.body}`;
     const lower = snippetSource.toLowerCase();
     const idx = lower.indexOf(q);
     const start = Math.max(0, idx - 70);

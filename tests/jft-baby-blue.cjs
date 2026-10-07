@@ -31,13 +31,23 @@ function validPage(page) {
 
 for (const reading of readings) {
   const reference = byId.get(reading.id);
-  for (const field of ["babyBlueLocation", "babyBluePage", "babyBluePageEnd", "babyBlueCitation"]) {
+  for (const field of ["babyBlueLocation", "babyBluePage", "babyBluePageEnd", "babyBlueCitation", "babyBlueQuote"]) {
     assert.equal(reading[field], reference[field], `${reading.id}: ${field}`);
   }
   assert.equal(reading.babyBlueStatus, reference.status);
   assert.equal(reading.babyBluePrintedPageVerified, reference.printedPageVerified);
   assert.equal(reading.babyBluePdfPage, reference.matchEvidencePdfPage);
   const card = context.renderReadingCard(reading);
+  if (reading.babyBlueQuote) {
+    assert.equal(reading.babyBlueStatus, "matched");
+    assert.ok(reading.babyBluePrintedPageVerified);
+    const referenceBox = card.match(/<div class="jft-reference-box matched">([\s\S]*?)<\/blockquote>/)[1];
+    assert.ok(referenceBox.includes("Baby Blue wording"));
+    assert.ok(referenceBox.includes(context.escapeHtml(reading.babyBlueQuote)));
+    assert.ok(!/[\x00-\x1f\ufffd]/.test(reading.babyBlueQuote));
+  } else {
+    assert.ok(!card.includes("jft-baby-blue-wording"));
+  }
   if (reading.babyBlueStatus === "matched") {
     assert.ok(reading.babyBluePrintedPageVerified, reading.id);
     assert.ok(reading.babyBlueLocation);
@@ -91,6 +101,14 @@ assert.equal(at("05-03").babyBlueMatchType, "unnumbered-end-matter");
 assert.equal(at("05-03").babyBluePdfPage, 55);
 assert.ok(context.renderReadingCard(at("05-03")).includes("at the end of the Baby Blue"));
 assert.ok(!context.renderReadingCard(at("05-03")).includes("front matter"));
+assert.equal(at("10-06").babyBlueQuote, "Projecting about actually making amends can be a major obstacle both in making the list and in becoming willing.");
+assert.ok(at("10-06").quote.includes("Projections about actually making amends"));
+assert.equal(readings.filter((entry) => entry.babyBlueQuote).length, 130);
+assert.ok(!context.renderBabyBlueReference({...at("10-06"), babyBlueStatus: "needs-review"}).includes("jft-baby-blue-wording"));
+assert.ok(!context.renderBabyBlueReference({...at("10-06"), babyBluePrintedPageVerified: false}).includes("jft-baby-blue-wording"));
+const escapedWording = context.renderBabyBlueReference({...at("10-06"), babyBlueQuote: '<script>alert("wording")</script>'});
+assert.ok(escapedWording.includes("&lt;script&gt;"));
+assert.ok(!escapedWording.includes("<script>"));
 assert.equal(at("01-06").title, '"How Does It Work?"');
 assert.equal(at("11-08").source, "Basic Text p.23");
 assert.equal(readings.filter((entry) => entry.babyBlueStatus === "matched").length, 331);
