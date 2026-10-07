@@ -38,6 +38,8 @@ for (const reading of readings) {
   assert.equal(reading.babyBluePrintedPageVerified, reference.printedPageVerified);
   assert.equal(reading.babyBluePdfPage, reference.matchEvidencePdfPage);
   const card = context.renderReadingCard(reading);
+  const referenceCopy = context.renderBabyBlueReference(reading);
+  assert.ok(!/verified|verification|template|manual review|screen-reading copy/i.test(referenceCopy), reading.id);
   if (reading.babyBlueQuote) {
     assert.equal(reading.babyBlueStatus, "matched");
     assert.ok(reading.babyBluePrintedPageVerified);
@@ -91,7 +93,8 @@ for (const [id, page, pdfPage, section] of [
   assert.ok(reading.babyBlueLocation.includes(section), id);
 }
 assert.equal(at("03-04").babyBlueStatus, "needs-review");
-assert.ok(context.renderReadingCard(at("03-04")).includes("not found in this Baby Blue edition"));
+assert.ok(context.renderReadingCard(at("03-04")).includes("hasn&#039;t been identified yet"));
+assert.ok(context.renderReadingCard(at("03-04")).includes("No Baby Blue reference yet"));
 assert.equal(at("05-05").babyBlueStatus, "outside-baby-blue-screen-copy");
 assert.equal(at("05-01").babyBluePage, null);
 assert.equal(at("05-01").babyBlueLocation, "");
@@ -118,4 +121,9 @@ assert.equal(map.stats.verifiedUnnumberedLocations, 1);
 assert.equal(map.stats.outsideBabyBlueScreenCopy, 34);
 assert.equal(map.stats.needsReview, 1);
 assert.ok(!JSON.stringify(map).includes("C:\\Users"));
+const page = fs.readFileSync(path.join(root, "just-for-today/index.html"), "utf8");
+assert.ok(!page.includes("data-jft-total"));
+const pageCopy = page.replace(/<style>[\s\S]*?<\/style>/g, "");
+assert.ok(!/verified|verification|template|manual review|screen-reading copy|uploaded/i.test(pageCopy));
+assert.ok(page.includes("For personal reflection,"));
 console.log("PASS: all 366 dates; 330 printed-page references; unnumbered prayer; ranges, Roman pages, Step locations, PDF navigation, and honest exceptions.");

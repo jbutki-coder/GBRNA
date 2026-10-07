@@ -79,31 +79,29 @@ function readerUrl(pdfUrl, title, page) {
   return `/pdf-reader.html?${params.toString()}`;
 }
 
-function babyBlueStatusLabel(status) {
-  if (status === "matched") return "Matched in Baby Blue";
-  if (status === "outside-baby-blue-screen-copy") return "Outside Baby Blue screen copy";
-  return "Needs manual Baby Blue review";
-}
-
 function babyBlueHelp(reading) {
-  if (reading.babyBlueNote) return reading.babyBlueNote;
   if (reading.babyBlueStatus === "matched") {
     if (reading.babyBlueMatchType === "unnumbered-end-matter") {
-      return "The unnumbered Gratitude Prayer follows More Will Be Revealed at the end of the Baby Blue.";
+      return "The Gratitude Prayer follows More Will Be Revealed at the end of the Baby Blue.";
     }
     return reading.babyBluePrintedPageVerified
-      ? "The printed book page was verified against the Baby Blue template."
-      : "The quote has a Baby Blue source location; its printed book page is awaiting verification.";
+      ? ""
+      : "The book page for this passage isn't available yet.";
   }
   if (reading.babyBlueStatus === "outside-baby-blue-screen-copy") {
-    return "The source appears to be outside the current Baby Blue screen-reading copy.";
+    return reading.babyBlueNote || "This quotation comes from other NA literature or a personal story, rather than the Baby Blue.";
   }
-  return "This date needs a manual check against the Baby Blue copy.";
+  return "A Baby Blue passage for this quotation hasn't been identified yet.";
 }
 
 function renderBabyBlueReference(reading) {
   const status = reading.babyBlueStatus || "needs-review";
-  const citation = reading.babyBlueCitation || "Needs manual Baby Blue review";
+  const citation = status === "matched"
+    ? reading.babyBlueCitation || "Baby Blue passage"
+    : status === "outside-baby-blue-screen-copy"
+      ? "From other NA literature"
+      : "No Baby Blue reference yet";
+  const note = babyBlueHelp(reading);
   const locationLine = reading.babyBlueLocation
     ? `<p><strong>Location:</strong> ${escapeHtml(reading.babyBlueLocation)}</p>`
     : "";
@@ -118,19 +116,19 @@ function renderBabyBlueReference(reading) {
         <strong>${escapeHtml(citation)}</strong>
         ${locationLine}
         ${wording}
-        <p>${escapeHtml(babyBlueStatusLabel(status))}. ${escapeHtml(babyBlueHelp(reading))}</p>
+        ${note ? `<p>${escapeHtml(note)}</p>` : ""}
       </div>
       <div class="jft-reference-box">
         <span>Just For Today PDF</span>
         <strong>JFT PDF p. ${escapeHtml(reading.pdfPage)}</strong>
-        <p>Source line: ${escapeHtml(reading.source || "Source reference pending")}</p>
+        <p>Original reference: ${escapeHtml(reading.source || "Reference not listed")}</p>
       </div>
     </div>
   `;
 }
 
 function renderReadingCard(reading) {
-  const sourceLine = reading.source || "Source reference pending";
+  const sourceLine = reading.source || "Reference not listed";
   const babyBlueActionLabel = reading.babyBluePdfPage ? "Open Baby Blue Passage" : "Open Baby Blue PDF";
   return `
     <article class="reading-card" id="reading-${escapeHtml(reading.id)}">
@@ -193,7 +191,7 @@ function showToday() {
   const readings = getDailyReadings(date);
   currentId = readings[0]?.id || todayId();
   const notice = readings.length > 1 && date.getMonth() + 1 === 2 && date.getDate() === 28
-    ? "Non-leap year handling: February 29 is included with February 28 today."
+    ? "February 29's reading is included with February 28 today."
     : "";
   renderReadings(readings, notice);
   location.hash = "today";
@@ -228,16 +226,6 @@ function renderArchive() {
       showReadingById(link.dataset.id);
     });
   });
-}
-
-function updateStats() {
-  const matched = READINGS.filter((reading) => reading.babyBlueStatus === "matched").length;
-  const outside = READINGS.filter((reading) => reading.babyBlueStatus === "outside-baby-blue-screen-copy").length;
-  const review = READINGS.filter((reading) => reading.babyBlueStatus === "needs-review").length;
-  $("[data-jft-total]").textContent = String(READINGS.length);
-  $("[data-jft-matched]").textContent = String(matched);
-  $("[data-jft-outside]").textContent = String(outside);
-  $("[data-jft-review]").textContent = String(review);
 }
 
 function doSearch(query) {
@@ -323,7 +311,6 @@ async function init() {
   if (!response.ok) throw new Error("Just For Today data not found");
   READINGS = await response.json();
 
-  updateStats();
   renderArchive();
   handleHash();
 
