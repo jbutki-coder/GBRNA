@@ -2802,7 +2802,7 @@
     "babyBlueLocation": "",
     "babyBluePrintedPageVerified": false,
     "babyBluePdfPage": null,
-    "babyBlueNote": "This quotation comes from a personal story, pamphlet, or prayer not included in this Baby Blue edition.",
+    "babyBlueNote": "Basic Text p. 212 is in the personal-story section, not More Will Be Revealed. That story is not included in this Baby Blue edition.",
     "babyBlueMatchType": ""
   },
   {
@@ -2845,11 +2845,11 @@
     "babyBlueMatchConfidence": 0.9032,
     "originalCitation": "Gratitude Prayer",
     "babyBluePageEnd": null,
-    "babyBlueLocation": "Gratitude Prayer - Unnumbered Front Matter",
+    "babyBlueLocation": "Gratitude Prayer - After Chapter Ten: More Will Be Revealed",
     "babyBluePrintedPageVerified": true,
     "babyBluePdfPage": 55,
     "babyBlueNote": "",
-    "babyBlueMatchType": "unnumbered-front-matter"
+    "babyBlueMatchType": "unnumbered-end-matter"
   },
   {
     "id": "05-04",

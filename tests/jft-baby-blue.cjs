@@ -83,6 +83,14 @@ for (const [id, page, pdfPage, section] of [
 assert.equal(at("03-04").babyBlueStatus, "needs-review");
 assert.ok(context.renderReadingCard(at("03-04")).includes("not found in this Baby Blue edition"));
 assert.equal(at("05-05").babyBlueStatus, "outside-baby-blue-screen-copy");
+assert.equal(at("05-01").babyBluePage, null);
+assert.equal(at("05-01").babyBlueLocation, "");
+assert.ok(at("05-01").babyBlueNote.includes("personal-story section"));
+assert.equal(at("05-03").babyBlueLocation, "Gratitude Prayer - After Chapter Ten: More Will Be Revealed");
+assert.equal(at("05-03").babyBlueMatchType, "unnumbered-end-matter");
+assert.equal(at("05-03").babyBluePdfPage, 55);
+assert.ok(context.renderReadingCard(at("05-03")).includes("at the end of the Baby Blue"));
+assert.ok(!context.renderReadingCard(at("05-03")).includes("front matter"));
 assert.equal(at("01-06").title, '"How Does It Work?"');
 assert.equal(at("11-08").source, "Basic Text p.23");
 assert.equal(readings.filter((entry) => entry.babyBlueStatus === "matched").length, 331);
