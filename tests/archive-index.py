@@ -66,6 +66,9 @@ assert len({attrs["href"] for attrs, _, _ in index.files}) == index.expected, "F
 assert all(anchor in index.ids for anchor in index.references), "Collection links must work"
 assert {"origins-early-history", "literature-recovery-material", "newsletters-publications", "world-service-structure", "legal-trust-incorporation"} <= index.ids, "Existing major collection bookmarks must keep working"
 assert any(context[0].startswith("NA Adjacent") for _, _, context in index.files), "NA Adjacent must be separate"
+michigan_presentations = [(attrs, title) for attrs, title, context in index.files if context[-1].startswith("Michigan NA History Presentations")]
+assert len(michigan_presentations) == 1 and michigan_presentations[0][1] == "PRESENTATION 2.pptx", "Keep only Presentation 2 in Michigan NA History Presentations"
+assert urlsplit(michigan_presentations[0][0]["href"]).path.endswith("/PRESENTATION-2.pptx"), "Keep the original Presentation 2 link"
 for heading, count in Counter(context[0] for _, _, context in index.files).items():
     assert int(re.search(r"\(([\d,]+)\)$", heading)[1].replace(",", "")) == count, "Collection counts must reflect the remaining files"
 for context, count in Counter(tuple(context) for _, _, context in index.files).items():
