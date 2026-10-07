@@ -41,6 +41,7 @@ function bbFilteredEntries() {
       entry.title,
       entry.originalCitation,
       entry.babyBlueCitation,
+      entry.babyBlueLocation,
       entry.status
     ].join(" ").toLowerCase();
     return haystack.includes(query);
@@ -71,7 +72,7 @@ function bbRenderTable() {
           <tr>
             <td>${shouldLinkDates ? `<a href="#${bbEscape(entry.id)}">${bbEscape(entry.date)}</a>` : bbEscape(entry.date)}</td>
             <td>${bbEscape(entry.originalCitation)}</td>
-            <td>${bbEscape(entry.babyBlueCitation)}</td>
+            <td>${bbEscape(entry.babyBlueCitation)}${entry.babyBlueLocation ? `<br>${bbEscape(entry.babyBlueLocation)}` : ""}</td>
             <td><span class="baby-blue-compat-badge ${bbEscape(entry.status)}">${bbEscape(bbStatusLabel(entry.status))}</span></td>
           </tr>
         `).join("")}

@@ -87,7 +87,9 @@ function babyBlueStatusLabel(status) {
 
 function babyBlueHelp(reading) {
   if (reading.babyBlueStatus === "matched") {
-    return "The daily quote was matched to this Baby Blue page.";
+    return reading.babyBluePrintedPageVerified
+      ? "The printed book page was verified against the Baby Blue template."
+      : "The quote has a Baby Blue source location; its printed book page is awaiting verification.";
   }
   if (reading.babyBlueStatus === "outside-baby-blue-screen-copy") {
     return "The source appears to be outside the current Baby Blue screen-reading copy.";
@@ -121,7 +123,7 @@ function renderBabyBlueReference(reading) {
 
 function renderReadingCard(reading) {
   const sourceLine = reading.source || "Source reference pending";
-  const babyBlueActionLabel = reading.babyBluePage ? "Open Baby Blue Page" : "Open Baby Blue PDF";
+  const babyBlueActionLabel = reading.babyBluePdfPage ? "Open Baby Blue Passage" : "Open Baby Blue PDF";
   return `
     <article class="reading-card" id="reading-${escapeHtml(reading.id)}">
       <div class="reading-date">
@@ -144,10 +146,9 @@ function renderReadingCard(reading) {
 
       <div class="jft-card-actions">
         <a href="${escapeHtml(readerUrl(JFT_PDF_URL, "Just For Today", reading.pdfPage))}">Open JFT PDF Page</a>
-        <a class="secondary" href="${escapeHtml(readerUrl(BABY_BLUE_PDF_URL, "Baby Blue Basic Text", reading.babyBluePage))}">${escapeHtml(babyBlueActionLabel)}</a>
+        <a class="secondary" href="${escapeHtml(readerUrl(BABY_BLUE_PDF_URL, "Baby Blue Basic Text", reading.babyBluePdfPage))}">${escapeHtml(babyBlueActionLabel)}</a>
         <a class="secondary" href="/downloads/Just-For-Today.pdf" download>Download JFT PDF</a>
       </div>
-      <p class="jft-status-note">Matched Baby Blue references open directly to the listed PDF page; unmatched dates are flagged for manual review.</p>
     </article>
   `;
 }
@@ -246,6 +247,7 @@ function doSearch(query) {
       reading.title,
       reading.source,
       reading.babyBlueCitation,
+      reading.babyBlueLocation,
       reading.quote,
       reading.body,
       reading.moment
