@@ -112,11 +112,14 @@ assert "Number(archive.dataset.fileCount)" in page
 assert ".load-all[hidden] { display:none; }" in page, "Show all must stay hidden for short result lists"
 assert "--archive-tools-offset" in page and "ResizeObserver(syncAnchorOffset)" in page, "Collection headings must clear the responsive sticky toolbar"
 assert "archive-phoenix.ico" in page.split("</head>")[0]
-assert '/css/archive-phoenix.css?v=20261007-3' in page.split("</head>")[0]
+assert '/css/archive-phoenix.css?v=20261007-4' in page.split("</head>")[0]
 theme = (Path(__file__).resolve().parents[1] / "css/archive-phoenix.css").read_text(encoding="utf-8")
 assert "--phoenix-red:#b52525" in theme and "--phoenix-gold:#ffc234" in theme
 assert "body { background:var(--phoenix-charcoal)" in theme
-assert 'body::before' in theme and "background:url('/archive-phoenix-512.png?v=20260803-archive5') center center / contain no-repeat;" in theme, "The phoenix must be a large centered page background"
+assert 'body::before' in theme and "background:url('/archive-phoenix-background-v1.png') center center / contain no-repeat;" in theme, "Use the approved clear phoenix as a large centered page background"
+phoenix = (Path(__file__).resolve().parents[1] / "archive-phoenix-background-v1.png").read_bytes()
+assert phoenix[:8] == b"\x89PNG\r\n\x1a\n" and phoenix[25] == 6, "The background must be an RGBA PNG"
+assert min(int.from_bytes(phoenix[16:20], "big"), int.from_bytes(phoenix[20:24], "big")) >= 1200, "Keep the high-resolution artwork"
 assert '.hero-mark { display:none; }' in theme, "Do not show the old side logo"
 assert 'background-size:100% auto;' in theme, "The phone background must span the screen"
 for other in ("index.html", "fsc/index.html", "just-for-today/index.html"):

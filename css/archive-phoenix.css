@@ -23,7 +23,7 @@ body { background:var(--phoenix-charcoal); letter-spacing:0; isolation:isolate; 
 /* Keep the full phoenix centered behind the archive, including while scrolling. */
 body::before {
   content:""; position:fixed; inset:9.5rem 0 0; max-height:720px; z-index:-1; pointer-events:none;
-  background:url('/archive-phoenix-512.png?v=20260803-archive5') center center / contain no-repeat;
+  background:url('/archive-phoenix-background-v1.png') center center / contain no-repeat;
 }
 a { color:var(--phoenix-red-dark); }
 a:hover { color:#721919; }
