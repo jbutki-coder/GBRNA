@@ -86,7 +86,11 @@ function babyBlueStatusLabel(status) {
 }
 
 function babyBlueHelp(reading) {
+  if (reading.babyBlueNote) return reading.babyBlueNote;
   if (reading.babyBlueStatus === "matched") {
+    if (reading.babyBlueMatchType === "unnumbered-front-matter") {
+      return "Verified in the Baby Blue template's unnumbered front matter.";
+    }
     return reading.babyBluePrintedPageVerified
       ? "The printed book page was verified against the Baby Blue template."
       : "The quote has a Baby Blue source location; its printed book page is awaiting verification.";
