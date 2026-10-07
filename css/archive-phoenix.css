@@ -19,7 +19,12 @@
   --red:var(--phoenix-red);
   --shadow:0 10px 28px rgba(0,0,0,.18);
 }
-body { background:var(--phoenix-charcoal); letter-spacing:0; }
+body { background:var(--phoenix-charcoal); letter-spacing:0; isolation:isolate; }
+/* Keep the full phoenix centered behind the archive, including while scrolling. */
+body::before {
+  content:""; position:fixed; inset:9.5rem 0 0; max-height:720px; z-index:-1; pointer-events:none;
+  background:url('/archive-phoenix-512.png?v=20260803-archive5') center center / contain no-repeat;
+}
 a { color:var(--phoenix-red-dark); }
 a:hover { color:#721919; }
 a:focus-visible,button:focus-visible { outline:3px solid var(--phoenix-red); outline-offset:3px; }
@@ -38,15 +43,17 @@ body .gbrna-translation-label { color:#fff; letter-spacing:0; }
 body .gbrna-translation-status { color:#dedee3; }
 body .gbrna-translation-select { color:#252529; background:#fff; border-color:var(--phoenix-gold); }
 .archive-hero {
-  background:#29292f; border:1px solid #54545e;
-  border-top:4px solid var(--phoenix-gold); border-left:4px solid var(--phoenix-red);
-  border-radius:8px;
+  display:block; min-height:580px; background:rgba(32,32,36,.28);
+  border:0; border-radius:0; box-shadow:none; text-align:center;
 }
-.archive-hero::before { background:none; }
+.archive-hero::before { content:none; }
+.hero-copy { display:flex; flex-direction:column; align-items:center; min-height:500px; }
 .archive-kicker { color:var(--phoenix-gold); letter-spacing:0; }
-.archive-hero h1 { font-size:3.75rem; }
-.archive-hero .lede { color:#eeeef2; font-size:1.12rem; }
-.hero-mark img { filter:drop-shadow(0 5px 12px rgba(0,0,0,.2)); }
+.archive-hero h1 { font-size:3.75rem; text-shadow:0 2px 4px #000,0 0 16px #000; }
+.archive-hero .lede { color:#fff; font-size:1.12rem; text-shadow:0 1px 3px #000,0 0 8px #000; }
+.archive-kicker { text-shadow:0 1px 3px #000; }
+.hero-mark { display:none; }
+.stat-row { justify-content:center; margin-top:auto; padding-top:10rem; }
 .stat {
   color:#fff; background:#202024; border-color:#66666f;
   border-top:3px solid var(--phoenix-gold); border-radius:8px;
@@ -60,7 +67,7 @@ body .gbrna-translation-select { color:#252529; background:#fff; border-color:va
 .tool-button:hover,.tool-button:focus-visible { background:var(--phoenix-red-dark); }
 .tool-button.secondary { color:#202024; background:var(--phoenix-gold); border-color:#9a6c00; }
 .tool-button.secondary:hover { background:#ffd260; }
-.search-results,.archive-content { background:#f5f5f6; border-color:var(--line); border-radius:8px; }
+.search-results,.archive-content { background:rgba(245,245,246,.9); border-color:var(--line); border-radius:8px; }
 .result-card { background:#fff; border-color:var(--line); border-left-color:var(--phoenix-red); }
 .archive-content h2 { background:var(--phoenix-red); border-left-color:var(--phoenix-gold); font-size:1.65rem; }
 .archive-content h3 { color:#252529; background:#fff0bb; border-color:#d4bc73; border-bottom-color:var(--phoenix-gold); font-size:1.3rem; }
@@ -86,19 +93,21 @@ body#top #tradition-six-hosting-notice h2 { color:#252529; font-size:1.35rem; }
 .back-top { background:var(--phoenix-red-dark); border-color:var(--phoenix-gold); }
 @media (max-width:860px) {
   .archive-hero h1 { font-size:3rem; }
-  .hero-mark { top:1.35rem; right:1.35rem; bottom:auto; opacity:1; }
-  .hero-mark img { width:88px; }
-  .archive-kicker { display:flex; align-items:center; min-height:88px; max-width:calc(100% - 108px); margin-bottom:.8rem; }
 }
 @media (max-width:620px) {
+  body::before { inset:3rem 0 0; background-size:100% auto; }
+  .archive-hero { min-height:560px; }
+  .hero-copy { min-height:520px; }
   .archive-hero h1 { font-size:2.25rem; }
-  .hero-mark { top:1.2rem; right:1.2rem; }
-  .hero-mark img { width:72px; }
-  .archive-kicker { min-height:72px; max-width:calc(100% - 92px); }
+  .stat-row { width:100%; padding-top:10rem; }
   .archive-content h2 { font-size:1.35rem; }
   .archive-content h3 { font-size:1.15rem; }
 }
 @media print {
+  body::before { display:none; }
+  .archive-hero,.hero-copy { min-height:0; }
+  .archive-hero h1,.archive-hero .lede,.archive-kicker { text-shadow:none; }
+  .stat-row { margin-top:1rem; padding-top:0; }
   body,.archive-hero,.archive-content,.archive-content h2,.archive-content h3,
   .archive-content ul.collection-grid a,.archive-footer,.stat { color:#000; background:#fff; }
   .archive-hero h1,.archive-hero .lede,.archive-kicker,.stat strong,.stat span { color:#000; }

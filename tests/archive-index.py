@@ -112,11 +112,13 @@ assert "Number(archive.dataset.fileCount)" in page
 assert ".load-all[hidden] { display:none; }" in page, "Show all must stay hidden for short result lists"
 assert "--archive-tools-offset" in page and "ResizeObserver(syncAnchorOffset)" in page, "Collection headings must clear the responsive sticky toolbar"
 assert "archive-phoenix.ico" in page.split("</head>")[0]
-assert '/css/archive-phoenix.css?v=20261007-1' in page.split("</head>")[0]
+assert '/css/archive-phoenix.css?v=20261007-3' in page.split("</head>")[0]
 theme = (Path(__file__).resolve().parents[1] / "css/archive-phoenix.css").read_text(encoding="utf-8")
 assert "--phoenix-red:#b52525" in theme and "--phoenix-gold:#ffc234" in theme
 assert "body { background:var(--phoenix-charcoal)" in theme
-assert '.hero-mark img { width:72px; }' in theme and 'bottom:auto; opacity:1;' in theme
+assert 'body::before' in theme and "background:url('/archive-phoenix-512.png?v=20260803-archive5') center center / contain no-repeat;" in theme, "The phoenix must be a large centered page background"
+assert '.hero-mark { display:none; }' in theme, "Do not show the old side logo"
+assert 'background-size:100% auto;' in theme, "The phone background must span the screen"
 for other in ("index.html", "fsc/index.html", "just-for-today/index.html"):
     assert "archive-phoenix.css" not in (Path(__file__).resolve().parents[1] / other).read_text(encoding="utf-8"), "Phoenix colors must stay scoped to the archive"
 print(f"Archive verified: {index.expected:,} unique file links; {drive_count:,} Drive links; collection anchors, exclusions, and file filters checked.")
