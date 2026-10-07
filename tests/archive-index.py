@@ -1,4 +1,5 @@
 import re
+from collections import Counter
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
@@ -65,6 +66,10 @@ assert len({attrs["href"] for attrs, _, _ in index.files}) == index.expected, "F
 assert all(anchor in index.ids for anchor in index.references), "Collection links must work"
 assert {"origins-early-history", "literature-recovery-material", "newsletters-publications", "world-service-structure", "legal-trust-incorporation"} <= index.ids, "Existing major collection bookmarks must keep working"
 assert any(context[0].startswith("NA Adjacent") for _, _, context in index.files), "NA Adjacent must be separate"
+for heading, count in Counter(context[0] for _, _, context in index.files).items():
+    assert int(re.search(r"\(([\d,]+)\)$", heading)[1].replace(",", "")) == count, "Collection counts must reflect the remaining files"
+for context, count in Counter(tuple(context) for _, _, context in index.files).items():
+    assert int(re.search(r"\(([\d,]+)\)$", context[-1])[1].replace(",", "")) == count, "Group counts must reflect the remaining files"
 drive_count = 0
 for attrs, title, context in index.files:
     url = urlsplit(attrs["href"])
@@ -75,6 +80,7 @@ for attrs, title, context in index.files:
     # Check content labels, not the shared WordPress hosting path.
     labels = " ".join([title, *context, unquote(url.path.split("/")[-1])]).replace("_", " ")
     assert not re.search(r"blue[\s_-]*water|\bBWASC\b|\bBWANA\b|\bBWACNA\b|\bBWA\b", labels, re.I), title
+    assert not re.search(r"\bARNA\b|Autonomous Region of Narcotics Anonymous|Bo-Sewell-Declaration-7\.30\.20|Seeking[ _-]Traditional[ _-]Solutions[ _-]July[ _-]2026", labels, re.I), "ARNA material must stay out of the archive"
     compact = re.sub(r"[^a-z0-9]", "", labels.lower())
     assert not any(term in compact for term in ("ascgrievance", "personalnotes", "wordpressarchive", "naarchivepublisher", "chatgptgbrna")), title
     assert attrs["data-file-ext"] not in {"zip", "ini"}, "Unreviewed packages and system files must stay out"
