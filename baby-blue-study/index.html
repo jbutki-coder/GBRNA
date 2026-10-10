@@ -14,8 +14,8 @@
   <meta name="theme-color" content="#101c22">
   <link rel="stylesheet" href="/css/global-tabs.css?v=20260724-nav1">
   <link rel="stylesheet" href="/css/translation.css?v=20261003-1">
-  <link rel="stylesheet" href="/baby-blue-study/style.css?v=20261010-1">
-  <script src="/baby-blue-study/study.js?v=20261010-1" defer></script>
+  <link rel="stylesheet" href="/baby-blue-study/style.css?v=20261010-text3">
+  <script src="/baby-blue-study/study.js?v=20261010-text3" defer></script>
   <script src="/js/translation.js?v=20261003-1" defer></script>
 </head>
 <body>
@@ -45,10 +45,11 @@
         <label>Search Baby Blue<input id="bookSearch" type="search" autocomplete="off"></label>
       </div>
       <div class="reader-tools">
-        <button id="previousPage" title="Previous book page" aria-label="Previous book page" disabled>&larr;</button>
-        <button id="nextPage" title="Next book page" aria-label="Next book page" disabled>&rarr;</button>
+        <button id="previousPage" title="Previous section" aria-label="Previous section" disabled>&larr;</button>
+        <button id="nextPage" title="Next section" aria-label="Next section" disabled>&rarr;</button>
         <label class="zoom-control">Zoom <input id="zoom" type="range" min="100" max="200" step="25" value="100"><output id="zoomValue">100%</output></label>
         <label class="toggle"><input id="darkMode" type="checkbox">Dark screen</label>
+        <label class="toggle"><input id="showLines" type="checkbox">Book lines</label>
         <button id="copyLink">Copy Link</button>
       </div>
     </section>
@@ -57,7 +58,7 @@
     <section id="book-reader" aria-label="Baby Blue book page" aria-busy="true">
       <p id="loadStatus" role="status">Loading Baby Blue...</p>
       <header class="page-heading"><div><h2 id="pageTitle"></h2><p id="sectionTitle"></p></div><a id="returnJft" hidden>Back to Just For Today</a></header>
-      <div class="page-viewport"><figure id="pageFigure"><img id="pageImage" alt=""><div id="passageHighlights" aria-hidden="true"></div></figure></div>
+      <div id="bookText" class="book-text"></div>
       <nav id="relatedReadings" aria-label="Related Just For Today readings"></nav>
     </section>
   </main>

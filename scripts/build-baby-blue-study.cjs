@@ -79,3 +79,4 @@ const traditions = [44,45,46,47,48,49,50,51,52,53,54,54].map((page,i) => ({id:`t
 const data = {title:'Baby Blue Basic Text', pages: pages.map(({lines,sourceHeight,...page}) => page), sections:[...chapters,...steps,...traditions], sources};
 fs.writeFileSync(path.join(root, 'baby-blue-study/book.json'), JSON.stringify(data));
 console.log(`Baby Blue study built: ${pages.length} printed pages, ${data.sections.length} sections, ${Object.keys(sources).length} JFT source links.`);
+console.log('Finish the text reader build with: python scripts/extract-baby-blue-study.py');
