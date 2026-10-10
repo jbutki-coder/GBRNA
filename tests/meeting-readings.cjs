@@ -18,4 +18,8 @@ for(const [,target]of html.matchAll(/<a href="#([^"]+)"><span>/g))assert.ok(arti
 assert.ok(html.includes('aria-label="Next reading"'));
 assert.ok(!html.includes("['ArrowDown','PageDown']"));
 assert.ok(!html.includes('God as we understood Her'));
+const numbered=[...html.matchAll(/<p class="numbered">([\s\S]*?)<\/p>/g)];
+for(const [,content]of numbered)assert.match(content,/^<b>\d+\.<\/b><span>[\s\S]*<\/span>$/,'Numbered readings must have exactly two grid cells: number and text');
+assert.ok(get('how-it-works').includes('<b>12.</b><span><span class="reading-anchor" id="page-4"></span>Having'));
+assert.ok(get('twelve-traditions').includes('<b>12.</b><span><span class="reading-anchor" id="page-7"></span>Anonymity'));
 console.log('PASS: nine complete readings, all Steps/Traditions, joined continuations, five complete JFT statements, legacy anchors and reading navigation.');
