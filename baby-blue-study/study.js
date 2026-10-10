@@ -19,16 +19,46 @@ function babyBlueSectionForPage(book, pageId, activeId, source) {
 
 (async function () {
   const $ = id => document.getElementById(id);
+  const grey = document.body.dataset.book === 'grey';
+  const bookName = grey ? 'Grey Book' : 'Baby Blue';
   const escape = value => String(value || '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]);
   try {
-    const response = await fetch('/baby-blue-study/book.json?v=20261010-text2');
+    const response = await fetch(`${grey ? '/grey-book-study' : '/baby-blue-study'}/book.json?v=20261010-readers2`);
     if (!response.ok) throw new Error('Book unavailable');
     const book = await response.json();
     history.scrollRestoration = 'manual';
     let active;
     let group = 'chapters', pageId = '1';
-    const reading = new URLSearchParams(location.search).get('reading');
-    const source = book.sources[reading];
+    const params = new URLSearchParams(location.search);
+    const today = new Date();
+    const todayId = `${String(today.getMonth()+1).padStart(2,'0')}-${String(today.getDate()).padStart(2,'0')}`;
+    const reading = params.get('reading') || (params.has('source') ? null : todayId);
+    const source = book.sources[reading] || (grey && params.get('source') ? {page:params.get('page'), pageEnd:params.get('page'), quote:params.get('source'), citation:params.get('citation') || 'Grey Book', location:book.sections.find(s=>s.id === location.hash.slice(1))?.title || ''} : null);
+    if (grey && source && params.has('source')) {
+      source.quote=params.get('source');
+      if (params.get('page') && book.pages.some(p=>p.id===params.get('page')) && !source.citation.includes('Forward')) source.page=source.pageEnd=params.get('page');
+      if (params.get('citation') && !source.citation.includes('Forward')) source.citation=params.get('citation');
+    }
+    const readingDate = reading && /^\d{2}-\d{2}$/.test(reading) ? new Date(2000,Number(reading.slice(0,2))-1,Number(reading.slice(3))).toLocaleDateString('en-US',{month:'long',day:'numeric'}) : '';
+    const readingLabel = `${readingDate ? `${readingDate} \u00b7 ` : ''}${grey ? 'Grey Book Reflection' : 'Just For Today'}`;
+    function highlighted(text, eligible) {
+      if (!eligible || !source) return escape(text);
+      const words = [...text.matchAll(/[a-z0-9]+(?:['\u2018\u2019][a-z0-9]+)*/gi)];
+      const quote = babyBlueNormalize(source.quote).split(' ');
+      const ranges = [];
+      for (let i=0;i<words.length;i++) {
+        let longest=0;
+        for (let j=0;j<quote.length;j++) {
+          let n=0;
+          while (i+n<words.length && j+n<quote.length && babyBlueNormalize(words[i+n][0])===quote[j+n]) n++;
+          longest=Math.max(longest,n);
+        }
+        if (longest>=4) { ranges.push([words[i].index,words[i+longest-1].index+words[i+longest-1][0].length]); i+=longest-1; }
+      }
+      let result='',end=0;
+      for (const [start,stop] of ranges) { result+=escape(text.slice(end,start))+`<mark class="daily-excerpt" title="${escape(readingLabel)}">${escape(text.slice(start,stop))}</mark>`; end=stop; }
+      return result+escape(text.slice(end));
+    }
     const sourceSection = babyBlueSourceSection(book, source);
     const tabs = [...document.querySelectorAll('[data-group]')];
     const validPages = book.pages.filter(p => p.paragraphs.length);
@@ -53,33 +83,35 @@ function babyBlueSectionForPage(book, pageId, activeId, source) {
       }
     }
     function isSourceParagraph(paragraph, page) {
-      if (!source || active.id !== sourceSection?.id || ![source.page, source.pageEnd].includes(page.id)) return false;
-      const text = babyBlueNormalize(paragraph.text);
-      return source.quote.split(/\.{3}|\u2026/).map(babyBlueNormalize).filter(t => t.split(' ').length >= 4).some(fragment => text.includes(fragment));
+      if (!source || ![source.page, source.pageEnd].some(id=>id===page.id || paragraph.sourcePages?.includes(id))) return false;
+      return highlighted(paragraph.text,true).includes('<mark');
     }
     function render(section, targetPage, scroll = false) {
       active = section; group = section.group; sections();
       const pages = book.pages.filter(p => active.pages.includes(p.id));
       $('pageTitle').textContent = section.title;
       $('sectionTitle').textContent = pages.length === 1 ? pages[0].label : `${pages[0].label} to ${pages.at(-1).label}`;
-      const onSource = source && active.id === sourceSection?.id;
+      const onSource = source && active.pages.includes(source.page);
       $('sourcePassage').hidden = !onSource;
-      $('sourcePassage').innerHTML = onSource ? `<h2>Baby Blue Source</h2><p><strong>${escape(source.citation)}</strong> &middot; ${escape(source.location)}</p><blockquote>${escape(source.quote)}</blockquote>` : '';
-      $('returnJft').hidden = !source; $('returnJft').href = `/just-for-today/#${reading}`;
+      $('sourcePassage').innerHTML = onSource ? `<h2>${escape(readingLabel)} Source</h2><p><strong>${escape(source.citation)}</strong> &middot; ${escape(source.location)}</p><blockquote>${escape(source.quote)}</blockquote>` : '';
+      $('returnJft').hidden = !source; $('returnJft').href = grey ? `/#${reading || 'today'}` : `/just-for-today/#${reading}`;
+      if (grey) $('returnJft').textContent='Back to Grey Book Reflection';
       $('bookText').innerHTML = pages.map(page => `<section class="book-text-page" id="page-${page.id}" data-book-page="${page.id}" aria-label="${escape(page.label)}"><h3>${escape(page.label)}</h3>${partsFor(page).map((p,i) => {
         const first = p.lines[0].number, last = p.lines.at(-1).number, tag = p.kind === 'heading' ? 'h4' : 'p';
-        return `<div class="book-paragraph ${isSourceParagraph(p,page) ? 'is-source-target' : ''}" id="passage-${page.id}-${i}"><span class="book-line-reference">${first === last ? `Line ${first}` : `Lines ${first}-${last}`}</span><${tag} class="paragraph-text ${p.kind === 'quote' ? 'book-quote' : ''}">${escape(p.text)}</${tag}><div class="printed-lines" aria-hidden="true">${p.lines.map(line => `<div class="printed-line"><span>${line.number}</span><span>${escape(line.text)}</span></div>`).join('')}</div></div>`;
+        const matched=onSource && isSourceParagraph(p,page), eligible=matched;
+        return `<div class="book-paragraph ${matched ? 'is-source-target' : ''}" id="passage-${page.id}-${i}">${matched ? `<span class="excerpt-date">${escape(readingLabel)}</span>` : ''}<span class="book-line-reference">${escape(p.lineLabel || (first === last ? `Line ${first}` : `Lines ${first}-${last}`))}</span><${tag} class="paragraph-text ${p.kind === 'quote' ? 'book-quote' : ''}">${highlighted(p.text,eligible)}</${tag}><div class="printed-lines" aria-hidden="true">${p.lines.map(line => `<div class="printed-line"><span>${escape(line.number)}</span><span>${highlighted(line.text,eligible)}</span></div>`).join('')}</div></div>`;
       }).join('')}</section>`).join('');
       const peers = book.sections.filter(s => s.group === group), position = peers.indexOf(active);
       $('previousPage').disabled = position === 0; $('nextPage').disabled = position === peers.length-1;
       $('loadStatus').textContent = ''; $('book-reader').setAttribute('aria-busy', 'false');
       const related = Object.entries(book.sources).filter(([,s]) => babyBlueSourceSection(book,s)?.id === active.id || (active.group === 'chapters' && active.pages.includes(s.page)));
-      $('relatedReadings').innerHTML = related.length ? `<h3>Just For Today readings</h3>${related.map(([id]) => `<a href="/just-for-today/#${id}">${new Date(2000,Number(id.slice(0,2))-1,Number(id.slice(3))).toLocaleDateString('en-US',{month:'long',day:'numeric'})}</a>`).join(' ')}` : '';
+      $('relatedReadings').innerHTML = related.length ? `<h3>${grey ? 'Grey Book Reflections' : 'Just For Today readings'}</h3>${related.map(([id]) => `<a href="${grey ? '/' : '/just-for-today/'}#${id}">${new Date(2000,Number(id.slice(0,2))-1,Number(id.slice(3))).toLocaleDateString('en-US',{month:'long',day:'numeric'})}</a>`).join(' ')}` : '';
       focusPage(targetPage || active.pages[0], scroll);
       syncLineMode();
     }
     function saveLocation(section, targetPage) {
       const url = new URL(location.href);
+      if (reading) url.searchParams.set('reading',reading);
       url.hash = section.id;
       url.searchParams.set('bookPage',targetPage);
       history.pushState(null,'',url.href);
@@ -138,6 +170,7 @@ function babyBlueSectionForPage(book, pageId, activeId, source) {
     $('darkMode').onchange = event => document.body.classList.toggle('dark-screen',event.target.checked);
     $('copyLink').onclick = async () => {
       const url = new URL(location.href); url.hash = active.id; url.searchParams.set('bookPage',pageId);
+      if (reading) url.searchParams.set('reading',reading);
       try { await navigator.clipboard.writeText(url.href); $('copyLink').textContent = 'Link Copied'; } catch { $('copyLink').textContent = 'Copy the address above'; }
       setTimeout(() => { $('copyLink').textContent = 'Copy Link'; },2500);
     };
@@ -148,7 +181,7 @@ function babyBlueSectionForPage(book, pageId, activeId, source) {
       $('searchResults').querySelectorAll('[data-page]').forEach(button => { button.onclick = () => { const id = button.dataset.page; navigate(babyBlueSectionForPage(book,id,null,null),id); }; });
     };
   } catch (error) {
-    $('loadStatus').textContent = 'The Baby Blue could not load. Please refresh or use Open PDF.';
+    $('loadStatus').textContent = `The ${bookName} could not load. Please refresh or use Open PDF.`;
     $('book-reader').setAttribute('aria-busy','false');
   }
 })();

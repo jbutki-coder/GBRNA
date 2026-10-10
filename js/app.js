@@ -1796,6 +1796,7 @@ function renderGreyBookStudyLink(
 
 
   const anchorText =
+    reading.quote ||
     versionMap?.anchorText ||
     anchorParagraph?.text ||
     reading.quote ||
@@ -1831,6 +1832,8 @@ function renderGreyBookStudyLink(
 
   const params =
     new URLSearchParams();
+
+  if (baseReading.id) params.set('reading', baseReading.id);
 
 
   if (anchorText) {

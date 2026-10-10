@@ -1,107 +1,67 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Grey Book Study | GBRNA</title>
-  <meta name="description" content="A GBRNA Grey Book study mirror with full chapter reading, individual Step tabs, and related historical NA literature sections." />
+  <meta name="description" content="Study the Grey Book by chapter, Step, Tradition, and physical book page. Read the source passage from your daily Grey Book Reflection.">
   <link rel="canonical" href="https://gbrna.onrender.com/grey-book-study/">
   <link rel="icon" href="/icons/favicon.ico?v=20261006-af" sizes="any">
   <link rel="shortcut icon" href="/icons/favicon.ico?v=20261006-af" type="image/x-icon">
   <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png?v=20261006-af">
   <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png?v=20261006-af">
   <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png?v=20261006-af">
-  <link rel="manifest" href="/site.webmanifest">
-  <meta name="theme-color" content="#111111">
-  <link rel="stylesheet" href="/css/style.css" />
+  <meta name="theme-color" content="#101c22">
   <link rel="stylesheet" href="/css/global-tabs.css?v=20260724-nav1">
-  <link rel="stylesheet" href="/grey-book-study/style.css?v=20261003-gb-study-lines1">
   <link rel="stylesheet" href="/css/translation.css?v=20261003-1">
+  <link rel="stylesheet" href="/baby-blue-study/style.css?v=20261010-readers2">
+  <script src="/baby-blue-study/study.js?v=20261010-readers2" defer></script>
+  <script src="/js/translation.js?v=20261003-1" defer></script>
 </head>
-<body>
-  <div class="global-tabs-bar">
-    <nav class="global-tabs" aria-label="Complete site navigation">
-      <a href="/#today">GBR - Home</a>
-      <a href="/#archive">Reflection Archive</a>
-      <a href="/#search">Search</a>
-      <a href="/#library">Library</a>
-      <a href="/grey-book-study/" aria-current="page">Grey Book Study</a>
-    <a href="/baby-blue-study/">Baby Blue Study</a>
-      <a href="/just-for-today/">Just For Today</a>
-      <a href="/archive-master-index.html">NA History Archive</a>
-      <a href="/lwb-draft/">Meeting Readings / Seventh Tradition</a>
-      <a href="/#download">Download</a>
-      <a href="/#audio">Audio</a>
-      <a href="/meetings/">Meetings</a>
-      <a href="/asis-ips/">A.S.I.S. Literature</a>
-      <a href="/fsc/">FSC</a>
-      <a href="https://www.nahelp.org" target="_blank" rel="noopener noreferrer">A.S.I.S. Website</a>
-      <a href="/#about">About</a>
-    </nav>
-  </div>
-
-  <header class="site-header grey-study-header">
-    <div class="wrap header-inner grey-study-header-inner">
-      <div class="brand-lockup">
-        <img class="brand-mark" src="/images/grey-area-historical-literature-study.png" alt="" aria-hidden="true">
-        <div>
-          <p class="eyebrow">GBRNA Historical Literature Study</p>
-          <h1>Grey Book Study</h1>
-          <p class="subhead">A Grey Form chapter, Step, and Tradition mirror built for reading, study, and screen sharing.</p>
-        </div>
-      </div>
-      <a class="grey-study-reader-link" href="/pdf-reader.html?file=/literature/grey-book-memphis-1981-review-form.pdf">Open PDF</a>
-    </div>
+<body data-book="grey">
+  <a class="skip-link" href="#book-reader">Skip to book</a>
+  <div class="global-tabs-bar"><nav class="global-tabs" aria-label="Complete site navigation">
+    <a href="/">GBR - Home</a><a href="/grey-book-study/" aria-current="page">Grey Book Study</a>
+    <a href="/baby-blue-study/">Baby Blue Study</a><a href="/just-for-today/">Just For Today</a>
+    <a href="/archive-master-index.html">NA History Archive</a><a href="/lwb-draft/">Meeting Readings / Seventh Tradition</a>
+    <a href="/#audio">Audio</a><a href="/meetings/">Meetings</a><a href="/asis-ips/">A.S.I.S. Literature</a><a href="/fsc/">FSC</a>
+    <a href="https://www.nahelp.org" target="_blank" rel="noopener noreferrer">A.S.I.S. Website</a>
+  </nav></div>
+  <header class="study-header wrap">
+    <div><p class="eyebrow">GBRNA Historical Literature Study</p><h1>Grey Book Study</h1>
+      <p>The Grey Book, with its original book pages, chapters, Steps, and Traditions.</p></div>
+    <a class="text-link" href="/pdf-reader.html?url=%2Fliterature%2Fgrey-book-memphis-1981-review-form.pdf&amp;title=Grey%20Book&amp;return=%2Fgrey-book-study%2F">Open PDF</a>
   </header>
-
-  <main class="wrap main-content grey-study-shell">
-    <section class="grey-study-hero" aria-labelledby="greyStudyTitle">
-      <div>
-        <p class="eyebrow">Modeled after the GPRNA screenshare index</p>
-        <h2 id="greyStudyTitle">Full Grey Book chapters, Steps, and meeting readings in one study section.</h2>
-        <p>
-          Use the internal tabs below to move through chapters, individual Steps, individual Traditions,
-          and daily reading links. These sub-tabs belong only to this Grey Book section.
-        </p>
+  <main class="wrap">
+    <section class="study-tools" aria-label="Grey Book study navigation">
+      <div class="groups" role="tablist" aria-label="Book sections">
+        <button role="tab" id="chapters-tab" aria-selected="true" aria-controls="sections-panel" data-group="chapters">Chapters</button>
+        <button role="tab" id="steps-tab" aria-selected="false" aria-controls="sections-panel" data-group="steps" tabindex="-1">Steps</button>
+        <button role="tab" id="traditions-tab" aria-selected="false" aria-controls="sections-panel" data-group="traditions" tabindex="-1">Traditions</button>
       </div>
-      <div class="grey-study-stats" aria-label="Grey Book study contents">
-        <span><strong data-section-count>--</strong> Sections</span>
-        <span><strong data-paragraph-count>--</strong> Book lines</span>
-        <span><strong>12</strong> Steps</span>
-        <span><strong>12</strong> Traditions</span>
+      <div id="sections-panel" role="tabpanel" aria-labelledby="chapters-tab" class="section-tools">
+        <label>Section<select id="sectionSelect" disabled></select></label>
+        <label>Book page<select id="pageSelect" disabled></select></label>
+        <label>Search Grey Book<input id="bookSearch" type="search" autocomplete="off"></label>
+      </div>
+      <div class="reader-tools">
+        <button id="previousPage" title="Previous section" aria-label="Previous section" disabled>&larr;</button>
+        <button id="nextPage" title="Next section" aria-label="Next section" disabled>&rarr;</button>
+        <label class="zoom-control">Zoom <input id="zoom" type="range" min="100" max="200" step="25" value="100"><output id="zoomValue">100%</output></label>
+        <label class="toggle"><input id="darkMode" type="checkbox">Dark screen</label>
+        <label class="toggle"><input id="showLines" type="checkbox">Book lines</label>
+        <button id="copyLink">Copy Link</button>
       </div>
     </section>
-
-    <section class="grey-study-controls" aria-label="Grey Book internal navigation">
-      <div class="grey-study-tools">
-        <label class="grey-study-search">
-          <span>Search Grey Book</span>
-          <input type="search" data-search placeholder="Search this study section">
-        </label>
-        <button type="button" data-theme-toggle aria-pressed="false">Dark screen mode</button>
-      </div>
-
-      <div class="grey-study-screen-tabs" data-screen-tabs aria-label="Grey Book screen-share navigation"></div>
-    </section>
-
-    <section class="grey-study-reader panel" aria-live="polite">
-      <div class="grey-study-section-head">
-        <div>
-          <p class="eyebrow" data-active-group>Chapter</p>
-          <h2 data-active-title>Loading Grey Book...</h2>
-          <p data-active-meta></p>
-        </div>
-        <div class="grey-study-section-actions">
-          <button type="button" data-prev-section>Previous</button>
-          <button type="button" data-next-section>Next</button>
-        </div>
-      </div>
-      <div class="grey-study-loading" data-loading>Loading the Grey Book study text.</div>
-      <div class="grey-study-content" data-content></div>
+    <section id="searchResults" aria-label="Book search results" hidden></section>
+    <section id="sourcePassage" class="source-passage" aria-label="Grey Book source passage" hidden></section>
+    <section id="book-reader" aria-label="Grey Book book page" aria-busy="true">
+      <p id="loadStatus" role="status">Loading Grey Book...</p>
+      <header class="page-heading"><div><h2 id="pageTitle"></h2><p id="sectionTitle"></p></div><a id="returnJft" hidden>Back to Grey Book Reflection</a></header>
+      <div id="bookText" class="book-text"></div>
+      <nav id="relatedReadings" aria-label="Related Just For Today readings"></nav>
     </section>
   </main>
-
-  <script src="/grey-book-study/study.js?v=20261003-gb-study-lines1" defer></script>
-  <script src="/js/translation.js?v=20261003-1" defer></script>
+  <footer class="wrap"><p><em>In Loving Service</em></p></footer>
 </body>
 </html>
