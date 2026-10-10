@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Baby Blue Study | GBRNA</title>
+  <meta name="description" content="Study the Baby Blue Basic Text by chapter, Step, Tradition, and physical book page. Open the related source passage from Just For Today.">
+  <link rel="canonical" href="https://gbrna.onrender.com/baby-blue-study/">
+  <link rel="icon" href="/icons/favicon.ico?v=20261006-af" sizes="any">
+  <link rel="shortcut icon" href="/icons/favicon.ico?v=20261006-af" type="image/x-icon">
+  <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png?v=20261006-af">
+  <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png?v=20261006-af">
+  <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png?v=20261006-af">
+  <meta name="theme-color" content="#101c22">
+  <link rel="stylesheet" href="/css/global-tabs.css?v=20260724-nav1">
+  <link rel="stylesheet" href="/css/translation.css?v=20261003-1">
+  <link rel="stylesheet" href="/baby-blue-study/style.css?v=20261010-1">
+  <script src="/baby-blue-study/study.js?v=20261010-1" defer></script>
+  <script src="/js/translation.js?v=20261003-1" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#book-reader">Skip to book</a>
+  <div class="global-tabs-bar"><nav class="global-tabs" aria-label="Complete site navigation">
+    <a href="/">GBR - Home</a><a href="/grey-book-study/">Grey Book Study</a>
+    <a href="/baby-blue-study/" aria-current="page">Baby Blue Study</a><a href="/just-for-today/">Just For Today</a>
+    <a href="/archive-master-index.html">NA History Archive</a><a href="/lwb-draft/">Meeting Readings / Seventh Tradition</a>
+    <a href="/#audio">Audio</a><a href="/meetings/">Meetings</a><a href="/asis-ips/">A.S.I.S. Literature</a><a href="/fsc/">FSC</a>
+    <a href="https://www.nahelp.org" target="_blank" rel="noopener noreferrer">A.S.I.S. Website</a>
+  </nav></div>
+  <header class="study-header wrap">
+    <div><p class="eyebrow">GBRNA Historical Literature Study</p><h1>Baby Blue Study</h1>
+      <p>The Baby Blue Basic Text, with its original book pages, chapters, Steps, and Traditions.</p></div>
+    <a class="text-link" href="/pdf-reader.html?url=%2Fliterature%2Fbaby-blue-third-edition-revised-screen-reading.pdf&amp;title=Baby%20Blue%20Basic%20Text&amp;return=%2Fbaby-blue-study%2F">Open PDF</a>
+  </header>
+  <main class="wrap">
+    <section class="study-tools" aria-label="Baby Blue study navigation">
+      <div class="groups" role="tablist" aria-label="Book sections">
+        <button role="tab" id="chapters-tab" aria-selected="true" aria-controls="sections-panel" data-group="chapters">Chapters</button>
+        <button role="tab" id="steps-tab" aria-selected="false" aria-controls="sections-panel" data-group="steps" tabindex="-1">Steps</button>
+        <button role="tab" id="traditions-tab" aria-selected="false" aria-controls="sections-panel" data-group="traditions" tabindex="-1">Traditions</button>
+      </div>
+      <div id="sections-panel" role="tabpanel" aria-labelledby="chapters-tab" class="section-tools">
+        <label>Section<select id="sectionSelect" disabled></select></label>
+        <label>Book page<select id="pageSelect" disabled></select></label>
+        <label>Search Baby Blue<input id="bookSearch" type="search" autocomplete="off"></label>
+      </div>
+      <div class="reader-tools">
+        <button id="previousPage" title="Previous book page" aria-label="Previous book page" disabled>&larr;</button>
+        <button id="nextPage" title="Next book page" aria-label="Next book page" disabled>&rarr;</button>
+        <label class="zoom-control">Zoom <input id="zoom" type="range" min="100" max="200" step="25" value="100"><output id="zoomValue">100%</output></label>
+        <label class="toggle"><input id="darkMode" type="checkbox">Dark screen</label>
+        <button id="copyLink">Copy Link</button>
+      </div>
+    </section>
+    <section id="searchResults" aria-label="Book search results" hidden></section>
+    <section id="sourcePassage" class="source-passage" aria-label="Baby Blue source passage" hidden></section>
+    <section id="book-reader" aria-label="Baby Blue book page" aria-busy="true">
+      <p id="loadStatus" role="status">Loading Baby Blue...</p>
+      <header class="page-heading"><div><h2 id="pageTitle"></h2><p id="sectionTitle"></p></div><a id="returnJft" hidden>Back to Just For Today</a></header>
+      <div class="page-viewport"><figure id="pageFigure"><img id="pageImage" alt=""><div id="passageHighlights" aria-hidden="true"></div></figure></div>
+      <nav id="relatedReadings" aria-label="Related Just For Today readings"></nav>
+    </section>
+  </main>
+  <footer class="wrap"><p><em>In Loving Service</em></p></footer>
+</body>
+</html>

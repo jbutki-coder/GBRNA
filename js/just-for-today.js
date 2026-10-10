@@ -116,6 +116,7 @@ function renderBabyBlueReference(reading) {
         <strong>${escapeHtml(citation)}</strong>
         ${locationLine}
         ${wording}
+        ${reading.babyBlueStatus === "matched" && reading.babyBluePrintedPageVerified ? `<p><a href="/baby-blue-study/?reading=${encodeURIComponent(reading.id)}#page-${reading.babyBluePage === null ? 'gratitude' : encodeURIComponent(reading.babyBluePage)}">Baby Blue Source</a></p>` : ""}
         ${note ? `<p>${escapeHtml(note)}</p>` : ""}
       </div>
       <div class="jft-reference-box">
