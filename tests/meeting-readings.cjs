@@ -1,0 +1,21 @@
+const assert=require('node:assert/strict');
+const fs=require('node:fs');
+const html=fs.readFileSync('lwb-draft/index.html','utf8');
+const articles=[...html.matchAll(/<article class="book-page" id="([^"]+)">([\s\S]*?)<\/article>/g)];
+const readings=articles.slice(0,9);
+assert.deepEqual(readings.map(a=>a[1]),['who-is-an-addict','what-is-na','why-are-we-here','how-it-works','what-can-i-do','twelve-traditions','recovery-and-relapse','we-do-recover','just-for-today']);
+const get=id=>readings.find(a=>a[1]===id)[2];
+assert.equal((get('how-it-works').match(/class="numbered"/g)||[]).length,12);
+assert.equal((get('twelve-traditions').match(/class="numbered"/g)||[]).length,11); // Tradition Eight retains its original plain paragraph.
+assert.ok(get('twelve-traditions').includes('8. Narcotics Anonymous should remain forever nonprofessional'));
+assert.ok(get('what-is-na').includes('your <span class="reading-anchor" id="page-2"></span>problem and how we can help'));
+assert.ok(get('why-are-we-here').includes('first-hand <span class="reading-anchor" id="page-3"></span>experience'));
+assert.ok(get('recovery-and-relapse').includes('do not use <span class="reading-anchor" id="page-9"></span>what we have'));
+assert.ok(get('we-do-recover').includes('recognition, <span class="reading-anchor" id="page-11"></span>belief and faith'));
+assert.equal((get('just-for-today').match(/class="jft"/g)||[]).length,5);
+for(let i=1;i<=12;i++)assert.equal((html.match(new RegExp(`id="page-${i}"`,'g'))||[]).length,1);
+for(const [,target]of html.matchAll(/<a href="#([^"]+)"><span>/g))assert.ok(articles.some(a=>a[1]===target));
+assert.ok(html.includes('aria-label="Next reading"'));
+assert.ok(!html.includes("['ArrowDown','PageDown']"));
+assert.ok(!html.includes('God as we understood Her'));
+console.log('PASS: nine complete readings, all Steps/Traditions, joined continuations, five complete JFT statements, legacy anchors and reading navigation.');
