@@ -36,12 +36,14 @@ for(const [url,expected] of [
   ['https://example.org/baby-blue-study/?reading=10-03','/translation-readings/baby/10-03.html'],
   ['https://example.org/grey-book-study/?reading=10-03#step-eight','/translation-readings/grey/section-step-eight.html'],
   ['https://example.org/lwb-draft/','/lwb-draft/'],
+  ['https://gbrna-onrender-com.translate.goog/just-for-today/?_x_tr_sl=en&_x_tr_tl=es#10-10','/translation-readings/jft/10-10.html'],
 ]) {
   const sandbox={URL,URLSearchParams,Intl,Date,Set,Map,WeakMap,WeakSet,document:{documentElement:{lang:'en',dir:''},readyState:'loading',addEventListener(){},getElementById(){return null;}},window:{location:{href:url}}};
   vm.runInNewContext(script,sandbox);
   const translated=new URL(sandbox.urlForTest('es'));
   assert.equal(translated.searchParams.get('tl'),'es');
   assert.equal(new URL(translated.searchParams.get('u')).pathname,expected);
+  assert.ok(!new URL(translated.searchParams.get('u')).hostname.endsWith('.translate.goog'),'Do not nest translated proxy URLs');
 }
 assert.ok(!renderReader({book:'gbr',reading:'10-10',section:'<script>'}).includes('<script>'));
 console.log(`Translation readings verified: ${files} pages, ${links} local reading links, all dated source passages and translator routes.`);

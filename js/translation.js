@@ -123,6 +123,14 @@
     url.searchParams.set("sl", "auto");
     url.searchParams.set("tl", normalizeLanguage(language));
     const page = new URL(window.location.href);
+    if (page.hostname.endsWith('.translate.goog')) {
+      const canonical = document.querySelector?.('link[rel="canonical"]')?.href;
+      const original = new URL(canonical || 'https://gbrna.onrender.com/');
+      if (!original.hostname.endsWith('.translate.goog')) page.host = original.host;
+      else page.host = 'gbrna.onrender.com';
+      page.protocol = 'https:';
+      for (const key of [...page.searchParams.keys()]) if (key.startsWith('_x_tr_')) page.searchParams.delete(key);
+    }
     const books = {"/":"gbr", "/index.html":"gbr", "/just-for-today/":"jft", "/just-for-today/index.html":"jft", "/baby-blue-study/":"baby", "/baby-blue-study/index.html":"baby", "/grey-book-study/":"grey", "/grey-book-study/index.html":"grey", "/jft.html":"tonight"};
     const book = books[page.pathname.endsWith('/') || page.pathname.includes('.') ? page.pathname : `${page.pathname}/`];
     if (book) {
@@ -493,6 +501,15 @@
   }
 
   async function initialize() {
+    const current = new URL(window.location.href);
+    if (current.hostname.endsWith('.translate.goog')) {
+      const translated = googleTranslateUrl(current.searchParams.get('_x_tr_tl') || 'en');
+      const destination = new URL(new URL(translated).searchParams.get('u'));
+      if (destination.pathname.startsWith('/translation-readings/') && !current.pathname.startsWith('/translation-readings/')) {
+        window.location.href = translated;
+        return;
+      }
+    }
     createTranslationBar();
     startObservers();
 
