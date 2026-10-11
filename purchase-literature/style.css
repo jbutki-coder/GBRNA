@@ -26,6 +26,14 @@ address{font-style:normal;padding:18px 0;font-size:20px;line-height:1.5}
 .book-drive{background:#1c2225}
 .availability{color:#dce4e6;border-left:4px solid #74bccf;padding-left:16px}
 .table-wrap{margin-top:24px}
+.payment-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;margin:20px 0}
+.payment-option{display:flex;align-items:center;gap:20px;padding:20px 0;border-top:1px solid #59646a;min-width:0}
+.payment-option>div{flex:1;min-width:0;overflow-wrap:anywhere}
+.payment-option h4{font-size:20px;margin:0 0 8px}
+.payment-option p{font-size:15px}
+.payment-option img{display:block;width:180px;height:180px;max-width:none;background:#fff}
+@media(max-width:1000px){.payment-options{grid-template-columns:1fr}}
+@media(max-width:420px){.payment-option{flex-direction:column;align-items:flex-start}}
 table{border-collapse:collapse;width:100%;table-layout:fixed;font:16px/1.5 Georgia,serif}
 caption{text-align:left;font-size:22px;font-weight:bold;margin-bottom:12px}
 th,td{text-align:left;vertical-align:top;border-bottom:1px solid #59646a;padding:13px 12px;overflow-wrap:anywhere}

@@ -18,6 +18,8 @@ const drive=html.split('id="na-book-drive"')[1];
 assert.ok(drive.includes('href="https://cash.app/$NABOOKDRIVEJFT"'));
 assert.ok(drive.includes('<span translate="no">recovery0812@yahoo.com</span>'));
 assert.ok(drive.includes('NA Book Drive only'));
+for(const file of ['cash-app-qr.png','paypal-email-qr.png']) assert.ok(drive.includes(`/purchase-literature/images/${file}`));
+assert.ok(drive.includes('This code is not a payment link.'));
 assert.ok(!html.split('id="na-book-drive"')[0].includes('recovery0812@yahoo.com'));
 assert.ok(!html.includes('545fcadf'),'Do not publish the personal payment receipt');
 for(const [,src] of html.matchAll(/<img[^>]*src="([^"]+)"/g)) assert.ok(fs.existsSync(path.join(root,src)),src);
