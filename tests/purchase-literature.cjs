@@ -11,6 +11,12 @@ for(const url of ['https://nabookies.org/','https://www.facebook.com/nabookdrive
 assert.match(html,/translation\.js\?v=20261010-readings/);
 assert.match(html,/icons\/favicon\.ico/);
 assert.ok(!/<form\b/.test(html),'Orders and payments belong to the suppliers');
+const drive=html.split('id="na-book-drive"')[1];
+assert.ok(drive.includes('href="https://cash.app/$NABOOKDRIVEJFT"'));
+assert.ok(drive.includes('<span translate="no">recovery0812@yahoo.com</span>'));
+assert.ok(drive.includes('NA Book Drive only'));
+assert.ok(!html.split('id="na-book-drive"')[0].includes('recovery0812@yahoo.com'));
+assert.ok(!html.includes('545fcadf'),'Do not publish the personal payment receipt');
 for(const [,src] of html.matchAll(/<img[^>]*src="([^"]+)"/g)) assert.ok(fs.existsSync(path.join(root,src)),src);
 const pages=['index.html','jft.html','just-for-today/index.html','baby-blue-study/index.html','grey-book-study/index.html','lwb-draft/index.html','archive-master-index.html','asis-ips/index.html','pdf-reader.html','rni-history/index.html','meetings/index.html','fsc/index.html','purchase-literature/index.html'];
 for(const file of pages) {
