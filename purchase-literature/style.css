@@ -1,0 +1,40 @@
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:#242728;color:#f7f7f5;font:17px/1.65 Georgia,"Times New Roman",serif;letter-spacing:0}
+.wrap{width:min(1120px,calc(100% - 40px));margin:auto}
+a{color:#a6deeb;text-underline-offset:3px}
+a:focus-visible,summary:focus-visible{outline:3px solid #edc568;outline-offset:4px}
+.skip-link{position:absolute;left:16px;top:-100px;z-index:100;background:#fff;color:#111;padding:10px}
+.skip-link:focus{top:10px}
+.page-heading{padding:30px 0 24px;border-bottom:1px solid #626465;background:#171b1d}
+h1{font-size:36px;line-height:1.2;margin:0 0 8px;letter-spacing:0}
+h2{font-size:28px;line-height:1.25;margin:0 0 12px;letter-spacing:0}
+h3{font-size:22px;line-height:1.3;margin:0 0 12px;letter-spacing:0}
+p{margin:12px 0;max-width:80ch}
+.page-heading nav{display:flex;flex-wrap:wrap;gap:24px;margin-top:16px}
+.supplier{padding:36px 0;border-bottom:1px solid #626465;scroll-margin-top:16px}
+.supplier-heading{display:grid;grid-template-columns:300px minmax(0,1fr);gap:32px;align-items:center;margin-bottom:28px}
+.supplier-heading img{display:block;width:100%;height:auto;object-fit:contain;background:#fff}
+.supplier-heading .drive-logo{width:180px;aspect-ratio:1;margin:auto;background:transparent}
+.supplier-link{font-weight:bold;display:inline-block;padding:8px 0}
+.case-price{display:flex;flex-wrap:wrap;align-items:baseline;gap:12px 24px;padding:18px 0;border-top:2px solid #d1ae58;border-bottom:1px solid #626465}
+.case-price strong{font:700 30px/1.2 Georgia,serif}
+.case-price strong:last-child{margin-left:auto;color:#ffe399}
+.order-details{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:30px}
+address{font-style:normal;padding:18px 0;font-size:20px;line-height:1.5}
+.important{border-left:4px solid #bc425b;padding-left:16px}
+.book-drive{background:#1c2225}
+.availability{color:#dce4e6;border-left:4px solid #74bccf;padding-left:16px}
+.table-wrap{margin-top:24px}
+table{border-collapse:collapse;width:100%;table-layout:fixed;font:16px/1.5 Georgia,serif}
+caption{text-align:left;font-size:22px;font-weight:bold;margin-bottom:12px}
+th,td{text-align:left;vertical-align:top;border-bottom:1px solid #59646a;padding:13px 12px;overflow-wrap:anywhere}
+thead th{font:700 14px/1.4 Arial,sans-serif;color:#f2dc99;background:#12191d}
+th:first-child{width:32%}th:nth-child(2){width:23%}th:nth-child(3){width:16%}th:nth-child(4){width:29%}
+tbody tr:nth-child(even){background:#283236}
+.outreach{display:grid;grid-template-columns:minmax(0,1fr) 290px;gap:36px;align-items:start;margin-top:40px}
+figure{margin:0}figure img{display:block;width:100%;height:auto}figcaption{font:14px/1.5 Arial,sans-serif;color:#c8d8dc;margin-top:8px}
+footer{padding:28px 0;background:#14191c;font-size:15px}
+@media(max-width:720px){.wrap{width:calc(100% - 32px)}h1{font-size:30px}h2{font-size:25px}.supplier-heading,.order-details,.outreach{grid-template-columns:1fr;gap:24px}.supplier-heading img{width:min(300px,100%)}.supplier-heading .drive-logo{margin:0;width:150px}.case-price strong:last-child{margin-left:0}.case-price span{flex-basis:100%;order:2}table{font-size:14px}th,td{padding:10px 6px}thead th{font-size:12px}.outreach figure{max-width:340px}.supplier{padding:28px 0}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media print{.global-tabs-bar,.gbrna-translation-bar,.skip-link{display:none}body,.page-heading,.book-drive,footer{background:#fff;color:#111}a{color:#111}.supplier-heading img{max-width:180px}thead th{background:#eee;color:#111}tbody tr:nth-child(even){background:#f6f6f6}.case-price strong:last-child,.availability{color:#111}tr{break-inside:avoid}.outreach{grid-template-columns:1fr}figure{max-width:200px}}
