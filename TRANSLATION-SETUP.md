@@ -1,5 +1,32 @@
 # GBRNA Automatic Website Translation
 
+## Free website translation
+
+Without a Cloud API key (including static hosting), the language menu uses
+Google's website translator. Daily GBR, JFT, Just For Tonight, and both study
+readers open translation-ready HTML under `/translation-readings/`. Their text,
+physical book citations, dated source highlights, and reading navigation are
+included in the initial response; no JSON fetch or JavaScript is needed to read.
+Meeting Readings already includes its complete text in HTML.
+
+These are machine translations, not approved translated literature. PDFs and
+audio remain in their original language. No paid service is enabled by this
+fallback. Returning to the original site preserves the full interactive reader.
+
+After changing daily reading data or either study's `book.json`, rebuild and
+check the static reading pages before publishing:
+
+```sh
+node scripts/build-translation-readings.cjs
+node tests/translation-readings.cjs
+```
+
+The optional server endpoint `/reading-view` uses the same renderer on Node
+hosting, but the free language-menu fallback uses the checked-in static pages
+so it also works on Render Static Sites.
+
+## Optional In-Place Translation
+
 The site now detects each visitor's preferred browser language, translates visible page content automatically, remembers a manual language choice, and supports right-to-left languages. Content loaded later by the daily reading, meeting list, Grey Book study, and history tools is also translated when it appears.
 
 The translation control is installed on every HTML page through:

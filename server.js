@@ -5,6 +5,7 @@ const path = require("path");
 const { Readable } = require("stream");
 const { pipeline } = require("stream/promises");
 const express = require("express");
+const { renderReader } = require("./translation-reader.cjs");
 
 const app = express();
 const port = Number(process.env.PORT || 10000);
@@ -458,6 +459,11 @@ app.use(
     fallthrough: false
   })
 );
+
+app.get("/reading-view", (request, response) => {
+  response.setHeader("Cache-Control", "no-store");
+  response.type("html").send(renderReader(request.query));
+});
 
 app.use(express.static(rootDirectory, {
   extensions: ["html"],

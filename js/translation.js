@@ -122,7 +122,28 @@
     const url = new URL("https://translate.google.com/translate");
     url.searchParams.set("sl", "auto");
     url.searchParams.set("tl", normalizeLanguage(language));
-    url.searchParams.set("u", window.location.href);
+    const page = new URL(window.location.href);
+    const books = {"/":"gbr", "/index.html":"gbr", "/just-for-today/":"jft", "/just-for-today/index.html":"jft", "/baby-blue-study/":"baby", "/baby-blue-study/index.html":"baby", "/grey-book-study/":"grey", "/grey-book-study/index.html":"grey", "/jft.html":"tonight"};
+    const book = books[page.pathname.endsWith('/') || page.pathname.includes('.') ? page.pathname : `${page.pathname}/`];
+    if (book) {
+      let hash = ''; try { hash = decodeURIComponent(page.hash.slice(1)); } catch {}
+      const params = new URLSearchParams(page.search);
+      params.set('book', book);
+      if (/^\d{2}-\d{2}(?:-\d+)?$/.test(hash)) params.set('reading', hash);
+      else if (hash && hash !== 'book-reader' && hash !== 'today') {
+        const selectedSection = document.getElementById('sectionSelect')?.value;
+        params.set('section', selectedSection || (hash.startsWith('page-') ? '' : hash));
+      }
+      const selectedPage = document.getElementById('pageSelect')?.value;
+      if (selectedPage) params.set('bookPage', selectedPage);
+      const now = new Date();
+      const date = params.get('reading') || `${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}`;
+      const sourcePassage = document.getElementById('sourcePassage');
+      const section = sourcePassage && !sourcePassage.hidden ? '' : params.get('section');
+      page.pathname = `/translation-readings/${book}/${section && /^[a-z]+(?:-[a-z0-9]+)*$/.test(section) ? `section-${section}` : date}.html`;
+      page.search = ''; page.hash = selectedPage ? `page-${selectedPage}` : '';
+    }
+    url.searchParams.set("u", page.href);
     return url.toString();
   }
 
