@@ -16,6 +16,7 @@ assert.ok(note.includes('No Excuse for Loneliness'));
 assert.ok(note.includes('Gina H.'));
 assert.equal(reading.source, 'No page reference given');
 assert.ok(note.includes('gives no page reference'));
+assert.ok(note.includes('current JFT pairs with the Sixth Edition Basic Text, not the Fifth Edition'));
 assert.ok(!note.includes('262'));
 assert.ok(note.includes(reading.historyAudioUrl));
 assert.equal(context.renderHistoryNote(readings.find(r=>r.id==='10-15')),'');
