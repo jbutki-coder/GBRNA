@@ -22,7 +22,9 @@ for (const [day, room] of supplied) assert.equal(meetings.filter(m => m.day === 
 for (const day of ['Sunday','Monday','Wednesday','Thursday']) assert.equal(meetings.filter(m => m.day === day && digits(m.zoomId) === '8405663129' && m.start.startsWith('12:')).length, 1, `Sweden ${day}`);
 assert.equal(meetings.filter(m => digits(m.zoomId) === '87545112054').length, 7);
 assert.equal(meetings.find(m => m.id === 'meeting-017').start, '20:30', 'Do not adopt contradictory Grey Area times');
-assert.equal(meetings.find(m => m.id === 'meeting-041').timezoneUnknown, true);
+assert.equal(meetings.find(m => m.id === 'meeting-041').timezoneIana, 'America/New_York');
+assert.ok(!meetings.find(m => m.id === 'meeting-041').timezoneUnknown);
+assert.equal(meetings.find(m => m.id === 'meeting-047').start, '12:00');
 assert.equal(meetings.find(m => m.id === 'meeting-071').start, '20:00');
 for (const m of meetings) {
   assert.ok(/^\d{2}:\d{2}$/.test(m.start));
@@ -30,3 +32,16 @@ for (const m of meetings) {
   if (m.qr) assert.ok(fs.existsSync(path.join(root, m.qr)), m.qr);
 }
 console.log(`PASS: ${meetings.length} meeting slots, supplied recurring meetings represented without duplication, inactive groups removed, QR assets present.`);
+const vm = require('node:vm');
+const source = fs.readFileSync(path.join(root, 'js/meetings.js'), 'utf8').replace('function initializeMeetingSchedules()', 'globalThis.testMeetingTime = localizeMeeting; function initializeMeetingSchedules()');
+const context = {Intl, Date, document: {readyState: 'loading', addEventListener() {}}};
+vm.runInNewContext(source, context);
+for (const anchor of ['2026-10-11T12:00:00Z', '2026-01-11T12:00:00Z']) {
+  const meeting = meetings.find(m => m.id === 'meeting-041');
+  const central = context.testMeetingTime(meeting, 'America/New_York', 'America/Chicago', new Date(anchor));
+  assert.equal(central.localStart, '7:00 PM');
+  assert.equal(central.localDay, 'Wednesday');
+  const tokyo = context.testMeetingTime(meeting, 'America/New_York', 'Asia/Tokyo', new Date(anchor));
+  assert.equal(tokyo.localDay, 'Thursday', 'Day must change across midnight');
+}
+console.log('PASS: actual meeting renderer converts Eastern to Central in summer/winter and rolls dates forward for Japan.');

@@ -657,11 +657,11 @@
       "zoomId": "841 0121 2448",
       "passcode": "",
       "joinUrl": "https://zoom.us/j/84101212448",
-      "details": "Wednesday at 8 PM; the supplied announcement does not specify a time zone. Confirm with the group before attending.",
+      "details": "Wednesday at 8 PM Eastern. Gray Book study.",
       "id": "meeting-041",
       "locationFilter": "Online",
       "qr": "meetings/qr/meeting-041-20261014.png",
-      "timezoneUnknown": true
+      "timezoneIana": "America/New_York"
     },
     {
       "day": "Wednesday",
@@ -745,8 +745,8 @@
     },
     {
       "day": "Thursday",
-      "start": "12:30",
-      "end": "13:45",
+      "start": "12:00",
+      "end": "",
       "name": "Literature - Sweden",
       "city": "Hudiksvall",
       "region": "",
@@ -758,7 +758,7 @@
       "zoomId": "840 566 3129",
       "passcode": "pV6RtV",
       "joinUrl": "https://us02web.zoom.us/j/8405663129?pwd=b3AyYmdGc2I3VktFZWM3YzQ4TEpmZz09",
-      "details": "",
+      "details": "Recurring Thursday meeting: 11 AM Central / noon Eastern.",
       "id": "meeting-047",
       "locationFilter": "Hudiksvall",
       "qr": "meetings/qr/meeting-047.png"
