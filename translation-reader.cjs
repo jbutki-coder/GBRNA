@@ -82,6 +82,7 @@ function renderReader(query, staticMode = false) {
         if (source) body+=`<aside><h3>${kind==='grey'?'Grey Book':'Baby Blue Basic Text'}</h3><p>${escape(source.citation)} &middot; ${escape(source.location)}</p><blockquote>${escape(source.quote)}</blockquote>${anchor(kind,'Read the source in context',{reading:reading.id,bookPage:source.page})}</aside>`;
         else body+='<p>This reading has no source passage in this book.</p>';
       }
+      if (reading.historyTitle && reading.historyParagraphs?.length) body+=`<aside><h3>${escape(reading.historyTitle)}</h3>${reading.historyParagraphs.map(p=>`<p>${escape(p)}</p>`).join('')}${reading.historyAudioUrl?`<p><a href="${escape(reading.historyAudioUrl)}" target="_blank" rel="noopener noreferrer">Listen: No Excuse for Loneliness - Remembering Gina H. (Paradise Strong Bookstudy)</a></p>`:''}</aside>`;
       body+='</article>';
     }
     const index=entries.findIndex(r=>r.id===id);

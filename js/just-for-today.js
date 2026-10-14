@@ -128,6 +128,15 @@ function renderBabyBlueReference(reading) {
   `;
 }
 
+function renderHistoryNote(reading) {
+  if (!reading.historyTitle || !reading.historyParagraphs?.length) return "";
+  return `<aside class="jft-reference-box jft-history" aria-label="${escapeHtml(reading.date)} NA history">
+    <h4>${escapeHtml(reading.historyTitle)}</h4>
+    ${reading.historyParagraphs.map(text => `<p>${escapeHtml(text)}</p>`).join("")}
+    ${reading.historyAudioUrl ? `<p><a href="${escapeHtml(reading.historyAudioUrl)}" target="_blank" rel="noopener noreferrer">Listen: No Excuse for Loneliness - Remembering Gina H. (Paradise Strong Bookstudy)</a></p>` : ""}
+  </aside>`;
+}
+
 function renderReadingCard(reading) {
   const sourceLine = reading.source || "Reference not listed";
   const babyBlueActionLabel = reading.babyBluePdfPage ? "Open Baby Blue Passage" : "Open Baby Blue PDF";
@@ -151,6 +160,7 @@ function renderReadingCard(reading) {
           <p class="moment-text">${escapeHtml(reading.moment.replace(/^Just for today:\s*/i, ""))}</p>
         </div>` : ""}
 
+      ${renderHistoryNote(reading)}
       <div class="jft-card-actions">
         <a href="${escapeHtml(readerUrl(JFT_PDF_URL, "Just For Today", reading.pdfPage))}">Open JFT PDF Page</a>
         <a class="secondary" href="${escapeHtml(readerUrl(BABY_BLUE_PDF_URL, "Baby Blue Basic Text", reading.babyBluePdfPage))}">${escapeHtml(babyBlueActionLabel)}</a>
