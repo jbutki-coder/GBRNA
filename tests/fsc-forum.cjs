@@ -1,0 +1,13 @@
+'use strict';
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const path = require('node:path');
+const root = path.resolve(__dirname, '..');
+const html = fs.readFileSync(path.join(root, 'fsc/index.html'), 'utf8');
+assert.ok(html.indexOf('id="fsc-meetings"') < html.indexOf('id="fsc-forum"'));
+assert.ok(html.indexOf('id="fsc-forum"') < html.indexOf('id="registration"'));
+assert.equal((html.match(/id="fsc-forum"/g) || []).length, 1);
+for (const text of ['Friday, October 16, 2026', 'Saturday, October 17, 2026', '6:00 PM - 8:00 PM Eastern', '11:00 AM - 1:00 PM Eastern', '830 5716 1516', '261514']) assert.ok(html.includes(text), text);
+assert.ok(html.includes('href="https://zoom.us/j/83057161516"'));
+assert.ok(fs.existsSync(path.join(root, 'fsc/images/asis-fsc-forum-october-2026.png')));
+console.log('PASS: FSC forum follows meetings, dates/times and Zoom details match supplied flyer, local flyer exists.');
