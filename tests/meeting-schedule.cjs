@@ -15,7 +15,7 @@ const supplied = [
   ['Saturday','87598010534'], ['Saturday','87602409459'], ['Sunday','5722138252'],
   ['Monday','83057161516'], ['Monday','87268437641'], ['Monday','8100799669'],
   ['Monday','82838028167'], ['Tuesday','96051510187'], ['Wednesday','96051510187'],
-  ['Thursday','96051510187'], ['Wednesday','7304464618'], ['Wednesday','84101212448'],
+  ['Thursday','96051510187'], ['Wednesday','7304464618'], ['Wednesday','88598098270'],
   ['Friday','2885018021'], ['Friday','6041850385']
 ];
 for (const [day, room] of supplied) assert.equal(meetings.filter(m => m.day === day && digits(m.zoomId) === room).length, 1, `${day} ${room}`);
@@ -24,6 +24,12 @@ assert.equal(meetings.filter(m => digits(m.zoomId) === '87545112054').length, 7)
 assert.equal(meetings.find(m => m.id === 'meeting-017').start, '20:30', 'Do not adopt contradictory Grey Area times');
 assert.equal(meetings.find(m => m.id === 'meeting-041').timezoneIana, 'America/New_York');
 assert.ok(!meetings.find(m => m.id === 'meeting-041').timezoneUnknown);
+const againstAllOdds = meetings.find(m => m.id === 'meeting-041');
+assert.equal(againstAllOdds.start, '19:59');
+assert.equal(againstAllOdds.end, '21:29');
+assert.equal(againstAllOdds.passcode, '051412');
+assert.equal(againstAllOdds.joinUrl, 'https://us06web.zoom.us/j/88598098270?pwd=KQEXRo6IgAi4tP2WM2ePT5JEdcIYNg.1');
+assert.equal(againstAllOdds.qr, 'meetings/qr/meeting-041.png');
 assert.equal(meetings.find(m => m.id === 'meeting-047').start, '12:00');
 assert.equal(meetings.find(m => m.id === 'meeting-071').start, '20:00');
 for (const m of meetings) {
@@ -39,7 +45,7 @@ vm.runInNewContext(source, context);
 for (const anchor of ['2026-10-11T12:00:00Z', '2026-01-11T12:00:00Z']) {
   const meeting = meetings.find(m => m.id === 'meeting-041');
   const central = context.testMeetingTime(meeting, 'America/New_York', 'America/Chicago', new Date(anchor));
-  assert.equal(central.localStart, '7:00 PM');
+  assert.equal(central.localStart, '6:59 PM');
   assert.equal(central.localDay, 'Wednesday');
   const tokyo = context.testMeetingTime(meeting, 'America/New_York', 'Asia/Tokyo', new Date(anchor));
   assert.equal(tokyo.localDay, 'Thursday', 'Day must change across midnight');
