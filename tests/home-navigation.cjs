@@ -21,5 +21,5 @@ for (const page of pages) {
   }
   checked++;
 }
-assert.equal(checked, 14);
+assert.equal(checked, 16);
 console.log(`Home navigation verified on ${checked} pages; Just For Today and reading controls preserved.`);
