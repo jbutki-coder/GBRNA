@@ -1,6 +1,6 @@
 {
   "timezone": "Eastern Time (ET)",
-  "updated": "2026-10-14",
+  "updated": "2026-10-21",
   "meetings": [
     {
       "day": "Sunday",
@@ -270,16 +270,16 @@
       "city": "Port Huron",
       "region": "MI",
       "country": "US",
-      "venue": "Unity of Blue Water",
-      "address": "2912 25th Street, Port Huron, MI 48060",
-      "mode": "Hybrid",
+      "venue": "",
+      "address": "",
+      "mode": "Virtual",
       "format": "Historical Literature",
       "zoomId": "872 6843 7641",
       "passcode": "1953",
       "joinUrl": "https://us06web.zoom.us/j/87268437641?pwd=n573F6qbqxcD5dh0mtPaqvgvozvnbb.1",
-      "details": "Current Zoom information supplied directly from the Group invitation.",
+      "details": "Zoom-only meeting. No in-person meeting.",
       "id": "meeting-017",
-      "locationFilter": "Unity of Blue Water",
+      "locationFilter": "Online",
       "qr": "meetings/qr/meeting-017.png"
     },
     {
