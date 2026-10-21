@@ -8,8 +8,9 @@ const icons=home.match(/<link\b[^>]*(?:rel="icon"|rel="shortcut icon"|rel="apple
 const esc=value=>String(value).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;');
 const documents=require('../data/legal-documents.json').documents;
 const groups=[
-  ['arna','ARNA and NAWS','Filings in the matter of the Narcotics Anonymous Fellowship Intellectual Property Trust, Los Angeles Superior Court case 20STPB00821.','arna-petition'],
+  ['arna','ARNA and NAWS','Filings in the matter of the Narcotics Anonymous Fellowship Intellectual Property Trust, Los Angeles Superior Court case 20STPB00821, and related counsel correspondence.','arna-petition'],
   ['moorhead','World Service Office, Inc. v. David Moorhead','U.S. District Court for the Eastern District of Pennsylvania, civil action 90-7631. Filings, declarations, agreement, order document, and hearing transcripts.','moorhead-transcript'],
+  ['background','Correspondence and FIPT history','Related letters, fellowship discussions, and historical trust documents. These are separated from the court papers.',''],
 ];
 function row(doc){
   const reader='/pdf-reader.html?url='+encodeURIComponent(doc.pdf)+'&title='+encodeURIComponent(doc.title)+'&return='+encodeURIComponent('/legal/#'+doc.id);
@@ -21,8 +22,8 @@ const html=`<!doctype html>
 <title>Legal | GBRNA</title><link rel="canonical" href="https://gbrna.onrender.com/legal/">${icons}
 <link rel="stylesheet" href="/css/style.css?v=20260814-rni-exact-source3"><link rel="stylesheet" href="/css/global-tabs.css?v=20260724-nav1"><link rel="stylesheet" href="/css/media-pages.css?v=20261021-1"><link rel="stylesheet" href="/legal/style.css?v=20261021-1"><link rel="stylesheet" href="/css/translation.css?v=20261003-1">
 </head><body class="legal-page"><div class="global-tabs-bar">${nav}</div><main class="wrap media-main">
-<header class="legal-heading"><h1>Legal</h1><p>Court papers concerning NA literature, the Fellowship Intellectual Property Trust, and World Services.</p><nav aria-label="Legal collections"><a href="#arna">ARNA and NAWS</a><a href="#moorhead">Dave Moorhead and WSO</a></nav></header>
-<p class="legal-note">Filings present the parties' positions; they are not court findings. This historical collection is not legal advice or a complete court docket, and it does not establish the current status of any case.</p>
+<header class="legal-heading"><h1>Legal</h1><p>Court papers and historical records concerning NA literature, the Fellowship Intellectual Property Trust, and World Services.</p><nav aria-label="Legal collections"><a href="#arna">ARNA and NAWS</a><a href="#moorhead">Dave Moorhead and WSO</a><a href="#background">Correspondence and FIPT history</a></nav></header>
+<p class="legal-note">Filings present the parties' positions; they are not court findings. Letters and fellowship discussions reflect their authors' views. This historical collection is not legal advice or a complete court docket, and it does not establish the current status of any case.</p>
 <div class="media-controls"><label>Search documents<input id="legalSearch" type="search" placeholder="Title, name, date, or subject"></label><label>Collection<select id="legalGroup"><option value="">All collections</option>${groups.map(([id,title])=>`<option value="${id}">${title}</option>`).join('')}</select></label><label>Document type<select id="legalKind"><option value="">All types</option>${[...new Set(documents.map(d=>d.kind))].sort().map(kind=>`<option>${esc(kind)}</option>`).join('')}</select></label></div>
 <p id="legalResults" aria-live="polite">${documents.length} documents</p><p id="legalEmpty" hidden>No documents match your search.</p>
 ${sections}

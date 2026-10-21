@@ -37,6 +37,18 @@
       "sourceName": "Bo-Sewell-Declaration-7.30.20.pdf"
     },
     {
+      "id": "arnas-letter-re-naws-false-statements",
+      "group": "arna",
+      "kind": "Correspondence",
+      "title": "ARNA counsel letter to NAWS counsel",
+      "note": "February 24, 2023. Michael D. Adams to Jonathan H. Park regarding statements about the litigation. Correspondence, not a court ruling.",
+      "pdf": "/legal/documents/arnas-letter-re-naws-false-statements.pdf",
+      "pages": 2,
+      "bytes": 117528,
+      "sha256": "7cc846fd4683975d08912f3d57f54ac3d810e401c20a4a94d50f0474628a149a",
+      "sourceName": "ARNAs-Letter-re-NAWS-false-statements.pdf"
+    },
+    {
       "id": "1990-11-27-hollahan-declaration",
       "group": "moorhead",
       "kind": "Declaration",
@@ -167,6 +179,174 @@
       "bytes": 44054,
       "sha256": "c7ddc5074a7c50da80432c05c00bb00caf269c7a6d9153839e408242b83066d1",
       "sourceName": "1992-04-Dave-M-Motion-for-Preliminary-Injuction.pdf"
+    },
+    {
+      "id": "1990-01-18-update-on-lawsuit",
+      "group": "background",
+      "kind": "Correspondence",
+      "title": "WSO update on lawsuit and group registrations",
+      "note": "The source is labeled January 18, 1990. Its reproduced dates should be read as printed, alongside the separately dated case records.",
+      "pdf": "/legal/documents/1990-01-18-update-on-lawsuit.pdf",
+      "pages": 11,
+      "bytes": 11815929,
+      "sha256": "4da5414e0e0269f2fee4b6e576175f630ce01a046b523a19cbeee1ec7f57a003",
+      "sourceName": "1990-01-18-Update-on-Lawsuit.pdf"
+    },
+    {
+      "id": "1990-07-10-apology-letter-on-cease-and-desist",
+      "group": "background",
+      "kind": "Correspondence",
+      "title": "Apology letter concerning cease-and-desist correspondence",
+      "note": "Archived as July 10, 1990.",
+      "pdf": "/legal/documents/1990-07-10-apology-letter-on-cease-and-desist.pdf",
+      "pages": 2,
+      "bytes": 1088723,
+      "sha256": "a0ab27850900fab853ac7b6a1c6831bd2bcf7333a179561760de105901052602",
+      "sourceName": "1990-07-10-Apology-Letter-on-Cease-and-Desist.pdf"
+    },
+    {
+      "id": "1990-07-10-cease-and-desist-response-form",
+      "group": "background",
+      "kind": "Correspondence",
+      "title": "Cease-and-desist response form",
+      "note": "Archived as July 10, 1990.",
+      "pdf": "/legal/documents/1990-07-10-cease-and-desist-response-form.pdf",
+      "pages": 1,
+      "bytes": 543859,
+      "sha256": "399b3c91873ce956c716a2997dd2e41093fb1ef5024336dfc6dfaa86ee37dad2",
+      "sourceName": "1990-07-10-Cease-and-Desist-Response-Form.pdf"
+    },
+    {
+      "id": "1990-07-13-daves-lawyer-response-letter",
+      "group": "background",
+      "kind": "Correspondence",
+      "title": "Response letter from David Moorhead's lawyer",
+      "note": "Archived as July 13, 1990. Historical correspondence, not a court ruling.",
+      "pdf": "/legal/documents/1990-07-13-daves-lawyer-response-letter.pdf",
+      "pages": 2,
+      "bytes": 2779078,
+      "sha256": "227b6bb4dc102278391ae59416d6f2a926fc27ca5ca496e7ef09612dd13dd83f",
+      "sourceName": "1990-07-13-Daves-Lawyer-Response-Letter.pdf"
+    },
+    {
+      "id": "1990-10-grateful-dave-terms",
+      "group": "background",
+      "kind": "Historical record",
+      "title": "Grateful Dave terms",
+      "note": "October 1990 archival document.",
+      "pdf": "/legal/documents/1990-10-grateful-dave-terms.pdf",
+      "pages": 5,
+      "bytes": 1720092,
+      "sha256": "331b1b9fa9ab8c434dd2aa0b5bae0103fe3bf55a0edc0e50e53e07d4b1d2dd1f",
+      "sourceName": "1990-10-Grateful-Dave-Terms.pdf"
+    },
+    {
+      "id": "1990-12-03-wsc-administration-vote-to-file-suit",
+      "group": "background",
+      "kind": "Historical record",
+      "title": "WSC Administration vote to file suit",
+      "note": "Archived as December 3, 1990.",
+      "pdf": "/legal/documents/1990-12-03-wsc-administration-vote-to-file-suit.pdf",
+      "pages": 3,
+      "bytes": 1891490,
+      "sha256": "e516a9d176c8dfff5f74f6f016c080e69622a546d23d7579929f7289349b880f",
+      "sourceName": "1990-12-03-WSC-Administration-Vote-to-File-Suit.pdf"
+    },
+    {
+      "id": "1991-04-pre-fipt-discussion-transcript",
+      "group": "background",
+      "kind": "Discussion transcript",
+      "title": "Pre-FIPT discussion transcript",
+      "note": "Archived as April 1991. Fellowship discussion, not a court-hearing transcript.",
+      "pdf": "/legal/documents/1991-04-pre-fipt-discussion-transcript.pdf",
+      "pages": 70,
+      "bytes": 593724,
+      "sha256": "dc4293c83c6f0d1a80087614e08d3e5a395dd1cce5e2258c5ce29a47cdd4b372",
+      "sourceName": "1991-04-Pre-FIPT-Discussion-Transcript.pdf"
+    },
+    {
+      "id": "1991-phone-transcript-trust-doc",
+      "group": "background",
+      "kind": "Discussion transcript",
+      "title": "Trust-document telephone discussion transcript",
+      "note": "Archived as 1991. Fellowship discussion, not a court-hearing transcript.",
+      "pdf": "/legal/documents/1991-phone-transcript-trust-doc.pdf",
+      "pages": 100,
+      "bytes": 514770,
+      "sha256": "81833f59d5ef8b08b451b4e2e74b5bc00e300e8dfd648e10859682ce4eede077",
+      "sourceName": "1991-Phone-Transcript-Trust-Doc.pdf"
+    },
+    {
+      "id": "1992-07-22-moorhead-passing-letter-wso-vs-dave",
+      "group": "background",
+      "kind": "Correspondence",
+      "title": "Letter following David Moorhead's death",
+      "note": "July 22, 1992. Counsel correspondence concerning the litigation.",
+      "pdf": "/legal/documents/1992-07-22-moorhead-passing-letter-wso-vs-dave.pdf",
+      "pages": 3,
+      "bytes": 56675,
+      "sha256": "d09fffb379c7b9b94ecf978a80a7aa1a92b55eb7029766871e2202a5fd043510",
+      "sourceName": "1992-07-22-moorhead-passing-letter-wso-vs-dave.pdf"
+    },
+    {
+      "id": "1992-07-miller-letter-to-wso-on-fipt",
+      "group": "background",
+      "kind": "Correspondence",
+      "title": "Jim Miller letter and input to WSO on the FIPT",
+      "note": "July 1992. Includes fellowship input and explanatory notes.",
+      "pdf": "/legal/documents/1992-07-miller-letter-to-wso-on-fipt.pdf",
+      "pages": 8,
+      "bytes": 86661,
+      "sha256": "9a0e56d7ebf8dda55530d80e69c67be8dd63fcd416044092207d342ffe45dfbe",
+      "sourceName": "1992-07-Miller-Letter-to-WSO-on-FIPT.pdf"
+    },
+    {
+      "id": "1992-bot-fipt-bulletin",
+      "group": "background",
+      "kind": "Trust background",
+      "title": "1992 questions and answers on the proposed FIPT",
+      "note": "World Service Board of Trustees background material.",
+      "pdf": "/legal/documents/1992-bot-fipt-bulletin.pdf",
+      "pages": 10,
+      "bytes": 455602,
+      "sha256": "17b135cfbe3a25e1bcbb27718fad585b3721b532eb0da39c93740810483732c8",
+      "sourceName": "1992-bot-fipt-bulletin.pdf"
+    },
+    {
+      "id": "1993-04-27-fipt-bulletin-1",
+      "group": "background",
+      "kind": "Trust background",
+      "title": "FIPT Bulletin 1: internal use of NA intellectual property",
+      "note": "Historical policy approved April 27, 1993; not presented as current policy.",
+      "pdf": "/legal/documents/1993-04-27-fipt-bulletin-1.pdf",
+      "pages": 2,
+      "bytes": 7343170,
+      "sha256": "d3722f77e87f9f5b82997259a414c079caeca5f5d41f6e691662372a2dabccfb",
+      "sourceName": "1993-04-27-FIPT-Bulletin-1.pdf"
+    },
+    {
+      "id": "wso-bt-comparisondoc-as-ordered-by-court",
+      "group": "background",
+      "kind": "Historical record",
+      "title": "WSO Basic Text comparison document",
+      "note": "Archived as the comparison document ordered by the court.",
+      "pdf": "/legal/documents/wso-bt-comparisondoc-as-ordered-by-court.pdf",
+      "pages": 61,
+      "bytes": 5658710,
+      "sha256": "ce914c8a2ced3a6a64795de0f577288025de9c56e548122f39748dbfa40f6275",
+      "sourceName": "WSO_BT_ComparisonDoc_as_ordered_by_Court.pdf"
+    },
+    {
+      "id": "160424-fipt-question-at-open-forum",
+      "group": "background",
+      "kind": "Discussion transcript",
+      "title": "WSC 2016 open-forum question concerning the FIPT",
+      "note": "April 24, 2016. Fellowship discussion, not a court filing.",
+      "pdf": "/legal/documents/160424-fipt-question-at-open-forum.pdf",
+      "pages": 1,
+      "bytes": 52685,
+      "sha256": "80687b92999715fcc4de3078352df243c0ae05e91fd59e7f0d988c3249a2b473",
+      "sourceName": "160424-FIPT-question-at-Open-Forum.pdf"
     }
   ]
 }

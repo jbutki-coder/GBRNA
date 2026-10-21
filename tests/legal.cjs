@@ -7,11 +7,11 @@ const {execFileSync}=require('node:child_process');
 const root=path.resolve(__dirname,'..');
 const documents=require('../data/legal-documents.json').documents;
 const html=fs.readFileSync(path.join(root,'legal/index.html'),'utf8');
-assert.equal(documents.length,14);
-assert.equal(new Set(documents.map(d=>d.id)).size,14);
-assert.equal(new Set(documents.map(d=>d.sha256)).size,14);
-assert.deepEqual(['arna','moorhead'].map(group=>documents.filter(d=>d.group===group).length),[3,11]);
-assert.ok(documents.every(d=>!['Correspondence','Historical record','Discussion transcript','Trust background'].includes(d.kind)));
+assert.equal(documents.length,29);
+assert.equal(new Set(documents.map(d=>d.id)).size,29);
+assert.equal(new Set(documents.map(d=>d.sha256)).size,29);
+assert.deepEqual(['arna','moorhead','background'].map(group=>documents.filter(d=>d.group===group).length),[4,11,14]);
+assert.equal(documents.filter(d=>d.kind==='Correspondence').length,7);
 for(const doc of documents){
   const raw=fs.readFileSync(path.join(root,doc.pdf));
   assert.equal(raw.subarray(0,5).toString(),'%PDF-',doc.title);
@@ -31,4 +31,4 @@ for(const page of [...pages,'legal/index.html']){
   const nav=source.match(/<nav\b[^>]*>[\s\S]*?<\/nav>/)?.[0];
   assert.equal((nav?.match(/href="\/legal\/"/g)||[]).length,1,`${page}: one Legal tab`);
 }
-console.log('Legal: 14 local court PDFs, hashes, classifications, privacy exclusions, and site navigation verified.');
+console.log('Legal: 29 local PDFs, hashes, classifications, privacy exclusions, and site navigation verified.');
