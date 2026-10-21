@@ -1,0 +1,172 @@
+{
+  "documents": [
+    {
+      "id": "arna-petition",
+      "group": "arna",
+      "kind": "Filing",
+      "title": "ARNA petition with exhibits",
+      "note": "Filed January 28, 2020. Petition concerning instructions, trustee compensation, removal and replacement of trustee, and surcharge.",
+      "pdf": "/legal/documents/arna-petition.pdf",
+      "pages": 46,
+      "bytes": 20068037,
+      "sha256": "f45ad212b2066c417ba11b8e2b195400e45947c60bec5517c5fa3f9321912327",
+      "sourceName": "arna-petition.pdf"
+    },
+    {
+      "id": "naws-demurrer",
+      "group": "arna",
+      "kind": "Filing",
+      "title": "NAWS notice of demurrer and demurrer",
+      "note": "Includes memorandum of points and authorities and declaration of Jonathan H. Park. The cover lists a May 14, 2020 hearing.",
+      "pdf": "/legal/documents/naws-demurrer.pdf",
+      "pages": 18,
+      "bytes": 657709,
+      "sha256": "041620b3b2944d0c98717a67123ea497c5d9a01e4dda2f56a338bcfe77155498",
+      "sourceName": "naws-demurrer.pdf"
+    },
+    {
+      "id": "bo-sewell-declaration-7-30-20",
+      "group": "arna",
+      "kind": "Declaration",
+      "title": "Bo Sewell declaration in support of opposition to demurrer",
+      "note": "July 30, 2020. The original three-page scan is upside down; use the PDF reader rotation control.",
+      "pdf": "/legal/documents/bo-sewell-declaration-7-30-20.pdf",
+      "pages": 3,
+      "bytes": 2358696,
+      "sha256": "fdcbcb447f316b91c15a9738f30c56d4fcd90af0333e6a4ba0f986b34f033b8e",
+      "sourceName": "Bo-Sewell-Declaration-7.30.20.pdf"
+    },
+    {
+      "id": "1990-11-27-hollahan-declaration",
+      "group": "moorhead",
+      "kind": "Declaration",
+      "title": "Hollahan declaration",
+      "note": "November 27, 1990.",
+      "pdf": "/legal/documents/1990-11-27-hollahan-declaration.pdf",
+      "pages": 3,
+      "bytes": 467219,
+      "sha256": "102c7c9331d2e67ab0104760af1bcc62ea425dd23ca8fff283f78119fee02ca3",
+      "sourceName": "1990-11-27-Hollahan-Declaration.pdf"
+    },
+    {
+      "id": "1990-11-27-tooredman-declaration",
+      "group": "moorhead",
+      "kind": "Declaration",
+      "title": "Tooredman declaration",
+      "note": "November 27, 1990.",
+      "pdf": "/legal/documents/1990-11-27-tooredman-declaration.pdf",
+      "pages": 9,
+      "bytes": 1172427,
+      "sha256": "f366b6abf40f63d485d3765a04fe9324ecaaeff4de54081ae75c35ee0e5ff000",
+      "sourceName": "1990-11-27-Tooredman-Declaration.pdf"
+    },
+    {
+      "id": "1991-01-02-wso-vs-moorhead-complaint",
+      "group": "moorhead",
+      "kind": "Filing",
+      "title": "WSO filing: preliminary-injunction memorandum",
+      "note": "Archived under the filename COMPLAINT. The document begins with WSO's memorandum and arguments for a preliminary injunction.",
+      "pdf": "/legal/documents/1991-01-02-wso-vs-moorhead-complaint.pdf",
+      "pages": 14,
+      "bytes": 1778148,
+      "sha256": "10085a609d03af30c2717cce1945a3b10990a04dc0b6731cb7e7e332e6090e42",
+      "sourceName": "1991-01-02-WSO-vs-Moorhead-COMPLAINT.pdf"
+    },
+    {
+      "id": "1991-01-04-court-order",
+      "group": "moorhead",
+      "kind": "Order",
+      "title": "January 1991 order document",
+      "note": "The supplied copy begins with an order labeled Exhibit A. See the signed agreement and hearing transcripts alongside it.",
+      "pdf": "/legal/documents/1991-01-04-court-order.pdf",
+      "pages": 2,
+      "bytes": 286163,
+      "sha256": "a0b700b98dbc7b07c62523c89a4ecf0d9bf7f690fa6eed5432e168c42fa34fb5",
+      "sourceName": "1991-01-04-Court-Order.pdf"
+    },
+    {
+      "id": "1991-01-04-wso-v-dave-m-signed-agreement",
+      "group": "moorhead",
+      "kind": "Agreement",
+      "title": "WSO and David Moorhead signed agreement",
+      "note": "Archived as January 4, 1991.",
+      "pdf": "/legal/documents/1991-01-04-wso-v-dave-m-signed-agreement.pdf",
+      "pages": 5,
+      "bytes": 781973,
+      "sha256": "b48fd34ff275ad1f67d24616e641553d9da876cbd80c5afdd51dac8e9036e73a",
+      "sourceName": "1991-01-04-WSO-v-Dave-M.-Signed-Agreement.pdf"
+    },
+    {
+      "id": "court-transcript-of-grateful-dave-moorhead-lawsuit-text-searchable",
+      "group": "moorhead",
+      "kind": "Transcript",
+      "title": "January 2, 1991 hearing transcript - searchable copy",
+      "note": "160 pages. World Service Office, Inc. v. David Moorhead, before Judge Louis H. Pollak.",
+      "pdf": "/legal/documents/court-transcript-of-grateful-dave-moorhead-lawsuit-text-searchable.pdf",
+      "pages": 160,
+      "bytes": 7754673,
+      "sha256": "83e868817cf91454a7c294893b032c00e1467360ce743683ec6859bc77ad7eee",
+      "sourceName": "Court-Transcript-of-Grateful-Dave-Moorhead-Lawsuit-text-searchable.pdf"
+    },
+    {
+      "id": "1991-01-02-wso-vs-moorhead-transcripts",
+      "group": "moorhead",
+      "kind": "Transcript",
+      "title": "January 2, 1991 hearing transcript - alternate scan",
+      "note": "A second 160-page scan of the same proceeding, retained as a separate archival version.",
+      "pdf": "/legal/documents/1991-01-02-wso-vs-moorhead-transcripts.pdf",
+      "pages": 160,
+      "bytes": 20188349,
+      "sha256": "27864e0acaa1ba5a23fe992fd7930a3486fcf13b47f4a9a1a41159b7b40f9953",
+      "sourceName": "1991-01-02-WSO-vs-Moorhead-Transcripts.pdf"
+    },
+    {
+      "id": "1991-04-20-jim-kathleen-millers-declaration",
+      "group": "moorhead",
+      "kind": "Declaration",
+      "title": "Jim and Kathleen Miller declaration",
+      "note": "Archived as April 20, 1991.",
+      "pdf": "/legal/documents/1991-04-20-jim-kathleen-millers-declaration.pdf",
+      "pages": 2,
+      "bytes": 294153,
+      "sha256": "bffa4095e0f71222c7f1c80349007babb1a5d22b1ba13d1161875e4f57c5bf40",
+      "sourceName": "1991-04-20-Jim-Kathleen-Millers-Declaration.pdf"
+    },
+    {
+      "id": "1992-04-22-basis-for-motion-for-contempt",
+      "group": "moorhead",
+      "kind": "Filing",
+      "title": "Basis for motion for contempt",
+      "note": "Archived as April 22, 1992.",
+      "pdf": "/legal/documents/1992-04-22-basis-for-motion-for-contempt.pdf",
+      "pages": 1,
+      "bytes": 187574,
+      "sha256": "3092541a0592ecfce9a1d1acea87fc8a712341e64f304a1f53fbcdb6ce34841f",
+      "sourceName": "1992-04-22-Basis-For-Motion-for-Contempt.pdf"
+    },
+    {
+      "id": "1992-04-29-court-transcripts-of-contempt-hearing",
+      "group": "moorhead",
+      "kind": "Transcript",
+      "title": "April 29, 1992 contempt-hearing transcript",
+      "note": "World Service Office, Inc. v. David Moorhead.",
+      "pdf": "/legal/documents/1992-04-29-court-transcripts-of-contempt-hearing.pdf",
+      "pages": 9,
+      "bytes": 1647918,
+      "sha256": "900428e520eec2595e8080620d2608be73b107773d6d0a3cd648e8e17bcb9bf2",
+      "sourceName": "1992-04-29-Court-Transcripts-of-Contempt-Hearing.pdf"
+    },
+    {
+      "id": "1992-04-dave-m-motion-for-preliminary-injuction",
+      "group": "moorhead",
+      "kind": "Filing",
+      "title": "David Moorhead motion notice: enforce or vacate and preliminary injunction",
+      "note": "One-page April 1992 notice referring to motions and expedited proceedings; not the complete motion packet.",
+      "pdf": "/legal/documents/1992-04-dave-m-motion-for-preliminary-injuction.pdf",
+      "pages": 1,
+      "bytes": 44054,
+      "sha256": "c7ddc5074a7c50da80432c05c00bb00caf269c7a6d9153839e408242b83066d1",
+      "sourceName": "1992-04-Dave-M-Motion-for-Preliminary-Injuction.pdf"
+    }
+  ]
+}

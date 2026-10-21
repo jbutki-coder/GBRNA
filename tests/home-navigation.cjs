@@ -4,8 +4,8 @@ const path = require('node:path');
 const { execFileSync } = require('node:child_process');
 
 const root = path.resolve(__dirname, '..');
-const pages = execFileSync('git', ['ls-files', '*.html'], { cwd: root, encoding: 'utf8' })
-  .trim().split(/\r?\n/);
+const pages = [...new Set([...execFileSync('git', ['ls-files', '*.html'], { cwd: root, encoding: 'utf8' })
+  .trim().split(/\r?\n/), 'legal/index.html'])];
 let checked = 0;
 for (const page of pages) {
   const html = fs.readFileSync(path.join(root, page), 'utf8');
@@ -21,5 +21,5 @@ for (const page of pages) {
   }
   checked++;
 }
-assert.equal(checked, 16);
+assert.equal(checked, 17);
 console.log(`Home navigation verified on ${checked} pages; Just For Today and reading controls preserved.`);
