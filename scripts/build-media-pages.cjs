@@ -13,8 +13,8 @@ function page(slug,title,content,scripts){
 <title>${escape(title)} | GBRNA</title><link rel="canonical" href="https://gbrna.onrender.com/${slug}/">
 ${icons}
 <link rel="stylesheet" href="/css/style.css?v=20260814-rni-exact-source3"><link rel="stylesheet" href="/css/global-tabs.css?v=20260724-nav1">
-<link rel="stylesheet" href="/css/media-pages.css?v=20261021-1"><link rel="stylesheet" href="/css/translation.css?v=20261003-1">
-</head><body><div class="global-tabs-bar">${currentNav}</div><main class="wrap media-main">${content}</main>
+<link rel="stylesheet" href="/css/media-pages.css?v=20261021-1"><link rel="stylesheet" href="/css/translation.css?v=20261003-1">${slug==='publications'?'\n<link rel="stylesheet" href="/publications/style.css?v=20261021-group-shares">':''}
+</head><body${slug==='publications'?' class="publications-page"':''}><div class="global-tabs-bar">${currentNav}</div><main class="wrap media-main">${content}</main>
 <footer class="site-footer"><div class="wrap"><p>In Loving Service: Grey Area Historical Literature Study Group of Narcotics Anonymous</p><a href="/">Back to GBR - Home</a></div></footer>
 ${scripts.map(src=>`<script src="${src}" defer></script>`).join('\n')}
 <script src="/js/translation.js?v=20261010-readings" defer></script></body></html>\n`;
@@ -26,7 +26,7 @@ function section(series,title,description,cover){
 <header class="publication-heading"><img src="/publications/images/${cover}.jpg" width="120" height="164" alt="${escape(title)} issue cover"><div><h2 id="${series}-title">${escape(title)}</h2><p>${escape(description)}</p><p data-issue-count>${selected.length} issues</p></div></header>
 <ul class="issue-list">${selected.map(issue=>`<li class="issue-row" id="${issue.id}" data-order="${issue.order}"><div><h3>${escape(issue.title)}</h3><span class="issue-meta">${issue.pages} pages &middot; ${(issue.bytes/1024/1024).toFixed(1)} MB &middot; PDF</span></div><div class="issue-actions"><a href="/pdf-reader.html?url=${encodeURIComponent(issue.pdf)}&amp;title=${encodeURIComponent(issue.title)}&amp;return=%2Fpublications%2F%23${issue.id}">Read PDF<span class="sr-only">: ${escape(issue.title)}</span></a><a href="${issue.pdf}" download>Download<span class="sr-only">: ${escape(issue.title)}</span></a></div></li>`).join('\n')}</ul></section>`;
 }
-const publications=`<header class="media-heading"><h1>Magazines &amp; Newsletters</h1><p>Fellowship news, shared experience, literature, and service history.</p><p><a href="#na-way">The New/Old NA Way</a> &middot; <a href="#arna">ARNA Newsletters</a></p></header>
+const publications=`<header class="media-heading"><div class="publication-art"><img src="/publications/images/the-group-shares.png" width="597" height="819" alt="The Group Shares: hand-drawn NA symbol with muted red, blue, green, and yellow rings"></div><h1>Magazines &amp; Newsletters</h1><p>Fellowship news, shared experience, literature, and service history.</p><p><a href="#na-way">The New/Old NA Way</a> &middot; <a href="#arna">ARNA Newsletters</a></p></header>
 <div class="media-controls"><label>Search issues<input id="issueSearch" type="search" placeholder="Volume, month, year, or title"></label><label>Publication<select id="issueSeries"><option value="">All publications</option><option value="na-way">The New/Old NA Way</option><option value="arna">ARNA Newsletters</option></select></label><label>Order<select id="issueOrder"><option value="newest">Newest first</option><option value="oldest">Oldest first</option></select></label></div><p id="issueResults" aria-live="polite">${issues.length} issues</p>
 ${section('na-way','The New/Old NA Way','Volumes 19-64. Individual digital issues.','na-way-64')}
 ${section('arna','ARNA Newsletters','Autonomous Region FOR Narcotics Anonymous. November 2020 through March 2024.','arna-2024-03')}

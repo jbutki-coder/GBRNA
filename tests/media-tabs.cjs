@@ -20,6 +20,10 @@ for(const issue of issues){
   assert.ok(html.includes(`url=${encodeURIComponent(issue.pdf)}`));
 }
 assert.equal((html.match(/class="issue-row"/g)||[]).length,59);
+assert.ok(html.includes('class="publications-page"'));
+assert.ok(html.includes('/publications/style.css?v=20261021-group-shares'));
+assert.ok(html.includes('/publications/images/the-group-shares.png'));
+assert.ok(fs.existsSync(path.join(root,'publications/images/the-group-shares.png')));
 assert.ok(!html.includes('drive.google.com/drive/folders'));
 const home=fs.readFileSync(path.join(root,'index.html'),'utf8');
 const app=fs.readFileSync(path.join(root,'js/app.js'),'utf8');
