@@ -13,7 +13,7 @@ function page(slug,title,content,scripts){
 <title>${escape(title)} | GBRNA</title><link rel="canonical" href="https://gbrna.onrender.com/${slug}/">
 ${icons}
 <link rel="stylesheet" href="/css/style.css?v=20260814-rni-exact-source3"><link rel="stylesheet" href="/css/global-tabs.css?v=20260724-nav1">
-<link rel="stylesheet" href="/css/media-pages.css?v=20261021-1"><link rel="stylesheet" href="/css/translation.css?v=20261003-1">${slug==='publications'?'\n<link rel="stylesheet" href="/publications/style.css?v=20261021-group-shares">':''}
+<link rel="stylesheet" href="/css/media-pages.css?v=20261021-1"><link rel="stylesheet" href="/css/translation.css?v=20261003-1">${slug==='publications'?'\n<link rel="stylesheet" href="/publications/style.css?v=20261021-group-shares-zoom">':''}
 </head><body${slug==='publications'?' class="publications-page"':''}><div class="global-tabs-bar">${currentNav}</div><main class="wrap media-main">${content}</main>
 <footer class="site-footer"><div class="wrap"><p>In Loving Service: Grey Area Historical Literature Study Group of Narcotics Anonymous</p><a href="/">Back to GBR - Home</a></div></footer>
 ${scripts.map(src=>`<script src="${src}" defer></script>`).join('\n')}

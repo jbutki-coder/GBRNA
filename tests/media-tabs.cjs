@@ -21,7 +21,7 @@ for(const issue of issues){
 }
 assert.equal((html.match(/class="issue-row"/g)||[]).length,59);
 assert.ok(html.includes('class="publications-page"'));
-assert.ok(html.includes('/publications/style.css?v=20261021-group-shares'));
+assert.ok(html.includes('/publications/style.css?v=20261021-group-shares-zoom'));
 assert.ok(html.includes('/publications/images/the-group-shares.png'));
 assert.ok(fs.existsSync(path.join(root,'publications/images/the-group-shares.png')));
 assert.ok(!html.includes('drive.google.com/drive/folders'));
