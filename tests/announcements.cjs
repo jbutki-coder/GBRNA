@@ -9,7 +9,8 @@ for(const text of ['Grateful Wake Up Group','nafindlay.org','billwild.net','/fsc
 for(const [,src] of section.matchAll(/(?:src|href)="(\/images\/announcements\/[^"?]+)"/g)) assert.ok(fs.existsSync(path.join(root,src)),src);
 assert.equal((html.match(/id="announcements"/g)||[]).length,1);
 const grey=require('../data/literature-library.json').books.find(b=>b.id==='grey-book');
-assert.equal(grey.pdf,'/literature/grey-book-memphis-1981-review-form.pdf');
+assert.equal(grey.pdf,'/literature/1981-NA-Basic-Text-Grey-Book-Manuscript.pdf');
+assert.ok(html.includes(`href="${grey.pdf}"`));
 assert.ok(!grey.readerUrl && !grey.downloadUrl);
 assert.ok(fs.existsSync(path.join(root,grey.pdf)));
 const {nextMeeting,format,zones}=require('../js/announcements.js');

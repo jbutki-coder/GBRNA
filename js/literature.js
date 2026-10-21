@@ -79,7 +79,7 @@
     `;
   }
 
-  fetch('data/literature-library.json?v=20261020-local-grey', { cache: 'no-store' })
+  fetch('data/literature-library.json?v=20261020-manuscript', { cache: 'no-store' })
     .then((response) => {
       if (!response.ok) throw new Error('Could not load literature library.');
       return response.json();

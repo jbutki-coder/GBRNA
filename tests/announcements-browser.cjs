@@ -23,7 +23,7 @@ const {chromium}=require(process.env.PLAYWRIGHT_MODULE || 'playwright');
       await section.screenshot({path:`draft-maps/announcement-checks/${label}.png`});
       await page.locator('[data-literature-open-book="grey-book"]').click();
       assert.ok(await page.locator('[data-literature-reader]').isVisible());
-      assert.match(await page.locator('[data-literature-frame]').getAttribute('src'),/\/literature\/grey-book-memphis-1981-review-form.pdf/);
+      assert.match(await page.locator('[data-literature-frame]').getAttribute('src'),/\/literature\/1981-NA-Basic-Text-Grey-Book-Manuscript.pdf/);
       const href=await page.locator('[data-literature-download]').getAttribute('href');
       assert.equal((await page.request.get('http://127.0.0.1:4196'+href)).status(),200);
       await page.close();
