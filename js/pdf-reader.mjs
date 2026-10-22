@@ -141,7 +141,9 @@
   }
 
   function calculateFitWidth() {
-    fitWidthPixels = Math.max(280, Math.min(1100, pdfScroll.clientWidth - 18));
+    const style = window.getComputedStyle(pdfScroll);
+    const padding = parseFloat(style.paddingLeft) + parseFloat(style.paddingRight);
+    fitWidthPixels = Math.max(120, Math.min(1100, pdfScroll.clientWidth - padding));
   }
 
   function createPageShells(totalPages) {
@@ -325,7 +327,7 @@
   }
 
   function applyZoom(nextZoom) {
-    zoom = Math.max(0.65, Math.min(2.5, Math.round(nextZoom * 100) / 100));
+    zoom = Math.max(0.65, Math.min(4, Math.round(nextZoom * 100) / 100));
     renderGeneration += 1;
     updateNavigation();
 
@@ -444,14 +446,19 @@
   zoomIn.addEventListener('click', () => applyZoom(zoom + 0.15));
   fitWidth.addEventListener('click', () => applyZoom(1));
   fullScreen.addEventListener('click', async () => {
+    const focused = document.body.classList.toggle('reader-focus');
+    fullScreen.textContent = focused ? 'Exit View' : 'Full Screen';
+    fullScreen.setAttribute('aria-label', focused ? 'Exit full screen reading view' : 'Full screen reading view');
+    fullScreen.setAttribute('aria-pressed', String(focused));
+    handleResize();
     try {
-      if (!document.fullscreenElement) {
-        await readerStage.requestFullscreen();
-      } else {
+      if (focused && document.documentElement.requestFullscreen) {
+        await document.documentElement.requestFullscreen();
+      } else if (!focused && document.fullscreenElement) {
         await document.exitFullscreen();
       }
     } catch {
-      // iPhone Safari may not expose fullscreen for page elements.
+      // The focused layout remains usable when iPhone Safari rejects fullscreen.
     }
   });
   window.addEventListener('resize', handleResize, { passive: true });

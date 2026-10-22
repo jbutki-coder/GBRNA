@@ -22,14 +22,16 @@
     *{box-sizing:border-box}
     html,body{width:100%;height:100%;margin:0}
     body{
-      display:grid;
-      grid-template-rows:auto auto minmax(0,1fr);
+      display:flex;
+      flex-direction:column;
+      height:100dvh;
       overflow:hidden;
       background:var(--paper);
       color:#fff;
       font-family:Arial,Helvetica,sans-serif;
     }
     .site-tabs{
+      flex:0 0 auto;
       display:flex;
       gap:.35rem;
       align-items:center;
@@ -52,6 +54,7 @@
       white-space:nowrap;
     }
     .reader-toolbar{
+      flex:0 0 auto;
       position:relative;
       z-index:5;
       display:grid;
@@ -65,7 +68,13 @@
     .reader-heading{min-width:0}
     .reader-kicker{margin:0 0 .12rem;font-size:.58rem;font-weight:900;letter-spacing:.09em;text-transform:uppercase;opacity:.75}
     .reader-title{margin:0;overflow:hidden;font-size:.92rem;line-height:1.2;text-overflow:ellipsis;white-space:nowrap}
-    .reader-controls{display:flex;justify-content:flex-end;gap:.3rem;overflow-x:auto;-webkit-overflow-scrolling:touch}
+    .reader-controls{display:flex;flex-wrap:wrap;align-items:center;justify-content:flex-end;gap:.3rem}
+    .reader-control-group{display:flex;align-items:center;gap:.3rem;flex:0 0 auto}
+    .reader-more{position:relative;flex:0 0 auto}
+    .reader-more summary{display:flex;align-items:center;justify-content:center;min-width:44px;min-height:44px;padding:.4rem .56rem;border:1px solid rgba(255,255,255,.4);border-radius:.42rem;cursor:pointer;list-style:none;font-weight:bold}
+    .reader-more summary::-webkit-details-marker{display:none}
+    .reader-more-menu{position:absolute;right:0;top:100%;z-index:10;display:grid;gap:.4rem;padding:.5rem;background:var(--navy);border:1px solid #fff;border-radius:4px}
+    #zoomIn,#zoomOut{min-width:44px}
     .reader-controls button,.reader-controls a,.page-readout{
       flex:0 0 auto;
       min-height:2.05rem;
@@ -82,7 +91,10 @@
     .reader-controls button:active,.reader-controls a:active{background:rgba(255,255,255,.24)}
     .reader-controls button:disabled{opacity:.4;cursor:not-allowed}
     .page-readout{display:flex;align-items:center;justify-content:center;min-width:4.3rem}
-    .reader-stage{position:relative;min-width:0;min-height:0;overflow:hidden;background:#1d1e20}
+    .reader-stage{position:relative;flex:1 1 0;min-width:0;min-height:0;overflow:hidden;background:#1d1e20}
+    body > .gbrna-translation-bar{flex:0 0 auto}
+    body.reader-focus > .site-tabs,body.reader-focus > .gbrna-translation-bar,body.reader-focus .reader-heading{display:none}
+    .reader-controls button,.reader-controls a{min-height:44px}
     .pdf-scroll{
       width:100%;
       height:100%;
@@ -94,6 +106,7 @@
     }
     .pdf-pages{
       display:flex;
+      width:max-content;
       min-width:100%;
       flex-direction:column;
       align-items:center;
@@ -177,8 +190,11 @@
     @media(max-width:860px){
       .reader-toolbar{grid-template-columns:1fr;align-items:start}
       .reader-title{font-size:.82rem;white-space:normal}
-      .reader-controls{justify-content:flex-start;padding-bottom:.12rem}
-      .reader-controls button,.reader-controls a,.page-readout{min-height:2rem;padding:.4rem .53rem;font-size:.69rem}
+      .reader-controls{justify-content:flex-start;flex-wrap:wrap;overflow:visible;padding-bottom:.12rem}
+      .reader-controls button,.reader-controls a,.page-readout{min-height:44px;padding:.4rem .53rem;font-size:.75rem}
+      .reader-title{white-space:nowrap}
+      .reader-kicker{display:none}
+      .gbrna-translation-status{display:none}
     }
     @media(max-width:430px){
       .reader-kicker{font-size:.54rem}
@@ -189,7 +205,7 @@
   </style>
   <link rel="stylesheet" href="/css/translation.css?v=20261003-1">
 </head>
-<body>
+<body class="gbrna-pdf-reader">
   <nav class="site-tabs" aria-label="Website sections">
     <a href="/">GBR - Home</a>
     <a href="/library/">Library</a>
@@ -215,17 +231,23 @@
       <h1 class="reader-title" id="readerTitle">Opening PDF…</h1>
     </div>
     <div class="reader-controls" aria-label="PDF reader controls">
+      <div class="reader-control-group">
       <button id="backButton" type="button">← Back</button>
       <button id="prevPage" type="button" disabled>Prev</button>
       <span class="page-readout" id="pageReadout">— / —</span>
       <button id="nextPage" type="button" disabled>Next</button>
+      </div>
+      <details class="reader-more"><summary aria-label="More PDF options" title="More PDF options">...</summary><div class="reader-more-menu">
+      <a id="openOriginal" href="#" target="_blank" rel="noopener" data-direct-pdf>Original</a>
+      <a id="downloadPdf" href="#" download data-direct-pdf>Download</a>
+      </div></details>
+      <div class="reader-control-group">
       <button id="zoomOut" type="button" aria-label="Zoom out">−</button>
       <span class="page-readout" id="zoomReadout">100%</span>
       <button id="zoomIn" type="button" aria-label="Zoom in">+</button>
-      <button id="fitWidth" type="button">Fit</button>
-      <button id="fullScreen" type="button">Full Screen</button>
-      <a id="openOriginal" href="#" target="_blank" rel="noopener" data-direct-pdf>Original</a>
-      <a id="downloadPdf" href="#" download data-direct-pdf>Download</a>
+      <button id="fitWidth" type="button" title="Fit page to screen width">Fit Width</button>
+      </div>
+      <button id="fullScreen" type="button" aria-pressed="false">Full Screen</button>
     </div>
   </header>
 
@@ -245,8 +267,8 @@
     </div>
   </main>
 
-  <script src="/js/pdf-reader.mjs?v=20261006-passage-navigation"></script>
-  <script src="/js/pdf-router.js?v=20260726-tradition-six-render-v1" defer></script>
+  <script src="/js/pdf-reader.mjs?v=20261022-mobile-reader"></script>
+  <script src="/js/pdf-router.js?v=20261022-mobile-reader" defer></script>
   <script src="/js/translation.js?v=20261010-readings" defer></script>
 </body>
 </html>

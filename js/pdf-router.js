@@ -69,7 +69,9 @@
     `;
 
     const footer = document.querySelector('footer.site-footer, body > footer');
-    if (footer) footer.before(notice);
+    const readerScroll = document.getElementById('pdfScroll');
+    if (readerScroll) readerScroll.append(notice);
+    else if (footer) footer.before(notice);
     else document.body.append(notice);
   }
 
