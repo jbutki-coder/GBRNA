@@ -4,6 +4,7 @@ const fs=require('node:fs');
 const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
 const issues=require('../data/publications.json').issues;
 const collections=require('../data/audio-library.json');
+const base=process.env.SITE_URL||'http://127.0.0.1:4196';
 (async()=>{
   const browser=await chromium.launch({headless:true,...(process.env.PLAYWRIGHT_CHROMIUM_PATH?{executablePath:process.env.PLAYWRIGHT_CHROMIUM_PATH}:{})});
   fs.mkdirSync('draft-maps/media-checks',{recursive:true});
@@ -12,13 +13,22 @@ const collections=require('../data/audio-library.json');
       const page=await browser.newPage({viewport:{width,height:950}});
       const errors=[];page.on('pageerror',e=>errors.push(e.message));
       await page.route('**/gc.zgo.at/**',r=>r.abort());
-      await page.goto('http://127.0.0.1:4196/publications/');
-      await page.waitForFunction(()=>document.getElementById('issueResults').textContent==='59 of 59 issues');
+      await page.goto(base+'/publications/');
+      await page.waitForFunction(total=>document.getElementById('issueResults').textContent===`${total} of ${total} issues`,issues.length);
       const artwork=page.locator('.publication-art img');
       await artwork.evaluate(img=>img.decode());
       assert.ok((await artwork.boundingBox()).height >= (width>600?500:300), 'Artwork is a large centerpiece');
       assert.equal(await artwork.evaluate(img=>getComputedStyle(img).objectFit),'cover');
-      assert.equal(await page.locator('.issue-row').count(),59);
+      assert.equal(await page.locator('.issue-row').count(),issues.length);
+      assert.equal(await page.locator('.issue-cover img').count(),issues.length);
+      for(const image of await page.locator('.issue-cover img').all()){
+        await image.scrollIntoViewIfNeeded();
+        await image.evaluate(i=>i.decode());
+      }
+      await page.selectOption('#issueSeries','purist');
+      assert.equal(await page.locator('.issue-row:visible').count(),6);
+      await page.locator('#purist').scrollIntoViewIfNeeded();
+      await page.screenshot({path:`draft-maps/media-checks/purist-${label}.png`});
       await page.selectOption('#issueSeries','arna');
       assert.equal(await page.locator('.issue-row:visible').count(),13);
       await page.fill('#issueSearch','March 2024');
@@ -30,7 +40,7 @@ const collections=require('../data/audio-library.json');
       await page.selectOption('#issueOrder','newest');
       assert.ok(await page.locator('main').evaluate(e=>e.scrollWidth<=e.clientWidth+1));
       await page.screenshot({path:`draft-maps/media-checks/publications-${label}.png`});
-      await page.goto('http://127.0.0.1:4196/audio/');
+      await page.goto(base+'/audio/');
       await page.waitForFunction(()=>document.querySelectorAll('[data-audio-library-collection] option').length===6);
       for(let index=0;index<collections.length;index++){
         await page.selectOption('[data-audio-library-collection]',String(index));
@@ -40,7 +50,7 @@ const collections=require('../data/audio-library.json');
       }
       assert.ok(await page.locator('main').evaluate(e=>e.scrollWidth<=e.clientWidth+1));
       await page.screenshot({path:`draft-maps/media-checks/audio-${label}.png`});
-      await page.goto('http://127.0.0.1:4196/#07-13');
+      await page.goto(base+'/#07-13');
       await page.waitForSelector('[data-audio-player]');
       await page.waitForSelector('[data-source-audio-player]',{state:'attached'});
       assert.equal(await page.locator('[data-audio-library]').count(),0,'Only collection player moved');
@@ -51,12 +61,12 @@ const collections=require('../data/audio-library.json');
       await page.close();
     }
     const request=await browser.newContext();
-    for(const issue of issues) assert.equal((await request.request.head('http://127.0.0.1:4196'+issue.pdf)).status(),200,issue.id);
+    for(const issue of issues) assert.equal((await request.request.head(base+issue.pdf)).status(),200,issue.id);
     const page=await request.newPage();
-    await page.goto('http://127.0.0.1:4196/publications/');
+    await page.goto(base+'/publications/');
     await page.locator('#arna-2024-03 .issue-actions a').first().click();
     await page.waitForSelector('.pdf-page canvas',{timeout:45000});
     assert.equal(await page.locator('#readerError').isVisible(),false);
-    console.log('PASS: desktop/mobile publication filtering/sorting, all 59 local PDFs, PDF reader, all 5 audio collections, and home daily/source players.');
+    console.log('PASS: desktop/mobile covers, Purist issues, filtering/sorting, all local PDFs, PDF reader, audio collections, and home daily/source players.');
   }finally{await browser.close();}
 })().catch(e=>{console.error(e);process.exit(1);});

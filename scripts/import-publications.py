@@ -14,7 +14,9 @@ parser.add_argument('arna_zip')
 parser.add_argument('na_way_zip')
 args = parser.parse_args()
 root = Path(__file__).resolve().parents[1]
-issues = []
+catalog_path = root / 'data/publications.json'
+previous = {issue['id']: issue for issue in json.loads(catalog_path.read_text(encoding='utf-8'))['issues']} if catalog_path.exists() else {}
+issues = [issue for issue in previous.values() if issue['series'] not in {'arna', 'na-way'}]
 arna_dates = {
     'arna-newsletter-1-november-2020.pdf': '2020-11', '2020december.pdf': '2020-12',
     '2021jan.pdf': '2021-01', '2021feb.pdf': '2021-02', '2021mar.pdf': '2021-03',
@@ -53,7 +55,7 @@ for series, archive in [('arna', args.arna_zip), ('na-way', args.na_way_zip)]:
                 target = root / relative
                 target.parent.mkdir(parents=True, exist_ok=True)
                 target.write_bytes(raw)
-            issues.append({'id': issue_id, 'series': series, 'title': title, 'date': date,
+            issues.append({**previous.get(issue_id, {}), 'id': issue_id, 'series': series, 'title': title, 'date': date,
                            'order': order, 'pdf': '/' + relative.as_posix(), 'pages': len(reader.pages),
                            'bytes': len(raw), 'sha256': hashlib.sha256(raw).hexdigest(), 'sourceName': name})
 if len({i['id'] for i in issues}) != len(issues):

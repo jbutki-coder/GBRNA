@@ -50,6 +50,8 @@ new_ids = {entry[0] for entry in selected}
 books = [book for book in catalog['books'] if book['id'] not in new_ids]
 for book in books:
     book.setdefault('category', 'drafts')
+    if book['id'] in {'na-tree-first', 'na-tree-second'}:
+        book['category'] = 'drafts'
 seen = {book['sha256'] for book in books if book.get('sha256')}
 for book_id, filename, title, subtitle, note, category, cover_page in selected:
     original = review / filename
@@ -70,6 +72,8 @@ for book_id, filename, title, subtitle, note, category, cover_page in selected:
                   'cover': f'images/literature/{book_id}.jpg', 'pdf': '/'+relative.as_posix(),
                   'note': note, 'pages': pages, 'bytes': len(raw), 'sha256': digest,
                   'sourceName': additional_sources.get(book_id, filename)})
+existing_order = {book['id']: index for index, book in enumerate(catalog['books'])}
+books.sort(key=lambda book: existing_order.get(book['id'], len(existing_order)))
 catalog['books'] = books
 catalog_path.write_text(json.dumps(catalog, indent=2, ensure_ascii=False)+'\n', encoding='utf-8')
 print(f'Imported {len(selected)} reviewed books and guides; {len(books)} total library entries.')

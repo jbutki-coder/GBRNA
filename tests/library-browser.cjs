@@ -16,7 +16,7 @@ const base=process.env.SITE_URL||'http://127.0.0.1:4198';
       assert.equal(await page.locator('.library-collection').count(),catalog.categories.length);
       assert.equal(await page.locator('.literature-book-card:visible').count(),catalog.books.length);
       await page.selectOption('#libraryCategory','history');
-      assert.equal(await page.locator('.literature-book-card:visible').count(),7);
+      assert.equal(await page.locator('.literature-book-card:visible').count(),8);
       await page.fill('#librarySearch','Southern');
       assert.equal(await page.locator('.literature-book-card:visible').count(),1);
       const cover=page.locator('[data-literature-open-book="southern-exposure"]');

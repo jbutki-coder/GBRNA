@@ -5,11 +5,12 @@ const path=require('node:path');
 const crypto=require('node:crypto');
 const root=path.resolve(__dirname,'..');
 const issues=require('../data/publications.json').issues;
-assert.equal(issues.length,59);
+assert.equal(issues.length,65);
+assert.equal(issues.filter(i=>i.series==='purist').length,6);
 assert.equal(issues.filter(i=>i.series==='arna').length,13);
 assert.deepEqual(issues.filter(i=>i.series==='na-way').map(i=>i.order).sort((a,b)=>a-b),Array.from({length:46},(_,i)=>i+19));
-assert.equal(new Set(issues.map(i=>i.id)).size,59);
-assert.equal(new Set(issues.map(i=>i.pdf)).size,59);
+assert.equal(new Set(issues.map(i=>i.id)).size,issues.length);
+assert.equal(new Set(issues.map(i=>i.pdf)).size,issues.length);
 const html=fs.readFileSync(path.join(root,'publications/index.html'),'utf8');
 for(const issue of issues){
   const bytes=fs.readFileSync(path.join(root,issue.pdf));
@@ -18,10 +19,13 @@ for(const issue of issues){
   assert.ok(html.includes(`id="${issue.id}"`));
   assert.ok(html.includes(`href="${issue.pdf}" download`));
   assert.ok(html.includes(`url=${encodeURIComponent(issue.pdf)}`));
+  assert.ok(fs.existsSync(path.join(root,issue.cover)),issue.id+' cover');
+  assert.ok(html.includes(`src="${issue.cover}"`),issue.id+' displayed cover');
 }
-assert.equal((html.match(/class="issue-row"/g)||[]).length,59);
+assert.equal((html.match(/class="issue-row"/g)||[]).length,issues.length);
+assert.equal((html.match(/class="issue-cover"/g)||[]).length,issues.length);
 assert.ok(html.includes('class="publications-page"'));
-assert.ok(html.includes('/publications/style.css?v=20261021-group-shares-zoom'));
+assert.ok(html.includes('/publications/style.css?v=20261022-issue-covers'));
 assert.ok(html.includes('/publications/images/the-group-shares.png'));
 assert.ok(fs.existsSync(path.join(root,'publications/images/the-group-shares.png')));
 assert.ok(!html.includes('drive.google.com/drive/folders'));
@@ -42,4 +46,4 @@ for(const file of ['index.html','audio/index.html','publications/index.html','ar
   assert.equal(nav.split('href="/audio/"').length-1,1,file);
   assert.equal(nav.split('href="/publications/"').length-1,1,file);
 }
-console.log('PASS: 59 unique issue PDFs with exact hashes, individual read/download links, both navigation tabs, daily/source audio retained on home.');
+console.log('PASS: 65 unique issue PDFs and covers, six Purist newsletters, individual read/download links, daily/source audio retained on home.');

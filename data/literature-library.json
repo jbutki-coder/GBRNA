@@ -237,7 +237,7 @@
       "id": "na-tree-first",
       "title": "The NA Tree - First Edition",
       "subtitle": "Early NA fellowship service history",
-      "category": "history",
+      "category": "drafts",
       "cover": "images/literature/na-tree-first.jpg",
       "pdf": "/literature/library/na-tree-first.pdf",
       "note": "Historical draft or member study material; not a current NAWS publication.",
@@ -250,7 +250,7 @@
       "id": "na-tree-second",
       "title": "The NA Tree - Second Edition",
       "subtitle": "1976 historical edition",
-      "category": "history",
+      "category": "drafts",
       "cover": "images/literature/na-tree-second.jpg",
       "pdf": "/literature/library/na-tree-second.pdf",
       "note": "Historical draft or member study material; not a current NAWS publication.",
@@ -622,6 +622,45 @@
       "bytes": 8870075,
       "sha256": "178ed79013f320299102f9bbec1924369bb8fc0e22948f0155fb94e0f2f6c2f7",
       "sourceName": "Cut_and_Paste_-_More_Will_Be_Revealed_-_10A_-_10E.pdf"
+    },
+    {
+      "id": "matter-of-principle",
+      "title": "A Matter of Principle",
+      "subtitle": "Anonymi - A story of how Narcotics Anonymous came of age",
+      "category": "history",
+      "cover": "images/literature/matter-of-principle.jpg",
+      "pdf": "/literature/library/matter-of-principle.pdf",
+      "note": "NA History Day 2015 special edition, reprinted with the author's permission. An author's historical account, not an official fellowship history.",
+      "pages": 82,
+      "bytes": 3888245,
+      "sha256": "13973c7de25c4bc05fb2d5bcad7088402cd6b8b513a88a9801f1ba058ee171ba",
+      "sourceName": "A-Matter-of-Principle.pdf"
+    },
+    {
+      "id": "my-years-with-na",
+      "title": "My Years with Narcotics Anonymous",
+      "subtitle": "Bob Stone - originally published in 1997",
+      "category": "history",
+      "cover": "images/literature/my-years-with-na.jpg",
+      "pdf": "/literature/library/my-years-with-na.pdf",
+      "note": "2013 historical reprint, identified in the source as reprinted with permission. Bob Stone's personal account of his years with NA.",
+      "pages": 360,
+      "bytes": 2086074,
+      "sha256": "1f7984963c002c80c1221003750c242da32e21b4b81eec647a0c2c6a28e238a8",
+      "sourceName": "1997 PS-My-Years-With-NA-by-Bob-Stone.pdf"
+    },
+    {
+      "id": "tradition-wars",
+      "title": "Tradition Wars: A Pathway to Peace",
+      "subtitle": "Participants' draft - 378 pages",
+      "category": "history",
+      "cover": "images/literature/tradition-wars.jpg",
+      "pdf": "/literature/library/tradition-wars.pdf",
+      "note": "Historical work in progress, not the finished book. The source is marked 'Participants draft - not for distribution' and 'Not for Use in Meetings.' Preserved here as a historical draft.",
+      "pages": 378,
+      "bytes": 2734851,
+      "sha256": "9ccf17014f13d619e1b808525f3d948f2ba4ae060e5266d97ec594cc94bd7dc7",
+      "sourceName": "Traditions Wars 10.18.07.pdf"
     }
   ],
   "categories": [
