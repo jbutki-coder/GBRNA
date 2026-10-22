@@ -8,6 +8,8 @@ const section=html.split('<section id="announcements"')[1].split('</section>')[0
 for(const text of ['Grateful Wake Up Group','nafindlay.org','billwild.net','/fsc/','February 19-21, 2027','November 13, 2026','November 14, 2026','All Hallows Church','Volume 63','Volume 64','Autonomous Region FOR Narcotics Anonymous','first Sunday','November 1, 2026 AR4NA Board meeting','838 5467 5083']) assert.ok(section.includes(text),text);
 assert.ok(section.includes('href="https://us06web.zoom.us/j/83854675083?pwd=hzt5FT9XoUqNKIDVWdgRvdQyzgGiTq.1" target="_blank" rel="noopener noreferrer"'));
 assert.ok(!section.includes('Meeting link coming soon'));
+assert.ok(section.includes('src="/images/announcements/ar4na-meeting-november-2026.png"'));
+assert.ok(section.includes('aria-label="Open the AR4NA meeting flyer full size"'));
 for(const [,src] of section.matchAll(/(?:src|href)="(\/images\/announcements\/[^"?]+)"/g)) assert.ok(fs.existsSync(path.join(root,src)),src);
 assert.equal((html.match(/id="announcements"/g)||[]).length,1);
 const grey=require('../data/literature-library.json').books.find(b=>b.id==='grey-book');
