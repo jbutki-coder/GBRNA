@@ -13,7 +13,7 @@ const base=process.env.SITE_URL||'http://127.0.0.1:4196';
     page.on('pageerror',e=>errors.push(e.message));
     await page.goto(base+'/legal/',{waitUntil:'networkidle'});
     await page.locator('#legalSearch').waitFor();
-    assert.equal(await page.locator('.legal-row:visible').count(),29);
+    assert.equal(await page.locator('.legal-row:visible').count(),32);
     await page.selectOption('#legalGroup','arna');
     assert.equal(await page.locator('.legal-row:visible').count(),4);
     await page.selectOption('#legalKind','Filing');
@@ -30,7 +30,7 @@ const base=process.env.SITE_URL||'http://127.0.0.1:4196';
     for(const viewport of [{width:390,height:844},{width:768,height:1024}]){
       await page.setViewportSize(viewport);
       assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'No horizontal overflow');
-      assert.equal(await page.locator('.legal-row:visible').count(),29);
+      assert.equal(await page.locator('.legal-row:visible').count(),32);
       await page.screenshot({path:path.join(root,`draft-maps/legal-checks/${viewport.width}.png`)});
     }
     const docs=require('../data/legal-documents.json').documents;
@@ -44,6 +44,6 @@ const base=process.env.SITE_URL||'http://127.0.0.1:4196';
     await page.locator('canvas').first().waitFor({state:'visible',timeout:60000});
     await page.waitForFunction(()=>[...document.querySelectorAll('canvas')].some(c=>c.width>100&&c.height>100));
     assert.deepEqual(errors,[]);
-    console.log('Legal browser: filters, empty state, desktop/mobile layouts, 29 PDF responses, and reader rendering passed.');
+    console.log('Legal browser: filters, empty state, desktop/mobile layouts, 32 PDF responses, and reader rendering passed.');
   }finally{await browser.close();}
 })().catch(e=>{console.error(e);process.exit(1);});

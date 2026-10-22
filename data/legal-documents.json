@@ -1,6 +1,42 @@
 {
   "documents": [
     {
+      "id": "1988-wsc-select-committee-report-002-1",
+      "group": "background",
+      "kind": "Historical record",
+      "title": "1988 WSC Select Committee on Service Structure report",
+      "note": "Historical report to the World Service Conference concerning service structure and group autonomy. Not a court filing.",
+      "pdf": "/legal/documents/1988-wsc-select-committee-report-002-1.pdf",
+      "pages": 8,
+      "bytes": 250950,
+      "sha256": "5caf2f4af718c61f287978be6c11522efe140cf02033cd1a0c7a0222b35d509e",
+      "sourceName": "1988-WSC-Select-Committee-Report-002 (1).pdf"
+    },
+    {
+      "id": "letter-re-lawsuits-from-ae",
+      "group": "background",
+      "kind": "Correspondence",
+      "title": "Anthony Edmondson response concerning lawsuits",
+      "note": "Undated historical response concerning litigation, literature support, and service finances. The statements reflect the author's position at the time, not a current case-status update or court ruling.",
+      "pdf": "/legal/documents/letter-re-lawsuits-from-ae.pdf",
+      "pages": 2,
+      "bytes": 883033,
+      "sha256": "d5331459c125dc697fb1ea71ea5ccf22be642d6d805cdfbfa7f55c885a628c7a",
+      "sourceName": "Letter-re-Lawsuits-from-AE.pdf"
+    },
+    {
+      "id": "forum-on-group-autonomy",
+      "group": "background",
+      "kind": "Commentary",
+      "title": "Forum on Group Autonomy",
+      "note": "Discussion of Tradition Four and group autonomy. Commentary, not a court filing.",
+      "pdf": "/legal/documents/forum-on-group-autonomy.pdf",
+      "pages": 1,
+      "bytes": 148155,
+      "sha256": "8048a9da16b12a35bee151928d573b0c41465997f07b6d8c63323a1845d92da4",
+      "sourceName": "Forum-on-Group-Autonomy.pdf"
+    },
+    {
       "id": "arna-petition",
       "group": "arna",
       "kind": "Filing",

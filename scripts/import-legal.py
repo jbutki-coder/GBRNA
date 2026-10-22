@@ -15,6 +15,9 @@ review = Path(args.review_folder)
 collection = 'FIPT & Literature Litigation Records/'
 # source, collection, category, public title, descriptive note
 selected = [
+    ('additional-zip/1988-WSC-Select-Committee-Report-002 (1).pdf', 'background', 'Historical record', '1988 WSC Select Committee on Service Structure report', 'Historical report to the World Service Conference concerning service structure and group autonomy. Not a court filing.'),
+    ('additional-zip/Letter-re-Lawsuits-from-AE.pdf', 'background', 'Correspondence', 'Anthony Edmondson response concerning lawsuits', 'Undated historical response concerning litigation, literature support, and service finances. The statements reflect the author\'s position at the time, not a current case-status update or court ruling.'),
+    ('additional-zip/Forum-on-Group-Autonomy.pdf', 'background', 'Commentary', 'Forum on Group Autonomy', 'Discussion of Tradition Four and group autonomy. Commentary, not a court filing.'),
     ('arna-petition.pdf', 'arna', 'Filing', 'ARNA petition with exhibits', 'Filed January 28, 2020. Petition concerning instructions, trustee compensation, removal and replacement of trustee, and surcharge.'),
     ('naws-demurrer.pdf', 'arna', 'Filing', 'NAWS notice of demurrer and demurrer', 'Includes memorandum of points and authorities and declaration of Jonathan H. Park. The cover lists a May 14, 2020 hearing.'),
     ('Bo-Sewell-Declaration-7.30.20.pdf', 'arna', 'Declaration', 'Bo Sewell declaration in support of opposition to demurrer', 'July 30, 2020. The original three-page scan is upside down; use the PDF reader rotation control.'),
