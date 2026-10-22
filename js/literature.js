@@ -71,6 +71,7 @@
           <h3>${escapeHtml(book.title)}</h3>
           <p class="literature-book-subtitle">${escapeHtml(book.subtitle)}</p>
           <p>${escapeHtml(book.note || '')}</p>
+          ${book.pages ? `<p class="library-book-meta">${book.pages} pages &middot; ${(book.bytes / 1024 / 1024).toFixed(1)} MB &middot; PDF</p>` : ''}
           <div class="literature-book-actions">
             ${downloadHtml}
           </div>
@@ -79,14 +80,51 @@
     `;
   }
 
-  fetch('data/literature-library.json?v=20261020-manuscript', { cache: 'no-store' })
+  fetch('data/literature-library.json?v=20261021-expanded', { cache: 'no-store' })
     .then((response) => {
       if (!response.ok) throw new Error('Could not load literature library.');
       return response.json();
     })
     .then((data) => {
       const books = Array.isArray(data.books) ? data.books : [];
-      shelf.innerHTML = books.map(renderBook).join('');
+      const categories = Array.isArray(data.categories) ? data.categories : [];
+      shelf.innerHTML = categories.length ? categories.map(category => `
+        <section class="library-collection" id="${escapeHtml(category.id)}" data-library-category="${escapeHtml(category.id)}" aria-labelledby="${escapeHtml(category.id)}-title">
+          <h2 id="${escapeHtml(category.id)}-title">${escapeHtml(category.title)}</h2>
+          <div class="library-books">${books.filter(book => book.category === category.id).map(renderBook).join('')}</div>
+        </section>`).join('') : books.map(renderBook).join('');
+      const search = document.getElementById('librarySearch');
+      const categorySelect = document.getElementById('libraryCategory');
+      const count = document.getElementById('libraryResults');
+      if (search && categorySelect && count) {
+        const sections = [...shelf.querySelectorAll('.library-collection')];
+        const cards = books.map(book => ({
+          book,
+          card: [...shelf.querySelectorAll('[data-literature-open-book]')].find(button => button.dataset.literatureOpenBook === book.id).closest('.literature-book-card'),
+          text: [book.title, book.subtitle, book.note].join(' ').toLowerCase()
+        }));
+        const update = () => {
+          const terms = search.value.toLowerCase().trim().split(/\s+/).filter(Boolean);
+          let visible = 0;
+          cards.forEach(({book, card, text}) => {
+            card.hidden = !((!categorySelect.value || book.category === categorySelect.value) && terms.every(term => text.includes(term)));
+            if (!card.hidden) visible++;
+          });
+          sections.forEach(section => { section.hidden = ![...section.querySelectorAll('.literature-book-card')].some(card => !card.hidden); });
+          count.textContent = visible ? `${visible} of ${books.length} titles` : 'No titles match your search.';
+        };
+        search.addEventListener('input', update);
+        categorySelect.addEventListener('change', update);
+        update();
+        document.querySelector('.library-categories')?.addEventListener('click', event => {
+          if (!event.target.closest('a')) return;
+          search.value = '';
+          categorySelect.value = '';
+          update();
+        });
+        const initialSection = categories.find(category => location.hash === `#${category.id}`);
+        if (initialSection) document.getElementById(initialSection.id)?.scrollIntoView();
+      }
       shelf.addEventListener('click', (event) => {
         const trigger = event.target.closest('[data-literature-open-book]');
         if (!trigger) return;

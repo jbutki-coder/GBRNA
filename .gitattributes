@@ -1,2 +1,3 @@
 publications/pdfs/** -text -diff
 legal/documents/** -text -diff
+literature/library/** -text -diff

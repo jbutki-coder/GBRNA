@@ -6,7 +6,8 @@
       "subtitle": "1981 NA Basic Text - Grey Book Manuscript",
       "cover": "images/literature/grey-book-cover.jpg",
       "pdf": "/literature/1981-NA-Basic-Text-Grey-Book-Manuscript.pdf",
-      "note": "Memphis, February 1981 review manuscript. 405 pages."
+      "note": "Memphis, February 1981 review manuscript. 405 pages.",
+      "category": "drafts"
     },
     {
       "id": "baby-blue-screen-reading",
@@ -14,7 +15,8 @@
       "subtitle": "Third Edition Revised & Restored — Screen-Reading Copy",
       "cover": "images/literature/baby-blue-screen-reading-cover.jpg",
       "pdf": "literature/baby-blue-third-edition-revised-screen-reading.pdf",
-      "note": "Formatted for ordinary reading on phones, tablets, and computers. Includes the original Fourth and Ninth Traditions."
+      "note": "Formatted for ordinary reading on phones, tablets, and computers. Includes the original Fourth and Ninth Traditions.",
+      "category": "drafts"
     },
     {
       "id": "baby-blue-printing-copy",
@@ -22,7 +24,8 @@
       "subtitle": "Third Edition Revised — Printing Copy",
       "cover": "images/literature/basic-text-cover.jpg",
       "pdf": "literature/basic-text-third-edition-revised.pdf",
-      "note": "This is the existing Baby Blue file intended for printing."
+      "note": "This is the existing Baby Blue file intended for printing.",
+      "category": "drafts"
     },
     {
       "id": "little-white-book",
@@ -30,7 +33,8 @@
       "subtitle": "1976 Narcotics Anonymous booklet",
       "cover": "images/literature/little-white-book-cover.jpg",
       "pdf": "literature/little-white-book-1976.pdf",
-      "note": "Early NA Fellowship literature."
+      "note": "Early NA Fellowship literature.",
+      "category": "drafts"
     },
     {
       "id": "it-works",
@@ -39,7 +43,8 @@
       "cover": "images/literature/it-works-cover.jpg",
       "readerUrl": "https://drive.google.com/file/d/1KFFD4wWOaFZ3R2EsNKEty_HlWi8OaPbf/preview",
       "downloadUrl": "https://drive.google.com/uc?export=download&id=1KFFD4wWOaFZ3R2EsNKEty_HlWi8OaPbf",
-      "note": "Historical 1985 review-form draft of It Works: How and Why."
+      "note": "Historical 1985 review-form draft of It Works: How and Why.",
+      "category": "drafts"
     },
     {
       "id": "living-clean",
@@ -47,7 +52,8 @@
       "subtitle": "Work in Progress Draft 1983",
       "cover": "images/literature/living-clean-cover.jpg",
       "pdf": "literature/living-clean-third-edition-1983.pdf",
-      "note": "Historical work-in-progress draft."
+      "note": "Historical work-in-progress draft.",
+      "category": "drafts"
     },
     {
       "id": "na-way-of-life",
@@ -55,7 +61,186 @@
       "subtitle": "Fellowship Work in Progress - Eighth Presentation Form 2011 / First Edition 2012",
       "cover": "images/literature/na-way-of-life-cover.jpg",
       "pdf": "literature/The-NA-Way-of-Life.pdf",
-      "note": "Fellowship work-in-progress literature project begun in 1991."
+      "note": "Fellowship work-in-progress literature project begun in 1991.",
+      "category": "drafts"
+    },
+    {
+      "id": "southern-exposure",
+      "title": "Southern Exposure",
+      "subtitle": "Recovery Under the Sun",
+      "category": "history",
+      "cover": "images/literature/southern-exposure.jpg",
+      "pdf": "/literature/library/southern-exposure.pdf",
+      "note": "NA history in Florida. Full archival book scan.",
+      "pages": 340,
+      "bytes": 17716390,
+      "sha256": "bbb1e2dd212d88416b5d48e22dbda8fb280ea868b6a79ba69fd09583984d0478",
+      "sourceName": "southern-exposure.pdf"
+    },
+    {
+      "id": "impossible-dream",
+      "title": "The Impossible Dream",
+      "subtitle": "A History of Narcotics Anonymous in New York",
+      "category": "history",
+      "cover": "images/literature/impossible-dream.jpg",
+      "pdf": "/literature/library/impossible-dream.pdf",
+      "note": "2015 Greater New York regional history. Personal accounts reflect the contributors' views.",
+      "pages": 388,
+      "bytes": 19703484,
+      "sha256": "818d5f91315d7b3b3cfb88ae2d6d2d85502d436a3d38f271d308c0c269c2ad90",
+      "sourceName": "impossible-dream.pdf"
+    },
+    {
+      "id": "when-it-works",
+      "title": "When It Works: 12 Basics",
+      "subtitle": "The Twelve Principles of Narcotics Anonymous",
+      "category": "principles",
+      "cover": "images/literature/when-it-works.jpg",
+      "pdf": "/literature/library/when-it-works.pdf",
+      "note": "Input & Review booklet. A literary work in progress offered for Home Group participation.",
+      "pages": 48,
+      "bytes": 1135089,
+      "sha256": "efe2a5a7305b80c71332ac323e3f0dd7bd3d81764929f8e729fd49efa689f828",
+      "sourceName": "when-it-works.pdf"
+    },
+    {
+      "id": "principles-workbook",
+      "title": "Principles Workbook",
+      "subtitle": "Greg Pierce and Lois Pierce Richards",
+      "category": "principles",
+      "cover": "images/literature/principles-workbook.jpg",
+      "pdf": "/literature/library/principles-workbook.pdf",
+      "note": "Member-written exercises for studying and applying spiritual principles.",
+      "pages": 67,
+      "bytes": 347193,
+      "sha256": "3323135e35a7a539ff55ca3dfe95cbb02245eb4148a2fbf3784559aa89b4aa11",
+      "sourceName": "PrinciplesWorkbook-by-Greg-P-Lois-R.pdf"
+    },
+    {
+      "id": "back-to-the-basic",
+      "title": "Back to the Basic",
+      "subtitle": "Antoinette W. Bishop - Basic Text study guide",
+      "category": "steps",
+      "cover": "images/literature/back-to-the-basic.jpg",
+      "pdf": "/literature/library/back-to-the-basic.pdf",
+      "note": "Member-written guide with Step studies and personal inventory material. The source permits personal-use copying, not sale or profit.",
+      "pages": 67,
+      "bytes": 442525,
+      "sha256": "84d61fcbf6c570d30a7ba84ff55120ad985de793c305354275734bdb0cabca88",
+      "sourceName": "Back-to-the-Basic-Step-Guide.pdf"
+    },
+    {
+      "id": "back-to-the-grey-book",
+      "title": "Back to the Grey Book",
+      "subtitle": "Line-by-line Step and Tradition study guide",
+      "category": "steps",
+      "cover": "images/literature/back-to-the-grey-book.jpg",
+      "pdf": "/literature/library/back-to-the-grey-book.pdf",
+      "note": "Study questions for the 1981 Grey Book. The source permits personal-use copying, not sale or profit.",
+      "pages": 39,
+      "bytes": 481527,
+      "sha256": "fe38d811237dba290c5a63d4cf51265d4fbc5cccab5fc740d94d47ac6cba181b",
+      "sourceName": "Back-To-The-Grey-Book-Final.pdf"
+    },
+    {
+      "id": "early-step-guide",
+      "title": "Fifty-Two Questions About Our Steps",
+      "subtitle": "Early Step-working questions",
+      "category": "steps",
+      "cover": "images/literature/early-step-guide.jpg",
+      "pdf": "/literature/library/early-step-guide.pdf",
+      "note": "Two-page historical question sheet, archived as pre-1983. Not the NAWS Step Working Guides.",
+      "pages": 2,
+      "bytes": 394317,
+      "sha256": "3d1e402adc3fc06aaa653c49fa684d5c844ef015e8d1fc680ed29831b507f62b",
+      "sourceName": "Early-Step-Working-Guide-pre-1983-.pdf"
+    },
+    {
+      "id": "old-school-step-guide",
+      "title": "Old-School Step Writing Guide",
+      "subtitle": "Sponsor/sponsee writing guide and worksheets",
+      "category": "steps",
+      "cover": "images/literature/old-school-step-guide.jpg",
+      "pdf": "/literature/library/old-school-step-guide.pdf",
+      "note": "Alternative Step exercises and worksheets. Not the NAWS Step Working Guides.",
+      "pages": 29,
+      "bytes": 771231,
+      "sha256": "b9bbde793e5d91409b9cd5775d218c3ce9c686eac532bd28682ceba80501181c",
+      "sourceName": "OLD-SCHOOL-Step-Writing-Guide.pdf"
+    },
+    {
+      "id": "clean-and-serene-draft",
+      "title": "Clean and Serene 12-Step Guide",
+      "subtitle": "Proposed Review Form - archived as 1983",
+      "category": "steps",
+      "cover": "images/literature/clean-and-serene-draft.jpg",
+      "pdf": "/literature/library/clean-and-serene-draft.pdf",
+      "note": "Historical proposed review-form scan, not the published NAWS Step Working Guides.",
+      "pages": 23,
+      "bytes": 3647697,
+      "sha256": "a66de27e845171b8873ed81e23cb8f8fe2489c68ee06e13a7eba6f204431b139",
+      "sourceName": "Clean-and-Serene-12-Step-Guide-Proposed-Review-Form-1983.pdf"
+    },
+    {
+      "id": "basic-text-traditions-guide",
+      "title": "Basic Text Twelve Traditions Study Guide",
+      "subtitle": "Historical Tradition study questions",
+      "category": "traditions",
+      "cover": "images/literature/basic-text-traditions-guide.jpg",
+      "pdf": "/literature/library/basic-text-traditions-guide.pdf",
+      "note": "Scanned guide for studying the Twelve Traditions alongside the Basic Text.",
+      "pages": 14,
+      "bytes": 1191888,
+      "sha256": "4ea6584197fc2b6ed028cf37f8a426ff1eec43d38ee3be9e7a4865ce9b161477",
+      "sourceName": "Basic Text 12 Traditions Study Guide .pdf"
+    },
+    {
+      "id": "lonestar-traditions-draft",
+      "title": "Lone Star Guide to the Twelve Traditions",
+      "subtitle": "Regional literature committee draft",
+      "category": "traditions",
+      "cover": "images/literature/lonestar-traditions-draft.jpg",
+      "pdf": "/literature/library/lonestar-traditions-draft.pdf",
+      "note": "Includes drafts and revisions from the Lone Star regional literature project. Not presented as a completed or fellowship-approved book.",
+      "pages": 81,
+      "bytes": 540603,
+      "sha256": "98656a9b0991a55770af6504ca63843448ecd99645ebf7dbae8afd2092bd203b",
+      "sourceName": "LonestarTraditionGuide.pdf"
+    },
+    {
+      "id": "carolina-traditions-workbook",
+      "title": "Practicing the Principles of Our Traditions",
+      "subtitle": "Carolina Region literature committee work in progress",
+      "category": "traditions",
+      "cover": "images/literature/carolina-traditions-workbook.jpg",
+      "pdf": "/literature/library/carolina-traditions-workbook.pdf",
+      "note": "The included archival note identifies this as a late-1990s Carolina Region project, not a Greg Pierce-authored workbook.",
+      "pages": 13,
+      "bytes": 1488047,
+      "sha256": "be5136eae232da882dbc46ba76ce226197bf70f56335abee4ce95f8bf793a56d",
+      "sourceName": "Traditions Workbook with NArchive Note.pdf"
+    }
+  ],
+  "categories": [
+    {
+      "id": "drafts",
+      "title": "Drafts & Historical Literature"
+    },
+    {
+      "id": "history",
+      "title": "NA History Books"
+    },
+    {
+      "id": "principles",
+      "title": "Principles & Workbooks"
+    },
+    {
+      "id": "steps",
+      "title": "Step Guides"
+    },
+    {
+      "id": "traditions",
+      "title": "Tradition Guides & Workbooks"
     }
   ]
 }
