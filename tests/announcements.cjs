@@ -10,7 +10,8 @@ for(const [,src] of section.matchAll(/(?:src|href)="(\/images\/announcements\/[^
 assert.equal((html.match(/id="announcements"/g)||[]).length,1);
 const grey=require('../data/literature-library.json').books.find(b=>b.id==='grey-book');
 assert.equal(grey.pdf,'/literature/1981-NA-Basic-Text-Grey-Book-Manuscript.pdf');
-assert.ok(html.includes(`href="${grey.pdf}"`));
+assert.ok(html.includes('href="/library/"'));
+assert.ok(fs.readFileSync(path.join(root,'library/index.html'),'utf8').includes('data-literature-shelf'));
 assert.ok(!grey.readerUrl && !grey.downloadUrl);
 assert.ok(fs.existsSync(path.join(root,grey.pdf)));
 const {nextMeeting,format,zones}=require('../js/announcements.js');

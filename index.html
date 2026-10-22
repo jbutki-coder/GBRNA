@@ -123,32 +123,28 @@
     }
   </style>
   <link rel="stylesheet" href="/css/translation.css?v=20261003-1">
+  <link rel="stylesheet" href="/css/home-navigation.css?v=20261021-1">
 </head>
 
 <body>
 
 <div class="global-tabs-bar">
   <nav class="global-tabs" aria-label="Complete site navigation">
-    <a href="/#today" aria-current="page">GBR - Home</a>
-    <a href="/#announcements">Announcements</a>
-    <a href="/#archive">Reflection Archive</a>
-    <a href="/#search">Search</a>
-    <a href="/#library">Library</a>
+    <a href="/" aria-current="page">GBR - Home</a>
+    <a href="/library/">Library</a>
     <a href="/grey-book-study/">Grey Book Study</a>
     <a href="/baby-blue-study/">Baby Blue Study</a>
     <a href="/just-for-today/">Just For Today</a>
     <a href="/archive-master-index.html">NA History Archive</a>
     <a href="/lwb-draft/">Meeting Readings / Seventh Tradition</a>
-    <a href="/#download">Download</a>
     <a href="/audio/">Audio</a>
     <a href="/publications/">Magazines &amp; Newsletters</a>
-      <a href="/legal/">Legal</a>
+    <a href="/legal/">Legal</a>
     <a href="/meetings/">Meetings</a>
     <a href="/asis-ips/">A.S.I.S. Literature</a>
     <a href="/purchase-literature/">Purchase Literature</a>
     <a href="/fsc/">FSC</a>
     <a href="https://www.nahelp.org" target="_blank" rel="noopener noreferrer">A.S.I.S. Website</a>
-    <a href="/#about">About</a>
     <a href="https://groupme.com/join_group/112220426/cmMrS4SR" target="_blank" rel="noopener noreferrer">Home Group Chat</a>
   </nav>
 </div>
@@ -165,6 +161,14 @@
 </header>
 
 <main class="wrap main-content">
+
+  <nav class="home-section-nav" aria-label="On this page">
+    <a href="#announcements">Announcements</a>
+    <a href="#archive">Reflection Calendar</a>
+    <a href="#search">Find a Reflection</a>
+    <a href="#review-input">Review &amp; Input</a>
+    <a href="#about">About the Group</a>
+  </nav>
 
   <section id="today" class="toolbar" aria-label="Reading controls">
     <button id="prevBtn" type="button">Previous</button>
@@ -183,58 +187,6 @@
   </section>
 
   <section id="dailyNotice" class="notice hidden" aria-live="polite"></section>
-
-  <section id="newcomer" class="project-intro-panel" aria-label="Project introduction for newcomers">
-    <div class="project-intro-copy">
-
-      <p class="eyebrow">For the newcomer and the literature student</p>
-
-      <h2>Grey Book Reflections</h2>
-
-      <p>
-        A daily reflection work rooted in the historical literature of Narcotics Anonymous.
-        The reflections are based on lines found in the Memphis 1981 Review &amp; Input form
-        of the Basic Text, also known as the Grey Book.
-      </p>
-
-      <p>
-        Read today’s reflection, open the original source context, listen to NA audio,
-        find virtual and hybrid historical literature meetings, and explore the books,
-        documents, and history connected with this open-participation literature process.
-      </p>
-
-      <p class="project-intro-service">
-        <strong>Project history:</strong>
-        According to the Grey Book Reflections Preface, the project began in May 2013
-        when a Group in Allentown, Pennsylvania wished for a daily reflection book
-        written by addicts for addicts through an open participation process.
-      </p>
-
-      <div class="gbr-history-note">
-        In 2014, that Group together with other Groups sponsored a literature-writing
-        conference in Longwood, Florida to begin the writing process. Members attended
-        from Kentucky, Ohio, Florida, Georgia, Pennsylvania, New Jersey, North Carolina,
-        and South Carolina. The Preface states that some of those members had also
-        participated in writing the Basic Text. Additional writing continued at
-        literature conferences and NA Home Groups throughout the world. The Preface
-        closes in service from <strong>The N.A. Home Groups and Fellowship Service Conference.</strong>
-      </div>
-    </div>
-
-    <div class="project-intro-actions" aria-label="Quick links">
-      <a href="#today">Read Today</a>
-      <a href="/grey-book-study/">Grey Book Study</a>
-      <a href="/lwb-draft/">Open Little White Book</a>
-      <a href="#library">Read Literature</a>
-      <a href="/asis-ips/">Read A.S.I.S. Literature</a>
-      <a href="/fsc/">Fellowship Service Conference</a>
-      <a href="/archive-master-index.html">Browse NA History Archive</a>
-      <a href="/meetings/">Find a Meeting</a>
-      <a href="/audio/">Listen</a>
-      <a href="#archive">Browse Reflection Archive</a>
-      <a href="#review-input">Review &amp; Input</a>
-    </div>
-  </section>
 
   <section id="readingArea" class="reading-stack" aria-live="polite"></section>
 
@@ -361,78 +313,8 @@
     </div>
   </details>
 
-  <section id="library" class="panel literature-library-panel">
 
-    <div class="panel-heading">
-      <p class="eyebrow">Historical Literature Library</p>
-      <h2>Read the Books on the Site</h2>
-    </div>
 
-    <p>
-      Open a cover to read the book in the site reader, or use the download button
-      on each item to save a copy for later. Covers are kept small so the library
-      stays compact on phones.
-    </p>
-
-    <p>
-      <a class="download-button" href="/lwb-draft/">
-        Read the 1983 Little White Book Draft
-      </a>
-    </p>
-
-    <div
-      class="literature-shelf"
-      data-literature-shelf
-      aria-label="Historical NA literature shelf">
-    </div>
-
-  </section>
-
-  <section id="asis-ips" class="panel asis-ip-panel">
-
-    <div class="panel-heading">
-      <p class="eyebrow">Recovery and Service Literature</p>
-      <h2>A.S.I.S. Recovery &amp; Service Literature</h2>
-    </div>
-
-    <p>
-      Browse approved A.S.I.S. literature separately from unfinished Review &amp;
-      Input material, with each piece clearly labeled by its current standing.
-    </p>
-
-    <p>
-      The screen-reading copies have corrected page orientation so the literature
-      opens upright instead of sideways on phones and computers.
-    </p>
-
-    <p>
-      <a class="download-button" href="/asis-ips/">
-        Browse A.S.I.S. Literature
-      </a>
-    </p>
-
-  </section>
-
-  <section id="fsc" class="panel fsc-panel">
-
-    <div class="panel-heading">
-      <p class="eyebrow">Home-Group-Directed Service</p>
-      <h2>Fellowship Service Conference</h2>
-    </div>
-
-    <p>
-      Open the FSC 2027 conference page for the current registration flyer,
-      conference details, the Volume 63 Conference Report, current motions,
-      and Home Group revision material.
-    </p>
-
-    <p>
-      <a class="download-button" href="/fsc/">
-        Open FSC 2027
-      </a>
-    </p>
-
-  </section>
 
   <section id="archive" class="panel">
 
@@ -467,72 +349,6 @@
 
   </section>
 
-  <section id="download" class="panel download-panel">
-
-    <div class="panel-heading">
-      <p class="eyebrow">Download</p>
-      <h2>Literature Downloads</h2>
-    </div>
-
-    <p>
-      Download the current <strong>Grey Book Reflections</strong> Review &amp; Input
-      draft for Group review, literature study, and participation.
-    </p>
-
-    <p>
-      <a
-        class="download-button"
-        href="/downloads/Grey-Book-Reflection-NY%20%281%29%20%281%29.pdf"
-        download>
-        Download Grey Book Reflection PDF
-      </a>
-    </p>
-
-    <p>
-      <a
-        class="download-button"
-        href="/literature/1981-NA-Basic-Text-Grey-Book-Manuscript.pdf"
-        download>
-        Download Grey Book PDF
-      </a>
-    </p>
-
-    <p>
-      <a class="download-button" href="/grey-book-study/">
-        Open Grey Book Study
-      </a>
-    </p>
-
-    <p>
-      <a class="download-button" href="/lwb-draft/">
-        Read the 1983 Little White Book Draft
-      </a>
-    </p>
-
-    <p>
-      <a class="download-button" href="/asis-ips/">
-        Read A.S.I.S. Literature
-      </a>
-    </p>
-
-    <p>
-      <a
-        class="download-button"
-        href="https://www.nahelp.org"
-        target="_blank"
-        rel="noopener noreferrer">
-        Visit A.S.I.S. / NA Help
-      </a>
-    </p>
-
-    <p class="small-note">
-      <strong>Grey Book Reflections remains Review &amp; Input literature.</strong>
-      Its Preface describes an open participatory literature process involving
-      NA Home Groups and literature conferences. NA Home Groups and members are
-      encouraged to participate and provide input.
-    </p>
-
-  </section>
 
   <section id="about" class="panel about-panel about-rebuilt">
 
@@ -931,104 +747,11 @@
 
     </section>
 
-    <div
-      class="about-action-row"
-      aria-label="Related About links">
-
-      <a href="/asis-ips/">
-        Browse A.S.I.S. Literature
-      </a>
-
-      <a href="/fsc/">
-        Open the FSC Page
-      </a>
-
-      <a
-        class="secondary"
-        href="https://nahelp.org/"
-        target="_blank"
-        rel="noopener noreferrer">
-        Visit NAHELP.org
-      </a>
-
-    </div>
 
   </section>
 
 </main>
 
-<div
-  class="literature-reader-modal"
-  data-literature-reader
-  hidden>
-
-  <div
-    class="literature-reader-backdrop"
-    data-literature-close>
-  </div>
-
-  <section
-    class="literature-reader-window"
-    role="dialog"
-    aria-modal="true"
-    aria-labelledby="literatureReaderTitle">
-
-    <header class="literature-reader-header">
-
-      <div>
-
-        <p class="eyebrow">
-          Historical Literature Reader
-        </p>
-
-        <h2
-          id="literatureReaderTitle"
-          data-literature-title>
-          Literature Reader
-        </h2>
-
-      </div>
-
-      <button
-        class="literature-reader-close"
-        type="button"
-        data-literature-close>
-        Close ×
-      </button>
-
-    </header>
-
-    <div class="literature-reader-actions">
-
-      <a
-        class="download-button"
-        href="#"
-        target="_blank"
-        rel="noopener noreferrer"
-        data-literature-open>
-        Open Full Size
-      </a>
-
-      <a
-        class="download-button"
-        href="#"
-        download
-        data-literature-download>
-        Download PDF
-      </a>
-
-    </div>
-
-    <iframe
-      class="literature-reader-frame"
-      data-literature-frame
-      title="Historical literature PDF reader"
-      loading="lazy">
-    </iframe>
-
-  </section>
-
-</div>
 
 <footer class="site-footer">
 
@@ -1045,9 +768,9 @@
 
 </footer>
 
+<script src="/js/home-navigation.js?v=20261021-1"></script>
 <script src="/js/reflection-audio-player.js?v=20261021-1"></script>
 <script src="js/app.js?v=20261021-audio-tab"></script>
-<script src="js/literature.js?v=20261020-manuscript"></script>
 <script src="/js/announcements.js?v=20261020-1" defer></script>
 <script defer src="js/source-audio.js?v=20260714-all366"></script>
 <script src="/js/pdf-router.js?v=20260726-tradition-six-render-v1" defer></script>

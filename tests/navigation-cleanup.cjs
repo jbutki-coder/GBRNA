@@ -1,0 +1,36 @@
+'use strict';
+const assert=require('node:assert/strict');
+const fs=require('node:fs');
+const cp=require('node:child_process');
+const path=require('node:path');
+const root=path.resolve(__dirname,'..');
+const files=[...new Set([...cp.execFileSync('git',['ls-files','*.html'],{cwd:root,encoding:'utf8'}).trim().split(/\r?\n/),'library/index.html'])];
+let expected;
+let count=0;
+for(const file of files){
+  const html=fs.readFileSync(path.join(root,file),'utf8');
+  const nav=html.match(/<nav\b[^>]*class="(?:global-tabs|site-tabs)"[^>]*>[\s\S]*?<\/nav>/)?.[0];
+  if(!nav)continue;
+  const urls=[...nav.matchAll(/href="([^"]+)"/g)].map(m=>m[1]);
+  assert.equal(urls.length,16,file);
+  assert.equal(new Set(urls).size,urls.length,file);
+  assert.equal(urls.filter(url=>url==='/').length,1,file);
+  assert.ok(!urls.some(url=>url.startsWith('/#')||url.startsWith('#')),file);
+  assert.ok(urls.includes('/library/'),file);
+  if(expected)assert.deepEqual(urls,expected,file);else expected=urls;
+  count++;
+}
+assert.equal(count,19);
+const home=fs.readFileSync(path.join(root,'index.html'),'utf8');
+assert.doesNotMatch(home,/class="project-intro-actions"|class="about-action-row"/);
+for(const id of ['today','readingArea','announcements','archive','search','about'])assert.ok(home.includes(`id="${id}"`),id);
+assert.ok(home.includes('/js/home-navigation.js'));
+assert.ok(home.includes('/js/reflection-audio-player.js'));
+assert.ok(home.includes('js/source-audio.js'));
+const library=fs.readFileSync(path.join(root,'library/index.html'),'utf8');
+assert.ok(library.includes('data-literature-shelf'));
+assert.ok(library.includes('data-literature-reader'));
+assert.ok(library.includes('Grey-Book-Reflection-NY'));
+const routes=fs.readFileSync(path.join(root,'js/home-navigation.js'),'utf8');
+for(const id of ['library','download','asis-ips','fsc'])assert.ok(routes.includes(`#${id}`));
+console.log('Navigation cleanup: 19 consistent menus, 16 unique destinations, Library moved, legacy routes and daily players retained.');
