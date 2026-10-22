@@ -30,6 +30,7 @@
   const errorDirect = document.getElementById('errorDirect');
 
   let pdfDocument = null;
+  let documentReady = false;
   let pageObserver = null;
   let currentPage = 1;
   let zoom = 1;
@@ -175,8 +176,9 @@
   function updateNavigation() {
     const total = pdfDocument?.numPages || 0;
     pageReadout.textContent = total ? `${currentPage} / ${total}` : '— / —';
-    prevPage.disabled = !total || currentPage <= 1;
-    nextPage.disabled = !total || currentPage >= total;
+    prevPage.disabled = !documentReady || !total || currentPage <= 1;
+    nextPage.disabled = !documentReady || !total || currentPage >= total;
+    zoomOut.disabled = zoomIn.disabled = fitWidth.disabled = !documentReady;
     zoomReadout.textContent = `${Math.round(zoom * 100)}%`;
   }
 
@@ -192,7 +194,8 @@
     const shell = document.getElementById(`pdf-page-${pageNumber}`);
     if (!shell) return;
     setCurrentPage(pageNumber);
-    shell.scrollIntoView({ behavior, block: 'start', inline: 'center' });
+    const top = pdfScroll.scrollTop + shell.getBoundingClientRect().top - pdfScroll.getBoundingClientRect().top;
+    pdfScroll.scrollTo({ top, behavior });
     renderPage(pageNumber).catch((error) => console.warn(error));
   }
 
@@ -387,6 +390,7 @@
 
   async function openDocument() {
     clearError();
+    documentReady = false;
     pdfPages.replaceChildren();
     visibleRatios.clear();
     renderedPages.clear();
@@ -422,8 +426,9 @@
       const initialPage = Math.min(requestedPage, pdfDocument.numPages);
       currentPage = initialPage;
       updateNavigation();
-      hideStatus();
       await renderPage(initialPage, true);
+      documentReady = true;
+      hideStatus();
       scrollToPage(initialPage, 'instant');
       startObservers();
       renderPage(currentPage - 1).catch(() => {});
@@ -440,8 +445,16 @@
   backButton.addEventListener('click', goBack);
   errorBack.addEventListener('click', goBack);
   retryReader.addEventListener('click', openDocument);
-  prevPage.addEventListener('click', () => scrollToPage(currentPage - 1));
-  nextPage.addEventListener('click', () => scrollToPage(currentPage + 1));
+  prevPage.addEventListener('click', () => scrollToPage(currentPage - 1, 'instant'));
+  nextPage.addEventListener('click', () => scrollToPage(currentPage + 1, 'instant'));
+  let scrollFrame = null;
+  pdfScroll.addEventListener('scroll', () => {
+    if (scrollFrame !== null) return;
+    scrollFrame = window.requestAnimationFrame(() => {
+      scrollFrame = null;
+      updateCurrentFromVisibility();
+    });
+  }, { passive: true });
   zoomOut.addEventListener('click', () => applyZoom(zoom - 0.15));
   zoomIn.addEventListener('click', () => applyZoom(zoom + 0.15));
   fitWidth.addEventListener('click', () => applyZoom(1));

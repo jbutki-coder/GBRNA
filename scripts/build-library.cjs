@@ -91,7 +91,7 @@ ${icons}
 
 </div>
 <footer class="site-footer"><div class="wrap"><p>In Loving Service: Grey Area Historical Literature Study Group of Narcotics Anonymous</p><a href="/">Back to GBR - Home</a></div></footer>
-<script src="/js/literature.js?v=20261021-curated"></script><script src="/js/pdf-router.js?v=20260726-tradition-six-render-v1" defer></script><script src="/js/translation.js?v=20261010-readings" defer></script></body></html>\n`;
+<script src="/js/literature.js?v=20261022-multipage"></script><script src="/js/pdf-router.js?v=20260726-tradition-six-render-v1" defer></script><script src="/js/translation.js?v=20261010-readings" defer></script></body></html>\n`;
 fs.mkdirSync(path.join(root,'library'),{recursive:true});
 fs.writeFileSync(path.join(root,'library/index.html'),html);
 console.log('Built standalone Library with existing covers, readers, and downloads.');

@@ -18,6 +18,15 @@
     .replace(/'/g, '&#039;');
 
   function openReader(book, trigger) {
+    if (book.pdf) {
+      const params = new URLSearchParams({
+        url: new URL(book.pdf, document.baseURI).href,
+        title: book.title,
+        return: window.location.href
+      });
+      window.location.assign(`/pdf-reader.html?${params.toString()}`);
+      return;
+    }
     const readerUrl = book.readerUrl || (book.pdf ? `${book.pdf}#view=FitH` : '');
     const openUrl = book.openUrl || book.readerUrl || book.pdf || '';
     const downloadUrl = book.downloadUrl || book.pdf || '';
