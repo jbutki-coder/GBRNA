@@ -65,6 +65,19 @@
       "category": "drafts"
     },
     {
+      "id": "vito-step-guide",
+      "title": "Vito's Step Guide",
+      "subtitle": "Original Step Guides - sponsor/sponsee worksheets",
+      "category": "steps",
+      "cover": "images/literature/vito-step-guide.jpg",
+      "pdf": "/literature/library/vito-step-guide.pdf",
+      "note": "Scanned worksheets for Steps One through Twelve, with a meeting format and an institutional literature letter.",
+      "pages": 10,
+      "bytes": 1031631,
+      "sha256": "7ebc619c36bfa87655da0de85d35a644992e87710c67e16b7779125d404b481e",
+      "sourceName": "Vito_Step_Guide.pdf"
+    },
+    {
       "id": "southern-exposure",
       "title": "Southern Exposure",
       "subtitle": "Recovery Under the Sun",

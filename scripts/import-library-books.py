@@ -22,6 +22,7 @@ catalog['categories'] = [
     {'id': 'traditions', 'title': 'Tradition Guides & Workbooks'},
 ]
 selected = [
+    ('vito-step-guide', 'Vito_Step_Guide.pdf', "Vito's Step Guide", 'Original Step Guides - sponsor/sponsee worksheets', 'Scanned worksheets for Steps One through Twelve, with a meeting format and an institutional literature letter.', 'steps', 1),
     ('southern-exposure', 'southern-exposure.pdf', 'Southern Exposure', 'Recovery Under the Sun', 'NA history in Florida. Full archival book scan.', 'history', 1),
     ('impossible-dream', 'impossible-dream.pdf', 'The Impossible Dream', 'A History of Narcotics Anonymous in New York', '2015 Greater New York regional history. Personal accounts reflect the contributors\' views.', 'history', 1),
     ('when-it-works', 'when-it-works.pdf', 'When It Works: 12 Basics', 'The Twelve Principles of Narcotics Anonymous', 'Input & Review booklet. A literary work in progress offered for Home Group participation.', 'principles', 1),
