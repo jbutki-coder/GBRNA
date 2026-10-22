@@ -5,9 +5,17 @@ const path=require('node:path');
 const crypto=require('node:crypto');
 const root=path.resolve(__dirname,'..');
 const catalog=require('../data/literature-library.json');
-assert.equal(catalog.books.length,20);
-assert.equal(new Set(catalog.books.map(b=>b.id)).size,20);
-assert.deepEqual(catalog.categories.map(c=>catalog.books.filter(b=>b.category===c.id).length),[7,2,2,6,3]);
+assert.equal(catalog.books.length,50);
+assert.equal(new Set(catalog.books.map(b=>b.id)).size,50);
+assert.deepEqual(catalog.categories.map(c=>catalog.books.filter(b=>b.category===c.id).length),[14,7,2,12,5,10]);
+const hashes=catalog.books.filter(b=>b.sha256).map(b=>b.sha256);
+assert.equal(new Set(hashes).size,hashes.length,'No duplicate local PDF copies');
+for(const id of ['getting-realer','historical-traditions','journey-traditions','daily-meditation-guide','our-way-of-life','in-loving-service','na-tree-first','na-tree-second']){
+  assert.ok(catalog.books.some(b=>b.id===id),id);
+}
+assert.ok(!catalog.books.some(b=>/step-one-draft|iwhw-approval|h-and-i-handbook|declaration-autonomy/.test(b.id)));
+assert.ok(!catalog.books.some(b=>/WSC.*Minutes|1993-IWHW-Approval|Guide.to.Service/i.test(b.sourceName||'')));
+assert.equal(catalog.books.filter(b=>b.category==='chapter-drafts').length,10);
 for(const book of catalog.books){
   assert.ok(catalog.categories.some(c=>c.id===book.category),book.id);
   assert.ok(fs.existsSync(path.join(root,book.cover)),book.id+' cover');
@@ -19,11 +27,11 @@ for(const book of catalog.books){
     if(book.sha256)assert.equal(crypto.createHash('sha256').update(raw).digest('hex'),book.sha256,book.id);
   }
 }
-assert.equal(catalog.books.filter(b=>b.sha256).length,13);
+assert.equal(catalog.books.filter(b=>b.sha256).length,43);
 assert.equal(catalog.books.find(b=>b.id==='vito-step-guide').pages,10);
 assert.ok(catalog.books.find(b=>b.id==='carolina-traditions-workbook').note.includes('Carolina Region'));
 assert.ok(catalog.books.find(b=>b.id==='when-it-works').note.includes('Input & Review'));
 const html=fs.readFileSync(path.join(root,'library/index.html'),'utf8');
 assert.ok(html.includes('librarySearch')&&html.includes('libraryCategory'));
 assert.ok(!html.includes('+<div'));
-console.log('Library: 20 distinct titles, 13 exact local PDFs, covers, five sections, correct provenance, and NAWS guide exclusion verified.');
+console.log('Library: 50 distinct titles, 43 unique local PDFs, six sections, chapter drafts, requested inclusions and exclusions verified.');

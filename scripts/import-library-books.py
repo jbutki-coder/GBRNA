@@ -9,6 +9,7 @@ from pypdf import PdfReader
 parser = argparse.ArgumentParser()
 parser.add_argument('review_folder')
 parser.add_argument('--pdftoppm', required=True)
+parser.add_argument('--additional-review', type=Path)
 args = parser.parse_args()
 root = Path(__file__).resolve().parents[1]
 review = Path(args.review_folder)
@@ -20,6 +21,7 @@ catalog['categories'] = [
     {'id': 'principles', 'title': 'Principles & Workbooks'},
     {'id': 'steps', 'title': 'Step Guides'},
     {'id': 'traditions', 'title': 'Tradition Guides & Workbooks'},
+    {'id': 'chapter-drafts', 'title': 'Basic Text Chapter Drafts & Cut-and-Paste'},
 ]
 selected = [
     ('vito-step-guide', 'Vito_Step_Guide.pdf', "Vito's Step Guide", 'Original Step Guides - sponsor/sponsee worksheets', 'Scanned worksheets for Steps One through Twelve, with a meeting format and an institutional literature letter.', 'steps', 1),
@@ -36,11 +38,19 @@ selected = [
     ('lonestar-traditions-draft', 'LonestarTraditionGuide.pdf', 'Lone Star Guide to the Twelve Traditions', 'Regional literature committee draft', 'Includes drafts and revisions from the Lone Star regional literature project. Not presented as a completed or fellowship-approved book.', 'traditions', 1),
     ('carolina-traditions-workbook', 'Traditions Workbook with NArchive Note.pdf', 'Practicing the Principles of Our Traditions', 'Carolina Region literature committee work in progress', 'The included archival note identifies this as a late-1990s Carolina Region project, not a Greg Pierce-authored workbook.', 'traditions', 2),
 ]
+additional_sources = {}
+if args.additional_review:
+    for entry in json.loads(args.additional_review.read_text(encoding='utf-8')):
+        note = entry.get('note', 'Historical draft or member study material; not a current NAWS publication.')
+        if entry['category'] == 'chapter-drafts':
+            note = 'Original chapter-development manuscript from the 1980 Lincoln literature conference. Includes handwritten and cut-and-paste material, not a finished book.'
+        selected.append((entry['id'], entry['filename'], entry['title'], entry['subtitle'], note, entry['category'], 1))
+        additional_sources[entry['id']] = entry['sourceName']
 new_ids = {entry[0] for entry in selected}
 books = [book for book in catalog['books'] if book['id'] not in new_ids]
 for book in books:
     book.setdefault('category', 'drafts')
-seen = set()
+seen = {book['sha256'] for book in books if book.get('sha256')}
 for book_id, filename, title, subtitle, note, category, cover_page in selected:
     original = review / filename
     raw = original.read_bytes()
@@ -59,7 +69,7 @@ for book_id, filename, title, subtitle, note, category, cover_page in selected:
     books.append({'id': book_id, 'title': title, 'subtitle': subtitle, 'category': category,
                   'cover': f'images/literature/{book_id}.jpg', 'pdf': '/'+relative.as_posix(),
                   'note': note, 'pages': pages, 'bytes': len(raw), 'sha256': digest,
-                  'sourceName': filename})
+                  'sourceName': additional_sources.get(book_id, filename)})
 catalog['books'] = books
 catalog_path.write_text(json.dumps(catalog, indent=2, ensure_ascii=False)+'\n', encoding='utf-8')
 print(f'Imported {len(selected)} reviewed books and guides; {len(books)} total library entries.')
