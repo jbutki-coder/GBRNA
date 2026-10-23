@@ -26,8 +26,17 @@ const base=process.env.SITE_URL||'http://127.0.0.1:4196';
       assert.match(await flyer.getAttribute('src'),/ar4na-meeting-november-2026.png/);
       const href=await flyer.locator('..').getAttribute('href');
       assert.equal((await page.request.get(base+href)).status(),200);
+      const gathering=page.locator('#unifying-we-with-traditions');
+      const gatheringFlyer=gathering.locator('img');
+      assert.ok(await gatheringFlyer.evaluate(i=>i.naturalWidth>1000));
+      assert.equal(await gathering.locator('a[href="tel:+14022704945"]').count(),1);
+      assert.equal(await gathering.locator('a[href="mailto:marineblue@live.com"]').count(),1);
+      await gathering.locator('summary').click();
+      assert.equal(await gathering.locator('details').getAttribute('open'),'');
+      assert.ok(await gathering.evaluate(e=>e.scrollWidth<=e.clientWidth+1));
+      await gathering.screenshot({path:`draft-maps/announcement-checks/branson-${label}.png`});
       await page.close();
     }
-    console.log('PASS: desktop/mobile layout, all announcement images, 20 timezone rows, and full-size AR4NA flyer.');
+    console.log('PASS: desktop/mobile announcement images, time zones, AR4NA flyer, Branson event flyer, contacts and expanded announcement.');
   } finally { await browser.close(); }
 })().catch(e=>{console.error(e);process.exit(1)});

@@ -10,6 +10,8 @@ assert.ok(section.includes('href="https://us06web.zoom.us/j/83854675083?pwd=hzt5
 assert.ok(!section.includes('Meeting link coming soon'));
 assert.ok(section.includes('src="/images/announcements/ar4na-meeting-november-2026.png"'));
 assert.ok(section.includes('aria-label="Open the AR4NA meeting flyer full size"'));
+for(const text of ['id="unifying-we-with-traditions"','April 9&ndash;11, 2027 | Branson, Missouri','30 boxes of NA Basic Texts to 30 jails across Arizona, Oklahoma, and Missouri','Printing Literature and the Seventh Tradition','Same Program. Different Groups. One Primary Purpose.','tel:+14022704945','mailto:marineblue@live.com','It does not imply endorsement by NA World Services'])assert.ok(section.includes(text),text);
+assert.equal((section.match(/id="unifying-we-with-traditions"/g)||[]).length,1);
 for(const [,src] of section.matchAll(/(?:src|href)="(\/images\/announcements\/[^"?]+)"/g)) assert.ok(fs.existsSync(path.join(root,src)),src);
 assert.equal((html.match(/id="announcements"/g)||[]).length,1);
 const grey=require('../data/literature-library.json').books.find(b=>b.id==='grey-book');

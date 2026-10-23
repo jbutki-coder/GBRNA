@@ -8,6 +8,9 @@
 .announcement{padding:24px 0;border-top:1px solid var(--line);min-width:0}
 .announcement-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 32px}
 .announcement-flyer{display:block;width:min(280px,100%);height:auto;margin:16px 0;border:1px solid var(--line)}
+.announcement-flyer-wide{width:min(760px,100%)}
+.announcement-details summary{cursor:pointer;font-weight:bold;padding:12px 0}
+.announcement-details{margin:16px 0}
 .magazine-issues{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
 .magazine-issues img{display:block;width:200px;max-width:100%;height:auto;background:#fff}
 .announcement-times summary{cursor:pointer;font-weight:bold;padding:10px 0}
