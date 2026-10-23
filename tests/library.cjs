@@ -5,9 +5,11 @@ const path=require('node:path');
 const crypto=require('node:crypto');
 const root=path.resolve(__dirname,'..');
 const catalog=require('../data/literature-library.json');
-assert.equal(catalog.books.length,53);
-assert.equal(new Set(catalog.books.map(b=>b.id)).size,53);
-assert.deepEqual(catalog.categories.map(c=>catalog.books.filter(b=>b.category===c.id).length),[16,8,2,12,5,10]);
+assert.equal(catalog.books.length,54);
+assert.equal(new Set(catalog.books.map(b=>b.id)).size,54);
+assert.deepEqual(catalog.categories.map(c=>catalog.books.filter(b=>b.category===c.id).length),[16,9,2,12,5,10]);
+assert.equal(catalog.books.find(b=>b.id==='paving-the-road-as-we-go').category,'history');
+assert.equal(catalog.books.find(b=>b.id==='paving-the-road-as-we-go').pages,285);
 for(const id of ['na-tree-first','na-tree-second'])assert.equal(catalog.books.find(b=>b.id===id).category,'drafts');
 for(const id of ['matter-of-principle','my-years-with-na','tradition-wars'])assert.equal(catalog.books.find(b=>b.id===id).category,'history');
 assert.match(catalog.books.find(b=>b.id==='tradition-wars').note,/not for distribution/);
@@ -30,7 +32,7 @@ for(const book of catalog.books){
     if(book.sha256)assert.equal(crypto.createHash('sha256').update(raw).digest('hex'),book.sha256,book.id);
   }
 }
-assert.equal(catalog.books.filter(b=>b.sha256).length,46);
+assert.equal(catalog.books.filter(b=>b.sha256).length,47);
 assert.equal(catalog.books.find(b=>b.id==='vito-step-guide').pages,10);
 assert.ok(catalog.books.find(b=>b.id==='carolina-traditions-workbook').note.includes('Carolina Region'));
 assert.ok(catalog.books.find(b=>b.id==='when-it-works').note.includes('Input & Review'));

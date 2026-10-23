@@ -661,6 +661,19 @@
       "bytes": 2734851,
       "sha256": "9ccf17014f13d619e1b808525f3d948f2ba4ae060e5266d97ec594cc94bd7dc7",
       "sourceName": "Traditions Wars 10.18.07.pdf"
+    },
+    {
+      "id": "paving-the-road-as-we-go",
+      "title": "Paving the Road as We Go",
+      "subtitle": "A Journey of Recovery in Philadelphia and Surrounding Areas, 1969-1982",
+      "category": "history",
+      "cover": "images/literature/paving-the-road-as-we-go.jpg",
+      "pdf": "/literature/library/paving-the-road-as-we-go.pdf",
+      "note": "Philadelphia NA Book Project history of the fellowship's beginnings and growth through 1982. The contributors' views do not represent NA as a whole.",
+      "pages": 285,
+      "bytes": 5969245,
+      "sha256": "a5b84139b43850b1bf9b92a4760d4ef0e3bd4692ed1b11272c23b39d85c9378f",
+      "sourceName": "Paving-the-Road-as-We-Go-A-Journey-of-Recovery-in-Philadelphia-and-Surrounding-Areas-1969-1982.pdf"
     }
   ],
   "categories": [
