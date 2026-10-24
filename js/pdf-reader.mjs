@@ -6,6 +6,45 @@
   const requestedTitle = params.get('title') || 'PDF document';
   const returnUrl = params.get('return') || '/';
   const requestedPage = Math.max(1, Number(params.get('page')) || 1);
+  // These historical print scans have sideways panels, not landscape reading pages.
+  const scanRotations = {
+    'original-am-i-an-addict.pdf': [270, 90],
+    'original-acceptance-faith-commitment.pdf': [270, 90],
+    'original-for-the-newcomer.pdf': [270, 90],
+    'original-just-for-today.pdf': [270, 90],
+    'original-sponsorship.pdf': [270, 90],
+    'original-youth-and-recovery.pdf': [270, 90],
+    'original-fourth-step-inventory.pdf': [90, 270, 90, 90, 90, 90],
+    'original-living-the-program.pdf': [0, 90],
+    'original-triangle-self-obsession.pdf': [0, 90]
+  };
+
+  function scanRotation(pageNumber) {
+    const source = resolvedSource();
+    if (!source || source.origin !== window.location.origin || !source.pathname.startsWith('/asis-ips/pdfs/')) return 0;
+    return scanRotations[source.pathname.split('/').pop()]?.[pageNumber - 1] || 0;
+  }
+
+  function straightenMixedPanel(canvas, pageNumber) {
+    const source = resolvedSource();
+    if (pageNumber !== 2 || source?.origin !== window.location.origin) return;
+    if (!['/asis-ips/pdfs/original-living-the-program.pdf', '/asis-ips/pdfs/original-triangle-self-obsession.pdf'].includes(source.pathname)) return;
+    // The printer's back panel is perpendicular to the cover on these two sheets.
+    const panel = document.createElement('canvas');
+    panel.width = Math.floor(canvas.width / 2);
+    panel.height = canvas.height;
+    panel.getContext('2d').drawImage(canvas, 0, 0, panel.width, panel.height, 0, 0, panel.width, panel.height);
+    const context = canvas.getContext('2d');
+    context.save();
+    context.fillStyle = '#fff';
+    context.fillRect(0, 0, panel.width, panel.height);
+    context.translate(panel.width / 2, panel.height / 2);
+    context.rotate(Math.PI / 2);
+    const scale = Math.min(panel.width / panel.height, panel.height / panel.width);
+    context.scale(scale, scale);
+    context.drawImage(panel, -panel.width / 2, -panel.height / 2);
+    context.restore();
+  }
 
   const readerTitle = document.getElementById('readerTitle');
   const readerStage = document.getElementById('readerStage');
@@ -258,12 +297,13 @@
       const page = await pdfDocument.getPage(pageNumber);
       if (requestedGeneration !== renderGeneration) return;
 
-      const baseViewport = page.getViewport({ scale: 1 });
+      const rotation = ((page.rotate || 0) + scanRotation(pageNumber)) % 360;
+      const baseViewport = page.getViewport({ scale: 1, rotation });
       const cssWidth = fitWidthPixels * zoom;
       const cssScale = cssWidth / baseViewport.width;
-      const cssViewport = page.getViewport({ scale: cssScale });
+      const cssViewport = page.getViewport({ scale: cssScale, rotation });
       const outputScale = Math.min(window.devicePixelRatio || 1, 1.75);
-      const renderViewport = page.getViewport({ scale: cssScale * outputScale });
+      const renderViewport = page.getViewport({ scale: cssScale * outputScale, rotation });
 
       const canvas = document.createElement('canvas');
       const context = canvas.getContext('2d', { alpha: false });
@@ -287,6 +327,7 @@
       const renderTask = page.render({ canvasContext: context, viewport: renderViewport });
       renderTasks.set(pageNumber, renderTask.promise);
       await renderTask.promise;
+      straightenMixedPanel(canvas, pageNumber);
 
       if (requestedGeneration !== renderGeneration) {
         canvas.remove();

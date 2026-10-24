@@ -1,0 +1,169 @@
+{
+  "checkedOn": "2026-10-23",
+  "originalsSource": "https://nahelp.org/approved/",
+  "approvedSource": "https://nahelp.org/approved/",
+  "reviewSource": "https://nahelp.org/english/",
+  "additions": [
+    {
+      "id": "autonomy-standing-on-our-own-two-feet",
+      "title": "Autonomy & Standing on Our Own Two Feet",
+      "sourceName": "Autonomy-Standing-On-Our-Own-Two-Feet.pdf",
+      "status": "review",
+      "pdf": "/asis-ips/pdfs/autonomy-standing-on-our-own-two-feet.pdf",
+      "sha256": "3192d670845197ffc3db571b20ee1a39cdc5cd7667b38d1d4bbe969cb1ca6e74",
+      "bytes": 123296,
+      "pages": 2
+    },
+    {
+      "id": "formation-of-an-na-group",
+      "title": "Formation of an N.A. Group",
+      "sourceName": "Formation-of-an-N.A.-Group.pdf",
+      "status": "review",
+      "pdf": "/asis-ips/pdfs/formation-of-an-na-group.pdf",
+      "sha256": "c443602d27edfba5bdb41f505a570ee325d3e93b6c5c13b6a17523c14f29f2a3",
+      "bytes": 189946,
+      "pages": 2
+    },
+    {
+      "id": "geographically-isolated-addicts",
+      "title": "Geographically Isolated Addicts",
+      "sourceName": "Geopgraphically-Isolated-Addicts.pdf",
+      "status": "review",
+      "pdf": "/asis-ips/pdfs/geographically-isolated-addicts.pdf",
+      "sha256": "e5098b48e07a91798f76ebea2732c7530dc8c9292d468b29ecad0c7bc08c55e1",
+      "bytes": 118686,
+      "pages": 2
+    },
+    {
+      "id": "the-armor-of-recovery",
+      "title": "The Armor of Recovery",
+      "sourceName": "The-Armor-of-Recovery.pdf",
+      "status": "review",
+      "pdf": "/asis-ips/pdfs/the-armor-of-recovery.pdf",
+      "sha256": "a411cece4aa9f0a6b57e57841cc736952686aa8e01acfee4e9bda2366f2e9ea9",
+      "bytes": 122738,
+      "pages": 2
+    },
+    {
+      "id": "transformation",
+      "title": "Transformation",
+      "sourceName": "Transformation.pdf",
+      "status": "review",
+      "pdf": "/asis-ips/pdfs/transformation.pdf",
+      "sha256": "7dfab2c867cb01f8d1846fa18c434774a9560fde1cd0fe10aea8f6d69775d1ff",
+      "bytes": 122028,
+      "pages": 2
+    },
+    {
+      "id": "why-we-dont-verify-attendance-documents",
+      "title": "Why We Don't Verify Attendance Documents",
+      "sourceName": "Why-We-Dont-Verify-Attendance-Documents.pdf",
+      "status": "review",
+      "pdf": "/asis-ips/pdfs/why-we-dont-verify-attendance-documents.pdf",
+      "sha256": "c95418f88f7fdcb765eb1d586d04c0fd994bc41e3626450116d12f445324888e",
+      "bytes": 185608,
+      "pages": 2
+    },
+    {
+      "id": "gratitude-is-an-action-word",
+      "title": "Gratitude Is an Action Word",
+      "sourceName": "Gratitude Is An Action Word - Printfile Letter size.pdf",
+      "status": "review",
+      "variantOf": "Gratitude: A Word of Action",
+      "pdf": "/asis-ips/pdfs/gratitude-is-an-action-word.pdf",
+      "sha256": "fcd896677fdba665341221e7db2613cea8790389a9a54cc5f60521d69e843272",
+      "bytes": 124767,
+      "pages": 2
+    },
+    {
+      "id": "original-am-i-an-addict",
+      "title": "Am I an Addict?",
+      "sourceName": "Am-I-And-Addict.pdf",
+      "status": "original",
+      "pdf": "/asis-ips/pdfs/original-am-i-an-addict.pdf",
+      "sha256": "963100c82be66a836d1ccd72ce1eb4970701dafe8d3b386a28722a8841823e4c",
+      "bytes": 112565,
+      "pages": 2
+    },
+    {
+      "id": "original-fourth-step-inventory",
+      "title": "An Approach to the Fourth Step Inventory",
+      "sourceName": "An-approach-to-the-Fourth-Step-inventory.pdf",
+      "status": "original",
+      "pdf": "/asis-ips/pdfs/original-fourth-step-inventory.pdf",
+      "sha256": "b5a83525a255bb13702cfa439ab73b763f2ce645398db77945c7acf66c65b3db",
+      "bytes": 97845,
+      "pages": 6
+    },
+    {
+      "id": "original-acceptance-faith-commitment",
+      "title": "One Addict's Experience with Acceptance, Faith, and Commitment",
+      "sourceName": "One-Addicts-Experience-with-Accaptance-Faith-and-Commitment.pdf",
+      "status": "original",
+      "pdf": "/asis-ips/pdfs/original-acceptance-faith-commitment.pdf",
+      "sha256": "f11d68ec4883c6deb8c6c38b33b6260c1d5ac23d398613200e5826e65d039699",
+      "bytes": 127229,
+      "pages": 2
+    },
+    {
+      "id": "original-for-the-newcomer",
+      "title": "For the Newcomer",
+      "sourceName": "For-the-Newcomer.pdf",
+      "status": "original",
+      "pdf": "/asis-ips/pdfs/original-for-the-newcomer.pdf",
+      "sha256": "c9d3200678f32222fc48aed053a58b43670b77a8b8206f6d8f645ebe4c1bc25d",
+      "bytes": 135521,
+      "pages": 2
+    },
+    {
+      "id": "original-just-for-today",
+      "title": "Just For Today - Original IP",
+      "sourceName": "Just-For-Today.pdf",
+      "status": "original",
+      "pdf": "/asis-ips/pdfs/original-just-for-today.pdf",
+      "sha256": "32632383189222fa3a56591f4047c0686e66cbec26a2fd7fb6402ae30fde1906",
+      "bytes": 101727,
+      "pages": 2
+    },
+    {
+      "id": "original-living-the-program",
+      "title": "Living the Program",
+      "sourceName": "Living-The-Program.pdf",
+      "status": "original",
+      "pdf": "/asis-ips/pdfs/original-living-the-program.pdf",
+      "sha256": "f88de0e18041850a23e8d368ea75ad0bc470b02e9bbe898a0bfeb97c59ef5c40",
+      "bytes": 96666,
+      "pages": 2
+    },
+    {
+      "id": "original-sponsorship",
+      "title": "Sponsorship",
+      "sourceName": "Sponsorship.pdf",
+      "status": "original",
+      "pdf": "/asis-ips/pdfs/original-sponsorship.pdf",
+      "sha256": "643988a5f3717f96cd8d6da1655c24a9b04759f64e572a33748f43702309c4ac",
+      "bytes": 177747,
+      "pages": 2
+    },
+    {
+      "id": "original-triangle-self-obsession",
+      "title": "The Triangle of Self-Obsession",
+      "sourceName": "The-Triangle-of-Self-Obsession.pdf",
+      "status": "original",
+      "pdf": "/asis-ips/pdfs/original-triangle-self-obsession.pdf",
+      "sha256": "92c3eac81b1b823e64617d246f660873fe48a490b01edd64c6c7a938c613d034",
+      "bytes": 115926,
+      "pages": 2
+    },
+    {
+      "id": "original-youth-and-recovery",
+      "title": "Youth and Recovery",
+      "sourceName": "Youth-And-Recovery.pdf",
+      "status": "original",
+      "pdf": "/asis-ips/pdfs/original-youth-and-recovery.pdf",
+      "sha256": "2605cb6d77038c2e93998d0663cf34584111746f067f8bb3ce618cad81b4db25",
+      "bytes": 168940,
+      "pages": 2
+    }
+  ]
+}

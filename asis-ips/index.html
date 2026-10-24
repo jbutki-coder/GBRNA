@@ -40,7 +40,8 @@
     .header-copy{max-width:850px;margin:1rem 0 0;color:rgba(255,255,255,.88);font-size:clamp(1rem,2vw,1.16rem)}
     .checked-note{display:inline-flex;margin-top:1.25rem;padding:.62rem .8rem;border:1px solid rgba(255,255,255,.28);border-radius:.55rem;background:rgba(255,255,255,.09);font-size:.88rem;font-weight:800}
     main{padding:2rem 0 4rem}
-    .status-guide{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:.8rem;margin-bottom:1.25rem}
+    .status-guide{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.8rem;margin-bottom:1.25rem}
+    .ip-version-link{display:block;padding:.8rem 1rem;border-top:1px solid var(--line);font-size:.85rem;color:var(--accent-dark)}
     .guide-card{padding:1rem;border:1px solid var(--line);border-radius:.75rem;background:var(--card);box-shadow:0 6px 20px rgba(20,35,48,.07)}
     .guide-card h2{margin:0 0 .35rem;color:var(--navy);font-size:1.05rem} .guide-card p{margin:0;color:#4f5960;font-size:.9rem}
     .source-note{margin:0 0 1.25rem;padding:1rem 1.1rem;border-left:5px solid var(--accent);border-radius:.45rem;background:#eef7f6;color:#30464a}
@@ -116,7 +117,7 @@
 <p class="eyebrow">Alternate Service Informational Structure</p>
 <h1>A.S.I.S., CARENA &amp; Home Group Recovery Literature</h1>
 <p class="header-copy">A.S.I.S. literature is separated by status, the five historical CARENA IPs of 1976 remain in their own collection, and independent Home Group-approved literature is clearly identified so readers know what each document is before opening it.</p>
-<div class="checked-note">Status checked against NAHELP on July 24, 2026</div>
+<div class="checked-note">IP lists checked against NAHELP on October 23, 2026</div>
 </div>
 </header>
 <main>
@@ -127,6 +128,7 @@
 <div class="guide-card"><h2>CARENA IPs (1976)</h2><p>Five historical pamphlets listed separately by NAHELP as the CARENA IP collection.</p></div>
 <div class="guide-card"><h2>Review &amp; Input</h2><p>Still being developed. These pieces may be used or reviewed by autonomous groups, but are not A.S.I.S.-approved literature.</p></div>
 <div class="guide-card"><h2>Archived Review</h2><p>Older input material preserved here, but not found on either current NAHELP status list.</p></div>
+<div class="guide-card"><h2>Original IPs</h2><p>Nine historical pamphlets listed separately by NAHELP, distinct from CARENA and A.S.I.S.-approved literature.</p></div>
 </section>
 <p class="source-note"><strong>Important:</strong> “Up for Approval” is still a pending status. NAHELP says Review &amp; Input literature exists in various stages of development and that participating groups may ultimately approve one, none, all, or any combination. NAHELP also lists the five <strong>CARENA IPs (1976)</strong> as a separate historical collection on its Approved page. The <strong>Alive &amp; Free Edition Basic Text</strong> is identified separately because the document states that it was approved through the Group Conscience of the Alive &amp; Free Home Group; it is not labeled here as A.S.I.S.-approved or Fellowship-wide approved. See the <a href="https://nahelp.org/approved/" rel="noopener noreferrer" target="_blank">current approved and CARENA lists</a> and <a href="https://nahelp.org/english/" rel="noopener noreferrer" target="_blank">English Review &amp; Input list</a>.</p>
 <details class="literature-disclaimer">
@@ -141,14 +143,15 @@
 <section aria-label="Search and filter literature" class="search-panel">
 <div class="search-row"><input autocomplete="off" class="search-input" id="ipSearch" placeholder="Search by title, subject, category, or status..." type="search"/><button class="clear-button" id="clearSearch" type="button">Clear</button></div>
 <div aria-label="Filter by approval status" class="filter-row" role="group">
-<button aria-pressed="true" class="filter-button" data-filter="all" type="button">All 24</button>
+<button aria-pressed="true" class="filter-button" data-filter="all" type="button">All 39</button>
+<button aria-pressed="false" class="filter-button" data-filter="original" type="button">Original IPs 9</button>
 <button aria-pressed="false" class="filter-button" data-filter="approved" type="button">A.S.I.S. Approved 6</button>
 <button aria-pressed="false" class="filter-button" data-filter="homegroup" type="button">Home Group Approved 1</button>
 <button aria-pressed="false" class="filter-button" data-filter="carena" type="button">CARENA 5</button>
-<button aria-pressed="false" class="filter-button" data-filter="review" type="button">Review &amp; Input 10</button>
+<button aria-pressed="false" class="filter-button" data-filter="review" type="button">Review &amp; Input 16</button>
 <button aria-pressed="false" class="filter-button" data-filter="archive" type="button">Archived Review 2</button>
 </div>
-<p class="results-status" id="resultsStatus">Showing all 24 literature pieces.</p>
+<p class="results-status" id="resultsStatus">Showing all 39 literature pieces.</p>
 </section>
 <section class="literature-section" data-section="approved">
 <div class="section-heading">
@@ -324,12 +327,55 @@
 </section><section class="literature-section" data-section="review">
 <div class="section-heading">
 <div>
-<p class="section-kicker">10 pieces</p>
+<p class="section-kicker">16 pieces</p>
 <h2>Review &amp; Input Literature</h2>
 </div>
 <p>These pieces remain in development. “Up for Approval” means a motion is pending; it does not mean the piece is approved.</p>
 </div>
-<div class="ip-grid"><article class="ip-card" data-search="a.s.i.s. for narcotics anonymous service and group an introduction to the alternate service informational structure and its home-group-directed service model. review &amp; input ip" data-status="review" data-title="A.S.I.S. for Narcotics Anonymous">
+<div class="ip-grid">
+<article class="ip-card" id="autonomy-standing-on-our-own-two-feet" data-search="autonomy standing on our own two feet home group service fellowship conference review input ip" data-status="review" data-title="Autonomy &amp; Standing on Our Own Two Feet">
+<a class="ip-link" href="/asis-ips/pdfs/autonomy-standing-on-our-own-two-feet.pdf">
+<div class="ip-card-top"><span class="category">Service and Group</span><span class="badge review">Review &amp; Input</span></div>
+<h3>Autonomy &amp; Standing on Our Own Two Feet</h3>
+<p>Group autonomy, home-group-directed service, and participation in the Fellowship Service Conference.</p>
+<div class="ip-meta"><span>IP</span><span>2 pages</span><span>121 KB</span><span class="open-label">Open PDF &rarr;</span></div>
+</a></article>
+<article class="ip-card" id="formation-of-an-na-group" data-search="formation starting an n.a. na group home group service conscience primary purpose review input ip" data-status="review" data-title="Formation of an N.A. Group">
+<a class="ip-link" href="/asis-ips/pdfs/formation-of-an-na-group.pdf">
+<div class="ip-card-top"><span class="category">Service and Group</span><span class="badge review">Review &amp; Input</span></div>
+<h3>Formation of an N.A. Group</h3>
+<p>Starting and sustaining an NA Group, with group conscience, primary purpose, and service connections.</p>
+<div class="ip-meta"><span>IP</span><span>2 pages</span><span>186 KB</span><span class="open-label">Open PDF &rarr;</span></div>
+</a></article>
+<article class="ip-card" id="geographically-isolated-addicts" data-search="geographically isolated addicts distance remote meetings connection fellowship review input ip" data-status="review" data-title="Geographically Isolated Addicts">
+<a class="ip-link" href="/asis-ips/pdfs/geographically-isolated-addicts.pdf">
+<div class="ip-card-top"><span class="category">Meetings and Fellowship</span><span class="badge review">Review &amp; Input</span></div>
+<h3>Geographically Isolated Addicts</h3>
+<p>Connection and participation for addicts living far from NA meetings.</p>
+<div class="ip-meta"><span>IP</span><span>2 pages</span><span>116 KB</span><span class="open-label">Open PDF &rarr;</span></div>
+</a></article>
+<article class="ip-card" id="the-armor-of-recovery" data-search="the armor armour of recovery tools home group sponsorship meetings connection review input ip" data-status="review" data-title="The Armor of Recovery">
+<a class="ip-link" href="/asis-ips/pdfs/the-armor-of-recovery.pdf">
+<div class="ip-card-top"><span class="category">Recovery Tools</span><span class="badge review">Review &amp; Input</span></div>
+<h3>The Armor of Recovery</h3>
+<p>Using the tools of the NA program to support recovery and connection with others.</p>
+<div class="ip-meta"><span>IP</span><span>2 pages</span><span>120 KB</span><span class="open-label">Open PDF &rarr;</span></div>
+</a></article>
+<article class="ip-card" id="transformation" data-search="transformation change steps traditions spiritual principles recovery review input ip" data-status="review" data-title="Transformation">
+<a class="ip-link" href="/asis-ips/pdfs/transformation.pdf">
+<div class="ip-card-top"><span class="category">Recovery Principles</span><span class="badge review">Review &amp; Input</span></div>
+<h3>Transformation</h3>
+<p>Working the Steps and applying the Traditions and spiritual principles in a changing life.</p>
+<div class="ip-meta"><span>IP</span><span>2 pages</span><span>120 KB</span><span class="open-label">Open PDF &rarr;</span></div>
+</a></article>
+<article class="ip-card" id="why-we-dont-verify-attendance-documents" data-search="why we don't verify attendance documents court slips verification group primary purpose pi h&amp;i service review input ip" data-status="review" data-title="Why We Don't Verify Attendance Documents">
+<a class="ip-link" href="/asis-ips/pdfs/why-we-dont-verify-attendance-documents.pdf">
+<div class="ip-card-top"><span class="category">Service and Group</span><span class="badge review">Review &amp; Input</span></div>
+<h3>Why We Don't Verify Attendance Documents</h3>
+<p>A Home Group discussion of attendance verification, primary purpose, and PI and H&amp;I service.</p>
+<div class="ip-meta"><span>IP</span><span>2 pages</span><span>182 KB</span><span class="open-label">Open PDF &rarr;</span></div>
+</a></article>
+<article class="ip-card" data-search="a.s.i.s. for narcotics anonymous service and group an introduction to the alternate service informational structure and its home-group-directed service model. review &amp; input ip" data-status="review" data-title="A.S.I.S. for Narcotics Anonymous">
 <a class="ip-link" href="pdfs/asis-for-na.pdf">
 <div class="ip-card-top">
 <span class="category">Service and Group</span>
@@ -419,7 +465,7 @@
 <span class="open-label">Open PDF &rarr;</span>
 </div>
 </a>
-</article><article class="ip-card" data-search="gratitude a word of action recovery principles gratitude gratefulness twelfth step service humility caring sharing carrying the message review and input ip" data-status="review" data-title="Gratitude: A Word of Action">
+</article><article class="ip-card" data-search="gratitude a word of action gratitude is an action word 2020 alternate printfile recovery principles gratitude gratefulness twelfth step service humility caring sharing carrying the message review and input ip" data-status="review" data-title="Gratitude: A Word of Action">
 <a class="ip-link" href="pdfs/gratitude-a-word-of-action.pdf">
 <div class="ip-card-top">
 <span class="category">Recovery Principles</span>
@@ -434,6 +480,7 @@
 <span class="open-label">Open PDF →</span>
 </div>
 </a>
+<a class="ip-version-link" id="gratitude-is-an-action-word" href="/asis-ips/pdfs/gratitude-is-an-action-word.pdf" data-pdf-title="Gratitude Is an Action Word - 2020 Printfile">Related version: Gratitude Is an Action Word (2020 printfile)</a>
 </article><article class="ip-card" data-search="meeting etiquette meetings and fellowship practical suggestions for protecting an atmosphere of recovery in na meetings. review &amp; input ip" data-status="review" data-title="Meeting Etiquette">
 <a class="ip-link" href="pdfs/meeting-etiquette.pdf">
 <div class="ip-card-top">
@@ -480,6 +527,74 @@
 </div>
 </a>
 </article></div>
+</section>
+<section class="literature-section" data-section="original">
+<div class="section-heading"><div><p class="section-kicker">9 Historical Pamphlets</p><h2>Original IPs</h2></div><p>NAHELP lists these separately from the five CARENA pamphlets. They are preserved as historical literature, not labeled as A.S.I.S.-approved.</p></div>
+<div class="ip-grid">
+<article class="ip-card" id="original-am-i-an-addict" data-status="original" data-title="Am I an Addict?" data-search="Am I an Addict? original historical pamphlet">
+<a class="ip-link" href="/asis-ips/pdfs/original-am-i-an-addict.pdf">
+<div class="ip-card-top"><span class="category">Original IP</span><span class="badge archive">Historical</span></div>
+<h3>Am I an Addict?</h3>
+<p>Historical pamphlet from NAHELP\'s Original IPs collection, separate from CARENA and A.S.I.S.-approved literature.</p>
+<div class="ip-meta"><span>2 pages</span><span>PDF</span></div>
+</a></article>
+<article class="ip-card" id="original-fourth-step-inventory" data-status="original" data-title="An Approach to the Fourth Step Inventory" data-search="An Approach to the Fourth Step Inventory original historical pamphlet">
+<a class="ip-link" href="/asis-ips/pdfs/original-fourth-step-inventory.pdf">
+<div class="ip-card-top"><span class="category">Original IP</span><span class="badge archive">Historical</span></div>
+<h3>An Approach to the Fourth Step Inventory</h3>
+<p>Historical review scan marked &quot;Review Material / Not for Distribution.&quot; Not an A.S.I.S.-approved step guide.</p>
+<div class="ip-meta"><span>6 pages</span><span>PDF</span></div>
+</a></article>
+<article class="ip-card" id="original-acceptance-faith-commitment" data-status="original" data-title="One Addict&#39;s Experience with Acceptance, Faith, and Commitment" data-search="One Addict&#39;s Experience with Acceptance, Faith, and Commitment original historical pamphlet">
+<a class="ip-link" href="/asis-ips/pdfs/original-acceptance-faith-commitment.pdf">
+<div class="ip-card-top"><span class="category">Original IP</span><span class="badge archive">Historical</span></div>
+<h3>One Addict's Experience with Acceptance, Faith, and Commitment</h3>
+<p>Historical pamphlet from NAHELP\'s Original IPs collection, separate from CARENA and A.S.I.S.-approved literature.</p>
+<div class="ip-meta"><span>2 pages</span><span>PDF</span></div>
+</a></article>
+<article class="ip-card" id="original-for-the-newcomer" data-status="original" data-title="For the Newcomer" data-search="For the Newcomer original historical pamphlet">
+<a class="ip-link" href="/asis-ips/pdfs/original-for-the-newcomer.pdf">
+<div class="ip-card-top"><span class="category">Original IP</span><span class="badge archive">Historical</span></div>
+<h3>For the Newcomer</h3>
+<p>Historical pamphlet from NAHELP\'s Original IPs collection, separate from CARENA and A.S.I.S.-approved literature.</p>
+<div class="ip-meta"><span>2 pages</span><span>PDF</span></div>
+</a></article>
+<article class="ip-card" id="original-just-for-today" data-status="original" data-title="Just For Today - Original IP" data-search="Just For Today - Original IP original historical pamphlet">
+<a class="ip-link" href="/asis-ips/pdfs/original-just-for-today.pdf">
+<div class="ip-card-top"><span class="category">Original IP</span><span class="badge archive">Historical</span></div>
+<h3>Just For Today - Original IP</h3>
+<p>The original Just For Today pamphlet, not the daily meditation book.</p>
+<div class="ip-meta"><span>2 pages</span><span>PDF</span></div>
+</a></article>
+<article class="ip-card" id="original-living-the-program" data-status="original" data-title="Living the Program" data-search="Living the Program original historical pamphlet">
+<a class="ip-link" href="/asis-ips/pdfs/original-living-the-program.pdf">
+<div class="ip-card-top"><span class="category">Original IP</span><span class="badge archive">Historical</span></div>
+<h3>Living the Program</h3>
+<p>Historical pamphlet from NAHELP\'s Original IPs collection, separate from CARENA and A.S.I.S.-approved literature.</p>
+<div class="ip-meta"><span>2 pages</span><span>PDF</span></div>
+</a></article>
+<article class="ip-card" id="original-sponsorship" data-status="original" data-title="Sponsorship" data-search="Sponsorship original historical pamphlet">
+<a class="ip-link" href="/asis-ips/pdfs/original-sponsorship.pdf">
+<div class="ip-card-top"><span class="category">Original IP</span><span class="badge archive">Historical</span></div>
+<h3>Sponsorship</h3>
+<p>Historical pamphlet from NAHELP\'s Original IPs collection, separate from CARENA and A.S.I.S.-approved literature.</p>
+<div class="ip-meta"><span>2 pages</span><span>PDF</span></div>
+</a></article>
+<article class="ip-card" id="original-triangle-self-obsession" data-status="original" data-title="The Triangle of Self-Obsession" data-search="The Triangle of Self-Obsession original historical pamphlet">
+<a class="ip-link" href="/asis-ips/pdfs/original-triangle-self-obsession.pdf">
+<div class="ip-card-top"><span class="category">Original IP</span><span class="badge archive">Historical</span></div>
+<h3>The Triangle of Self-Obsession</h3>
+<p>Historical pamphlet from NAHELP\'s Original IPs collection, separate from CARENA and A.S.I.S.-approved literature.</p>
+<div class="ip-meta"><span>2 pages</span><span>PDF</span></div>
+</a></article>
+<article class="ip-card" id="original-youth-and-recovery" data-status="original" data-title="Youth and Recovery" data-search="Youth and Recovery original historical pamphlet">
+<a class="ip-link" href="/asis-ips/pdfs/original-youth-and-recovery.pdf">
+<div class="ip-card-top"><span class="category">Original IP</span><span class="badge archive">Historical</span></div>
+<h3>Youth and Recovery</h3>
+<p>Historical pamphlet from NAHELP\'s Original IPs collection, separate from CARENA and A.S.I.S.-approved literature.</p>
+<div class="ip-meta"><span>2 pages</span><span>PDF</span></div>
+</a></article>
+</div>
 </section><section class="literature-section" data-section="archive">
 <div class="section-heading">
 <div>
