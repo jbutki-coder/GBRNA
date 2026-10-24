@@ -6,6 +6,7 @@ const { Readable } = require("stream");
 const { pipeline } = require("stream/promises");
 const express = require("express");
 const { renderReader } = require("./translation-reader.cjs");
+const { installAnalytics } = require("./analytics.cjs");
 
 const app = express();
 const port = Number(process.env.PORT || 10000);
@@ -15,6 +16,7 @@ const rootDirectory = __dirname;
 // the translation rate limiter distinguish visitors instead of treating the
 // whole site as a single address.
 app.set("trust proxy", 1);
+const analytics = installAnalytics(app, rootDirectory);
 
 const translationApiKey = String(
   process.env.GOOGLE_TRANSLATE_API_KEY ||
@@ -465,6 +467,7 @@ app.get("/reading-view", (request, response) => {
   response.type("html").send(renderReader(request.query));
 });
 
+app.use(analytics.serveHtml);
 app.use(express.static(rootDirectory, {
   extensions: ["html"],
   index: "index.html",
@@ -481,9 +484,11 @@ app.use(express.static(rootDirectory, {
   }
 }));
 
-app.get("*", (_request, response) => {
+app.get("*", async (_request, response, next) => {
   response.setHeader("Cache-Control", "no-store");
-  response.sendFile(path.join(rootDirectory, "index.html"));
+  try {
+    response.type("html").send(await require("node:fs/promises").readFile(path.join(rootDirectory, "index.html"), "utf8"));
+  } catch (error) { next(error); }
 });
 
 app.listen(port, "0.0.0.0", () => {
