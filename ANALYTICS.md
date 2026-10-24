@@ -1,6 +1,8 @@
 # GoatCounter
 
-The Node server adds `/js/site-analytics.js` to every HTML response, including
+All published HTML pages include `/js/site-analytics.js`. Run
+`node scripts/install-analytics.cjs` after adding or regenerating HTML pages.
+The optional Node server also adds the script to every HTML response, including
 the PDF reader, archived HTML documents, extensionless pages and generated reading
 views. Existing page-specific GoatCounter scripts are removed from responses to
 avoid duplicate pageviews. New HTML pages inherit the same setup automatically.
@@ -12,7 +14,10 @@ download completed or that someone listened to an entire recording.
 
 ## Direct File Requests
 
-Set `GOATCOUNTER_API_TOKEN` in the GBRNA Render service's environment to enable
+The current Render deployment is a static site and cannot send server-side
+file events. A Node web-service deployment (or an access-log integration) is
+required for direct raw-file counts. On a Node deployment, set
+`GOATCOUNTER_API_TOKEN` in the service's environment to enable
 server-side counts of successful document/media file requests. Create a token
 with count permission in the existing gbrna.goatcounter.com account's API settings.
 Never put this token in HTML, JavaScript, Git, or chat. The API token is used only

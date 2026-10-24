@@ -22,7 +22,7 @@
     else if (queue.length < 100) queue.push(hit);
   }
   window.goatcounter = Object.assign(window.goatcounter || {}, {
-    path: location.pathname, no_events: true,
+    path: location.pathname, no_events: true, allow_frame: true,
     referrer: resource(document.referrer) || '',
     endpoint: 'https://gbrna.goatcounter.com/count'
   });

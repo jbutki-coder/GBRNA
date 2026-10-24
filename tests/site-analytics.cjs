@@ -2,10 +2,17 @@
 const assert=require('node:assert/strict');
 const path=require('node:path');
 const express=require('express');
+const {execFileSync}=require('node:child_process');
 const {injectAnalytics,installAnalytics}=require('../analytics.cjs');
 const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
 (async()=>{
  const root=path.resolve(__dirname,'..');
+ const pages=execFileSync('git',['ls-files','-z','*.html','*.htm'],{cwd:root,encoding:'utf8'}).split('\0').filter(Boolean);
+ for(const file of pages){
+  const html=require('node:fs').readFileSync(path.join(root,file),'utf8');
+  assert.equal((html.match(/\/js\/site-analytics\.js/g)||[]).length,1,file);
+  assert.ok(!html.includes('data-goatcounter='),file);
+ }
  const app=express();
  const batches=[];
  const analytics=installAnalytics(app,root,{token:'test-only-token',fetch:async(url,options)=>{batches.push(JSON.parse(options.body));return {ok:true}}});
