@@ -18,10 +18,12 @@ for(const meeting of meetings.filter(x=>/Okanagan/.test(x.name)))assert.equal(me
    const page=await browser.newPage({viewport:{width,height:950}});
    await page.goto(base+'/#ar4na-records',{waitUntil:'domcontentloaded'});
    assert.equal(await page.locator('#regional-meeting + #ar4na-records').count(),1);
-   assert.equal(await page.locator('#ar4na-records a[href$=".pdf"]').count(),3);
+   assert.equal(await page.locator('#ar4na-records a[href$=".pdf"]').count(),0);
    await page.locator('#ar4na-records').screenshot({path:`draft-maps/ar4na-checks/announcement-${width}.png`});
    await page.locator('#ar4na-records a[href$=".html"]').click();
    await page.waitForURL('**/arna-detailed-meeting-list.html');
+   assert.equal(await page.locator('#ar4na-minutes a[href$=".pdf"]').count(),3);
+   assert.ok((await page.locator('#ar4na-minutes').innerText()).includes('San Jose'));
    assert.ok(await page.locator('.intro').innerText().then(x=>x.includes('not the current AR4NA meeting schedule')));
    for(const href of await page.locator('a[href*="89128118093"]').evaluateAll(els=>els.map(x=>x.href)))assert.equal(href,'https://us02web.zoom.us/j/89128118093');
    assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
