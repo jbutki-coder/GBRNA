@@ -344,7 +344,7 @@
     },
     {
       "day": "Tuesday",
-      "start": "10:00",
+      "start": "06:00",
       "end": "",
       "name": "Alive and Free Basic Text Study (unnamed)",
       "city": "",
@@ -357,10 +357,10 @@
       "zoomId": "817 0757 0539",
       "passcode": "",
       "joinUrl": "https://us06web.zoom.us/j/81707570539",
-      "details": "Studies the Alive & Free edition of the Narcotics Anonymous Basic Text, which applies the Alive & Free White Book to the headers of the Second Edition. Produced by the Alive & Free Home Group in Pahrump, Nevada through Group Conscience and Fellowship-wide Open Participation, this edition restores earlier wording and recovery material, addresses contemporary issues, and preserves NA language. No meeting name has been chosen. First meeting: October 27, 2026. Meets weekly at 10:00 GMT (UTC).",
+      "details": "Studies the Alive & Free edition of the Narcotics Anonymous Basic Text, which applies the Alive & Free White Book to the headers of the Second Edition. Produced by the Alive & Free Home Group in Pahrump, Nevada through Group Conscience and Fellowship-wide Open Participation, this edition restores earlier wording and recovery material, addresses contemporary issues, and preserves NA language. No meeting name has been chosen. First meeting: October 27, 2026. Meets weekly at 6:00 a.m. Eastern Time.",
       "id": "meeting-111",
       "locationFilter": "Online",
-      "timezoneIana": "UTC"
+      "timezoneIana": "America/New_York"
     },
     {
       "day": "Tuesday",
