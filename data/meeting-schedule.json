@@ -1,6 +1,6 @@
 {
   "timezone": "Eastern Time (ET)",
-  "updated": "2026-10-21",
+  "updated": "2026-10-26",
   "meetings": [
     {
       "day": "Sunday",
@@ -341,6 +341,26 @@
       "id": "meeting-020",
       "locationFilter": "Online",
       "qr": "meetings/qr/meeting-020.png"
+    },
+    {
+      "day": "Tuesday",
+      "start": "10:00",
+      "end": "",
+      "name": "Alive and Free Basic Text Study (unnamed)",
+      "city": "",
+      "region": "",
+      "country": "",
+      "venue": "",
+      "address": "",
+      "mode": "Virtual",
+      "format": "Basic Text",
+      "zoomId": "817 0757 0539",
+      "passcode": "",
+      "joinUrl": "https://us06web.zoom.us/j/81707570539",
+      "details": "Studies the Alive and Free Basic Text, based on the second edition with altered headers. No meeting name has been chosen. First meeting: October 27, 2026. Meets weekly at 10:00 GMT (UTC).",
+      "id": "meeting-111",
+      "locationFilter": "Online",
+      "timezoneIana": "UTC"
     },
     {
       "day": "Tuesday",
