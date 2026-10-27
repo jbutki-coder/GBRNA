@@ -243,6 +243,7 @@
 
     const firstLine = `${meeting.localDay} ${time} ${meeting.name}`.trim();
     const lines = [firstLine];
+    if (meeting.shareNote) lines.push(meeting.shareNote);
 
     // Hybrid meetings are more useful when the in-person location travels with the share.
     const place = meetingLocationText(meeting);
