@@ -492,7 +492,7 @@
 
       if (els.timezone) {
         const unknownCount = meetings.filter((meeting) => meeting.timezoneUnknown).length;
-        els.timezone.textContent = `Times shown in your local time zone: ${zoneLabel(localTimeZone)}. Virtual and hybrid meetings only. Tap a meeting to open the full details.${unknownCount ? ` ${unknownCount} archived listing${unknownCount === 1 ? "" : "s"} did not include a source timezone and is shown as originally listed.` : ""}`;
+        els.timezone.textContent = `Times shown in your local time zone: ${zoneLabel(localTimeZone)}. Virtual and hybrid meetings only. Tap a meeting to open the full details.${unknownCount ? ` ${unknownCount} listing${unknownCount === 1 ? "" : "s"} did not include a source timezone and is shown as originally listed.` : ""}`;
       }
 
       buildTabs();
