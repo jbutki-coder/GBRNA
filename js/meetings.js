@@ -135,7 +135,7 @@
     }).format(date);
   }
 
-  function localizeMeeting(meeting, sourceTimeZone, localTimeZone, weekAnchor) {
+  function localizeMeeting(meeting, sourceTimeZone, localTimeZone, weekAnchor, now = new Date()) {
     if (meeting.timezoneUnknown) {
       const startClock = parseClock(meeting.start);
       return {
@@ -185,6 +185,11 @@
       );
     }
 
+    // Use the next occurrence, including clock changes after this week's meeting.
+    if ((endInstant || startInstant).getTime() < now.getTime()) {
+      return localizeMeeting(meeting, sourceTimeZone, localTimeZone,
+        new Date(weekAnchor.getTime() + 7 * 86400000), now);
+    }
     const localDay = localDayText(startInstant, localTimeZone);
     const localParts = partsInZone(startInstant, localTimeZone);
 
@@ -195,6 +200,9 @@
       localStart: localTimeText(startInstant, localTimeZone),
       localEnd: endInstant ? localTimeText(endInstant, localTimeZone) : "",
       localSortMinutes: localParts.hour * 60 + localParts.minute,
+      sourceTimeZone,
+      sourceTimeText: `${meeting.day} ${formatWallClock(meeting.start)}${meeting.end ? ` – ${formatWallClock(meeting.end)}` : ""} (${sourceTimeZone})`,
+      localDate: new Intl.DateTimeFormat(undefined, { timeZone: localTimeZone, month: "short", day: "numeric" }).format(startInstant),
       startInstant: startInstant.getTime()
     };
   }
@@ -243,6 +251,8 @@
 
     const firstLine = `${meeting.localDay} ${time} ${meeting.name}`.trim();
     const lines = [firstLine];
+    if (meeting.localDate) lines.push(`Next meeting: ${meeting.localDate} (${browserTimeZone()})`);
+    if (meeting.sourceTimeText) lines.push(`Group time: ${meeting.sourceTimeText}`);
     if (meeting.shareNote) lines.push(meeting.shareNote);
 
     // Hybrid meetings are more useful when the in-person location travels with the share.
@@ -353,6 +363,7 @@
         <div class="meeting-expanded">
           <div class="meeting-main-cell">
             <div class="meeting-detail-kicker">${esc(meeting.localDay)} · ${timeRange}${meeting.timezoneNotice ? ` · ${esc(meeting.timezoneNotice)}` : ""}</div>
+            ${meeting.sourceTimeText ? `<p class="meeting-source-time">Group time: ${esc(meeting.sourceTimeText)}. Next meeting: ${esc(meeting.localDate)}.</p>` : ""}
             ${meeting.venue ? `<p class="meeting-place">${esc(meeting.venue)}</p>` : ""}
             ${meeting.address ? `<p class="meeting-address">${esc(meeting.address)}</p>` : ""}
             ${place ? `<p class="meeting-address">${esc(place)}</p>` : ""}
@@ -492,7 +503,7 @@
 
       if (els.timezone) {
         const unknownCount = meetings.filter((meeting) => meeting.timezoneUnknown).length;
-        els.timezone.textContent = `Times shown in your local time zone: ${zoneLabel(localTimeZone)}. Virtual and hybrid meetings only. Tap a meeting to open the full details.${unknownCount ? ` ${unknownCount} listing${unknownCount === 1 ? "" : "s"} did not include a source timezone and is shown as originally listed.` : ""}`;
+        els.timezone.textContent = `Times shown in your local time zone: ${zoneLabel(localTimeZone)}. Virtual and hybrid meetings only. Times follow each Group’s source time zone and its next meeting date, including different daylight saving dates. Tap a meeting to open the full details.${unknownCount ? ` ${unknownCount} listing${unknownCount === 1 ? "" : "s"} did not include a source timezone and is shown as originally listed.` : ""}`;
       }
 
       buildTabs();
