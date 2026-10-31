@@ -1,11 +1,11 @@
 {
   "timezone": "Eastern Time (ET)",
-  "updated": "2026-10-30",
+  "updated": "2026-10-31",
   "meetings": [
     {
       "day": "Sunday",
-      "start": "04:00",
-      "end": "05:30",
+      "start": "10:00",
+      "end": "11:30",
       "name": "NA Meeting Delsbo",
       "city": "Delsbo",
       "region": "",
@@ -20,12 +20,13 @@
       "details": "Closed meeting; first hour translating, then opportunity to share.",
       "id": "meeting-001",
       "locationFilter": "Online",
-      "qr": "meetings/qr/meeting-001.png"
+      "qr": "meetings/qr/meeting-001.png",
+      "timezoneIana": "Europe/Stockholm"
     },
     {
       "day": "Sunday",
-      "start": "06:00",
-      "end": "07:00",
+      "start": "11:00",
+      "end": "12:00",
       "name": "Recuperar com Responsabilidade",
       "city": "Setúbal",
       "region": "Setúbal",
@@ -40,7 +41,8 @@
       "details": "",
       "id": "meeting-002",
       "locationFilter": "Online",
-      "qr": "meetings/qr/meeting-002.png"
+      "qr": "meetings/qr/meeting-002.png",
+      "timezoneIana": "Europe/Lisbon"
     },
     {
       "day": "Sunday",
@@ -60,12 +62,13 @@
       "details": "",
       "id": "meeting-003",
       "locationFilter": "Online",
-      "qr": "meetings/qr/meeting-003.png"
+      "qr": "meetings/qr/meeting-003.png",
+      "timezoneIana": "America/New_York"
     },
     {
       "day": "Sunday",
-      "start": "12:00",
-      "end": "13:30",
+      "start": "18:00",
+      "end": "19:30",
       "name": "Äntligen Fria (Sweden)",
       "city": "Hudiksvall",
       "region": "",
@@ -80,7 +83,8 @@
       "details": "Meeting details page supplied by the Group listing.",
       "id": "meeting-004",
       "locationFilter": "Online",
-      "qr": "meetings/qr/meeting-004.png"
+      "qr": "meetings/qr/meeting-004.png",
+      "timezoneIana": "Europe/Stockholm"
     },
     {
       "day": "Sunday",
@@ -100,12 +104,13 @@
       "details": "",
       "id": "meeting-006",
       "locationFilter": "Online",
-      "qr": "meetings/qr/meeting-006.png"
+      "qr": "meetings/qr/meeting-006.png",
+      "timezoneIana": "America/New_York"
     },
     {
-      "day": "Sunday",
-      "start": "22:00",
-      "end": "23:00",
+      "day": "Monday",
+      "start": "10:00",
+      "end": "11:00",
       "name": "Open Your Heart Group (Thailand)",
       "city": "Thailand",
       "region": "",
@@ -120,16 +125,17 @@
       "details": "",
       "id": "meeting-007",
       "locationFilter": "Online",
-      "qr": "meetings/qr/meeting-007.png"
+      "qr": "meetings/qr/meeting-007.png",
+      "timezoneIana": "Asia/Bangkok"
     },
     {
       "day": "Monday",
-      "start": "05:00",
-      "end": "06:30",
+      "start": "19:00",
+      "end": "20:30",
       "name": "The Nature Of Recovery",
       "city": "",
       "region": "",
-      "country": "US",
+      "country": "Australia",
       "venue": "",
       "address": "",
       "mode": "Virtual",
@@ -137,15 +143,16 @@
       "zoomId": "881 1112 6004",
       "passcode": "TNOR",
       "joinUrl": "https://us02web.zoom.us/j/88111126004?pwd=Z3ZSVk9LaEFFdVpNWW5OaXhtWjVjZz09",
-      "details": "",
+      "details": "Source specifies 7:00–8:30 p.m. Australian Eastern Standard Time (UTC+10). Confirm with the Group whether it follows daylight saving.",
       "id": "meeting-009",
       "locationFilter": "Online",
-      "qr": "meetings/qr/meeting-009.png"
+      "qr": "meetings/qr/meeting-009.png",
+      "timezoneIana": "Etc/GMT-10"
     },
     {
       "day": "Monday",
-      "start": "09:45",
-      "end": "11:15",
+      "start": "08:45",
+      "end": "10:15",
       "name": "Grateful Wake Up",
       "city": "Norfolk",
       "region": "NE",
@@ -160,12 +167,13 @@
       "details": "Downstairs — enter through south door.",
       "id": "meeting-010",
       "locationFilter": "First Presbyterian Church",
-      "qr": "meetings/qr/meeting-010.png"
+      "qr": "meetings/qr/meeting-010.png",
+      "timezoneIana": "America/Chicago"
     },
     {
       "day": "Monday",
-      "start": "12:00",
-      "end": "13:30",
+      "start": "18:00",
+      "end": "19:30",
       "name": "Literature - Sweden",
       "city": "Hudiksvall",
       "region": "",
@@ -180,7 +188,8 @@
       "details": "",
       "id": "meeting-011",
       "locationFilter": "Hudiksvall",
-      "qr": "meetings/qr/meeting-011.png"
+      "qr": "meetings/qr/meeting-011.png",
+      "timezoneIana": "Europe/Stockholm"
     },
     {
       "day": "Monday",
@@ -200,7 +209,8 @@
       "details": "",
       "id": "meeting-012",
       "locationFilter": "Online",
-      "qr": "meetings/qr/meeting-012.png"
+      "qr": "meetings/qr/meeting-012.png",
+      "timezoneIana": "America/New_York"
     },
     {
       "day": "Monday",
@@ -220,7 +230,8 @@
       "details": "Grey Book Traditions study.",
       "id": "meeting-015",
       "locationFilter": "Online",
-      "qr": "meetings/qr/meeting-015.png"
+      "qr": "meetings/qr/meeting-015.png",
+      "timezoneIana": "America/New_York"
     },
     {
       "day": "Monday",
@@ -240,7 +251,8 @@
       "details": "",
       "id": "meeting-016",
       "locationFilter": "Online",
-      "qr": "meetings/qr/meeting-016.png"
+      "qr": "meetings/qr/meeting-016.png",
+      "timezoneIana": "America/New_York"
     },
     {
       "day": "Monday",
@@ -260,12 +272,13 @@
       "details": "Zoom-only meeting. No in-person meeting. Review & Input during the last week of each month.",
       "id": "meeting-017",
       "locationFilter": "Online",
-      "qr": "meetings/qr/meeting-017.png"
+      "qr": "meetings/qr/meeting-017.png",
+      "timezoneIana": "America/New_York"
     },
     {
       "day": "Monday",
-      "start": "21:00",
-      "end": "22:30",
+      "start": "18:00",
+      "end": "19:30",
       "name": "Life on Life's Term Group",
       "city": "Kelso",
       "region": "WA",
@@ -280,12 +293,13 @@
       "details": "",
       "id": "meeting-018",
       "locationFilter": "Online",
-      "qr": "meetings/qr/meeting-018.png"
+      "qr": "meetings/qr/meeting-018.png",
+      "timezoneIana": "America/Los_Angeles"
     },
     {
       "day": "Monday",
-      "start": "21:30",
-      "end": "23:00",
+      "start": "18:30",
+      "end": "20:00",
       "name": "Fresno Free Basic Text Study",
       "city": "Fresno",
       "region": "CA",
@@ -300,12 +314,13 @@
       "details": "",
       "id": "meeting-019",
       "locationFilter": "Online",
-      "qr": "meetings/qr/meeting-019.png"
+      "qr": "meetings/qr/meeting-019.png",
+      "timezoneIana": "America/Los_Angeles"
     },
     {
-      "day": "Monday",
-      "start": "22:00",
-      "end": "23:00",
+      "day": "Tuesday",
+      "start": "10:00",
+      "end": "11:00",
       "name": "Open Your Heart Group (Thailand)",
       "city": "Thailand",
       "region": "",
@@ -320,7 +335,8 @@
       "details": "",
       "id": "meeting-020",
       "locationFilter": "Online",
-      "qr": "meetings/qr/meeting-020.png"
+      "qr": "meetings/qr/meeting-020.png",
+      "timezoneIana": "Asia/Bangkok"
     },
     {
       "day": "Tuesday",
@@ -346,8 +362,8 @@
     },
     {
       "day": "Tuesday",
-      "start": "09:45",
-      "end": "11:15",
+      "start": "08:45",
+      "end": "10:15",
       "name": "Grateful Wake Up",
       "city": "Norfolk",
       "region": "NE",
@@ -362,7 +378,8 @@
       "details": "Review & Input the day after Group Conscience.",
       "id": "meeting-022",
       "locationFilter": "Norfolk",
-      "qr": "meetings/qr/meeting-022.png"
+      "qr": "meetings/qr/meeting-022.png",
+      "timezoneIana": "America/Chicago"
     },
     {
       "day": "Tuesday",
@@ -382,7 +399,8 @@
       "details": "",
       "id": "meeting-023",
       "locationFilter": "Online",
-      "qr": "meetings/qr/meeting-023.png"
+      "qr": "meetings/qr/meeting-023.png",
+      "timezoneIana": "America/New_York"
     },
     {
       "day": "Tuesday",
@@ -423,7 +441,8 @@
       "details": "",
       "id": "meeting-027",
       "locationFilter": "Church of the Mother of God",
-      "qr": "meetings/qr/meeting-027.png"
+      "qr": "meetings/qr/meeting-027.png",
+      "timezoneIana": "America/New_York"
     },
     {
       "day": "Tuesday",
@@ -443,7 +462,8 @@
       "details": "Reads the NA Way of Life book every Tuesday.",
       "id": "meeting-074",
       "locationFilter": "Online",
-      "qr": "meetings/qr/meeting-074.png"
+      "qr": "meetings/qr/meeting-074.png",
+      "timezoneIana": "America/New_York"
     },
     {
       "day": "Tuesday",
@@ -463,12 +483,13 @@
       "details": "",
       "id": "meeting-028",
       "locationFilter": "Online",
-      "qr": "meetings/qr/meeting-028.png"
+      "qr": "meetings/qr/meeting-028.png",
+      "timezoneIana": "America/New_York"
     },
     {
       "day": "Tuesday",
-      "start": "21:00",
-      "end": "22:15",
+      "start": "18:00",
+      "end": "19:15",
       "name": "Seeking Traditional Solutions",
       "city": "San Jose",
       "region": "CA",
@@ -483,12 +504,13 @@
       "details": "",
       "id": "meeting-030",
       "locationFilter": "Online",
-      "qr": "meetings/qr/meeting-030.png"
+      "qr": "meetings/qr/meeting-030.png",
+      "timezoneIana": "America/Los_Angeles"
     },
     {
-      "day": "Tuesday",
-      "start": "22:00",
-      "end": "23:00",
+      "day": "Wednesday",
+      "start": "10:00",
+      "end": "11:00",
       "name": "Open Your Heart Group (Thailand)",
       "city": "Thailand",
       "region": "",
@@ -503,7 +525,8 @@
       "details": "",
       "id": "meeting-031",
       "locationFilter": "Online",
-      "qr": "meetings/qr/meeting-031.png"
+      "qr": "meetings/qr/meeting-031.png",
+      "timezoneIana": "Asia/Bangkok"
     },
     {
       "day": "Wednesday",
@@ -520,10 +543,11 @@
       "zoomId": "865 0383 3821",
       "passcode": "",
       "joinUrl": "https://us02web.zoom.us/j/86503833821",
-      "details": "",
+      "details": "Local New Zealand meeting time needs confirmation; shown at the original listed time until verified.",
       "id": "meeting-033",
       "locationFilter": "Online",
-      "qr": "meetings/qr/meeting-033.png"
+      "qr": "meetings/qr/meeting-033.png",
+      "timezoneUnknown": true
     },
     {
       "day": "Wednesday",
@@ -564,7 +588,8 @@
       "details": "",
       "id": "meeting-035",
       "locationFilter": "Online",
-      "qr": "meetings/qr/meeting-035.png"
+      "qr": "meetings/qr/meeting-035.png",
+      "timezoneIana": "America/New_York"
     },
     {
       "day": "Wednesday",
@@ -584,12 +609,13 @@
       "details": "",
       "id": "meeting-036",
       "locationFilter": "Online",
-      "qr": "meetings/qr/meeting-036.png"
+      "qr": "meetings/qr/meeting-036.png",
+      "timezoneIana": "America/New_York"
     },
     {
       "day": "Wednesday",
-      "start": "12:00",
-      "end": "13:30",
+      "start": "18:00",
+      "end": "19:30",
       "name": "Literature - Sweden",
       "city": "Hudiksvall",
       "region": "",
@@ -604,7 +630,8 @@
       "details": "",
       "id": "meeting-037",
       "locationFilter": "Hudiksvall",
-      "qr": "meetings/qr/meeting-037.png"
+      "qr": "meetings/qr/meeting-037.png",
+      "timezoneIana": "Europe/Stockholm"
     },
     {
       "day": "Wednesday",
@@ -624,7 +651,8 @@
       "details": "",
       "id": "meeting-039",
       "locationFilter": "Online",
-      "qr": "meetings/qr/meeting-039.png"
+      "qr": "meetings/qr/meeting-039.png",
+      "timezoneIana": "America/New_York"
     },
     {
       "day": "Wednesday",
@@ -649,8 +677,8 @@
     },
     {
       "day": "Wednesday",
-      "start": "20:30",
-      "end": "21:30",
+      "start": "17:30",
+      "end": "18:30",
       "name": "Grey Book Zoom Meeting",
       "city": "Morgan Hill",
       "region": "CA",
@@ -665,7 +693,8 @@
       "details": "",
       "id": "meeting-042",
       "locationFilter": "Online",
-      "qr": "meetings/qr/meeting-042.png"
+      "qr": "meetings/qr/meeting-042.png",
+      "timezoneIana": "America/Los_Angeles"
     },
     {
       "day": "Wednesday",
@@ -685,12 +714,13 @@
       "details": "",
       "id": "meeting-043",
       "locationFilter": "Online",
-      "qr": "meetings/qr/meeting-043.png"
+      "qr": "meetings/qr/meeting-043.png",
+      "timezoneIana": "America/New_York"
     },
     {
-      "day": "Wednesday",
-      "start": "22:00",
-      "end": "23:00",
+      "day": "Thursday",
+      "start": "10:00",
+      "end": "11:00",
       "name": "Open Your Heart Group (Thailand)",
       "city": "Thailand",
       "region": "",
@@ -705,7 +735,8 @@
       "details": "",
       "id": "meeting-044",
       "locationFilter": "Online",
-      "qr": "meetings/qr/meeting-044.png"
+      "qr": "meetings/qr/meeting-044.png",
+      "timezoneIana": "Asia/Bangkok"
     },
     {
       "day": "Thursday",
@@ -725,11 +756,12 @@
       "details": "",
       "id": "meeting-046",
       "locationFilter": "Online",
-      "qr": "meetings/qr/meeting-046.png"
+      "qr": "meetings/qr/meeting-046.png",
+      "timezoneIana": "America/New_York"
     },
     {
       "day": "Thursday",
-      "start": "12:00",
+      "start": "18:00",
       "end": "",
       "name": "Literature - Sweden",
       "city": "Hudiksvall",
@@ -745,7 +777,8 @@
       "details": "Recurring Thursday meeting: 11 AM Central / noon Eastern.",
       "id": "meeting-047",
       "locationFilter": "Hudiksvall",
-      "qr": "meetings/qr/meeting-047.png"
+      "qr": "meetings/qr/meeting-047.png",
+      "timezoneIana": "Europe/Stockholm"
     },
     {
       "day": "Thursday",
@@ -828,7 +861,8 @@
       "details": "Rear entrance.",
       "id": "meeting-052",
       "locationFilter": "First Presbyterian Church",
-      "qr": "meetings/qr/meeting-052.png"
+      "qr": "meetings/qr/meeting-052.png",
+      "timezoneIana": "America/New_York"
     },
     {
       "day": "Thursday",
@@ -848,7 +882,8 @@
       "details": "",
       "id": "meeting-053",
       "locationFilter": "Online",
-      "qr": "meetings/qr/meeting-053.png"
+      "qr": "meetings/qr/meeting-053.png",
+      "timezoneIana": "America/New_York"
     },
     {
       "day": "Thursday",
@@ -868,12 +903,13 @@
       "details": "",
       "id": "meeting-054",
       "locationFilter": "Online",
-      "qr": "meetings/qr/meeting-054.png"
+      "qr": "meetings/qr/meeting-054.png",
+      "timezoneIana": "America/New_York"
     },
     {
-      "day": "Thursday",
-      "start": "22:00",
-      "end": "23:00",
+      "day": "Friday",
+      "start": "10:00",
+      "end": "11:00",
       "name": "Open Your Heart Group (Thailand)",
       "city": "Thailand",
       "region": "",
@@ -888,12 +924,13 @@
       "details": "",
       "id": "meeting-055",
       "locationFilter": "Online",
-      "qr": "meetings/qr/meeting-055.png"
+      "qr": "meetings/qr/meeting-055.png",
+      "timezoneIana": "Asia/Bangkok"
     },
     {
       "day": "Friday",
-      "start": "09:45",
-      "end": "11:15",
+      "start": "08:45",
+      "end": "10:15",
       "name": "Grateful Wake Up",
       "city": "Norfolk",
       "region": "NE",
@@ -908,7 +945,8 @@
       "details": "",
       "id": "meeting-057",
       "locationFilter": "Norfolk",
-      "qr": "meetings/qr/meeting-057.png"
+      "qr": "meetings/qr/meeting-057.png",
+      "timezoneIana": "America/Chicago"
     },
     {
       "day": "Friday",
@@ -949,7 +987,8 @@
       "details": "",
       "id": "meeting-060",
       "locationFilter": "Online",
-      "qr": "meetings/qr/meeting-060.png"
+      "qr": "meetings/qr/meeting-060.png",
+      "timezoneIana": "America/New_York"
     },
     {
       "day": "Friday",
@@ -969,7 +1008,8 @@
       "details": "",
       "id": "meeting-061",
       "locationFilter": "Online",
-      "qr": "meetings/qr/meeting-061.png"
+      "qr": "meetings/qr/meeting-061.png",
+      "timezoneIana": "America/New_York"
     },
     {
       "day": "Friday",
@@ -989,12 +1029,13 @@
       "details": "",
       "id": "meeting-062",
       "locationFilter": "Online",
-      "qr": "meetings/qr/meeting-062.png"
+      "qr": "meetings/qr/meeting-062.png",
+      "timezoneIana": "America/New_York"
     },
     {
-      "day": "Friday",
-      "start": "22:00",
-      "end": "23:00",
+      "day": "Saturday",
+      "start": "10:00",
+      "end": "11:00",
       "name": "Open Your Heart Group (Thailand)",
       "city": "Thailand",
       "region": "",
@@ -1009,7 +1050,8 @@
       "details": "",
       "id": "meeting-063",
       "locationFilter": "Online",
-      "qr": "meetings/qr/meeting-063.png"
+      "qr": "meetings/qr/meeting-063.png",
+      "timezoneIana": "Asia/Bangkok"
     },
     {
       "day": "Saturday",
@@ -1029,7 +1071,8 @@
       "details": "",
       "id": "meeting-065",
       "locationFilter": "Online",
-      "qr": "meetings/qr/meeting-065.png"
+      "qr": "meetings/qr/meeting-065.png",
+      "timezoneIana": "America/New_York"
     },
     {
       "day": "Saturday",
@@ -1049,7 +1092,8 @@
       "details": "",
       "id": "meeting-066",
       "locationFilter": "Online",
-      "qr": "meetings/qr/meeting-066.png"
+      "qr": "meetings/qr/meeting-066.png",
+      "timezoneIana": "America/New_York"
     },
     {
       "day": "Saturday",
@@ -1090,7 +1134,8 @@
       "details": "",
       "id": "meeting-069",
       "locationFilter": "Online",
-      "qr": "meetings/qr/meeting-069.png"
+      "qr": "meetings/qr/meeting-069.png",
+      "timezoneIana": "America/New_York"
     },
     {
       "day": "Saturday",
@@ -1110,12 +1155,13 @@
       "details": "Also listed as Philly Graybook Literature Study.",
       "id": "meeting-071",
       "locationFilter": "Trinity Church Oxford",
-      "qr": "meetings/qr/meeting-071.png"
+      "qr": "meetings/qr/meeting-071.png",
+      "timezoneIana": "America/New_York"
     },
     {
-      "day": "Saturday",
-      "start": "22:00",
-      "end": "23:00",
+      "day": "Sunday",
+      "start": "10:00",
+      "end": "11:00",
       "name": "Open Your Heart Group (Thailand)",
       "city": "Thailand",
       "region": "",
@@ -1130,7 +1176,8 @@
       "details": "",
       "id": "meeting-072",
       "locationFilter": "Online",
-      "qr": "meetings/qr/meeting-072.png"
+      "qr": "meetings/qr/meeting-072.png",
+      "timezoneIana": "Asia/Bangkok"
     },
     {
       "day": "Sunday",
