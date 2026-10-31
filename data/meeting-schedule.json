@@ -1,6 +1,6 @@
 {
   "timezone": "Eastern Time (ET)",
-  "updated": "2026-10-27",
+  "updated": "2026-10-30",
   "meetings": [
     {
       "day": "Sunday",
@@ -386,8 +386,8 @@
     },
     {
       "day": "Tuesday",
-      "start": "14:00",
-      "end": "15:15",
+      "start": "19:00",
+      "end": "20:15",
       "name": "Limitless Possibilities",
       "city": "Pontyclun",
       "region": "Wales",
@@ -402,7 +402,8 @@
       "details": "",
       "id": "meeting-024",
       "locationFilter": "Bethel Baptist Church",
-      "qr": "meetings/qr/meeting-024.png"
+      "qr": "meetings/qr/meeting-024.png",
+      "timezoneIana": "Europe/London"
     },
     {
       "day": "Tuesday",
@@ -526,8 +527,8 @@
     },
     {
       "day": "Wednesday",
-      "start": "05:30",
-      "end": "06:30",
+      "start": "10:30",
+      "end": "11:30",
       "name": "Rethink Recovery",
       "city": "Tonyrefail",
       "region": "Wales",
@@ -542,7 +543,8 @@
       "details": "",
       "id": "meeting-034",
       "locationFilter": "Community Shop Gelligron Industrial Estate",
-      "qr": "meetings/qr/meeting-034.png"
+      "qr": "meetings/qr/meeting-034.png",
+      "timezoneIana": "Europe/London"
     },
     {
       "day": "Wednesday",
@@ -747,8 +749,8 @@
     },
     {
       "day": "Thursday",
-      "start": "14:00",
-      "end": "15:15",
+      "start": "19:00",
+      "end": "20:15",
       "name": "Hope",
       "city": "Bridgend",
       "region": "Wales",
@@ -763,12 +765,13 @@
       "details": "",
       "id": "meeting-048",
       "locationFilter": "Hope Baptist Church",
-      "qr": "meetings/qr/meeting-048.png"
+      "qr": "meetings/qr/meeting-048.png",
+      "timezoneIana": "Europe/London"
     },
     {
       "day": "Thursday",
-      "start": "15:00",
-      "end": "16:00",
+      "start": "20:00",
+      "end": "21:00",
       "name": "NA Meeting Manchester - UK",
       "city": "Manchester",
       "region": "",
@@ -783,12 +786,13 @@
       "details": "Meets on Skype.",
       "id": "meeting-049",
       "locationFilter": "Online",
-      "qr": "meetings/qr/meeting-049.png"
+      "qr": "meetings/qr/meeting-049.png",
+      "timezoneIana": "Europe/London"
     },
     {
       "day": "Thursday",
-      "start": "15:00",
-      "end": "16:00",
+      "start": "20:00",
+      "end": "21:00",
       "name": "Seed Planters",
       "city": "Middleton",
       "region": "Manchester",
@@ -803,7 +807,8 @@
       "details": "",
       "id": "meeting-051",
       "locationFilter": "Demesne Community Centre",
-      "qr": "meetings/qr/meeting-051.png"
+      "qr": "meetings/qr/meeting-051.png",
+      "timezoneIana": "Europe/London"
     },
     {
       "day": "Thursday",
@@ -907,8 +912,8 @@
     },
     {
       "day": "Friday",
-      "start": "14:00",
-      "end": "15:00",
+      "start": "19:00",
+      "end": "20:00",
       "name": "Exeter Basic Text",
       "city": "Exeter",
       "region": "",
@@ -923,7 +928,8 @@
       "details": "",
       "id": "meeting-058",
       "locationFilter": "Online",
-      "qr": "meetings/qr/meeting-058.png"
+      "qr": "meetings/qr/meeting-058.png",
+      "timezoneIana": "Europe/London"
     },
     {
       "day": "Friday",
@@ -1047,8 +1053,8 @@
     },
     {
       "day": "Saturday",
-      "start": "16:00",
-      "end": "17:30",
+      "start": "21:00",
+      "end": "22:30",
       "name": "Sheffield Primary Purpose",
       "city": "Sheffield",
       "region": "",
@@ -1063,7 +1069,8 @@
       "details": "",
       "id": "meeting-068",
       "locationFilter": "Sheffield",
-      "qr": "meetings/qr/meeting-068.png"
+      "qr": "meetings/qr/meeting-068.png",
+      "timezoneIana": "Europe/London"
     },
     {
       "day": "Saturday",
