@@ -529,9 +529,9 @@
       "timezoneIana": "Asia/Bangkok"
     },
     {
-      "day": "Wednesday",
-      "start": "02:30",
-      "end": "03:30",
+      "day": "Thursday",
+      "start": "05:30",
+      "end": "06:30",
       "name": "Mauao, New Zealand",
       "city": "Mauao",
       "region": "",
@@ -543,11 +543,11 @@
       "zoomId": "865 0383 3821",
       "passcode": "",
       "joinUrl": "https://us02web.zoom.us/j/86503833821",
-      "details": "Local New Zealand meeting time needs confirmation; shown at the original listed time until verified.",
+      "details": "",
       "id": "meeting-033",
       "locationFilter": "Online",
       "qr": "meetings/qr/meeting-033.png",
-      "timezoneUnknown": true
+      "timezoneIana": "Pacific/Auckland"
     },
     {
       "day": "Wednesday",
@@ -1752,8 +1752,8 @@
       "end": "19:30",
       "name": "Life on Life's Terms",
       "city": "",
-      "region": "",
-      "country": "",
+      "region": "CA",
+      "country": "US",
       "venue": "",
       "address": "",
       "mode": "Virtual",
@@ -1761,11 +1761,11 @@
       "zoomId": "841 8181 9869",
       "passcode": "",
       "joinUrl": "https://us02web.zoom.us/j/84181819869",
-      "details": "Source time zone was not provided; the displayed time is the original listed time.",
+      "details": "",
       "id": "meeting-109",
       "locationFilter": "Online",
       "qr": "meetings/qr/meeting-109.png",
-      "timezoneUnknown": true
+      "timezoneIana": "America/Los_Angeles"
     }
   ],
   "timezoneIana": "America/New_York"
