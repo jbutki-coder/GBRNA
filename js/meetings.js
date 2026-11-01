@@ -246,24 +246,24 @@
   }
 
   const SHARE_TIME_ZONES = [
-    ["🇺🇸", "Eastern (Michigan / New York)", "America/New_York"],
-    ["🇺🇸", "Central (Nebraska / Chicago)", "America/Chicago"],
-    ["🇺🇸", "Mountain (Denver)", "America/Denver"],
-    ["🇺🇸", "Arizona (Phoenix)", "America/Phoenix"],
-    ["🇺🇸", "Pacific (California)", "America/Los_Angeles"],
+    ["🇺🇸", "Eastern", "America/New_York"],
+    ["🇺🇸", "Central", "America/Chicago"],
+    ["🇺🇸", "Mountain", "America/Denver"],
+    ["🇺🇸", "Mountain Standard, year-round", "America/Phoenix"],
+    ["🇺🇸", "Pacific", "America/Los_Angeles"],
     ["🇺🇸", "Alaska", "America/Anchorage"],
     ["🇺🇸", "Hawaii", "Pacific/Honolulu"],
     ["🇬🇧", "United Kingdom", "Europe/London"],
-    ["🇵🇹", "Portugal (Lisbon)", "Europe/Lisbon"],
-    ["🇸🇪", "Central Europe (Sweden)", "Europe/Stockholm"],
+    ["🇵🇹", "Portugal", "Europe/Lisbon"],
+    ["🇸🇪", "Central Europe", "Europe/Stockholm"],
     ["🇿🇦", "South Africa", "Africa/Johannesburg", "SAST"],
     ["🇮🇳", "India", "Asia/Kolkata", "IST"],
     ["🇹🇭", "Thailand", "Asia/Bangkok", "ICT"],
-    ["🇦🇺", "Western Australia (Perth)", "Australia/Perth", "AWST"],
-    ["🇦🇺", "Northern Territory (Darwin)", "Australia/Darwin", "ACST"],
-    ["🇦🇺", "South Australia (Adelaide)", "Australia/Adelaide"],
-    ["🇦🇺", "Queensland (Brisbane)", "Australia/Brisbane", "AEST"],
-    ["🇦🇺", "Eastern Australia (Sydney / Melbourne)", "Australia/Sydney"],
+    ["🇦🇺", "Australian Western", "Australia/Perth", "AWST"],
+    ["🇦🇺", "Australian Central Standard, year-round", "Australia/Darwin", "ACST"],
+    ["🇦🇺", "Australian Central", "Australia/Adelaide"],
+    ["🇦🇺", "Australian Eastern Standard, year-round", "Australia/Brisbane", "AEST"],
+    ["🇦🇺", "Australian Eastern", "Australia/Sydney"],
     ["🇳🇿", "New Zealand", "Pacific/Auckland"]
   ];
 
