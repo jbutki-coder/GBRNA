@@ -1,6 +1,6 @@
 {
   "timezone": "Eastern Time (ET)",
-  "updated": "2026-10-31",
+  "updated": "2026-11-01",
   "meetings": [
     {
       "day": "Sunday",
@@ -1748,8 +1748,8 @@
     },
     {
       "day": "Thursday",
-      "start": "18:00",
-      "end": "19:30",
+      "start": "15:00",
+      "end": "16:30",
       "name": "Life on Life's Terms",
       "city": "",
       "region": "CA",
