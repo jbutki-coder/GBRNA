@@ -203,6 +203,7 @@
       sourceTimeZone,
       sourceTimeText: `${meeting.day} ${formatWallClock(meeting.start)}${meeting.end ? ` – ${formatWallClock(meeting.end)}` : ""} (${sourceTimeZone})`,
       localDate: new Intl.DateTimeFormat(undefined, { timeZone: localTimeZone, month: "short", day: "numeric" }).format(startInstant),
+      endInstant: endInstant ? endInstant.getTime() : null,
       startInstant: startInstant.getTime()
     };
   }
@@ -244,6 +245,54 @@
     return String(value || "").replace(/\s+/g, "");
   }
 
+  const SHARE_TIME_ZONES = [
+    ["🇺🇸", "Eastern (Michigan / New York)", "America/New_York"],
+    ["🇺🇸", "Central (Nebraska / Chicago)", "America/Chicago"],
+    ["🇺🇸", "Mountain (Denver)", "America/Denver"],
+    ["🇺🇸", "Arizona (Phoenix)", "America/Phoenix"],
+    ["🇺🇸", "Pacific (California)", "America/Los_Angeles"],
+    ["🇺🇸", "Alaska", "America/Anchorage"],
+    ["🇺🇸", "Hawaii", "Pacific/Honolulu"],
+    ["🇬🇧", "United Kingdom", "Europe/London"],
+    ["🇵🇹", "Portugal (Lisbon)", "Europe/Lisbon"],
+    ["🇸🇪", "Central Europe (Sweden)", "Europe/Stockholm"],
+    ["🇿🇦", "South Africa", "Africa/Johannesburg", "SAST"],
+    ["🇮🇳", "India", "Asia/Kolkata", "IST"],
+    ["🇹🇭", "Thailand", "Asia/Bangkok", "ICT"],
+    ["🇦🇺", "Western Australia (Perth)", "Australia/Perth", "AWST"],
+    ["🇦🇺", "Northern Territory (Darwin)", "Australia/Darwin", "ACST"],
+    ["🇦🇺", "South Australia (Adelaide)", "Australia/Adelaide"],
+    ["🇦🇺", "Queensland (Brisbane)", "Australia/Brisbane", "AEST"],
+    ["🇦🇺", "Eastern Australia (Sydney / Melbourne)", "Australia/Sydney"],
+    ["🇳🇿", "New Zealand", "Pacific/Auckland"]
+  ];
+
+  function meetingShareTimes(meeting) {
+    if (!Number.isFinite(meeting.startInstant)) return [];
+    const start = new Date(meeting.startInstant);
+    const end = Number.isFinite(meeting.endInstant) ? new Date(meeting.endInstant) : null;
+    const zones = SHARE_TIME_ZONES.map((entry) => [...entry]);
+    if (meeting.sourceTimeZone && !zones.some((entry) => entry[2] === meeting.sourceTimeZone)) {
+      zones.push(["🌐", "Group time zone", meeting.sourceTimeZone]);
+    }
+    const clock = (date, zone) => shareTimeText(new Intl.DateTimeFormat("en-US", {
+      timeZone: zone, hour: "numeric", minute: "2-digit", hour12: true
+    }).format(date));
+    const day = (date, zone) => new Intl.DateTimeFormat("en-US", {
+      timeZone: zone, weekday: "long"
+    }).format(date);
+    return zones.map(([flag, label, zone, fixedAbbreviation]) => {
+      const locale = zone.startsWith("America/") || zone === "Pacific/Honolulu" ? "en-US" : "en-GB";
+      const abbreviation = fixedAbbreviation || new Intl.DateTimeFormat(locale, {
+        timeZone: zone, timeZoneName: "short"
+      }).formatToParts(start).find((part) => part.type === "timeZoneName")?.value || zone;
+      const startDay = day(start, zone);
+      const endDay = end ? day(end, zone) : startDay;
+      const range = clock(start, zone) + (end ? " - " + (endDay !== startDay ? endDay + " " : "") + clock(end, zone) : "");
+      return flag + " " + label + " (" + abbreviation + "): " + startDay + " " + range;
+    });
+  }
+
   function meetingShareText(meeting) {
     const time = meeting.localEnd
       ? `${shareTimeText(meeting.localStart)} - ${shareTimeText(meeting.localEnd)}`
@@ -253,6 +302,8 @@
     const lines = [firstLine];
     if (meeting.localDate) lines.push(`Next meeting: ${meeting.localDate} (${browserTimeZone()})`);
     if (meeting.sourceTimeText) lines.push(`Group time: ${meeting.sourceTimeText}`);
+    const regionalTimes = meetingShareTimes(meeting);
+    if (regionalTimes.length) lines.push("", "Meeting times (for the next meeting):", ...regionalTimes, "");
     if (meeting.shareNote) lines.push(meeting.shareNote);
 
     // Hybrid meetings are more useful when the in-person location travels with the share.
