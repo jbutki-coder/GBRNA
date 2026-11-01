@@ -46,12 +46,12 @@
     },
     {
       "day": "Sunday",
-      "start": "08:00",
-      "end": "10:00",
-      "name": "Gray Book Group",
+      "start": "14:00",
+      "end": "16:00",
+      "name": "Gray Book Group (South Africa)",
       "city": "",
       "region": "",
-      "country": "US",
+      "country": "South Africa",
       "venue": "",
       "address": "",
       "mode": "Virtual",
@@ -63,7 +63,35 @@
       "id": "meeting-003",
       "locationFilter": "Online",
       "qr": "meetings/qr/meeting-003.png",
-      "timezoneIana": "America/New_York"
+      "timezoneIana": "Africa/Johannesburg",
+      "shareTimeZones": [
+        {
+          "flag": "🇿🇦",
+          "zone": "Africa/Johannesburg",
+          "label": "SAST",
+          "showEnd": true
+        },
+        {
+          "flag": "🇬🇧",
+          "zone": "Europe/London"
+        },
+        {
+          "flag": "🇺🇸",
+          "zone": "America/New_York"
+        },
+        {
+          "flag": "🇺🇸",
+          "zone": "America/Chicago"
+        },
+        {
+          "flag": "🇺🇸",
+          "zone": "America/Denver"
+        },
+        {
+          "flag": "🇺🇸",
+          "zone": "America/Los_Angeles"
+        }
+      ]
     },
     {
       "day": "Sunday",
