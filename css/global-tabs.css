@@ -76,3 +76,61 @@
 @media print {
   .global-tabs-bar { display: none !important; }
 }
+
+/* Autumn, with fallen leaves and a quiet sunset. Shared by all site tabs. */
+:root {
+  --paper:#f6eddd; --paper-deep:#e9d4b6; --ink:#302318; --muted:#6b5341;
+  --charcoal:#39271f; --charcoal-2:#4b3125; --gold:#ab6238; --gold-soft:#efc38a;
+  --line:rgba(103,65,39,.24); --shadow:rgba(65,38,21,.12);
+}
+body {
+  color:var(--ink);
+  background-color:#f4e6cf !important;
+  background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221600%22%20height%3D%221250%22%20viewBox%3D%220%200%201600%201250%22%3E%3Cg%20transform%3D%22translate(70%20100)%20rotate(22)%20scale(0.7)%22%20opacity%3D%22.45%22%3E%3Cpath%20d%3D%22M0%2046%20C-28%2034-39%2010-28-12%20L-13-4-15-31%201-20%2014-47%2027-17%2044-24%2039%200%2060-5%2048%2018%2065%2029%2038%2034%2044%2049%2016%2044%205%2064Z%22%20fill%3D%22%2388512f%22%2F%3E%3Cpath%20d%3D%22M1%2066%2014-30%20M9%2025-20%202%20M8%2032%2043%209%20M5%2043-16%2027%22%20stroke%3D%22%234e3223%22%20fill%3D%22none%22%20stroke-width%3D%221.5%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate(1500%20150)%20rotate(-38)%20scale(0.9)%22%20opacity%3D%22.45%22%3E%3Cpath%20d%3D%22M0%2046%20C-28%2034-39%2010-28-12%20L-13-4-15-31%201-20%2014-47%2027-17%2044-24%2039%200%2060-5%2048%2018%2065%2029%2038%2034%2044%2049%2016%2044%205%2064Z%22%20fill%3D%22%2375462e%22%2F%3E%3Cpath%20d%3D%22M1%2066%2014-30%20M9%2025-20%202%20M8%2032%2043%209%20M5%2043-16%2027%22%20stroke%3D%22%234e3223%22%20fill%3D%22none%22%20stroke-width%3D%221.5%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate(112%20490)%20rotate(130)%20scale(0.55)%22%20opacity%3D%22.45%22%3E%3Cpath%20d%3D%22M0%2046%20C-28%2034-39%2010-28-12%20L-13-4-15-31%201-20%2014-47%2027-17%2044-24%2039%200%2060-5%2048%2018%2065%2029%2038%2034%2044%2049%2016%2044%205%2064Z%22%20fill%3D%22%23a5683b%22%2F%3E%3Cpath%20d%3D%22M1%2066%2014-30%20M9%2025-20%202%20M8%2032%2043%209%20M5%2043-16%2027%22%20stroke%3D%22%234e3223%22%20fill%3D%22none%22%20stroke-width%3D%221.5%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate(1540%20640)%20rotate(55)%20scale(0.75)%22%20opacity%3D%22.45%22%3E%3Cpath%20d%3D%22M0%2046%20C-28%2034-39%2010-28-12%20L-13-4-15-31%201-20%2014-47%2027-17%2044-24%2039%200%2060-5%2048%2018%2065%2029%2038%2034%2044%2049%2016%2044%205%2064Z%22%20fill%3D%22%238f5d35%22%2F%3E%3Cpath%20d%3D%22M1%2066%2014-30%20M9%2025-20%202%20M8%2032%2043%209%20M5%2043-16%2027%22%20stroke%3D%22%234e3223%22%20fill%3D%22none%22%20stroke-width%3D%221.5%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate(45%20920)%20rotate(-35)%20scale(0.85)%22%20opacity%3D%22.45%22%3E%3Cpath%20d%3D%22M0%2046%20C-28%2034-39%2010-28-12%20L-13-4-15-31%201-20%2014-47%2027-17%2044-24%2039%200%2060-5%2048%2018%2065%2029%2038%2034%2044%2049%2016%2044%205%2064Z%22%20fill%3D%22%236e452c%22%2F%3E%3Cpath%20d%3D%22M1%2066%2014-30%20M9%2025-20%202%20M8%2032%2043%209%20M5%2043-16%2027%22%20stroke%3D%22%234e3223%22%20fill%3D%22none%22%20stroke-width%3D%221.5%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate(1460%201120)%20rotate(160)%20scale(0.6)%22%20opacity%3D%22.45%22%3E%3Cpath%20d%3D%22M0%2046%20C-28%2034-39%2010-28-12%20L-13-4-15-31%201-20%2014-47%2027-17%2044-24%2039%200%2060-5%2048%2018%2065%2029%2038%2034%2044%2049%2016%2044%205%2064Z%22%20fill%3D%22%23a96d3d%22%2F%3E%3Cpath%20d%3D%22M1%2066%2014-30%20M9%2025-20%202%20M8%2032%2043%209%20M5%2043-16%2027%22%20stroke%3D%22%234e3223%22%20fill%3D%22none%22%20stroke-width%3D%221.5%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate(145%201190)%20rotate(85)%20scale(0.45)%22%20opacity%3D%22.45%22%3E%3Cpath%20d%3D%22M0%2046%20C-28%2034-39%2010-28-12%20L-13-4-15-31%201-20%2014-47%2027-17%2044-24%2039%200%2060-5%2048%2018%2065%2029%2038%2034%2044%2049%2016%2044%205%2064Z%22%20fill%3D%22%2381532f%22%2F%3E%3Cpath%20d%3D%22M1%2066%2014-30%20M9%2025-20%202%20M8%2032%2043%209%20M5%2043-16%2027%22%20stroke%3D%22%234e3223%22%20fill%3D%22none%22%20stroke-width%3D%221.5%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E"),linear-gradient(110deg,#ead1aa 0%,#f8f0e2 24%,#fbf5e9 55%,#f3e2c7 82%,#e7c7a1 100%) !important;
+  background-size:100% auto,100% 100% !important;
+  background-repeat:repeat-y,no-repeat !important;
+}
+.global-tabs-bar {
+  background:linear-gradient(110deg,#302019,#523225 70%,#69412b) !important;
+  border-bottom-color:#b97643;
+  box-shadow:0 4px 16px rgba(66,37,20,.18);
+}
+.global-tabs a {color:#fff0dc !important;background:rgba(255,235,203,.04) !important;border-color:#a77a55 !important;border-radius:3px;}
+.global-tabs a:hover,.global-tabs a:focus-visible,.global-tabs a[aria-current="page"] {
+  color:#2d1b12 !important;background:#edc28e !important;border-color:#ffdbac !important;
+}
+body .site-header {
+  color:#fff5e4;
+  background:radial-gradient(circle at 85% 110%,#f7d399 0 38px,rgba(226,153,85,.64) 39px,transparent 180px),linear-gradient(108deg,#38251f 0%,#654031 56%,#a85d3a 100%);
+  border-bottom:5px solid #be7c48;
+  box-shadow:0 8px 24px rgba(73,40,23,.15);
+}
+.site-header .header-inner {padding-top:38px;padding-bottom:34px;}
+.site-header h1 {color:#fff6e8;text-shadow:0 2px 2px rgba(38,22,13,.18);}
+.site-header .subhead {color:#f1d6b6;}
+body .main-content {background:rgba(255,249,238,.52);}
+body .reading-card,body .panel,body .result-card {background:#fff9ed;border-color:#d9bea0;box-shadow:0 8px 26px rgba(91,54,28,.09);}
+body .reading-card::before {background:linear-gradient(90deg,#6c422c,#b5723e,#e3b16d);}
+body .moment-box {background:#483026;color:#fff0da;border-color:#c98b50;}
+body .moment-box h4 {color:#f1c58c;}
+body .main-content a:not([class]),body .announcement a:not([class]) {color:#80401f;text-underline-offset:3px;}
+body .toolbar button,body .archive-link {background:#fcf2df;border-color:#bb956c;color:#483122;}
+body .toolbar button:hover,body .archive-link:hover {background:#edc997;color:#302016;}
+body .meeting-filter-shell {background:#483027;border-color:#b9814e;}
+body .meeting-summary {background:#fff8ec;color:#33251b;}
+body details[open]>.meeting-summary,body .meeting-summary:hover {background:#e9c69a;color:#302015;}
+body .meeting-day-tab {color:#422c20;background:#f7e8cf;border-color:#bb8f64;}
+body .meeting-day-tab.is-active,body .meeting-day-tab[aria-selected="true"] {background:#8f4e2e;color:#fff5e5;}
+body .meeting-expanded {background:#f5e6cd;}
+body .meeting-join-link {background:#593621;color:#fff5e5;border-color:#b57b46;}
+body .meeting-share-button {background:#fff3df;color:#4d2b18;border-color:#a56b3b;}
+body .meeting-share-button:hover {background:#794729;color:#fff5e7;}
+body .site-footer {background:#38271f;color:#f3ddbf;border-top:3px solid #b97842;}
+body .site-footer a {color:#f3d09e;}
+:focus-visible {outline:3px solid #a65027;outline-offset:3px;}
+@media(max-width:720px){
+  body {background-size:180% auto,100% 100% !important;background-position:center top,center top;}
+  .site-header .header-inner {padding-top:28px;padding-bottom:26px;}
+  body .site-header {background:radial-gradient(circle at 95% 110%,#edbe7c 0 30px,transparent 130px),linear-gradient(115deg,#39271f,#8a4d32);}
+}
+@media print {body {background:#fff !important;color:#000;}body .site-header,body .site-footer {background:#fff;color:#000;box-shadow:none;}}
