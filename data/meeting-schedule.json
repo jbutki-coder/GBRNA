@@ -1,6 +1,6 @@
 {
   "timezone": "Eastern Time (ET)",
-  "updated": "2026-11-01",
+  "updated": "2026-11-02",
   "meetings": [
     {
       "day": "Sunday",
@@ -1285,11 +1285,11 @@
       "zoomId": "891 2811 8093",
       "passcode": "",
       "joinUrl": "https://us02web.zoom.us/j/89128118093",
-      "details": "Traditions/Step Study Meeting. Find your local Zoom dial-in number: https://us02web.zoom.us/u/kbiYvoH58X",
+      "details": "Traditions/Step Study Meeting. Find your local Zoom dial-in number: https://us02web.zoom.us/u/kbiYvoH58X Monday and Thursday evening meetings follow British Columbia time: 7:30 PM year-round (UTC−7), with no daylight saving clock changes. More developments to come.",
       "id": "meeting-078",
       "locationFilter": "Online",
       "qr": "meetings/qr/meeting-078.png",
-      "timezoneIana": "America/Los_Angeles"
+      "timezoneIana": "Etc/GMT+7"
     },
     {
       "day": "Tuesday",
@@ -1411,11 +1411,11 @@
       "zoomId": "891 2811 8093",
       "passcode": "",
       "joinUrl": "https://us02web.zoom.us/j/89128118093",
-      "details": "Traditions/Step Study Meeting. Find your local Zoom dial-in number: https://us02web.zoom.us/u/kbiYvoH58X",
+      "details": "Traditions/Step Study Meeting. Find your local Zoom dial-in number: https://us02web.zoom.us/u/kbiYvoH58X Monday and Thursday evening meetings follow British Columbia time: 7:30 PM year-round (UTC−7), with no daylight saving clock changes. More developments to come.",
       "id": "meeting-084",
       "locationFilter": "Online",
       "qr": "meetings/qr/meeting-084.png",
-      "timezoneIana": "America/Los_Angeles"
+      "timezoneIana": "Etc/GMT+7"
     },
     {
       "day": "Friday",
