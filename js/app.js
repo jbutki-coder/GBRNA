@@ -1,3 +1,11 @@
+// Fresh homepage visits and reloads start at the header, not a restored reading position.
+if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+window.addEventListener('pageshow', () => {
+  if (!location.hash || location.hash === '#today') {
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+  }
+});
+
 let REFLECTIONS = [];
 let DAILY_AUDIO = {};
 let GREY_BOOK_CONTEXT = { dates: {}, pages: {} };
@@ -2337,8 +2345,9 @@ function showToday() {
   );
 
 
-  location.hash =
-    'today';
+  // Updating today's reading must not navigate to an in-page anchor.
+  history.replaceState(history.state, '', location.pathname + location.search);
+  window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
 }
 
 
