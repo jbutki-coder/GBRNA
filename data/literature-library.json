@@ -468,6 +468,19 @@
       "sourceName": "TwelveStepWritingGuideBookletA.pdf"
     },
     {
+      "id": "power-to-recover-grateful-dave",
+      "title": "Power to Recover - Written by Grateful Dave",
+      "subtitle": "102-page step-working guide",
+      "category": "steps",
+      "cover": "images/literature/power-to-recover-grateful-dave.png",
+      "pdf": "/literature/library/power-to-recover-grateful-dave.pdf",
+      "note": "Member-written step-working material, preserved as a readable scan.",
+      "pages": 102,
+      "bytes": 21741333,
+      "sha256": "61840662ff7f519a3da48ea7856cbc4800799875e2e924c0737ccee2cd76c3f1",
+      "sourceName": "Power-to-Recover-Complete.pdf"
+    },
+    {
       "id": "historical-traditions",
       "title": "Historical Perspective of the Twelve Traditions & Personal Work Book",
       "subtitle": "Twelve Traditions study workbook",
