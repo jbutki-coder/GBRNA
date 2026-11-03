@@ -1,3 +1,91 @@
-.home-section-nav{display:flex;flex-wrap:wrap;gap:12px 24px;padding:14px 0;margin-bottom:12px;border-bottom:1px solid var(--line)}
-.home-section-nav a{font-size:15px;text-underline-offset:4px;padding:6px 0;color:#255a64}
-@media(max-width:500px){.home-section-nav{gap:6px 18px}.home-section-nav a{font-size:14px}}
+/* Home section shortcuts: clear contrast and generous touch targets. */
+.home-section-nav {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 8px;
+  margin: 0 0 18px;
+  padding: 12px;
+  border: 2px solid #a77953;
+  background: #3d281f;
+  box-shadow: 0 4px 14px rgba(42, 23, 17, 0.24);
+}
+
+.home-section-nav a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 8px;
+  border: 1px solid #9e744f;
+  background: #f4e0c7;
+  color: #332116;
+  text-align: center;
+  text-decoration: none;
+  font: 700 0.93rem/1.25 Georgia, "Times New Roman", serif;
+}
+
+.home-section-nav a:hover,
+.home-section-nav a:focus-visible {
+  background: #d3a575;
+  color: #26160f;
+  outline: 2px solid #fff2db;
+  outline-offset: 2px;
+}
+
+/* Keep the daily-reading controls prominent against the autumn palette. */
+#today.toolbar {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+  margin: 0 0 20px;
+}
+
+#today.toolbar button {
+  min-height: 48px;
+  padding: 10px 8px;
+  border: 2px solid #6a3b28;
+  border-radius: 2px;
+  background: #3d281f;
+  color: #fff7ec;
+  font: 700 0.94rem/1.2 "Courier New", Courier, monospace;
+  text-align: center;
+  box-shadow: 0 3px 0 rgba(51, 29, 20, 0.22);
+}
+
+#today.toolbar #todayBtn {
+  background: #e8d0ac;
+  border-color: #815431;
+  color: #312015;
+}
+
+#today.toolbar button:hover,
+#today.toolbar button:focus-visible {
+  background: #865037;
+  border-color: #542b1c;
+  color: #fff;
+  outline-offset: 3px;
+}
+
+@media (max-width: 640px) {
+  .home-section-nav {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 8px;
+    padding: 9px;
+  }
+
+  .home-section-nav a {
+    font-size: 0.9rem;
+    padding: 7px 5px;
+  }
+
+  .home-section-nav a:nth-child(-n + 3) { grid-column: span 2; }
+  .home-section-nav a:nth-child(n + 4) { grid-column: span 3; }
+
+  #today.toolbar {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 9px;
+  }
+
+  #today.toolbar button:nth-child(-n + 3) { grid-column: span 2; }
+  #today.toolbar button:nth-child(n + 4) { grid-column: span 3; }
+}
