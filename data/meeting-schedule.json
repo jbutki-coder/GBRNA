@@ -1247,7 +1247,7 @@
       "id": "meeting-076",
       "locationFilter": "Online",
       "qr": "meetings/qr/meeting-076.png",
-      "timezoneIana": "America/Los_Angeles"
+      "timezoneIana": "Etc/GMT+7"
     },
     {
       "day": "Monday",
@@ -1331,7 +1331,7 @@
       "id": "meeting-080",
       "locationFilter": "Online",
       "qr": "meetings/qr/meeting-080.png",
-      "timezoneIana": "America/Los_Angeles"
+      "timezoneIana": "Etc/GMT+7"
     },
     {
       "day": "Wednesday",
@@ -1373,7 +1373,7 @@
       "id": "meeting-082",
       "locationFilter": "Online",
       "qr": "meetings/qr/meeting-082.png",
-      "timezoneIana": "America/Los_Angeles"
+      "timezoneIana": "Etc/GMT+7"
     },
     {
       "day": "Thursday",
@@ -1457,7 +1457,7 @@
       "id": "meeting-086",
       "locationFilter": "Online",
       "qr": "meetings/qr/meeting-086.png",
-      "timezoneIana": "America/Los_Angeles"
+      "timezoneIana": "Etc/GMT+7"
     },
     {
       "day": "Saturday",
@@ -1478,7 +1478,7 @@
       "id": "meeting-087",
       "locationFilter": "Online",
       "qr": "meetings/qr/meeting-087.png",
-      "timezoneIana": "America/Los_Angeles"
+      "timezoneIana": "Etc/GMT+7"
     },
     {
       "day": "Sunday",
@@ -1798,3 +1798,4 @@
   ],
   "timezoneIana": "America/New_York"
 }
+
