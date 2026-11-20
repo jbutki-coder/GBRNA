@@ -151,7 +151,9 @@
     }
 
     const sourceDayIndex = DAY_INDEX[meeting.day] ?? 0;
-    const sourceDate = new Date(weekAnchor.getTime() + sourceDayIndex * 86400000);
+    const sourceDate = meeting.eventDate
+      ? new Date(`${meeting.eventDate}T12:00:00Z`)
+      : new Date(weekAnchor.getTime() + sourceDayIndex * 86400000);
     const sourceYear = sourceDate.getUTCFullYear();
     const sourceMonth = sourceDate.getUTCMonth() + 1;
     const sourceDay = sourceDate.getUTCDate();
@@ -187,6 +189,7 @@
 
     // Use the next occurrence, including clock changes after this week's meeting.
     if ((endInstant || startInstant).getTime() < now.getTime()) {
+      if (meeting.eventDate) return null;
       return localizeMeeting(meeting, sourceTimeZone, localTimeZone,
         new Date(weekAnchor.getTime() + 7 * 86400000), now);
     }
@@ -202,7 +205,7 @@
       localSortMinutes: localParts.hour * 60 + localParts.minute,
       sourceTimeZone,
       sourceTimeText: `${meeting.day} ${formatWallClock(meeting.start)}${meeting.end ? ` – ${formatWallClock(meeting.end)}` : ""} (${sourceTimeZone})`,
-      localDate: new Intl.DateTimeFormat(undefined, { timeZone: localTimeZone, month: "short", day: "numeric" }).format(startInstant),
+      localDate: new Intl.DateTimeFormat(undefined, { timeZone: localTimeZone, month: "short", day: "numeric", ...(meeting.eventDate ? { year: "numeric" } : {}) }).format(startInstant),
       endInstant: endInstant ? endInstant.getTime() : null,
       startInstant: startInstant.getTime()
     };
@@ -406,7 +409,7 @@
       <details class="meeting-row">
         <summary class="meeting-summary">
           <span class="meeting-summary-time">${esc(meeting.localStart)}${meeting.localEnd ? `<small>– ${esc(meeting.localEnd)}</small>` : ""}</span>
-          <span class="meeting-summary-name">${esc(meeting.name)}</span>
+          <span class="meeting-summary-name">${esc(meeting.name)}${meeting.eventDate ? `<small> · ${esc(meeting.localDate)}</small>` : ""}</span>
           <span class="meeting-summary-mode">${esc(meeting.mode)}</span>
           <span class="meeting-summary-cue" aria-hidden="true">MORE +</span>
         </summary>
@@ -550,7 +553,7 @@
           localTimeZone,
           meetingWeekAnchor
         );
-      });
+      }).filter(Boolean);
 
       if (els.timezone) {
         const unknownCount = meetings.filter((meeting) => meeting.timezoneUnknown).length;
@@ -579,3 +582,4 @@
     initializeMeetingSchedules();
   }
 })();
+
