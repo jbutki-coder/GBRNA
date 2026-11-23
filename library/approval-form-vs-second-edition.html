@@ -2951,7 +2951,7 @@ function update() {
     const headingMatch = !!query && section.dataset.searchLabel.includes(query);
     let visibleRows = 0;
     section.querySelectorAll('.searchable').forEach(row => {
-      const queryMatch = !query || headingMatch || row.textContent.toLowerCase().includes(query);
+      const queryMatch = !query || row.textContent.toLowerCase().includes(query);
       const hide = !inChapter || !queryMatch || (only.checked && row.classList.contains('match'));
       row.classList.toggle('hidden', hide);
       if (!hide) {
