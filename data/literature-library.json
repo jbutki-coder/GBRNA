@@ -10,17 +10,6 @@
       "category": "drafts"
     },
     {
-      "id": "basic-text-approval-draft",
-      "title": "Basic Text Approval Draft",
-      "subtitle": "1981 Approval Form",
-      "note": "Historical Basic Text approval-form scan.",
-      "pages": 68,
-      "bytes": 2917041,
-      "category": "drafts",
-      "cover": "images/literature/basic-text-approval-draft.jpg",
-      "pdf": "/literature/library/basic-text-approval-draft.pdf"
-    },
-    {
       "id": "santa-monica-draft",
       "title": "Santa Monica Draft",
       "subtitle": "The Santa Monica Draft of the Basic Text",
@@ -32,15 +21,15 @@
       "pdf": "/literature/library/santa-monica-draft.pdf"
     },
     {
-      "id": "second-edition-basic-text",
-      "title": "Second Edition Basic Text",
-      "subtitle": "Narcotics Anonymous - Second Edition",
-      "note": "Scanned reading copy of the Second Edition Basic Text.",
-      "pages": 120,
-      "bytes": 3515440,
+      "id": "basic-text-approval-draft",
+      "title": "Basic Text Approval Draft",
+      "subtitle": "1981 Approval Form",
+      "note": "Historical Basic Text approval-form scan.",
+      "pages": 68,
+      "bytes": 2917041,
       "category": "drafts",
-      "cover": "images/literature/second-edition-basic-text.jpg",
-      "pdf": "/literature/library/second-edition-basic-text.pdf"
+      "cover": "images/literature/basic-text-approval-draft.jpg",
+      "pdf": "/literature/library/basic-text-approval-draft.pdf"
     },
     {
       "id": "first-edition-basic-text-digitally-remastered",
@@ -53,6 +42,17 @@
       "pages": 102,
       "bytes": 4304298,
       "sourceName": "First Edition Basic Text-Digitally Remastered.pdf"
+    },
+    {
+      "id": "second-edition-basic-text",
+      "title": "Second Edition Basic Text",
+      "subtitle": "Narcotics Anonymous - Second Edition",
+      "note": "Scanned reading copy of the Second Edition Basic Text.",
+      "pages": 120,
+      "bytes": 3515440,
+      "category": "drafts",
+      "cover": "images/literature/second-edition-basic-text.jpg",
+      "pdf": "/literature/library/second-edition-basic-text.pdf"
     },
     {
       "id": "baby-blue-screen-reading",
