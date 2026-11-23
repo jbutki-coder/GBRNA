@@ -10,6 +10,18 @@
       "category": "drafts"
     },
     {
+      "id": "first-edition-basic-text-digitally-remastered",
+      "title": "First Edition Basic Text",
+      "subtitle": "Digitally Remastered",
+      "category": "drafts",
+      "cover": "images/literature/first-edition-basic-text-digitally-remastered.jpg",
+      "pdf": "/literature/library/first-edition-basic-text-digitally-remastered.pdf",
+      "note": "Digitally remastered reading copy of Book One, with front matter and Chapters One through Ten.",
+      "pages": 102,
+      "bytes": 4304298,
+      "sourceName": "First Edition Basic Text-Digitally Remastered.pdf"
+    },
+    {
       "id": "baby-blue-screen-reading",
       "title": "The Baby Blue Basic Text",
       "subtitle": "Third Edition Revised & Restored — Screen-Reading Copy",
