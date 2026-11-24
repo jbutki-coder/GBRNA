@@ -1,6 +1,6 @@
 {
   "timezone": "Eastern Time (ET)",
-  "updated": "2026-11-02",
+  "updated": "2026-11-23",
   "meetings": [
     {
       "day": "Sunday",
@@ -1943,6 +1943,26 @@
       "format": "Special Event",
       "locationFilter": "Online",
       "qr": ""
+    },
+    {
+      "day": "Sunday",
+      "start": "10:30",
+      "end": "",
+      "name": "Grey Area - Second Edition Study",
+      "city": "",
+      "region": "",
+      "country": "",
+      "venue": "",
+      "address": "",
+      "mode": "Virtual",
+      "format": "Literature Study",
+      "zoomId": "",
+      "passcode": "",
+      "joinUrl": "https://meet.hostpoint.ch/lsurn-bgeqk-vczjw",
+      "details": "Second Edition Basic Text study on Hostpoint Meet. Open the meeting link, enter a name or nickname, then select Join meeting. No password or account required. Anonymous participation is welcome; you do not need to use your full or legal name.",
+      "id": "grey-area-second-edition-sunday",
+      "locationFilter": "Online",
+      "timezoneIana": "America/New_York"
     }
   ],
   "timezoneIana": "America/New_York"
