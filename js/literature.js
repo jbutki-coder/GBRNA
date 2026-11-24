@@ -19,6 +19,13 @@
 
   function openReader(book, trigger) {
     if (book.pdf) {
+      if (book.id === 'first-edition-basic-text-digitally-remastered') {
+        window.goatcounter?.count?.({
+          path: 'file-open:' + new URL(book.pdf, document.baseURI).pathname,
+          title: book.title,
+          event: true
+        });
+      }
       const params = new URLSearchParams({
         url: new URL(book.pdf, document.baseURI).href,
         title: book.title,
@@ -151,3 +158,4 @@
     if (event.key === 'Escape' && !reader.hidden) closeReader();
   });
 })();
+
